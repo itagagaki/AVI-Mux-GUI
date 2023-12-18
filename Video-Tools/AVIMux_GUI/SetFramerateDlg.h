@@ -1,4 +1,4 @@
-#if !defined(AFX_SETFRAMERATEDLG_H__D1D92668_53A1_4D4F_B385_927C6DF08057__INCLUDED_)
+ï»¿#if !defined(AFX_SETFRAMERATEDLG_H__D1D92668_53A1_4D4F_B385_927C6DF08057__INCLUDED_)
 #define AFX_SETFRAMERATEDLG_H__D1D92668_53A1_4D4F_B385_927C6DF08057__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -37,17 +37,17 @@ public:
 // Dialogfelddaten
 	//{{AFX_DATA(CSetFramerateDlg)
 	enum { IDD = IDD_SETFRAMERATE };
-		// HINWEIS: Der Klassen-Assistent fügt hier Datenelemente ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier Datenelemente ein
 	//}}AFX_DATA
 
 
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
+// Ãœberschreibungen
+	// Vom Klassen-Assistenten generierte virtuelle FunktionsÃ¼berschreibungen
 	//{{AFX_VIRTUAL(CSetFramerateDlg)
 	public:
 	virtual void OnFinalRelease();
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV-Unterstützung
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV-UnterstÃ¼tzung
 	//}}AFX_VIRTUAL
 
 // Implementierung
@@ -64,13 +64,13 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	// Generierte OLE-Dispatch-Zuordnungsfunktionen
 	//{{AFX_DISPATCH(CSetFramerateDlg)
-		// HINWEIS - Der Klassen-Assistent fügt hier Member-Funktionen ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Member-Funktionen ein und entfernt diese.
 	//}}AFX_DISPATCH
 	DECLARE_DISPATCH_MAP()
 	DECLARE_INTERFACE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ fügt unmittelbar vor der vorhergehenden Zeile zusätzliche Deklarationen ein.
+// Microsoft Visual C++ fÃ¼gt unmittelbar vor der vorhergehenden Zeile zusÃ¤tzliche Deklarationen ein.
 
 #endif // AFX_SETFRAMERATEDLG_H__D1D92668_53A1_4D4F_B385_927C6DF08057__INCLUDED_

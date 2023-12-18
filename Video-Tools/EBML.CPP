@@ -565,7 +565,7 @@ int EBMLElement::Search(void** dest,char* iID2Find,char* iID2stopAt)
 		if (CompIDs(ID,iID2Find)) {
 			if ((*elements)->iCount==iMaxCurrSize) {
 				(*elements)->pElement = (EBMLElement**)realloc(
-					(*elements)->pElement,sizeof(EBMLElement*)*(iMaxCurrSize+=10));
+					(*elements)->pElement,sizeof(EBMLElement*)*(iMaxCurrSize+=10));  // TODO: null check
 			}
 			qwLen=Create(&(*elements)->pElement[(*elements)->iCount++],ID)->GetLength();
 		}
@@ -672,7 +672,7 @@ int EBMLElement::SearchMulti(void*** dest, char **iIDs, int iIDCount, char* iID2
 			elements = (EBMLELEMENTLIST*)((*dest)[iIndex]);
 			if ((elements)->iCount==iMaxCurrSize[iIndex]) {
 				(elements)->pElement = (EBMLElement**)realloc(
-					(elements)->pElement,sizeof(EBMLElement*)*(iMaxCurrSize[iIndex]+=10));
+					(elements)->pElement,sizeof(EBMLElement*)*(iMaxCurrSize[iIndex]+=10));  // TODO: null check
 			}
 			qwLen=Create(&(elements)->pElement[(elements)->iCount++],ID)->GetLength();
 			if ((elements)->pElement[(elements)->iCount-1]->IsLengthUndefined())
@@ -694,7 +694,7 @@ int EBMLElement::SearchMulti(void*** dest, char **iIDs, int iIDCount, char* iID2
 		   );
 
 	delete ID;
-	delete iMaxCurrSize;
+	free(iMaxCurrSize);
 
 	if (!elements) return 0;
 	return !!(elements)->iCount;
@@ -988,15 +988,15 @@ int EBMLElement::InsertElement(void** _e, EBMLElement* seg, char* ID, EBMLElemen
 	}
 	seg->SeekStream(pos->AsInt());
 	(*e)->pElement = (EBMLElement**)realloc((*e)->pElement,
-		((*e)->iCount+1)*sizeof(EBMLElement));
+		((*e)->iCount+1)*sizeof(EBMLElement));  // TODO: null check
 
 	seg->Create(&(*e)->pElement[(*e)->iCount++], (char**)&created_id);
 
 	if (pos->CompIDs(ID, (char*)created_id)) {
-		delete created_id;
+		delete[] created_id;
 		return 1;
 	} else {
-		delete created_id;
+		delete[] created_id;
 		(*e)->iCount--;
 		return -1;
 	}
@@ -1016,11 +1016,11 @@ int EBMLElement::InsertElement(EBMLElementVector& e, EBMLElement* seg, char* ID,
 	seg->Create(&element, (char**)&created_id);
 
 	if (pos->CompIDs(ID, (char*)created_id)) {
-		delete created_id;
+		delete[] created_id;
 		e.push_back(element);
 		return 1;
 	} else {
-		delete created_id;
+		delete[] created_id;
 		return -1;
 	}
 }

@@ -1,4 +1,4 @@
-// HexViewListBox.cpp : Implementierungsdatei
+ï»¿// HexViewListBox.cpp : Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -29,8 +29,8 @@ CHexViewListBox::~CHexViewListBox()
 void CHexViewListBox::OnFinalRelease()
 {
 	// Wenn der letzte Verweis auf ein Automatisierungsobjekt freigegeben wird,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CListBox::OnFinalRelease();
@@ -87,8 +87,8 @@ END_MESSAGE_MAP()
 BEGIN_DISPATCH_MAP(CHexViewListBox, CListBox)
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IHexViewListBox zur Verfügung, um typsicheres Binden 
-//  von VBA zu unterstützen. Diese IID muss mit der GUID übereinstimmen, die bei der 
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IHexViewListBox zur VerfÃ¼gung, um typsicheres Binden 
+//  von VBA zu unterstÃ¼tzen. Diese IID muss mit der GUID Ã¼bereinstimmen, die bei der 
 //  Disp-Schnittstelle in der .IDL-Datei angegeben ist.
 
 // {AF8A4F8E-DC14-467B-8307-8A9915C0AC9E}
@@ -129,7 +129,7 @@ int CHexViewListBox::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CListBox::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  Fügen Sie Ihren spezialisierten Erstellcode hier ein.
+	// TODO:  FÃ¼gen Sie Ihren spezialisierten Erstellcode hier ein.
 
 	return 0;
 }
@@ -141,14 +141,14 @@ void CHexViewListBox::SetMode(int _mode)
 
 void CHexViewListBox::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
 
 	__int64 start_file_pos = data_begin;//((first_pos / 16) * 16);
 
 	if (lpDrawItemStruct->itemID < 0)
 		lpDrawItemStruct->itemID = GetCurSel();
 
-	// TODO: Code einfügen, um das angegebene Element zu zeichnen
+	// TODO: Code einfÃ¼gen, um das angegebene Element zu zeichnen
 	CDC	dc;
 	LPDRAWITEMSTRUCT d = lpDrawItemStruct;
 
@@ -295,9 +295,9 @@ void CHexViewListBox::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 			, d->rcItem.top, utf8Bt.TStr(), 3);
 
 		if (data[offset+j] >= 32)
-			sprintf(bt, "%c", data[offset+j]);
+			sprintf_s(bt, "%c", data[offset+j]);
 		else
-			sprintf(bt, ".");
+			sprintf_s(bt, ".");
 		
 		CUTF8 utf8Bt2(bt);
 		const TCHAR* pzBt2 = utf8Bt2.TStr();

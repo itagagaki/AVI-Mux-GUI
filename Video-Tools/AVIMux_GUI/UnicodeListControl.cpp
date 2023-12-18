@@ -1,4 +1,4 @@
-// UnicodeListControl.cpp: Implementierungsdatei
+ï»¿// UnicodeListControl.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -27,8 +27,8 @@ CUnicodeListCtrl::~CUnicodeListCtrl()
 void CUnicodeListCtrl::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CListCtrl::OnFinalRelease();
@@ -45,12 +45,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CUnicodeListCtrl, CListCtrl)
 	//{{AFX_DISPATCH_MAP(CUnicodeListControl)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IUnicodeListControl zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IUnicodeListControl zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {E0977612-8AE0-419C-A28C-66B7799DC371}
@@ -62,11 +62,11 @@ BEGIN_INTERFACE_MAP(CUnicodeListCtrl, CListCtrl)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CUnicodeListControl 
+// Behandlungsroutinen fÃ¼r Nachrichten CUnicodeListControl 
 
 BOOL CUnicodeListCtrl::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext) 
 {
-	// TODO: Speziellen Code hier einfügen und/oder Basisklasse aufrufen
+	// TODO: Speziellen Code hier einfÃ¼gen und/oder Basisklasse aufrufen
 	
 	return CWnd::Create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
@@ -260,7 +260,7 @@ char* CUnicodeListCtrl::GetItemText(int nItem, int nSubItem)
 void CUnicodeListCtrl::OnGetdispinfo(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	LV_DISPINFO* pDispInfo = (LV_DISPINFO*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	LVITEM* item = &pDispInfo->item;
 	char* dest = reinterpret_cast<char*>(item->pszText);
 	char* c = NULL;

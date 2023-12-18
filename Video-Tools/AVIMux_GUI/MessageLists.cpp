@@ -21,7 +21,7 @@ void MSG_LIST_append(MSG_LIST* lpMsgList,char* lpMsg)
 		lpMsgList=(MSG_LIST*)(lpMsgList->lpNext);
 	}
 	lpMsgList->lpNext=new MSG_LIST;
-	lpMsgList->lpMsg=(char*)malloc(lstrlen(lpMsg)+1);
+	lpMsgList->lpMsg=(char*)malloc(lstrlen(lpMsg)+1);  // TODO: null check
 	lstrcpy(lpMsgList->lpMsg,lpMsg);
 	lpMsgList=(MSG_LIST*)lpMsgList->lpNext;
 	lpMsgList->lpNext=NULL;

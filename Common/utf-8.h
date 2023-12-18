@@ -39,7 +39,7 @@ static const int CHARACTER_ENCODING_UTF16_BE = 0x04;
 class CharacterEncoding
 {
 public:
-	enum CharacterEncodings {
+	enum class CharacterEncodings {
 		Undefined,
 		ANSI,
 		UTF8,
@@ -70,7 +70,7 @@ public:
 	CUTF8(const CUTF8& other);
 	CUTF8(const char* pSrc);
 	CUTF8(const wchar_t* pSrc);
-	CUTF8(const char* pSrc, int Encoding);
+	CUTF8(const char* pSrc, CharacterEncoding::CharacterEncodings Encoding);
 
 //	CUTF8(const std::string src);
 	CUTF8(const std::string& src);

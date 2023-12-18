@@ -164,7 +164,7 @@ class EBMLElement
 		bool	operator< (EBMLElement& first);
 };
 
-typedef struct
+struct EBMLELEMENTLIST
 {
 	size_t			iCount;
 	EBMLElement**	pElement;
@@ -172,7 +172,7 @@ typedef struct
 	__int64 operator[] (int index);				// return integer value of i-th element of that list
 	__int64 operator^ (__int64 _default);		// return value of 1st element in that list of default if there is none
 
-} EBMLELEMENTLIST;
+};
 
 
 typedef std::vector<EBMLElement*> EBMLElementVector;

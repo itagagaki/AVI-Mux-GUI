@@ -1,4 +1,4 @@
-// UserDrawEdit.cpp: Implementierungsdatei
+ï»¿// UserDrawEdit.cpp: Implementierungsdatei
 //
 // Supports a function call which returns the color to be used for the text as result
 //
@@ -49,8 +49,8 @@ CUserDrawEdit::~CUserDrawEdit()
 void CUserDrawEdit::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CEdit::OnFinalRelease();
@@ -68,12 +68,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CUserDrawEdit, CEdit)
 	//{{AFX_DISPATCH_MAP(CUserDrawEdit)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IUserDrawEdit zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IUserDrawEdit zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {35FBD8C3-6A94-4CF0-BD8D-DB8B69E33DCC}
@@ -85,7 +85,7 @@ BEGIN_INTERFACE_MAP(CUserDrawEdit, CEdit)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CUserDrawEdit 
+// Behandlungsroutinen fÃ¼r Nachrichten CUserDrawEdit 
 
 COLORREF CUserDrawEdit::GetTxtColor()
 {
@@ -155,7 +155,7 @@ void CUserDrawEdit::OnPaint()
 
 void CUserDrawEdit::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	
 	SetTextColor(lpDrawItemStruct->hDC,255);
 
@@ -176,7 +176,7 @@ void CUserDrawEdit::OnSetFocus(CWnd* pOldWnd)
 {
 	CEdit::OnSetFocus(pOldWnd);
 
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen
 	bHasFocus = true;	
 	InvalidateRect(NULL);
 	UpdateWindow();

@@ -1,4 +1,4 @@
-// AVIMux_GUIDlg.h : Header-Datei
+ï»¿// AVIMux_GUIDlg.h : Header-Datei
 //
 
 #if !defined(AFX_AVIMUX_GUIDLG_H__E08D67DC_40F7_4A39_919C_A12D2C827F08__INCLUDED_)
@@ -198,10 +198,10 @@ public:
 	CSourceFileListBox	m_SourceFiles;
 	//}}AFX_DATA
 
-	// Vom Klassenassistenten generierte Überladungen virtueller Funktionen
+	// Vom Klassenassistenten generierte Ãœberladungen virtueller Funktionen
 	//{{AFX_VIRTUAL(CAVIMux_GUIDlg)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV-Unterstützung
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV-UnterstÃ¼tzung
 	virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
@@ -264,6 +264,6 @@ public:
 };
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ fügt unmittelbar vor der vorhergehenden Zeile zusätzliche Deklarationen ein.
+// Microsoft Visual C++ fÃ¼gt unmittelbar vor der vorhergehenden Zeile zusÃ¤tzliche Deklarationen ein.
 
 #endif // !defined(AFX_AVIMUX_GUIDLG_H__E08D67DC_40F7_4A39_919C_A12D2C827F08__INCLUDED_)

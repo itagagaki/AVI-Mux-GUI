@@ -250,7 +250,7 @@ void CBinaryAudioSource::LogFrameHeaderReadingError()
 	QW2Str(GetSource()->GetSize(), cSize, 0);
 
 	char cName[1024]; cName[0]=0;
-	GetName(cName);
+	GetName(cName, sizeof cName);
 
 	char msg[2048]; msg[0]=0;
 	sprintf_s(msg, "Error reading frame header\nStream       : %s\nPosition     : %s\nTotal size   : %s\nLast timecode: %s",
@@ -271,7 +271,7 @@ void CBinaryAudioSource::LogFrameDataReadingError(__int64 errorPos, int sizeExpe
 	QW2Str(GetSource()->GetSize(), cSize, 10);
 
 	char cName[1024]; cName[0]=0;
-	GetName(cName);
+	GetName(cName, sizeof cName);
 
 	char cExpected[64]; cExpected[0]=0;
 	QW2Str(sizeExpected, cExpected, 10);

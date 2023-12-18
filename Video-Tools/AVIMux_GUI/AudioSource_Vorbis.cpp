@@ -415,10 +415,10 @@ int VORBISFROMOGG::ReadFloor()
 
 	}
 
-	if (floor1_class_dimension) delete floor1_class_dimension;
-	if (floor1_class_masterbooks) delete floor1_class_masterbooks;
-	if (floor1_class_subclasses) delete floor1_class_subclasses;
-	if (floor1_partition_class_list) delete floor1_partition_class_list;
+	if (floor1_class_dimension) delete[] floor1_class_dimension;
+	if (floor1_class_masterbooks) delete[] floor1_class_masterbooks;
+	if (floor1_class_subclasses) delete[] floor1_class_subclasses;
+	if (floor1_partition_class_list) delete[] floor1_partition_class_list;
 
 	return 0;
 }
@@ -460,7 +460,7 @@ int VORBISFROMOGG::ReadResidue()
 		}
 	}
 
-	delete residue_cascade;
+	delete[] residue_cascade;
 
 	return 0;
 }
@@ -555,9 +555,9 @@ int VORBISFROMOGG::ReadMapping()
 	}
 	packet->ReadBits(24*vorbis_mapping_submaps, 1);
 
-	delete vorbis_mapping_magnitude;
-	delete vorbis_mapping_angle;
-	delete vorbis_mapping_mux;
+	delete[] vorbis_mapping_magnitude;
+	delete[] vorbis_mapping_angle;
+	delete[] vorbis_mapping_mux;
 	
 	return 0;
 }

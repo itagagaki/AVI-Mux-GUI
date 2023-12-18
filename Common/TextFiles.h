@@ -44,7 +44,7 @@ class CTextFile: public STREAM
 	public:
 		/* constructors */
 		CTextFile();
-		CTextFile(StreamMode::StreamModes _dwMode, STREAM* s, CharacterEncoding::CharacterEncodings iOutputFormat = CharacterEncoding::ANSI);
+		CTextFile(StreamMode::StreamModes _dwMode, STREAM* s, CharacterEncoding::CharacterEncodings iOutputFormat = CharacterEncoding::CharacterEncodings::ANSI);
 		virtual ~CTextFile();
 		/* encoding -> bool */
 		bool	virtual IsUTF8In();

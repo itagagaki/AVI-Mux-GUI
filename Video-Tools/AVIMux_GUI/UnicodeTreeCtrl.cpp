@@ -1,4 +1,4 @@
-// UnicodeTreeCtrl.cpp: Implementierungsdatei
+ï»¿// UnicodeTreeCtrl.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -32,8 +32,8 @@ CUnicodeTreeCtrl::~CUnicodeTreeCtrl()
 void CUnicodeTreeCtrl::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CTreeCtrl::OnFinalRelease();
@@ -62,12 +62,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CUnicodeTreeCtrl, CTreeCtrl)
 	//{{AFX_DISPATCH_MAP(CUnicodeTreeCtrl)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IUnicodeTreeCtrl zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IUnicodeTreeCtrl zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {E4D57A18-5B58-47AC-92B6-05466DA06BAB}
@@ -79,7 +79,7 @@ BEGIN_INTERFACE_MAP(CUnicodeTreeCtrl, CTreeCtrl)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CUnicodeTreeCtrl 
+// Behandlungsroutinen fÃ¼r Nachrichten CUnicodeTreeCtrl 
 
 void CUnicodeTreeCtrl::GetTextCallback(NMHDR* pNMHDR, LRESULT* pResult)
 {
@@ -111,7 +111,7 @@ void CUnicodeTreeCtrl::OnGetdispinfo(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 		
 	TV_DISPINFO* pTVDispInfo = (TV_DISPINFO*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	HTREEITEM hItem = pTVDispInfo->item.hItem;
 
@@ -138,7 +138,7 @@ void CUnicodeTreeCtrl::OnGetdispinfo(NMHDR* pNMHDR, LRESULT* pResult)
 						int j = fromUTF8(data->cText, cDest, pItem->cchTextMax * (IsUnicode()?2:1));
 					} __except(EXCEPTION_EXECUTE_HANDLER) {
 						DWORD code = GetExceptionCode();
-						char c[64]; sprintf(c, "b0rked at %08X", cDest);
+						char c[64]; sprintf_s(c, "b0rked at %p", cDest);
 						fromUTF8(c, cDest, 38); 
 					}
 					
@@ -525,7 +525,7 @@ bool CUnicodeTreeCtrl::DeleteAllItems(HTREEITEM hRoot)
 void CUnicodeTreeCtrl::OnKeydown(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	TV_KEYDOWN* pTVKeyDown = (TV_KEYDOWN*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	char nChar = (char)(pTVKeyDown->wVKey);
 	
@@ -541,7 +541,7 @@ void CUnicodeTreeCtrl::OnKeydown(NMHDR* pNMHDR, LRESULT* pResult)
 
 LRESULT CUnicodeTreeCtrl::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) 
 {
-	// TODO: Speziellen Code hier einfügen und/oder Basisklasse aufrufen
+	// TODO: Speziellen Code hier einfÃ¼gen und/oder Basisklasse aufrufen
 	switch (message) {
 		case WM_RBUTTONDOWN:
 			b_rdown = 1;
@@ -622,7 +622,7 @@ int CUnicodeTreeCtrl::Render2Buffer(std::string& dest)
 
 void CUnicodeTreeCtrl::OnReturn(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	
 	PostMessage(TVM_ENDEDITLABELNOW, 0, 0);
 	
@@ -635,7 +635,7 @@ void CUnicodeTreeCtrl::OnDestroy()
 
 	CTreeCtrl::OnDestroy();
 	
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen
 	
 }
 
@@ -644,7 +644,7 @@ int CUnicodeTreeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CTreeCtrl::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	
-	// TODO: Speziellen Erstellungscode hier einfügen
+	// TODO: Speziellen Erstellungscode hier einfÃ¼gen
 	InitUnicode();
 	
 	return 0;

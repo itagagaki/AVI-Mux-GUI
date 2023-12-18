@@ -1,4 +1,4 @@
-// SplitPointList.cpp: Implementierungsdatei
+ï»¿// SplitPointList.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -28,8 +28,8 @@ CSplitPointList::~CSplitPointList()
 void CSplitPointList::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CListBox::OnFinalRelease();
@@ -46,12 +46,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CSplitPointList, CListBox)
 	//{{AFX_DISPATCH_MAP(CSplitPointList)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_ISplitPointList zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_ISplitPointList zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {6DC593B2-51BA-4696-A486-693E9F8AA26E}
@@ -63,7 +63,7 @@ BEGIN_INTERFACE_MAP(CSplitPointList, CListBox)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CSplitPointList 
+// Behandlungsroutinen fÃ¼r Nachrichten CSplitPointList 
 
 void CSplitPointList::OnRButtonUp(UINT nFlags, CPoint point) 
 {
@@ -102,7 +102,7 @@ int CSplitPointList::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CListBox::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	
-	// TODO: Speziellen Erstellungscode hier einfügen
+	// TODO: Speziellen Erstellungscode hier einfÃ¼gen
 
 	
 	return 0;
@@ -151,7 +151,7 @@ void CSplitPointList::AddSplitPoint(DWORD dwSplitPos)
 
 BOOL CSplitPointList::OnCommand(WPARAM wParam, LPARAM lParam) 
 {
-	// TODO: Speziellen Code hier einfügen und/oder Basisklasse aufrufen
+	// TODO: Speziellen Code hier einfÃ¼gen und/oder Basisklasse aufrufen
 	AddSplitPointDlg*	aspd;
 	DWORD				dwSplitPos;
 	int					iIndex;

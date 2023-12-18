@@ -1,4 +1,4 @@
-// AddSplitPointDlg.cpp: Implementierungsdatei
+ï»¿// AddSplitPointDlg.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -25,7 +25,7 @@ AddSplitPointDlg::AddSplitPointDlg(CWnd* pParent /*=NULL*/)
 	EnableAutomation();
 
 	//{{AFX_DATA_INIT(AddSplitPointDlg)
-		// HINWEIS: Der Klassen-Assistent fügt hier Elementinitialisierung ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier Elementinitialisierung ein
 	//}}AFX_DATA_INIT
 }
 
@@ -33,8 +33,8 @@ AddSplitPointDlg::AddSplitPointDlg(CWnd* pParent /*=NULL*/)
 void AddSplitPointDlg::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CDialog::OnFinalRelease();
@@ -44,7 +44,7 @@ void AddSplitPointDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(AddSplitPointDlg)
-		// HINWEIS: Der Klassen-Assistent fügt hier DDX- und DDV-Aufrufe ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier DDX- und DDV-Aufrufe ein
 	//}}AFX_DATA_MAP
 }
 
@@ -58,12 +58,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(AddSplitPointDlg, CDialog)
 	//{{AFX_DISPATCH_MAP(AddSplitPointDlg)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IAddSplitPointDlg zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IAddSplitPointDlg zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {0BC28AF1-0C0F-4091-B8B9-B2B827FAF7BA}
@@ -75,14 +75,14 @@ BEGIN_INTERFACE_MAP(AddSplitPointDlg, CDialog)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten AddSplitPointDlg 
+// Behandlungsroutinen fÃ¼r Nachrichten AddSplitPointDlg 
 
 int AddSplitPointDlg::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
 	if (CDialog::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	
-	// TODO: Speziellen Erstellungscode hier einfügen
+	// TODO: Speziellen Erstellungscode hier einfÃ¼gen
 	
 	CheckDlgButton(IDC_ALLOWDELTA,BST_UNCHECKED);
 
@@ -93,13 +93,13 @@ void AddSplitPointDlg::OnCancelMode()
 {
 	CDialog::OnCancelMode();
 	
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen
 	
 }
 
 void AddSplitPointDlg::OnOK() 
 {
-	// TODO: Zusätzliche Prüfung hier einfügen
+	// TODO: ZusÃ¤tzliche PrÃ¼fung hier einfÃ¼gen
 
 	const int bufSize = 128;
 	TCHAR temp[bufSize];
@@ -122,7 +122,7 @@ BOOL AddSplitPointDlg::OnInitDialog()
 
 	CDialog::OnInitDialog();
 	
-	// TODO: Zusätzliche Initialisierung hier einfügen
+	// TODO: ZusÃ¤tzliche Initialisierung hier einfÃ¼gen
 	GetDlgItem(IDC_NEWSPLITPOINT)->SetFocus();
 	if (dwSplitPos)
 	{
@@ -140,13 +140,13 @@ BOOL AddSplitPointDlg::OnInitDialog()
 	SendDlgItemMessage(IDC_ASP_NEWPART,WM_SETTEXT,NULL,(LPARAM)LoadString(STR_ASP_S_NEWPART));
 	
 	CUTF8 utf8Title(LoadString(STR_ASP_TITLE, LOADSTRING_UTF8), 
-		CharacterEncoding::UTF8);
+		CharacterEncoding::CharacterEncodings::UTF8);
 
 	SetWindowText(utf8Title.TStr());
 	//SetWindowText(LoadString(STR_ASP_TITLE));
 
 	return false;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurückgeben
+	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurÃ¼ckgeben
 }
 
 void AddSplitPointDlg::SetSplitPos(DWORD _dwSplitPos)

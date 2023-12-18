@@ -834,7 +834,7 @@ void RemoveDoubles(EBMLElementVector& e)
 void BadSeekheadError(int i, int j, char* cID)
 {
 	char msg[100]; msg[0] = 0;
-	sprintf(msg, "Entry %d of Seek head %d (SeekID: %02X %02X %02X %02X) pointing to bad position!"
+	sprintf_s(msg, "Entry %d of Seek head %d (SeekID: %02X %02X %02X %02X) pointing to bad position!"
 		         ,j+1, i+1, cID[0] & 0xFF, cID[1] & 0xFF, cID[2] & 0xFF, cID[3] & 0xFF);
 	B0rked(msg);
 }
@@ -926,7 +926,7 @@ void EBMLM_Segment::RetrieveAttachments(EBMLElementVector& attachments, ATTACHME
 			char c[64]; c[0]=0;
 			char msg[256]; msg[0]=0;
 			__int642hex(curr_att->file_uid, c, 8, 1, 1);
-			sprintf(msg, "Found non-unique AttachmentUID %s", c);
+			sprintf_s(msg, "Found non-unique AttachmentUID %s", c);
 			iter_att->flags &=~ FATT_ORIGINALUID;
 			generate_uid((char*)&iter_att->file_uid, 8);
 			B0rked(msg);
@@ -997,7 +997,7 @@ void EBMLM_Segment::RetrieveSegmentInfo(EBMLELEMENTLIST* e_SIList)
 		p[0] = 0x80;
 		int icrc = CRC32(p, 4);
 //		int icrc2 = CRC32(p, 4, CRC32_POLYNOM);
-		delete p;
+		delete[] p;
 
 //		DeleteElementList(&e_SIList);
 	}
@@ -1110,7 +1110,7 @@ int EBMLM_Segment::RetrieveInfo()
 				if (CompIDs(e_SeekID[0]->AsString(),(char*)MID_CLUSTER)) {
 					if (SegmentInfo->clusters->iCount>=iMaxClusters) {
 						SegmentInfo->clusters->cluster_info = (CLUSTER_PROP**)realloc(
-							SegmentInfo->clusters->cluster_info,(iMaxClusters+=10)*sizeof(CLUSTER_PROP*));
+							SegmentInfo->clusters->cluster_info,(iMaxClusters+=10)*sizeof(CLUSTER_PROP*));  // TODO: null check
 					}
 					CLUSTER_PROP* ci \
 						= SegmentInfo->clusters->cluster_info[SegmentInfo->clusters->iCount++] \
@@ -1732,7 +1732,7 @@ int EBMLM_Segment::RetrieveInfo()
 		for (i=0;(int)i<(*e_Tracks)->iCount;i++) {
 			DeleteElementList(&e_TrackEntries[i]);
 		}
-		delete e_TrackEntries;
+		free(e_TrackEntries);
 	}
 
 
@@ -2027,17 +2027,17 @@ bool EBMLM_Segment::VerifyCuePoint(int index)
 		Create((EBMLElement**)&cluster);
 
 		char pt[16]; pt[0]=0;
-		sprintf(pt, "%d", index);
+		sprintf_s(pt, "%d", index);
 
 		char trk[16]; trk[0]=0;
-		sprintf(trk, "%d", cti->iTrack);
+		sprintf_s(trk, "%d", cti->iTrack);
 
 		char pos[64]; pos[0]=0;
 		QW2Str(cti->qwClusterPos, pos, 1);
 
 		if (cluster->GetType() != IDVALUE(MID_CLUSTER)) {
 			char msg[2048]; msg[0]=0;
-			sprintf(msg, "Cue point #%d, track #%d pointing to fake Cluster at %s.\n  Found %s instead",
+			sprintf_s(msg, "Cue point #%d, track #%d pointing to fake Cluster at %s.\n  Found %s instead",
 				index, SegmentInfo->tracks->iTable[cti->iTrack], pos, cluster->GetTypeString());
 			B0rked(msg);
 		}
@@ -2129,10 +2129,10 @@ EBMLM_Cluster* EBMLM_Segment::LocateCluster_Cues(__int64 qwTime)
 		char pt[16]; pt[0]=0;
 		char pos[32]; pos[0]=0;
 		char msg[2048]; msg[0]=0;
-		sprintf(pt, "%d", iMid);
+		sprintf_s(pt, "%d", iMid);
 		QW2Str(cues->pCuePoints[iMid]->tracks[0].qwClusterPos, pos, 1);
 
-		sprintf(msg, "When you see this message, either a 2 Cue elements in a row are broken, or the Matroska reader stumbled again over a bug in the Cache class. Please contact me, and please keep the source file in question! The next thing AVI-Mux GUI will do is most likely crash. Try disabling \"unbuffered read\" in the input settings.\n\nThe cue point in question is #%s and points to %s.",
+		sprintf_s(msg, "When you see this message, either a 2 Cue elements in a row are broken, or the Matroska reader stumbled again over a bug in the Cache class. Please contact me, and please keep the source file in question! The next thing AVI-Mux GUI will do is most likely crash. Try disabling \"unbuffered read\" in the input settings.\n\nThe cue point in question is #%s and points to %s.",
 			pt, pos);
 
 		MessageBoxA(0, msg , "Warning", MB_OK);
@@ -2240,7 +2240,7 @@ int tagAdd(TAG_LIST** pTags, char* cName, char* cText, char* cLng)
 		(*pTags)->pTags = new TAG*;
 		(*pTags)->iCount = 0;
 	} else {
-		(*pTags)->pTags = (TAG**)realloc((*pTags)->pTags, sizeof(TAG*) * ((*pTags)->iCount+1));
+		(*pTags)->pTags = (TAG**)realloc((*pTags)->pTags, sizeof(TAG*) * ((*pTags)->iCount+1));  // TODO: null check
 	}
 
 	TAG** t = &(*pTags)->pTags[(*pTags)->iCount++];

@@ -1,4 +1,4 @@
-#include "stdafx.h" 
+ï»¿#include "stdafx.h" 
 #include "avimux_guidlg.h"
 #include "formattext.h"
 #include "avistream.h"
@@ -16,7 +16,7 @@ static char THIS_FILE[] = __FILE__;
 DWORD* DuplicateFileUsageList(DWORD* in)
 {
 	int size;
-	DWORD* res = (DWORD*)malloc(size = sizeof(DWORD) * (in[0] + 1));
+	DWORD* res = (DWORD*)malloc(size = sizeof(DWORD) * (in[0] + 1));  // TODO: null check
 	memcpy(res, in, size);
 	return res;
 }
@@ -43,7 +43,7 @@ template <class T>bool CheckForEquality(int msg_index,
 					  int final, char* final_error_message)
 {
 	char c[65536];
-	sprintf(c, LoadString(msg_index, LOADSTRING_UTF8),
+	sprintf_s(c, LoadString(msg_index, LOADSTRING_UTF8),
 		n1, f1, v1,
 		n2, f2, v2);
 
@@ -129,7 +129,7 @@ template<class T>bool CheckMPEGVersion(T* a1, T* a2, int n1, int n2,
 
 void CAVIMux_GUIDlg::OnAddFileList() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	
 	if (bEditInProgess) return;
 	int						dwNbrOfFiles,dwNbrOfSource;
@@ -171,7 +171,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 	SUBTITLE_STREAM_INFO**	ssi;
 	bool				bNoMP3CBR;
 
-// wieviele gewählt?
+// wieviele gewÃ¤hlt?
 	dwNbrOfFiles=SendDlgItemMessage(IDC_SOURCEFILELIST,LB_GETSELCOUNT,0,0);
 	if (!dwNbrOfFiles)
 	{
@@ -190,7 +190,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 		FILE_INFO* fi = (FILE_INFO*)((CBuffer*)m_SourceFiles.GetItemData(dwSelectedFilesIndexes[i+1]))->GetData();
 		dwSelectedFiles[i+1] = fi->file_id;
 	}
-	delete dwSelectedFilesIndexes;
+	delete[] dwSelectedFilesIndexes;
 
 	if (dwNbrOfFiles==1) bChaptersFromFiles = false;
 // join matroska, mp3 or avi files, but no mixture
@@ -225,7 +225,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 				char msg[1024]; msg[0] = 0;
 				char* c;
 				c = LoadString(STR_ERR_FILEINUSE, LOADSTRING_UTF8);
-				sprintf(msg, c, fi->Name.UTF8());
+				sprintf_s(msg, c, fi->Name.UTF8());
 				MessageBoxUTF8(m_hWnd, msg, LoadString(STR_GEN_ERROR),
 					MB_OK | MB_ICONERROR);
 				return;
@@ -518,7 +518,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 			}
 		}
 		bNoMP3CBR|=fi->bMP3VBF_forced;
-		delete cNoExt;
+		delete[] cNoExt;
 //		delete cPath;
 	}
 
@@ -573,7 +573,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 						if (GetTickCount()-time>1000) {
 							time+=1000;
 							Millisec2Str(itc/1000000, cTime);
-							sprintf(cMessage, "processing %s, total position: %s",
+							sprintf_s(cMessage, "processing %s, total position: %s",
 								fi->Name.UTF8(), cTime);
 							m_StatusLine.SetWindowText(cMessage);
 							m_StatusLine.InvalidateRect(NULL);
@@ -582,7 +582,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 					}
 
 					Millisec2Str((itc-itc_begin)/1000000, cTime);
-					sprintf(cMessage, "Duration found: %s", cTime);
+					sprintf_s(cMessage, "Duration found: %s", cTime);
 					AddProtocolLine(cMessage, 4);
 					a->Seek(0);
 				}
@@ -639,7 +639,8 @@ void CAVIMux_GUIDlg::OnAddFileList()
 		AddAudioStream(asi[0]);
 		bNoVideo = 1;
 
-		delete cNoExt; delete p;
+		free(p);
+		delete[] cNoExt;
 	}
 
 	if (!bNoVideo) {
@@ -670,12 +671,12 @@ void CAVIMux_GUIDlg::OnAddFileList()
 				switch (fi->AVIFile->GetFormatTag(j+1)) {
 					case 0x0001:
 						lpAudiosources[j] = new AUDIOSOURCEFROMAVI(fi->AVIFile,j+1);
-						sprintf(Buffer,"%s", "PCM");
+						sprintf_s(Buffer, "%s", "PCM");
 						asi[j]->dwType = AUDIOTYPE_PCM;
 						break;
 					case 0x0161:
 						lpAudiosources[j] = new AUDIOSOURCEFROMAVI(fi->AVIFile,j+1);
-						sprintf(Buffer,"%s", "divX audio");
+						sprintf_s(Buffer, "%s", "divX audio");
 						asi[j]->dwType = AUDIOTYPE_DIVX;
 						break;
 					case 0x0050:
@@ -698,19 +699,19 @@ void CAVIMux_GUIDlg::OnAddFileList()
 						ac3->SetResyncRange(1<<20);
 						ac3->Open(new AVISTREAM(fi->AVIFile,j+1));
 						FillAC3_ASI(&asi[j],ac3);
-						sprintf(Buffer,"%s", "AC3");
+						sprintf_s(Buffer, "%s", "AC3");
 						break;
 					case AAC_WFORMATTAG:
 						lpAudiosources[j] = new AACFROMAVI(fi->AVIFile,j+1);
 						FillAAC_ASI(&asi[j],(AACSOURCE*)lpAudiosources[j]);
-						sprintf(Buffer,"%s", "AAC");
+						sprintf_s(Buffer, "%s", "AAC");
 						fi->AVIFile->GetStreamName(j+1, Buffer);
 						lpAudiosources[j]->SetName(Buffer);
 						break;
 					case 0x2001:
 						lpAudiosources[j] = new DTSSOURCE(new AVISTREAM(fi->AVIFile,j+1));
 						FillDTS_ASI(&asi[j],(DTSSOURCE*)lpAudiosources[j]);
-						sprintf(Buffer,"%s", "DTS");
+						sprintf_s(Buffer, "%s", "DTS");
 						break;
 					case 0x566F: {
 						VORBISPACKETSFROMAVI* a = new VORBISPACKETSFROMAVI(fi->AVIFile, j+1);
@@ -725,7 +726,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 						break;
 					default:
 						lpAudiosources[j] = new AUDIOSOURCEFROMAVI(fi->AVIFile,j+1);
-						sprintf(Buffer,"%s", "unknown CBR");
+						sprintf_s(Buffer, "%s", "unknown CBR");
 						asi[j]->dwType = AUDIOTYPE_CBR;
 						break;
 
@@ -758,7 +759,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 						lpASL[j]->Append(lpAudiosources[j]);
 						break;
 					default:
-						sprintf(Buffer,LoadString(STR_ERR_AUDIOINCOMPATIBLE),fi->Name.UTF8(),j+1);
+						sprintf_s(Buffer, LoadString(STR_ERR_AUDIOINCOMPATIBLE),fi->Name.UTF8(),j+1);
 						MessageBox(Buffer,LoadString(STR_GEN_ERROR),MB_OK | MB_ICONERROR);
 						return;
 						break;
@@ -816,7 +817,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 				lpAS->Open(fi->AVIFile,lpdwSubtitleList[i]);
 
 				subs[i-1]=new SUBTITLES;
-				subs[i-1]->Open(new CTextFile(StreamMode::Read,lpAS,CharacterEncoding::UTF8));
+				subs[i-1]->Open(new CTextFile(StreamMode::Read,lpAS,CharacterEncoding::CharacterEncodings::UTF8));
 
 				lpAS->Close();
 				delete lpAS;
@@ -829,7 +830,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 					lpAS=new AVISTREAM;
 					lpAS->Open(fi->AVIFile,lpdwSubtitleList[i]);
 					temp_subs=new SUBTITLES;
-					temp_subs->Open(new CTextFile(StreamMode::Read, lpAS, CharacterEncoding::UTF8));
+					temp_subs->Open(new CTextFile(StreamMode::Read, lpAS, CharacterEncoding::CharacterEncodings::UTF8));
 					if (!subs[i-1]->Merge(temp_subs,qwBias))
 					{
 						MessageBox(LoadString(IDS_COULDNTMERGESUBS),cstrError,MB_OK | MB_ICONERROR);
@@ -855,9 +856,9 @@ void CAVIMux_GUIDlg::OnAddFileList()
 				ssi[i]->lpdwFiles = DuplicateFileUsageList(dwSelectedFiles);
 				AddSubtitleStream(ssi[i]);
 			}
-			delete ssi;
-			delete subs;
-			delete lpdwSubtitleList;
+			delete[] ssi;
+			delete[] subs;
+			delete[] lpdwSubtitleList;
 		}
 	}
 
@@ -907,7 +908,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 						lpASL[j]->Append(a);
 						break;
 					default:
-						sprintf(Buffer,LoadString(STR_ERR_AUDIOINCOMPATIBLE),fi->Name.UTF8(),audio_streams->At(j));
+						sprintf_s(Buffer, LoadString(STR_ERR_AUDIOINCOMPATIBLE),fi->Name.UTF8(),audio_streams->At(j));
 						MessageBox(Buffer,LoadString(STR_GEN_ERROR),MB_OK | MB_ICONERROR);
 						return;
 						break;
@@ -922,7 +923,7 @@ void CAVIMux_GUIDlg::OnAddFileList()
 
 			}
 
-			sprintf(Buffer,"%s",lpASL[j]->GetCodecID());
+			sprintf_s(Buffer, "%s", lpASL[j]->GetCodecID());
 
 			asi[j]->audiosource = lpASL[j];
 			asi[j]->bNameFromFormatTag = false;
@@ -956,8 +957,8 @@ void CAVIMux_GUIDlg::OnAddFileList()
 			AddAudioStream(asi[j]);
 		}
 
-		delete asi;
-		delete lpASL;
+		delete[] asi;
+		delete[] lpASL;
 
 		// subtitles: currently only utf-8 plain text will work!
 		for (j=0;j<m->GetTrackCount();j++) {
@@ -986,18 +987,18 @@ void CAVIMux_GUIDlg::OnAddFileList()
 						lpSSL[j]->Append(s);
 						break;
 					case MMSIC_COMPRESSION:
-						sprintf(Buffer,LoadString(STR_ERR_SUBCOMPRESSIONINCOMPATIBLE),fi->Name.UTF8(),subs->At(j));
+						sprintf_s(Buffer, LoadString(STR_ERR_SUBCOMPRESSIONINCOMPATIBLE), fi->Name.UTF8(), subs->At(j));
 						MessageBox(Buffer,LoadString(STR_GEN_ERROR),MB_OK | MB_ICONERROR);
 						return;
 						break;
 					default:
-						sprintf(Buffer,LoadString(STR_ERR_SUBSINCOMPATIBLE),fi->Name.UTF8(),subs->At(j));
+						sprintf_s(Buffer, LoadString(STR_ERR_SUBSINCOMPATIBLE), fi->Name.UTF8(), subs->At(j));
 						MessageBox(Buffer,LoadString(STR_GEN_ERROR),MB_OK | MB_ICONERROR);
 						return;
 				}
 			}
 		
-			sprintf(Buffer,"%s",lpSSL[j]->GetCodecID());
+			sprintf_s(Buffer, "%s", lpSSL[j]->GetCodecID());
 			
 			ssi[j]->lpsubs = lpSSL[j];
 			ssi[j]->lpfi = NULL;
@@ -1011,8 +1012,8 @@ void CAVIMux_GUIDlg::OnAddFileList()
 
 		subs->DeleteAll();
 		delete subs;
-		delete ssi;
-		delete lpSSL;
+		delete[] ssi;
+		delete[] lpSSL;
 		
 		audio_streams->DeleteAll();
 		delete audio_streams;

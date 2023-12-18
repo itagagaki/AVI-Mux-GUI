@@ -1,4 +1,4 @@
-#if !defined(AFX_ENHANCEDLISTBOX_H__B0C81196_7CF5_4CA7_9F4A_26FCDD140F58__INCLUDED_)
+ï»¿#if !defined(AFX_ENHANCEDLISTBOX_H__B0C81196_7CF5_4CA7_9F4A_26FCDD140F58__INCLUDED_)
 #define AFX_ENHANCEDLISTBOX_H__B0C81196_7CF5_4CA7_9F4A_26FCDD140F58__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -32,8 +32,8 @@ public:
 	void virtual RedoNumbering();
 	bool virtual CanMoveTo(int i, int direction);
 	void	AllowMoving(bool bAllowMoving);
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
+// Ãœberschreibungen
+	// Vom Klassen-Assistenten generierte virtuelle FunktionsÃ¼berschreibungen
 	//{{AFX_VIRTUAL(CEnhancedListBox)
 	public:
 	virtual void OnFinalRelease();
@@ -56,7 +56,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	// Generierte OLE-Dispatch-Zuordnungsfunktionen
 	//{{AFX_DISPATCH(CEnhancedListBox)
-		// HINWEIS - Der Klassen-Assistent fügt hier Member-Funktionen ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Member-Funktionen ein und entfernt diese.
 	//}}AFX_DISPATCH
 	DECLARE_DISPATCH_MAP()
 	DECLARE_INTERFACE_MAP()
@@ -70,6 +70,6 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ fügt unmittelbar vor der vorhergehenden Zeile zusätzliche Deklarationen ein.
+// Microsoft Visual C++ fÃ¼gt unmittelbar vor der vorhergehenden Zeile zusÃ¤tzliche Deklarationen ein.
 
 #endif // AFX_ENHANCEDLISTBOX_H__B0C81196_7CF5_4CA7_9F4A_26FCDD140F58__INCLUDED_

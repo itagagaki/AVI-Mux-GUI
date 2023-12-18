@@ -1,4 +1,4 @@
-// SourceFileListBox.cpp: Implementierungsdatei
+ï»¿// SourceFileListBox.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -58,12 +58,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CSourceFileListBox, CEnhancedListBox)
 	//{{AFX_DISPATCH_MAP(CSourceFileListBox)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_ISourceFileListBox zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_ISourceFileListBox zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {15F96C04-73A2-4BD3-8A81-0D83268DEE82}
@@ -75,7 +75,7 @@ BEGIN_INTERFACE_MAP(CSourceFileListBox, CListBox)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CSourceFileListBox 
+// Behandlungsroutinen fÃ¼r Nachrichten CSourceFileListBox 
 
 FILE_INFO* CSourceFileListBox::GetFileInfo(int i)
 {
@@ -216,8 +216,8 @@ void CSourceFileListBox::OnRButtonUp(UINT nFlags, CPoint point)
 						for (i = 0; i<seg_count; i++) {
 						//	lpFI->MK
 							char title[1024]; title[0]=0;
-							sprintf(title, "Segment %d: ", i);
-							strcat(title, lpFI->MKVFile->GetSegmentTitle(i));
+							sprintf_s(title, "Segment %d: ", i);
+							strcat_s(title, lpFI->MKVFile->GetSegmentTitle(i));
 							UTF82Str(title, title);
 							cmPopupMenu->AppendMenu(MF_STRING | 
 								((m->GetActiveSegment() == i)?MF_CHECKED:MF_UNCHECKED) |
@@ -410,21 +410,21 @@ BOOL CSourceFileListBox::OnCommand(WPARAM wParam, LPARAM lParam)
 					cMainDlg->BuildFileAndStreamDependency(GetCurSel(),
 						htreeitems, dwStreamNumbers, dwFileIndexes);
 					std::sort(dwFileIndexes.begin(), dwFileIndexes.end());
-					sprintf(c, "%s: \n", LoadString(STR_FILELIST_REMOVE_FILES, LOADSTRING_UTF8));
+					sprintf_s(c, "%s: \n", LoadString(STR_FILELIST_REMOVE_FILES, LOADSTRING_UTF8));
 					for (size_t i=0; i<dwFileIndexes.size(); i++) {
 						FILE_INFO* f = GetFileInfo(dwFileIndexes[i]);
-						strcat(c, "  ");
-						strcat(c, f->Name.TStr());
-						strcat(c, "\x0D");
+						strcat_s(c, "  ");
+						strcat_s(c, f->Name.TStr());
+						strcat_s(c, "\x0D");
 					}
 
-					strcat(c, "\x0D");
-					strcat(c, LoadString(STR_FILELIST_REMOVE_STREAMS, LOADSTRING_UTF8));
-					strcat(c, ": \n");
+					strcat_s(c, "\x0D");
+					strcat_s(c, LoadString(STR_FILELIST_REMOVE_STREAMS, LOADSTRING_UTF8));
+					strcat_s(c, ": \n");
 					for (size_t i=0; i<dwStreamNumbers.size(); i++) {
 						char d[16]; d[0]=0;
-						sprintf(d, "  %d: ", dwStreamNumbers[i]);
-						strcat(c, d);
+						sprintf_s(d, "  %d: ", dwStreamNumbers[i]);
+						strcat_s(c, d);
 
 						char buf[512];
 						TV_DISPINFO tvi;
@@ -437,11 +437,11 @@ BOOL CSourceFileListBox::OnCommand(WPARAM wParam, LPARAM lParam)
 					
 						cMainDlg->m_StreamTree.OnTvnGetdispinfo((NMHDR*)&tvi, &lres);
 						
-						strcat(c, tvi.item.pszText);
-						strcat(c, "\x0D");
+						strcat_s(c, tvi.item.pszText);
+						strcat_s(c, "\x0D");
 					}
-					strcat(c, "\x0D");
-					strcat(c, LoadString(STR_FILELIST_REMOVE_CONTINUE, LOADSTRING_UTF8));
+					strcat_s(c, "\x0D");
+					strcat_s(c, LoadString(STR_FILELIST_REMOVE_CONTINUE, LOADSTRING_UTF8));
 
 				//	char* u  = NULL;
 				//	fromUTF8(c, &u);
@@ -513,7 +513,7 @@ BOOL CSourceFileListBox::OnCommand(WPARAM wParam, LPARAM lParam)
 
 void CSourceFileListBox::OnDropFiles(HDROP hDropInfo) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	DWORD	dwCount;
 	CAVIMux_GUIDlg*  cdlg;
 
@@ -542,9 +542,9 @@ void CSourceFileListBox::OnPaint()
 //	CPaintDC dc(this); // device context for painting
 	CEnhancedListBox::OnPaint();
 	
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen
 	
-	// Kein Aufruf von CEnhancedListBox::OnPaint() für Zeichnungsnachrichten
+	// Kein Aufruf von CEnhancedListBox::OnPaint() fÃ¼r Zeichnungsnachrichten
 }
 
 void CSourceFileListBox::SetFlag(int listbox_index, int flag_index, DWORD flag_value,
@@ -584,7 +584,7 @@ void CSourceFileListBox::SetFlag(int listbox_index, int flag_index, DWORD flag_v
 
 void CSourceFileListBox::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct) 
 {
-	// TODO: Code einfügen, um das angegebene Element zu zeichnen
+	// TODO: Code einfÃ¼gen, um das angegebene Element zu zeichnen
 	CDC	dc;
 	LPDRAWITEMSTRUCT d = lpDrawItemStruct;
 	FILE_INFO* lpFI = GetFileInfo(d->itemID);
@@ -603,7 +603,7 @@ void CSourceFileListBox::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	font->GetLogFont(&logfont);
 
 	char cTempUTF8[65536]; cTempUTF8[0]=0;
-	sprintf(cTempUTF8, "[%s] %s", lpFI->cFileformatString, lpFI->Name.UTF8());
+	sprintf_s(cTempUTF8, "[%s] %s", lpFI->cFileformatString, lpFI->Name.UTF8());
 	
 	int j = fromUTF8(cTempUTF8, &u);
 	if (IsUnicode())
@@ -689,5 +689,5 @@ void CSourceFileListBox::OnKillFocus(CWnd* pNewWnd)
 	CEnhancedListBox::OnKillFocus(pNewWnd);
 
 	InvalidateRect(NULL, false);
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein.
 }

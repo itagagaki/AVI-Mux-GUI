@@ -1,4 +1,4 @@
-// AVIMux_GUI.cpp : Legt das Klassenverhalten für die Anwendung fest.
+ï»¿// AVIMux_GUI.cpp : Legt das Klassenverhalten fÃ¼r die Anwendung fest.
 //
 
 #include "stdafx.h"
@@ -16,8 +16,8 @@ static char THIS_FILE[] = __FILE__;
 
 BEGIN_MESSAGE_MAP(CAVIMux_GUIApp, CWinApp)
 	//{{AFX_MSG_MAP(CAVIMux_GUIApp)
-		// HINWEIS - Hier werden Mapping-Makros vom Klassen-Assistenten eingefügt und entfernt.
-		//    Innerhalb dieser generierten Quelltextabschnitte NICHTS VERÄNDERN!
+		// HINWEIS - Hier werden Mapping-Makros vom Klassen-Assistenten eingefÃ¼gt und entfernt.
+		//    Innerhalb dieser generierten Quelltextabschnitte NICHTS VERÃ„NDERN!
 	//}}AFX_MSG
 	ON_COMMAND(ID_HELP, CWinApp::OnHelp)
 END_MESSAGE_MAP()
@@ -27,7 +27,7 @@ END_MESSAGE_MAP()
 
 CAVIMux_GUIApp::CAVIMux_GUIApp()
 {
-	// ZU ERLEDIGEN: Hier Code zur Konstruktion einfügen
+	// ZU ERLEDIGEN: Hier Code zur Konstruktion einfÃ¼gen
 	// Alle wichtigen Initialisierungen in InitInstance platzieren
 }
 
@@ -68,9 +68,9 @@ BOOL CAVIMux_GUIApp::InitInstance()
 	AfxEnableControlContainer();
 
 	// Standardinitialisierung
-	// Wenn Sie diese Funktionen nicht nutzen und die Größe Ihrer fertigen 
-	//  ausführbaren Datei reduzieren wollen, sollten Sie die nachfolgenden
-	//  spezifischen Initialisierungsroutinen, die Sie nicht benötigen, entfernen.
+	// Wenn Sie diese Funktionen nicht nutzen und die GrÃ¶ÃŸe Ihrer fertigen 
+	//  ausfÃ¼hrbaren Datei reduzieren wollen, sollten Sie die nachfolgenden
+	//  spezifischen Initialisierungsroutinen, die Sie nicht benÃ¶tigen, entfernen.
 
 #ifdef _AFXDLL
 	Enable3dControls();			// Diese Funktion bei Verwendung von MFC in gemeinsam genutzten DLLs aufrufen
@@ -96,19 +96,19 @@ BOOL CAVIMux_GUIApp::InitInstance()
 
 	if (nResponse == IDOK)
 	{
-		// ZU ERLEDIGEN: Fügen Sie hier Code ein, um ein Schließen des
-		//  Dialogfelds über OK zu steuern
+		// ZU ERLEDIGEN: FÃ¼gen Sie hier Code ein, um ein SchlieÃŸen des
+		//  Dialogfelds Ã¼ber OK zu steuern
 	}
 	else if (nResponse == IDCANCEL)
 	{
-		// ZU ERLEDIGEN: Fügen Sie hier Code ein, um ein Schließen des
-		//  Dialogfelds über "Abbrechen" zu steuern
+		// ZU ERLEDIGEN: FÃ¼gen Sie hier Code ein, um ein SchlieÃŸen des
+		//  Dialogfelds Ã¼ber "Abbrechen" zu steuern
 	}
 
 	traceFile->Close();
 	delete traceFile;
 
-	// Da das Dialogfeld geschlossen wurde, FALSE zurückliefern, so dass wir die
+	// Da das Dialogfeld geschlossen wurde, FALSE zurÃ¼ckliefern, so dass wir die
 	//  Anwendung verlassen, anstatt das Nachrichtensystem der Anwendung zu starten.
 	return FALSE;
 }

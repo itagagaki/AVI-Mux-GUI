@@ -203,7 +203,7 @@ int MP3SOURCE::Open(STREAM* lpStream)
 	if (dwBitrate>0) {
 		float fSize; int iPadd;
 		fh->GetFrameSize(&iPadd,&fSize);
-		iFrameDuration=round((double)8000000*(double)fSize/(double)dwBitrate);
+		iFrameDuration=(__int64)round((double)8000000*(double)fSize/(double)dwBitrate);
 	} else {
 		iFrameDuration=FRAMEDURATION_UNKNOWN;
 	}
@@ -217,7 +217,7 @@ int MP3SOURCE::Open(STREAM* lpStream)
 	bool bSuccess = qwPos<GetResyncRange() && qwPos < GetSize();
 	if (bSuccess) {
 		char cName[1024]; memset(cName, 0, sizeof(cName));
-		GetName(cName);
+		GetName(cName, sizeof cName);
 
 		char msg[2048]; memset(msg, 0, sizeof(msg));
 		sprintf_s(msg, "MPEG %d Layer %d", GetMPEGVersion(), GetLayerVersion());
@@ -455,7 +455,7 @@ int MP3SOURCE::ReadFrame(void* lpDest,DWORD* lpdwMicroSecRead,__int64* lpqwNanoS
 		dwRingBuffer[dwRingBufferPos++]=fh->GetBitrate();
 		dwRingBufferPos%=1024;
 		if (lpdwMicroSecRead) *lpdwMicroSecRead=(DWORD)round((double)(fSize)/(double)fh->GetBitrate()*8000.0);
-		if (lpqwNanoSecRead) *lpqwNanoSecRead=round((double)(fSize)/(double)fh->GetBitrate()*8000000.0);
+		if (lpqwNanoSecRead) *lpqwNanoSecRead=(__int64)round((double)(fSize)/(double)fh->GetBitrate()*8000000.0);
 		return (GetSource()->Read(lpdwDest,dwFrameSize-4)+4);
 	}
 	else
@@ -510,7 +510,7 @@ int MP3SOURCE::doRead(void* lpDest,DWORD dwMicroSecDesired,DWORD* lpdwMicroSecRe
 				dwBytes=(DWORD)((__int64)dwMicroSecDesired*(__int64)dwBitrate/8000);
 				dwRes=GetSource()->Read(lpDest,dwBytes);
 				if (lpdwMicroSecRead) *lpdwMicroSecRead=(DWORD)round(8000.0*(double)dwRes/(double)dwBitrate);
-				if (lpqwNanoSecRead) *lpqwNanoSecRead=round((double)8000000*(double)dwRes/(double)dwBitrate);
+				if (lpqwNanoSecRead) *lpqwNanoSecRead=(__int64)round((double)8000000*(double)dwRes/(double)dwBitrate);
 				return dwRes;
 				break;
 			case FRAMEMODE_ON:
@@ -562,7 +562,7 @@ int MP3SOURCE::ReadFrame(MULTIMEDIA_DATA_PACKET** packet)
 		dwRingBuffer[dwRingBufferPos++]=fh->GetBitrate();
 		dwRingBufferPos%=1024;
 
-		__int64 qwNanoSecRead = round((double)(fSize)/(double)fh->GetBitrate()*8000000.0);
+		__int64 qwNanoSecRead = (__int64)round((double)(fSize)/(double)fh->GetBitrate()*8000000.0);
 
 		(*packet)->duration = qwNanoSecRead;
 		(*packet)->frameSizes.push_back(static_cast<int>(dwFrameSize));
@@ -592,7 +592,7 @@ int MP3SOURCE::ReadFrame(MULTIMEDIA_DATA_PACKET** packet)
 		QW2Str(GetSource()->GetSize(), cSize, 0);
 
 		char cName[1024]; cName[0]=0;
-		GetName(cName);
+		GetName(cName, sizeof cName);
 
 		char msg[2048]; msg[0]=0;
 		sprintf_s(msg, "Error reading frame header\nStream: %s\nPosition: %s\nTotal size: %s\nLast timecode: %s",

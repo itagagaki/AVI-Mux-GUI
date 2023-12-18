@@ -119,7 +119,7 @@ bool LANGUAGE_CODE_DESCRIPTOR::LoadFromString(char* buf)
 	}
 
 	priority = atoi(_priority);
-	strcpy(code, _code);
+	strcpy_s(code, _code);
 	strcpy(full, _full);
 	usage_counter = (float)atof(_usage_counter);
 

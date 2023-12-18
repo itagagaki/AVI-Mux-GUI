@@ -1,4 +1,4 @@
-// ChapterDlgList.cpp: Implementierungsdatei
+ï»¿// ChapterDlgList.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -27,8 +27,8 @@ CChapterDlgList::~CChapterDlgList()
 void CChapterDlgList::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CUnicodeListCtrl::OnFinalRelease();
@@ -37,18 +37,18 @@ void CChapterDlgList::OnFinalRelease()
 
 BEGIN_MESSAGE_MAP(CChapterDlgList, CUnicodeListCtrl)
 	//{{AFX_MSG_MAP(CChapterDlgList)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CChapterDlgList, CUnicodeListCtrl)
 	//{{AFX_DISPATCH_MAP(CChapterDlgList)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IChapterDlgList zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IChapterDlgList zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {84F5D783-13D6-46E7-97AD-3E987D2E77B7}
@@ -60,4 +60,4 @@ BEGIN_INTERFACE_MAP(CChapterDlgList, CUnicodeListCtrl)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CChapterDlgList 
+// Behandlungsroutinen fÃ¼r Nachrichten CChapterDlgList 

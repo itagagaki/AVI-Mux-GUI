@@ -28,7 +28,7 @@ TRACK_COMPRESSION_DESCRIPTOR& TRACK_COMPRESSION_DESCRIPTOR::operator =(const TRA
 
 	compression_private_size = other.compression_private_size;
 	if (compression_private_size) {
-		compression_private = malloc(compression_private_size);
+		compression_private = malloc(compression_private_size);  // TODO: null check
 		memcpy(compression_private, other.compression_private,
 			compression_private_size);
 	}

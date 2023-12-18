@@ -1,4 +1,4 @@
-// EBMLTree.cpp: Implementierungsdatei
+ï»¿// EBMLTree.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -32,8 +32,8 @@ CEBMLTree::~CEBMLTree()
 void CEBMLTree::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CUnicodeTreeCtrl::OnFinalRelease();
@@ -47,12 +47,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CEBMLTree, CUnicodeTreeCtrl)
 	//{{AFX_DISPATCH_MAP(CEBMLTree)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IEBMLTree zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IEBMLTree zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {37E48F2D-8DC7-4F40-9F03-10AE5F15E1A0}
@@ -64,7 +64,7 @@ BEGIN_INTERFACE_MAP(CEBMLTree, CUnicodeTreeCtrl)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CEBMLTree 
+// Behandlungsroutinen fÃ¼r Nachrichten CEBMLTree 
 
 
 void CEBMLTree::SetMode(int _iMode)
@@ -76,7 +76,7 @@ void CEBMLTree::SetMode(int _iMode)
 void CEBMLTree::GetTextCallback(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	TV_DISPINFO* pTVDispInfo = (TV_DISPINFO*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	char*	c = pTVDispInfo->item.pszText;
 	int i,j;
 
@@ -98,7 +98,7 @@ void CEBMLTree::GetTextCallback(NMHDR* pNMHDR, LRESULT* pResult)
 					do {
 						char cDigit[4];
 						cDigit[0] = 0;
-						sprintf(cDigit, "%02X ", (__int8)x & 0xFF);
+						sprintf_s(cDigit, "%02X ", (__int8)x & 0xFF);
 						strcat(c, cDigit);
 						d->pElement->GetSource()->Read(&x,1);
 					} while (--ilen);
@@ -117,7 +117,7 @@ void CEBMLTree::GetTextCallback(NMHDR* pNMHDR, LRESULT* pResult)
 			strcat(c, " bytes, data: ");
 			
 			if (e->IsLengthUndefined())
-				strcpy(b, "<undefined>");
+				strcpy_s(b, "<undefined>");
 			else
 				QW2Str(e->GetLength(),b,1);
 			
@@ -130,10 +130,10 @@ void CEBMLTree::GetTextCallback(NMHDR* pNMHDR, LRESULT* pResult)
 
 			switch (d->pElement->GetDataType()) {
 				case EBMLDATATYPE_MASTER:
-					strcpy(b,"master");
+					strcpy_s(b, "master");
 					break;
 				case EBMLDATATYPE_BIN:
-					strcpy(b,"binary");
+					strcpy_s(b, "binary");
 					break;
 				case EBMLDATATYPE_INT:
 					QW2Str(e->GetData()->AsBSWInt(),b,1);
@@ -142,13 +142,13 @@ void CEBMLTree::GetTextCallback(NMHDR* pNMHDR, LRESULT* pResult)
 					QW2Str(FSSInt2Int(e->GetData()),b,1);
 					break;
 				case EBMLDATATYPE_FLOAT:
-					sprintf(b,"%7.2f",e->AsFloat());
+					sprintf_s(b, "%7.2f",e->AsFloat());
 					break;
 				case EBMLDATATYPE_ASCII:
-					strcpy(b,e->GetData()->AsString());
+					strcpy_s(b, e->GetData()->AsString());
 					break;
 				case EBMLDATATYPE_UTF8:
-					strcpy(b,e->GetData()->AsString());
+					strcpy_s(b, e->GetData()->AsString());
 					break;
 				case EBMLDATATYPE_HEX:
 					j=0;

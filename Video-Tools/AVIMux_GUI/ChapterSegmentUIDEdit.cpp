@@ -1,4 +1,4 @@
-// ChapterSegmentUIDEdit.cpp: Implementierungsdatei
+ï»¿// ChapterSegmentUIDEdit.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -81,8 +81,8 @@ void CChapterSegmentUIDEdit::GetUID(char* uid)
 void CChapterSegmentUIDEdit::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CVerifyEdit::OnFinalRelease();
@@ -98,12 +98,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CChapterSegmentUIDEdit, CVerifyEdit)
 	//{{AFX_DISPATCH_MAP(CChapterSegmentUIDEdit)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IChapterSegmentUIDEdit zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IChapterSegmentUIDEdit zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {7E8B0076-B405-4E65-8EB1-C30361828E2B}
@@ -115,18 +115,18 @@ BEGIN_INTERFACE_MAP(CChapterSegmentUIDEdit, CVerifyEdit)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CChapterSegmentUIDEdit 
+// Behandlungsroutinen fÃ¼r Nachrichten CChapterSegmentUIDEdit 
 
 void CChapterSegmentUIDEdit::OnSetFocus(CWnd* pOldWnd) 
 {
 	CVerifyEdit::OnSetFocus(pOldWnd);
 	
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen
 }
 
 void CChapterSegmentUIDEdit::OnDropFiles(HDROP hDropInfo) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	DWORD	dwCount;
 	char*	lpcName;
 

@@ -376,7 +376,7 @@ int MATROSKA::ReadBlock()
 	}
 
 	if (iDebugLevel > 1) {
-		sprintf(debugmsg, "ReadBlock: stream %d, timecode %I64d, duration: %d",
+		sprintf_s(debugmsg, "ReadBlock: stream %d, timecode %I64d, duration: %d",
 			rbi->iStream, rbi->qwTimecode, (int)rbi->qwDuration);
 		fprintf(stderr, "%s%c",debugmsg, '\n');
 	}
@@ -858,7 +858,7 @@ int MATROSKA::Open(STREAM* s, int iMode)
 		}
 
 		char ver[32]; ver[0]=0; 
-		sprintf(ver, "File type: Matroska v%d", ebml_info.DocTypeVersion);
+		sprintf_s(ver, "File type: Matroska v%d", ebml_info.DocTypeVersion);
 		Note(ver);
 
 		if (ebml_info.DocTypeVersion > 2) {
@@ -1120,7 +1120,7 @@ int MATROSKA::BeginWrite()
 	e_PrimarySeekhead->AddEntry((char*)MID_SEGMENTINFO,ws.iPosInSegment);
 
 	char cVersion[200]; cVersion[0]=0;
-	sprintf(cVersion, "matroska muxer by Alexander Noe, build date %s", matroska_GetCompileDate());
+	sprintf_s(cVersion, "matroska muxer by Alexander Noe, build date %s", matroska_GetCompileDate());
 	Str2UTF8(cVersion, cVersion);
 	e_SegInfo->SetMuxingApp(new CStringBuffer(cVersion));
 	e_SegInfo->SetWritingApp(new CStringBuffer("<not indicated>",0));
@@ -1318,7 +1318,7 @@ int MATROSKA::Close()
 
 			e_SimpleTag = e_Tag->AppendChild(new EBMLElement_Writer(GetDest(),(char*)MID_TG_SIMPLETAG));		
 			e_SimpleTag->AppendChild_String((char*)MID_TG_TAGNAME,"FPS");
-			sprintf(cSize, "%7.4f", dFPS);
+			sprintf_s(cSize, "%7.4f", dFPS);
 			e_SimpleTag->AppendChild_String((char*)MID_TG_TAGSTRING,cSize);
 //			e_SimpleTag->EnableCRC32();
 
@@ -2032,7 +2032,7 @@ double MATROSKA::GetCueTargetSizeRatio(void)
 
 void MATROSKA::SetTrackCount(int iCount)
 {
-	tracks = (TRACK_DESCRIPTOR**)realloc(tracks,sizeof(*tracks)*iCount);
+	tracks = (TRACK_DESCRIPTOR**)realloc(tracks,sizeof(*tracks)*iCount);  // TODO: null check
 	if (iCount>iTrackCount) {
 		for (int i=iTrackCount;i<iCount;i++) {
 			//newz(TRACK_DESCRIPTOR, 1, tracks[i]);
@@ -2273,7 +2273,7 @@ void MATROSKA::AddTrackCompression(int iTrack, int compression,
 	tcd.compression_private_size = compression_private_size;
 	tcd.compressed_elements = TRACKCOMPRESSION_BLOCKS;
 	if (compression_private_size) {
-		tcd.compression_private = malloc(tcd.compression_private_size);
+		tcd.compression_private = malloc(tcd.compression_private_size);  // TODO: null check
 		memcpy(tcd.compression_private, compression_private, tcd.compression_private_size);
 	}
 	tcd.compression = compression;

@@ -17,25 +17,25 @@ void FormatSize(char* d,__int64 qwSize)
 
 	if ( qwSize>>10 <999) {
 		cStr=LoadString(STR_KBYTE);
-		wsprintf(Buffer,"%d %s",(DWORD)(qwSize>>10),cStr);
+		wsprintf(Buffer, "%d %s", (DWORD)(qwSize>>10), (LPCSTR)cStr);
 		dwSizeOfSource = (DWORD)(qwSize>>10);
 		fSizeOfSource = ((float)qwSize) / 1024;
 	} else 
 	if (qwSize>>20<999) {
 		cStr=LoadString(STR_MBYTE);
-		wsprintf(Buffer,"%d %s",(DWORD)(qwSize>>20),cStr);
+		wsprintf(Buffer, "%d %s", (DWORD)(qwSize>>20), (LPCSTR)cStr);
 		dwSizeOfSource = (DWORD)(qwSize>>20);
 		fSizeOfSource = (float)(qwSize) / 1024 / 1024;
 	} else {
 		cStr=LoadString(STR_GBYTE);
-		wsprintf(Buffer,"%d %s",(DWORD)(qwSize>>30),cStr);
+		wsprintf(Buffer, "%d %s", (DWORD)(qwSize>>30), (LPCSTR)cStr);
 		dwSizeOfSource = (DWORD)(qwSize>>20);
 		fSizeOfSource = ((float)qwSize) / 1024 / 1024 / 1024;
 	}
 
 	DWORD	dwLen;
 	dwLen = (DWORD)(min(log(fSizeOfSource)/log(10.),2));
-	sprintf(Buffer,"%%%d.%df %%s",2,2-max(0,dwLen));
+	sprintf_s(Buffer, "%%%d.%df %%s", 2, 2 - max(0, dwLen));
 	sprintf(d,Buffer,fSizeOfSource,cStr);
 }
 

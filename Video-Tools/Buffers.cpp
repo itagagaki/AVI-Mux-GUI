@@ -82,7 +82,7 @@ void CBuffer::Resize(int new_size)
 		return;
 	}
 
-	lpData = realloc(lpData, 1+new_size);
+	lpData = realloc(lpData, 1+new_size);  // TODO: null check
 
 
 	((BYTE*)lpData)[new_size] = 0;
@@ -494,7 +494,7 @@ void CAttribs::Init()
 
 int CAttribs::Position(char* cName)
 {
-	__ASSERT(iEntryCount > 0 && iEntryCount < 64, "CAttribs::Position(): Bad iEntryCount")
+	__ASSERT(iEntryCount > 0 && iEntryCount < 64, "CAttribs::Position(): Bad iEntryCount");
 	int j=0;
 
 	while (*cName) {
@@ -578,10 +578,11 @@ CAttribs* CAttribs::Resolve(char* cPath, char** cName)
 	}
 
 	char* next;
-	char* c = new char[1+strlen(cPath)];
+	size_t cSize = 1 + strlen(cPath);
+	char* c = new char[cSize];
 	Finalizer<char, char, delete_array> cGuard(c);
 
-	strcpy(c,cPath);
+	strcpy_s(c, cSize, cPath);
 	char* d=c;
 	CAttribs* a = this, *b = NULL;
 
@@ -680,7 +681,7 @@ void CAttribs::SetInt(char* cName, __int64 pData)
 		} else {
 			char msg[200];
 			msg[0]=0;
-			sprintf(msg, "Wrong type in CAttribs::Set for Element %s", cName);
+			sprintf_s(msg, "Wrong type in CAttribs::Set for Element %s", cName);
 			MessageBoxA(0, msg, "Error", MB_OK | MB_ICONERROR);
 		}
 	}
@@ -713,12 +714,12 @@ void CAttribs::SetStr(char* cName, char* value)
 		Add(cName, 0, ATTRTYPE_UTF8, value);
 	} else {
 		if (entry->iType == ATTRTYPE_UTF8 || entry->iType == ATTRTYPE_ASCII) {
-			entry->pData = realloc(entry->pData, 1+strlen(value));
+			entry->pData = realloc(entry->pData, 1+strlen(value));  // TODO: null check
 			memcpy(entry->pData, value, strlen(value));
 		} else {
 			char msg[200];
 			msg[0]=0;
-			sprintf(msg, "Wrong type in CAttribs::Set for Element %s", cName);
+			sprintf_s(msg, "Wrong type in CAttribs::Set for Element %s", cName);
 			MessageBoxA(0, msg, "Error", MB_OK | MB_ICONERROR);
 		}
 	}
@@ -762,7 +763,7 @@ __int64 CAttribs::GetInt(char* cName)
 
 	char msg[200];
 	msg[0]=0;
-	sprintf(msg, "Requested uninitialized integer:%c%c GetInt for Element %s", 13,10,cName);
+	sprintf_s(msg, "Requested uninitialized integer:%c%c GetInt for Element %s", 13, 10, cName);
 	MessageBoxA(0, msg, "Error", MB_OK | MB_ICONERROR);
 
 //	free(t);
@@ -815,7 +816,7 @@ int CAttribs::GetStr(char* cName, char** cDest)
 
 	char msg[200];
 	msg[0]=0;
-	sprintf(msg, "Requested uninitialized string:%c%c GetInt for Element %s", 13,10,cName);
+	sprintf_s(msg, "Requested uninitialized string:%c%c GetInt for Element %s", 13, 10, cName);
 	MessageBoxA(0, msg, "Error", MB_OK | MB_ICONERROR);
 
 //	free(t);
@@ -1004,7 +1005,7 @@ CAttribs::operator XMLNODE*() {
 			} else
 			if (e->iType == ATTRTYPE_INT64) {
 				char c[16]; c[0]=0;
-				sprintf(c, "%I64d", *(__int64*)e->pData);
+				sprintf_s(c, "%I64d", *(__int64*)e->pData);
 				xmlAddSibling(&pNode, e->cName, c, false);
 			} else
 			if (e->iType == ATTRTYPE_ASCII || e->iType == ATTRTYPE_UTF8) {

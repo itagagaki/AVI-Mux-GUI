@@ -1,4 +1,4 @@
-// RIFFChunkTreeDlg.cpp: Implementierungsdatei
+ï»¿// RIFFChunkTreeDlg.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -39,7 +39,7 @@ CRIFFChunkTreeDlg::CRIFFChunkTreeDlg(CWnd* pParent /*=NULL*/)
 	: CResizeableDialog(CRIFFChunkTreeDlg::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CRIFFChunkTreeDlg)
-		// HINWEIS: Der Klassen-Assistent fügt hier Elementinitialisierung ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier Elementinitialisierung ein
 	//}}AFX_DATA_INIT
 }
 
@@ -69,7 +69,7 @@ BEGIN_MESSAGE_MAP(CRIFFChunkTreeDlg, CResizeableDialog)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CRIFFChunkTreeDlg 
+// Behandlungsroutinen fÃ¼r Nachrichten CRIFFChunkTreeDlg 
 
 
 
@@ -95,27 +95,27 @@ void /*CRIFFChunkTreeDlg::*/ParseAVIH(HWND hTree, STREAM* source,
 	source->Read(&avih,ch.dwLength);
 
 	QW2Str(avih.dwMicroSecPerFrame,cQW,10);
-	sprintf(cBuffer,"dwMicroSecPerFrame   : %s",cQW);
+	sprintf_s(cBuffer, "dwMicroSecPerFrame   : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(avih.dwMaxBytesPerSec,cQW,10);
-	sprintf(cBuffer,"dwMaxBytesPerSec     : %s",cQW);
+	sprintf_s(cBuffer, "dwMaxBytesPerSec     : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(avih.dwTotalFrames,cQW,10);
-	sprintf(cBuffer,"dwTotalFrames        : %s",cQW);
+	sprintf_s(cBuffer, "dwTotalFrames        : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(avih.dwSuggestedBufferSize,cQW,10);
-	sprintf(cBuffer,"dwSuggestedBufferSize: %s",cQW);
+	sprintf_s(cBuffer, "dwSuggestedBufferSize: %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(avih.dwStreams,cQW,10);
-	sprintf(cBuffer,"dwStreams            : %s",cQW);
+	sprintf_s(cBuffer, "dwStreams            : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
@@ -124,7 +124,7 @@ void /*CRIFFChunkTreeDlg::*/ParseAVIH(HWND hTree, STREAM* source,
 	InsertItem(hTree, tvi);
 
 	QW2Str(avih.dwWidth,cQW,10);
-	sprintf(cBuffer,"dwWidth              : %s",cQW);
+	sprintf_s(cBuffer, "dwWidth              : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
@@ -163,17 +163,17 @@ void /*CRIFFChunkTreeDlg::*/ParseSTRH(HWND hTree, STREAM* source,
 	ZeroMemory(cDummy,sizeof(cDummy));
 	source->Read(&strh,ch.dwLength);
 
-	sprintf(cBuffer,"fccType              :             %c%c%c%c",strh.fccType&0xFF,(strh.fccType>>8)&0xFF,
-		(strh.fccType>>16)&0xFF,(strh.fccType>>24)&0xFF);
+	sprintf_s(cBuffer, "fccType              :             %c%c%c%c", strh.fccType&0xFF, (strh.fccType >> 8) & 0xFF,
+		(strh.fccType >> 16) & 0xFF, (strh.fccType >> 24) & 0xFF);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
-	sprintf(cBuffer,"fccHandler           :             %c%c%c%c",strh.fccHandler&0xFF,(strh.fccHandler>>8)&0xFF,
-		(strh.fccHandler>>16)&0xFF,(strh.fccHandler>>24)&0xFF);
+	sprintf_s(cBuffer, "fccHandler           :             %c%c%c%c", strh.fccHandler & 0xFF, (strh.fccHandler >> 8) & 0xFF,
+		(strh.fccHandler >> 16) & 0xFF, (strh.fccHandler >> 24) & 0xFF);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
-	sprintf(cBuffer,"dwFlags              :       0x%08X",strh.dwFlags);
+	sprintf_s(cBuffer, "dwFlags              :       0x%08X", strh.dwFlags);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
@@ -183,52 +183,52 @@ void /*CRIFFChunkTreeDlg::*/ParseSTRH(HWND hTree, STREAM* source,
 	InsertItem(hTree, tvi);
 
 	QW2Str(strh.dwLength,cQW,16);
-	sprintf(cBuffer,"dwLength             : %s",cQW);
+	sprintf_s(cBuffer, "dwLength             : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(strh.dwQuality,cQW,16);
-	sprintf(cBuffer,"dwQuality            : %s",cQW);
+	sprintf_s(cBuffer, "dwQuality            : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(strh.dwRate,cQW,16);
-	sprintf(cBuffer,"dwRate               : %s",cQW);
+	sprintf_s(cBuffer, "dwRate               : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(strh.dwScale,cQW,16);
-	sprintf(cBuffer,"dwScale              : %s",cQW);
+	sprintf_s(cBuffer, "dwScale              : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(strh.dwSampleSize,cQW,16);
-	sprintf(cBuffer,"dwSampleSize         : %s",cQW);
+	sprintf_s(cBuffer, "dwSampleSize         : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(strh.dwStart,cQW,16);
-	sprintf(cBuffer,"dwStart              : %s",cQW);
+	sprintf_s(cBuffer, "dwStart              : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(strh.dwSuggestedBufferSize,cQW,16);
-	sprintf(cBuffer,"dwSuggestedBufferSize: %s",cQW);
+	sprintf_s(cBuffer, "dwSuggestedBufferSize: %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(strh.wLanguage,cQW,16);
-	sprintf(cBuffer,"wLanguage            : %s",cQW);
+	sprintf_s(cBuffer, "wLanguage            : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	QW2Str(strh.wPriority,cQW,16);
-	sprintf(cBuffer,"wPriority            : %s",cQW);
+	sprintf_s(cBuffer, "wPriority            : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
-	sprintf(cBuffer,"rcFrame              : %d,%d - %d,%d",*(WORD*)&strh.rcFrame,
-		*((WORD*)&strh.rcFrame+1),*((WORD*)&strh.rcFrame+2),*((WORD*)&strh.rcFrame+3));
+	sprintf_s(cBuffer, "rcFrame              : %d,%d - %d,%d", *(WORD*)&strh.rcFrame,
+		*((WORD*)&strh.rcFrame + 1), *((WORD*)&strh.rcFrame + 2), *((WORD*)&strh.rcFrame + 3));
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 
 	InsertItem(hTree, tvi);
@@ -254,46 +254,46 @@ void /*CRIFFChunkTreeDlg::*/ParseINDX(HWND hTree, STREAM* source,
 	ZeroMemory(cDummy,sizeof(cDummy));
 	source->Read(&asi.wLongsPerEntry,ch.dwLength);
 
-	sprintf(cBuffer,"fcc           : %c%c%c%c",asi.dwChunkId&0xFF,(asi.dwChunkId>>8)&0xFF,
-		(asi.dwChunkId>>16)&0xFF,(asi.dwChunkId>>24)&0xFF);
+	sprintf_s(cBuffer, "fcc           : %c%c%c%c", asi.dwChunkId & 0xFF, (asi.dwChunkId >> 8) & 0xFF,
+		(asi.dwChunkId >> 16) & 0xFF, (asi.dwChunkId >> 24) & 0xFF);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
-	sprintf(cBuffer,"nEntriesInUse : %4d",asi.nEntriesInUse);
+	sprintf_s(cBuffer, "nEntriesInUse : %4d", asi.nEntriesInUse);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
-	sprintf(cBuffer,"wLongsPerEntry: %4d",asi.wLongsPerEntry);
+	sprintf_s(cBuffer, "wLongsPerEntry: %4d", asi.wLongsPerEntry);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
-	sprintf(cBuffer,"bIndexType    : %4d",asi.bIndexType);
+	sprintf_s(cBuffer, "bIndexType    : %4d", asi.bIndexType);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
-	sprintf(cBuffer,"bIndexSubType : %4d",asi.bIndexSubType);
+	sprintf_s(cBuffer, "bIndexSubType : %4d", asi.bIndexSubType);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 
 	for (i=0;i<(int)asi.nEntriesInUse;i++)
 	{
-		sprintf(cBuffer,"aIndex[%d]",i);
+		sprintf_s(cBuffer, "aIndex[%d]", i);
 		tvi.item.cchTextMax=lstrlen(cBuffer);
 		tvi.hParent=hParent;
 		tvi.hParent=InsertItem(hTree, tvi);
 
 		QW2Str(asi.aIndex[i].qwOffset,cQW,16);
-		sprintf(cBuffer,"qwOffset    : %s",cQW);
+		sprintf_s(cBuffer, "qwOffset    : %s", cQW);
 		tvi.item.cchTextMax=lstrlen(cBuffer);
 		InsertItem(hTree, tvi);
 
 		QW2Str(asi.aIndex[i].dwSize,cQW,16);
-		sprintf(cBuffer,"dwSize      : %s",cQW);
+		sprintf_s(cBuffer, "dwSize      : %s", cQW);
 		tvi.item.cchTextMax=lstrlen(cBuffer);
 		InsertItem(hTree, tvi);
 
 		QW2Str(asi.aIndex[i].dwDuration,cQW,16);
-		sprintf(cBuffer,"dwDuration  : %s",cQW);
+		sprintf_s(cBuffer, "dwDuration  : %s", cQW);
 		tvi.item.cchTextMax=lstrlen(cBuffer);
 		InsertItem(hTree, tvi);
 	}
@@ -320,7 +320,7 @@ void /*CRIFFChunkTreeDlg::*/ParseDMLH(HWND hTree, STREAM* source,
 	source->Read(&dmlh,ch.dwLength);
 
 	QW2Str(dmlh.dwTotalFrames,cQW,11);
-	sprintf(cBuffer,"dwTotalFrames : %s",cQW);
+	sprintf_s(cBuffer, "dwTotalFrames : %s", cQW);
 	tvi.item.cchTextMax=lstrlen(cBuffer);
 	InsertItem(hTree, tvi);
 }
@@ -351,9 +351,9 @@ void InsertChunk(HWND hTree, STREAM* source,
 	if (iType == CHTYPE_STRING) {
 		ZeroMemory(cItem, sizeof(cItem));
 		source->Read(cItem, ch.dwLength);
-		sprintf(cBuffer,"%s %s %s (%s)",cFourCC,cQW,cOfs,cItem);
+		sprintf_s(cBuffer, "%s %s %s (%s)", cFourCC, cQW, cOfs, cItem);
 	} else {
-		sprintf(cBuffer,"%s %s %s ",cFourCC,cQW,cOfs);
+		sprintf_s(cBuffer, "%s %s %s ", cFourCC, cQW, cOfs);
 	}
 	tvi.hParent=hParent;
 	tvi.hInsertAfter=TVI_LAST;
@@ -458,7 +458,7 @@ DWORD WINAPI InsertListThread(void* pData)
 	QW2Str(plh.dwLength,cQW,16);
 	QW2Str(itd->list_offset ,cOfs,14);
 
-	sprintf(&(cBuffer[10]),"%s %s",cQW, cOfs);
+	sprintf_s(&cBuffer[10], sizeof cBuffer - 10, "%s %s", cQW, cOfs);
 
 	tvi.hParent=hParent;
 	tvi.hInsertAfter = TVI_LAST;
@@ -506,7 +506,7 @@ DWORD WINAPI InsertListThread(void* pData)
 				memcpy(&(cBuffer[5]),"<  >",4);
 				cBuffer[9]=32;
 				QW2Str(plh.dwLength,cQW,16);
-				sprintf(&(cBuffer[10]),"%s",cQW);
+				sprintf_s(&cBuffer[10], sizeof cBuffer - 10, "%s", cQW);
 
 				hItem=InsertItem(hTree, hItem, cBuffer); 
 				dwCount=0;
@@ -639,7 +639,7 @@ BOOL CRIFFChunkTreeDlg::OnInitDialog()
 */
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurückgeben
+	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurÃ¼ckgeben
 }
 
 void CRIFFChunkTreeDlg::SetSource(STREAM* lpSource)
@@ -749,12 +749,12 @@ void CRIFFChunkTreeDlg::OnDestroy()
 
 	CResizeableDialog::OnDestroy();
 
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein.
 }
 
 void CRIFFChunkTreeDlg::OnBnClickedOk()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 
 	bChunkTree_stop = true;
 
@@ -769,7 +769,7 @@ void CRIFFChunkTreeDlg::OnBnClickedOk()
 
 void CRIFFChunkTreeDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
 	if (nID == SC_CLOSE)
 		PostMessage(WM_COMMAND, IDOK, 0);
 	else
@@ -779,7 +779,7 @@ void CRIFFChunkTreeDlg::OnSysCommand(UINT nID, LPARAM lParam)
 void CRIFFChunkTreeDlg::OnTvnSelchangedTree1(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 
 	TVITEM item;
 	item.mask = TVIF_PARAM | TVIF_HANDLE;
@@ -820,8 +820,8 @@ DWORD WINAPI WaitButtonTest_thread(void* pData)
 
 void CRIFFChunkTreeDlg::OnBnClickedWaitForCompleteTree()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 	m_WaitButton.EnableWindow(0);
 
 	if (iChunkTree_ThreadCount == 0) {
@@ -842,5 +842,5 @@ void CRIFFChunkTreeDlg::OnBnClickedWaitForCompleteTree()
 
 void CRIFFChunkTreeDlg::OnLbnSelchangeHexviewListbox2()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 }

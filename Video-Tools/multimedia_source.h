@@ -6,7 +6,9 @@
 #include <vector>
 #include <string>
 
+#ifndef INT64_MAX
 #define INT64_MAX 0x7FFFFFFFFFFFFFFF
+#endif
 
 const int MMS_INVALID	= 0x00;
 const int MMS_VIDEO		= 0x01;
@@ -167,7 +169,8 @@ class MULTIMEDIASOURCE : public CHasTitles
 		int			virtual Close();
 		int			virtual Enable(int bEnabled);
 		int			virtual GetCompressionAlgo();
-		int			virtual	GetName(char* lpDest);
+		int			virtual	GetName();
+		int			virtual	GetName(char* lpDest, size_t size);
 		int			virtual GetLanguageCode(std::string& result);
 		__int64		virtual GetBias(int iFlags = 0);
 		__int64		virtual	GetCurrentTimecode();

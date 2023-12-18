@@ -1,4 +1,4 @@
-/* Disclaimer:
+ï»¿/* Disclaimer:
 
    Recently someone tried to understand the code in this file, and asked
    me one question after another, why I did certain things the way I did
@@ -147,13 +147,13 @@ DWORD AVIFILEEX::Open(STREAM* lpStream, DWORD Access, DWORD dwAVIType)
 
 			if (hDebugFile==INVALID_HANDLE_VALUE)
 			{
-/*				wsprintf(Buffer, "Datei %s konnte nicht geöffnet werden",
+/*				wsprintf(Buffer, "Datei %s konnte nicht geÃ¶ffnet werden",
 					Buffer);
 				MessageBox(0,Buffer,"Fehler",MB_OK); */
 				SetDebugState(DS_DEACTIVATE);
 			}
 		}
-		DebugMsg("Datei geöffnet (read-only)");
+		DebugMsg("Datei geÃ¶ffnet (read-only)");
 
 		if (dwAVIType==AT_AUTODETECT) 
 		{
@@ -176,12 +176,12 @@ DWORD AVIFILEEX::Open(STREAM* lpStream, DWORD Access, DWORD dwAVIType)
 		}
 
 		if (!CheckIndxCount())
-	//		DebugMsg ("Anzahl an indx-Chunks ist ungültig! Datei wird als Standard-AVI behandelt");
+	//		DebugMsg ("Anzahl an indx-Chunks ist ungÃ¼ltig! Datei wird als Standard-AVI behandelt");
 			atType=AT_STANDARD;
 		
 		/*else
 		{
-			DebugMsg("Anzahl an indx-Chunks ist gültig");
+			DebugMsg("Anzahl an indx-Chunks ist gÃ¼ltig");
 		}*/
 	
 		if (!LocateData(MakeFourCC("movi"),NULL,NULL,&lhListHdr,1000000,DT_LIST))
@@ -308,7 +308,7 @@ DWORD AVIFILEEX::Open(STREAM* lpStream, DWORD Access, DWORD dwAVIType)
 				lpwfe->wBitsPerSample=16;
 				lpwfe->nBlockAlign=lpwfe->nChannels*(lpwfe->wBitsPerSample/8);
 				lpwfe->nAvgBytesPerSec=lpwfe->nSamplesPerSec*lpwfe->nBlockAlign;
-/*				wsprintf(Buffer,"Audiostr. %d: ID: 0x%x, %d Samples/s, %d Kanäle, %d Bit, %d Bytes/s, Blockalign: %d Bytes, %d komp. Bytes/s",
+/*				wsprintf(Buffer,"Audiostr. %d: ID: 0x%x, %d Samples/s, %d KanÃ¤le, %d Bit, %d Bytes/s, Blockalign: %d Bytes, %d komp. Bytes/s",
 					i,lpwfeIn->wFormatTag,lpwfeIn->nSamplesPerSec,lpwfeIn->nChannels,lpwfe->wBitsPerSample,lpwfe->nAvgBytesPerSec,lpwfeIn->nBlockAlign,
 					lpwfeIn->nAvgBytesPerSec);
 				DebugMsg(Buffer); */
@@ -323,7 +323,7 @@ DWORD AVIFILEEX::Open(STREAM* lpStream, DWORD Access, DWORD dwAVIType)
 			}
 		}
 *///		hic=NULL;
-	//	DebugMsg ("Videohandler geöffnet");
+	//	DebugMsg ("Videohandler geÃ¶ffnet");
 		strfVideo=(BITMAPINFOHEADER*)siStreams[0].lpFormat;
 		ZeroMemory(&bmi24bpp,sizeof(bmi24bpp));
 		bmi24bpp.biSize=sizeof(BITMAPINFOHEADER);
@@ -369,7 +369,7 @@ DWORD AVIFILEEX::Open(STREAM* lpStream, DWORD Access, DWORD dwAVIType)
 			hDebugFile=CreateFile(Buffer,GENERIC_WRITE,FILE_SHARE_READ,NULL,CREATE_ALWAYS,0,NULL);
 			if (!hDebugFile)
 			{
-				wsprintf(Buffer, "Datei %s konnte nicht geöffnet werden",
+				wsprintf(Buffer, "Datei %s konnte nicht geÃ¶ffnet werden",
 					Buffer);
 				MessageBox(0,Buffer,"Fehler",MB_OK);
 				SetDebugState(DS_DEACTIVATE);
@@ -409,9 +409,9 @@ DWORD AVIFILEEX::Open(STREAM* lpStream, DWORD Access, DWORD dwAVIType)
 			LastIndex=Index;
 		}
 
-//		SuperIndex wird erst beim Schließen der RIFF-AVI begonnen!
+//		SuperIndex wird erst beim SchlieÃŸen der RIFF-AVI begonnen!
 		SetPadding(2);
-		free(Buffer);
+		delete[] Buffer;
 		SetMaxRIFFAVISize(1000*(1<<20));
 		SetMaxRIFFAVIXSize(1000*(1<<20));
 		dwFramesPerIndex=1<<30;
@@ -448,8 +448,9 @@ void AVIFILEEX::SetWritingAppName(char* cName)
 		delete cWritingApp;
 	}
 
-	cWritingApp = new char[1+strlen(cName)];
-	strcpy(cWritingApp, cName);
+	size_t bufSize = 1 + strlen(cName);
+	cWritingApp = new char[bufSize];
+	strcpy_s(cWritingApp, bufSize, cName);
 }
 
 char* AVIFILEEX::GetWritingAppName()
@@ -601,7 +602,7 @@ bool AVIFILEEX::Close(bool bCloseSource)
 			ch.dwLength=dwIdx1Size;
 			dwWritten=dest->Write(&ch,sizeof(ch));
 			dwWritten=dest->Write(Buffer,dwIdx1Size);
-			free (Buffer);
+			delete[] Buffer;
 		// Header bauen und schreiben
 			lh.dwListID=MakeFourCC("RIFF");
 			lh.dwFourCC=MakeFourCC("AVI ");
@@ -775,7 +776,7 @@ bool AVIFILEEX::Close(bool bCloseSource)
 			lh.dwFourCC=MakeFourCC("movi");
 			lh.dwLength=dwMoviSize;
 			dwWritten=dest->Write(&lh,12);
-			free (Buffer);
+			delete[] Buffer;
 			Index->Delete();
 			delete Index;
 			if (hDebugFile)
@@ -785,7 +786,7 @@ bool AVIFILEEX::Close(bool bCloseSource)
 		}
 		else
 		{
-		// OpenDML-Datei schließen
+		// OpenDML-Datei schlieÃŸen
 			if (qwRIFFStart) 
 			{
 				EndRIFFAVIX();
@@ -950,7 +951,7 @@ bool AVIFILEEX::Close(bool bCloseSource)
 				SupIndex->Store(Buffer);
 				LastChunk->SetSize(dwSize);
 				LastChunk->SetData(Buffer);
-				free (Buffer);
+				delete[] Buffer;
 
 				if (i+1<lpMainAVIHeader->dwStreams)
 				{
@@ -1014,7 +1015,7 @@ bool AVIFILEEX::Close(bool bCloseSource)
 			SupIndex->Delete();
 			delete SupIndex;
 			delete Index;
-			free(Buffer);
+			delete[] Buffer;
 			if (hDebugFile)
 			{
 				CloseHandle(hDebugFile);
@@ -1099,26 +1100,26 @@ bool AVIFILEEX::ProcessHDRL(char* lpBuffer,DWORD dwLength)
 	lpBuffer+=even(chChunkHdr.dwLength);
 
 	ZeroMemory(Buffer,sizeof(Buffer));
-	sprintf(Buffer,"Streams: %d  µspf: %d  Frames in RIFF-AVI: %d",GetNbrOfStreams(),
+	sprintf_s(Buffer, "Streams: %d  Âµspf: %d  Frames in RIFF-AVI: %d", GetNbrOfStreams(),
 		GetMicroSecPerFrame(),lpMainAVIHeader->dwTotalFrames);
 	DebugMsg(Buffer);
 
 	siStreams=new STREAMINFO[lpMainAVIHeader->dwStreams];
-	lpRSIP=(READSUPERINDEXPROTOCOL*)malloc(sizeof(READSUPERINDEXPROTOCOL)*(lpMainAVIHeader->dwStreams));
+	lpRSIP=(READSUPERINDEXPROTOCOL*)malloc(sizeof(READSUPERINDEXPROTOCOL)*(lpMainAVIHeader->dwStreams));  // TODO: null check
 	ZeroMemory(lpRSIP,sizeof(READSUPERINDEXPROTOCOL)*(lpMainAVIHeader->dwStreams));
 	for (DWORD i=0;i<lpMainAVIHeader->dwStreams;i++)
 	{
 		ZeroMemory(Buffer,sizeof(Buffer));
 		if (!LocateData(MakeFourCC("strl"),&lpBuffer,NULL,&lhListHdr,dwLength,DT_LIST))
 		{
-			sprintf(Buffer,"  strl-List Nbr. %d nicht gefunden !",i);
+			sprintf_s(Buffer, "  strl-List Nbr. %d nicht gefunden !", i);
 			DebugMsg(Buffer);
 			return false;
 		}
 		else
 		{
 			siStreams[i].dwProcessMode=PM_PROCESS;
-			sprintf(Buffer,"  strl-List Nbr. %d gefunden",i);
+			sprintf_s(Buffer, "  strl-List Nbr. %d gefunden", i);
 			DebugMsg(Buffer);
 			if (!ProcessSTRL(lpBuffer,lhListHdr.dwLength-4,i))
 			{
@@ -1216,7 +1217,7 @@ bool AVIFILEEX::ProcessSTRL(char* lpBuffer,DWORD dwLength,DWORD dwStreamNbr)
 	}
 	DebugMsg("    strh gefunden");
 
-	siStreams[dwStreamNbr].lpHeader=(AVIStreamHeader*)malloc(chChunkHdr.dwLength);
+	siStreams[dwStreamNbr].lpHeader=(AVIStreamHeader*)malloc(chChunkHdr.dwLength);  // TODO: null check
 	memcpy(siStreams[dwStreamNbr].lpHeader,lpBuffer,chChunkHdr.dwLength);
 	if (IsVideoStream(dwStreamNbr))
 	{
@@ -1237,7 +1238,7 @@ bool AVIFILEEX::ProcessSTRL(char* lpBuffer,DWORD dwLength,DWORD dwStreamNbr)
 	}
 	DebugMsg("    strf gefunden");
 
-	siStreams[dwStreamNbr].lpFormat=malloc(chChunkHdr.dwLength);
+	siStreams[dwStreamNbr].lpFormat=malloc(chChunkHdr.dwLength);  // TODO: null check
 	memcpy(siStreams[dwStreamNbr].lpFormat,lpBuffer,chChunkHdr.dwLength);
 	lpBuffer+=even(chChunkHdr.dwLength); dwPos+=even(chChunkHdr.dwLength);
 
@@ -1275,7 +1276,7 @@ bool AVIFILEEX::ProcessSTRL(char* lpBuffer,DWORD dwLength,DWORD dwStreamNbr)
 		{
 			lpBuffer-=8;
 			DebugMsg("    indx gefunden");
-			siStreams[dwStreamNbr].lpIndx=malloc(chChunkHdr.dwLength+8);
+			siStreams[dwStreamNbr].lpIndx=malloc(chChunkHdr.dwLength+8);  // TODO: null check
 			memcpy(siStreams[dwStreamNbr].lpIndx,lpBuffer,chChunkHdr.dwLength+8);
 			if (lpRSIP) lpRSIP[dwStreamNbr].qwFilePos=(DWORD)(lpBuffer-dwHDRLBufferStart)+abs_pos.dwHDRL;
 			lpBuffer+=8;
@@ -1387,7 +1388,7 @@ bool AVIFILEEX::ProcessODML(char* lpBuffer,DWORD dwLength)
 		return false;
 	}
 	DebugMsg("  dmlh gefunden");
-	lpExtAVIHeader=(ODMLExtendedAVIHeader*)malloc(chChunkHdr.dwLength);
+	lpExtAVIHeader=(ODMLExtendedAVIHeader*)malloc(chChunkHdr.dwLength);  // TODO: null check
 	memcpy(lpExtAVIHeader,lpBuffer,chChunkHdr.dwLength);
 	return true;
 }
@@ -1487,7 +1488,7 @@ void AVIFILEEX::SetDebugState(DWORD dwDebugState)
 
 void AVIFILEEX::SetProcessMode(DWORD dwNbr,DWORD dwProcessMode)
 {
-	if (dwNbr=SPM_SETALL)
+	if (dwNbr=SPM_SETALL)  // TODO: Probably should be == ???
 	{
 		for (DWORD i=0;i<lpMainAVIHeader->dwStreams;siStreams[i++].dwProcessMode=dwProcessMode);
 	}
@@ -1718,7 +1719,7 @@ bool AVIFILEEX::ProcessBaseIndx(_aviindex_chunk* lpIndx, DWORD dwProcessMode,voi
 					}
 				}
 				break;
-			case AVI_INDEX_IS_DATA: break; // time-code etc. nicht unterstützt !
+			case AVI_INDEX_IS_DATA: break; // time-code etc. nicht unterstÃ¼tzt !
 			default:
 				return false;
 		}
@@ -1776,7 +1777,7 @@ __int64 AVIFILEEX::GetNanoSecPerFrame(void)
 	else
 	if (siStreams)
 	{
-		qwOrgNSPF=round(1000000000/d_div((double)siStreams[0].lpHeader->dwRate,(double)siStreams[0].lpHeader->dwScale,
+		qwOrgNSPF=(__int64)round(1000000000/d_div((double)siStreams[0].lpHeader->dwRate,(double)siStreams[0].lpHeader->dwScale,
 			"AVIFILEEX::GetNanoSecPerFrame::siStreams[0].lpHeader->dwScale"));//((double)siStreams[0].lpHeader->dwRate/(double)siStreams[0].lpHeader->dwScale));
 	}
 	else
@@ -1852,7 +1853,7 @@ bool AVIFILEEX::DecompressEndVideo(void)
 	return (SUCCEEDED(ICDecompressEnd(hic)));
 }
 */
-// Lädt Videochunk OHNE TranslateChunkNumber auszurufen!
+// LÃ¤dt Videochunk OHNE TranslateChunkNumber auszurufen!
 int AVIFILEEX::LoadVideoChunk(DWORD dwChunkNbr,DWORD* lpdwSize)
 {
 	void*		lpBuffer;
@@ -1902,7 +1903,7 @@ int AVIFILEEX::LoadVideoChunk(DWORD dwChunkNbr,DWORD* lpdwSize)
 	//switch (FrameType=siStreams[0].ciChunks[dwChunkNbr].ftFrameType)
 	switch (FrameType = chunk.ftFrameType) {
 		case FT_DROPPEDFRAME: 
-			DebugMsg ("  -> enthält keine Daten"); 
+			DebugMsg ("  -> enthÃ¤lt keine Daten"); 
 			break;
 		case FT_DELTAFRAME:
 			DebugMsg ("  -> ist Deltaframe");
@@ -1923,14 +1924,14 @@ int AVIFILEEX::LoadVideoChunk(DWORD dwChunkNbr,DWORD* lpdwSize)
 			dwFrameCachePos%=FrameCacheSize;
 			dwFlags=(FrameType==FT_DELTAFRAME)?ICDECOMPRESS_NOTKEYFRAME:0;
 			if (fDest->IsExternalBuffer()) fDest->UseInternalBuffer();
-			if (!(fDest->GetBuffer(0))) DebugMsg("  Outputbuffer ungültig");
+			if (!(fDest->GetBuffer(0))) DebugMsg("  Outputbuffer ungÃ¼ltig");
 			fiFrame=((FRAMEINFO*)fDest->GetUserData(sizeof(FRAMEINFO)));
 			fiFrame->dwAccCount=0;
 			DebugMsg ("  versuche zu dekomprimieren...");
 			bResult=(!FAILED(ICDecompress(hic,dwFlags,lpbiIn,lpBuffer,lpbiOut,fDest->GetBuffer(0))));
 			switch (bResult)
 			{
-				// Wenn das hier nicht mehr ausgeführt wurde, gabs einen
+				// Wenn das hier nicht mehr ausgefÃ¼hrt wurde, gabs einen
 				// Ausnahmefehler bei ICDecompress....
 				case true: 
 					DebugMsg("  Dekompression erfolgreich");	
@@ -1951,7 +1952,7 @@ int AVIFILEEX::LoadVideoChunk(DWORD dwChunkNbr,DWORD* lpdwSize)
 	{
 		fDest=FrameCache[iResult=dwFrameCachePos++];
 		dwFrameCachePos%=FrameCacheSize;
-		fDest->UseExternalBuffer(malloc(dwLength),dwLength);
+		fDest->UseExternalBuffer(malloc(dwLength),dwLength);  // TODO: null check
 		memcpy(fDest->GetBuffer(0),lpBuffer,dwLength);
 		bResult=true;
 	}
@@ -2003,11 +2004,11 @@ int AVIFILEEX::GetVideoChunk(DWORD dwChunkNbr,void* lpDest,DWORD* lpdwSize)
 
 	if (dwChunkNbr==CN_NEXT_CHUNK)
 	{
-		DebugMsg("nächste Frame...");
+		DebugMsg("nÃ¤chste Frame...");
 		return GetVideoChunk(siStreams[dwStream].dwPos++,lpDest,lpdwSize);
 	}
 
-	sprintf(Buffer,"GetVideoChunk: dwChunkNbr = %d",dwChunkNbr);
+	sprintf_s(Buffer, "GetVideoChunk: dwChunkNbr = %d", dwChunkNbr);
 	DebugMsg(Buffer);
 
 	dwIndex=LoadVideoChunk(TranslateChunkNumber(dwStream,dwChunkNbr),lpdwSize);
@@ -2370,7 +2371,7 @@ DWORD AVIFILEEX::GetAudioData(DWORD dwStreamNbr,DWORD dwMilliSec,void* lpDest)
 	if ((siStreams[dwStreamNbr].dwProcessMode==PM_DIRECTSTREAMCOPY)||(!siStr->bCompressed))
 	{
 		dwRead=LoadAudioData(dwStreamNbr,dwSize,lpDest);
-		sprintf(Buffer,"Stream %d: %d Bytes kopiert",dwStreamNbr,dwRead);
+		sprintf_s(Buffer, "Stream %d: %d Bytes kopiert", dwStreamNbr, dwRead);
 		DebugMsg(Buffer);
 		return dwRead;
 	}
@@ -2687,7 +2688,7 @@ int AVIFILEEX::SetNumberOfStreams(DWORD dwNbr)
 
 	siStreams= new STREAMINFO[dwNbr];
 //	ZeroMemory(siStreams,dwNbr*sizeof(STREAMINFO));
-	dwLargestChunks=(DWORD*)malloc(4*dwNbr);
+	dwLargestChunks=(DWORD*)malloc(4*dwNbr);  // TODO: null check
 	ZeroMemory(dwLargestChunks,4*dwNbr);
 	SetProcessMode(SPM_SETALL,PM_DIRECTSTREAMCOPY);
 	return AFE_OK;
@@ -2734,7 +2735,7 @@ int AVIFILEEX::SetStreamHeader(DWORD dwStreamNbr,AVIStreamHeader* strh)
 		delete siStr->lpHeader;
 		siStr->lpHeader=NULL;
 	}
-	siStr->lpHeader=(AVIStreamHeader*)malloc(sizeof(AVIStreamHeader));
+	siStr->lpHeader=(AVIStreamHeader*)malloc(sizeof(AVIStreamHeader));  // TODO: null check
 	ZeroMemory(siStr->lpHeader,sizeof(AVIStreamHeader));
 	memcpy(siStr->lpHeader,strh,sizeof(AVIStreamHeader));
 	return AFE_OK;
@@ -2772,7 +2773,7 @@ int AVIFILEEX::SetStreamFormat(DWORD dwStreamNbr,void* strf)
 	}
 	if (dwSize)
 	{
-		siStr->lpFormat=malloc(dwSize);
+		siStr->lpFormat=malloc(dwSize);  // TODO: NULL CHECK
 		memcpy(siStr->lpFormat,strf,dwSize);
 		lpwfe=(WAVEFORMATEX*)(siStr->lpFormat);
 		if (dwStreamNbr>0) lpwfe->nAvgBytesPerSec=0;
@@ -2949,7 +2950,7 @@ int AVIFILEEX::BeginRECList(void)
 	{
 		NextList=new LIST;
 		LastList->lpNext=NextList;
-		sprintf(Buffer,"  vorhandene List-Kette fortgesetzt bei %d Bytes",FirstList->GetSize(LE_CHAIN));
+		sprintf_s(Buffer, "  vorhandene List-Kette fortgesetzt bei %d Bytes", FirstList->GetSize(LE_CHAIN));
 		DebugMsg(Buffer);
 	}
 
@@ -3036,7 +3037,7 @@ int AVIFILEEX::FlushWriteCache(void)
 
 		FirstChunk->StoreToStream(dest,LE_CHAIN | LE_USELASTSIZE);
 		ZeroMemory(Msg,sizeof(Msg));
-		sprintf(Msg,"Cache geschrieben: %d	kB",dwSize>>10);
+		sprintf_s(Msg, "Cache geschrieben: %d	kB", dwSize >> 10);
 		DebugMsg(Msg);
 
 		FirstChunk->FreeData(LE_CHAIN);
@@ -3048,7 +3049,7 @@ int AVIFILEEX::FlushWriteCache(void)
 	{
 		FirstList->StoreToStream(dest,LE_CHAIN/* | LE_USELASTSIZE*/);
 		ZeroMemory(Msg,sizeof(Msg));
-		sprintf(Msg,"Cache geschrieben: %d	kB",dwSize>>10);
+		sprintf_s(Msg, "Cache geschrieben: %d	kB", dwSize >> 10);
 		DebugMsg(Msg);
 
 		FirstList->FreeData(LE_CHAIN);

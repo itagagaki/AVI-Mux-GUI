@@ -1,4 +1,4 @@
-#ifndef f_AVIFILE_I
+ï»¿#ifndef f_AVIFILE_I
 #define f_AVIFILE_I
 
 #undef AVIF_TRUSTCKTYPE
@@ -7,10 +7,10 @@ const int AVIF_TRUSTCKTYPE  = 0x800;
 const int AFE_LEGACYINDEX = 0x00010001;
 
 /*
-  Für diesen Quellcode gilt die GPL
+  FÃ¼r diesen Quellcode gilt die GPL
 
   
-  Klassen für Zugriff auf AVI-Dateien, incl. OpenDML > 4 GB
+  Klassen fÃ¼r Zugriff auf AVI-Dateien, incl. OpenDML > 4 GB
 
 
   grober Aufbau einer AVI-Datei (ohne JUNKs etc):
@@ -59,20 +59,20 @@ const int AFE_LEGACYINDEX = 0x00010001;
       Standard-AVI:
 	      OK
 	  OpenDML-AVI:
-	      Index: Super-, Standard- und 2-Field-Index unterstützt
+	      Index: Super-, Standard- und 2-Field-Index unterstÃ¼tzt
 			       2-Field-Index nicht getestet
 		  timecode-, timecode-discontinuity-table: N/A
-		  Dateien > 4 GB (NTFS): funktionsfähig
+		  Dateien > 4 GB (NTFS): funktionsfÃ¤hig
 	  Videodekompression: beta
-		  unkomprimierte Videos werden nicht unterstützt !
-		  8-Bit-Daten werden nicht unterstützt !
-		  Paletten werden nicht unterstützt
+		  unkomprimierte Videos werden nicht unterstÃ¼tzt !
+		  8-Bit-Daten werden nicht unterstÃ¼tzt !
+		  Paletten werden nicht unterstÃ¼tzt
 		  DirectStreamCopy: OK
 		  Seeken: beliebig
 	  Audiodekompression: beta
 		  Audiostreams konstanter Datenrate: i.O.
-		  Audiostreams mit Blockgrößen > 1 Byte: nicht getestet
-		  Audiostreams variabler Datenrate: (nur Direct Stream Copy) Chunkweises lesen möglich
+		  Audiostreams mit BlockgrÃ¶ÃŸen > 1 Byte: nicht getestet
+		  Audiostreams variabler Datenrate: (nur Direct Stream Copy) Chunkweises lesen mÃ¶glich
 		  DirectStreamCopy: OK
 		  Seeken: beliebig
 	  
@@ -85,9 +85,9 @@ const int AFE_LEGACYINDEX = 0x00010001;
 	  Schreibcache: festgelegt auf 4 MB
 
 
-	RAM-Bedarf für Index:
-	  28 Bytes / Chunk, d.h. 41 kByte/min = 2,4 MB/h für Video @ 25 fps
-	                                      = 10,9 MB/h für Video @ 25 fps + 2x MP3-VBR-Audio
+	RAM-Bedarf fÃ¼r Index:
+	  28 Bytes / Chunk, d.h. 41 kByte/min = 2,4 MB/h fÃ¼r Video @ 25 fps
+	                                      = 10,9 MB/h fÃ¼r Video @ 25 fps + 2x MP3-VBR-Audio
 
 */
 
@@ -170,7 +170,7 @@ typedef struct
 
 /////////////////////////////////////
 
-// Infos über jeden Stream
+// Infos Ã¼ber jeden Stream
 class STREAMINFO
 {
 public:
@@ -181,13 +181,13 @@ public:
 	void*					lpOutputFormat; // BMP: 24 Bit bzw. PCM: frqu./16/channels
 	void*					lpIndx;			// Zeiger auf Superindex (nur OpenDML)
 	DWORD					dwChunkCount;	// Anzahl Chunks im Stream
-	__int64					qwStreamLength; // gesamte Länge des Streams
+	__int64					qwStreamLength; // gesamte LÃ¤nge des Streams
 	DWORD					dwProcessMode;  // Direct Stream Copy ?
 	DWORD					dwPos;			// aktueller Chunk
 	bool					bCompressed;	// ist der Stream komprimiert ?
 	bool					bDefault;		// stream is default?
-	void*					lpBufIn;		// nur Audio: Eingabepuffer für Audiodekompr.
-	void*					lpBufOut;		// nur Audio: Ausgabepuffer für Audiodekompr.
+	void*					lpBufIn;		// nur Audio: Eingabepuffer fÃ¼r Audiodekompr.
+	void*					lpBufOut;		// nur Audio: Ausgabepuffer fÃ¼r Audiodekompr.
 	DWORD					dwOffset;		// nur Audio: Offset innerhalb des aktuellen Chunks
 //	CHUNKINFO*				ciChunks;
 	char*					lpcName;		// Name des Streams
@@ -204,7 +204,7 @@ public:
 
 #pragma warning (disable:4200)
 
-// Header, die für OpenDML nötig sind
+// Header, die fÃ¼r OpenDML nÃ¶tig sind
 typedef struct _aviindex_chunk {
 	FOURCC fcc;
 	DWORD cb;
@@ -221,7 +221,7 @@ typedef struct _aviindex_chunk {
 } AVIINDEXCHUNK, *PAVIINDEXCHUNK;
 
 typedef struct _avistdindex_chunk {
-	FOURCC fcc; // ’ix##’
+	FOURCC fcc; // Â’ix##Â’
 	DWORD cb;
 	WORD wLongsPerEntry; 
 	BYTE bIndexSubType;
@@ -237,7 +237,7 @@ typedef struct _avistdindex_chunk {
 } AVISTDINDEX, * PAVISTDINDEX;
 
 typedef struct _avifieldindex_chunk {
-	FOURCC fcc; // ’ix##’
+	FOURCC fcc; // Â’ix##Â’
 	DWORD cb;
 	WORD wLongsyPerEntry; 
 	BYTE bIndexSubType;
@@ -280,7 +280,7 @@ typedef struct {
 } VIDEOPROPERTYHEADER;
 
 typedef struct _avisuperindex_chunk {
-	FOURCC fcc; // ’ix##’
+	FOURCC fcc; // Â’ix##Â’
 	DWORD cb;
 	WORD wLongsPerEntry; 
 	BYTE bIndexSubType; 
@@ -302,7 +302,7 @@ typedef struct {
 ///////////////////////////////////////////////////
 
 
-// wenn wir mal einen Framecache für bereits dekomprimierte Frames bauen wollen...
+// wenn wir mal einen Framecache fÃ¼r bereits dekomprimierte Frames bauen wollen...
 typedef struct {
 	DWORD dwAccCount;
 	DWORD iFrameNbr;
@@ -462,7 +462,7 @@ class AVIFILEEX : public RIFFFILE
 		int					video_stream_index;
 // R/W
 		int					GetStreamNbrFromFourCC(DWORD dwFourCC);
-// Öffnen
+// Ã–ffnen
 		bool				IsList(LISTHEADER* lplhListHdr,char* lpFourCC);
 		bool				CheckRIFF_AVI(void);
 		bool				GetAVIH(char* lpBuffer,CHUNKHEADER* lpchChunkHdr);
@@ -511,7 +511,7 @@ class AVIFILEEX : public RIFFFILE
 		MainAVIHeader*		lpMainAVIHeader;
 		AVIFILEEX(void);
 		virtual ~AVIFILEEX(void);
-// öffnen / schließen		
+// Ã¶ffnen / schlieÃŸen		
 		int					strfSize(DWORD dwStreamNbr,void* strf);
 		DWORD				Open(STREAM* lpStream, DWORD dwAccess, AVITYPE atAVIType);
 		bool				Close(bool bCloseSource=true);

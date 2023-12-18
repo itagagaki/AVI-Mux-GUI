@@ -9,7 +9,7 @@ static char THIS_FILE[] = __FILE__;
 
 // Videosource
 
-VIDEOSOURCE::VIDEOSOURCE(void)
+VIDEOSOURCE::VIDEOSOURCE(void) : last_ref()
 {
 	lpUserData=NULL;
 	bCFR = true;

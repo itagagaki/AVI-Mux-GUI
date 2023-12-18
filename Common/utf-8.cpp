@@ -363,30 +363,30 @@ int StringConvert(const char* source, CharacterEncoding::CharacterEncodings sour
 */
 	switch (source_format)
 	{
-		case CharacterEncoding::ANSI:
+		case CharacterEncoding::CharacterEncodings::ANSI:
 			switch (dest_format) {
-				case CharacterEncoding::ANSI: *dest = _strdup(_source); break;
-				case CharacterEncoding::UTF8: Str2UTF8(_source, dest); break;
-				case CharacterEncoding::UTF16LE: Str2WStr(_source, dest); break;
+				case CharacterEncoding::CharacterEncodings::ANSI: *dest = _strdup(_source); break;
+				case CharacterEncoding::CharacterEncodings::UTF8: Str2UTF8(_source, dest); break;
+				case CharacterEncoding::CharacterEncodings::UTF16LE: Str2WStr(_source, dest); break;
 			}
 			break;
-		case CharacterEncoding::UTF8:
+		case CharacterEncoding::CharacterEncodings::UTF8:
 			switch (dest_format) {
-				case CharacterEncoding::ANSI: UTF82Str(_source, dest); break;
-				case CharacterEncoding::UTF8: *dest = _strdup(_source); break;
-				case CharacterEncoding::UTF16LE: UTF82WStr(_source, dest); break;
+				case CharacterEncoding::CharacterEncodings::ANSI: UTF82Str(_source, dest); break;
+				case CharacterEncoding::CharacterEncodings::UTF8: *dest = _strdup(_source); break;
+				case CharacterEncoding::CharacterEncodings::UTF16LE: UTF82WStr(_source, dest); break;
 			}
 			break;
-		case CharacterEncoding::UTF16LE:
+		case CharacterEncoding::CharacterEncodings::UTF16LE:
 //		case CHARACTER_ENCODING_UTF16_BE:
 			switch (dest_format) {
-				case CharacterEncoding::ANSI: 
+				case CharacterEncoding::CharacterEncodings::ANSI:
 					WStr2Str(_source, dest); 
 					break;
-				case CharacterEncoding::UTF8: 
+				case CharacterEncoding::CharacterEncodings::UTF8:
 					WStr2UTF8(_source, dest); 
 					break;
-				case CharacterEncoding::UTF16LE: 
+				case CharacterEncoding::CharacterEncodings::UTF16LE:
 					*dest = (char*)_wcsdup((wchar_t*)_source); 
 					break;
 			}
@@ -399,14 +399,14 @@ int StringConvert(const char* source, CharacterEncoding::CharacterEncodings sour
 
 int FromUTF8(const char* source, wchar_t** dest)
 {
-	return StringConvert(source, CharacterEncoding::UTF8,
-		(char**)dest, CharacterEncoding::UTF16LE);
+	return StringConvert(source, CharacterEncoding::CharacterEncodings::UTF8,
+		(char**)dest, CharacterEncoding::CharacterEncodings::UTF16LE);
 }
 
 int FromUTF8(const char* source, char** dest)
 {
-	return StringConvert(source, CharacterEncoding::UTF8,
-		(char**)dest, CharacterEncoding::ANSI);
+	return StringConvert(source, CharacterEncoding::CharacterEncodings::UTF8,
+		(char**)dest, CharacterEncoding::CharacterEncodings::ANSI);
 }
 
 int IsUTF8(const char* src, size_t max_source_len)
@@ -474,14 +474,14 @@ int UTF8CharLen(char in)
 
 int ToUTF8(const char* source, char** dest)
 {
-	return StringConvert(source, CharacterEncoding::ANSI,
-		(char**)dest, CharacterEncoding::UTF8);
+	return StringConvert(source, CharacterEncoding::CharacterEncodings::ANSI,
+		(char**)dest, CharacterEncoding::CharacterEncodings::UTF8);
 }
 
 int ToUTF8(const wchar_t* source, char** dest)
 {
-	return StringConvert((char*)source, CharacterEncoding::UTF16LE,
-		(char**)dest, CharacterEncoding::UTF8);
+	return StringConvert((char*)source, CharacterEncoding::CharacterEncodings::UTF16LE,
+		(char**)dest, CharacterEncoding::CharacterEncodings::UTF8);
 }
 
 
@@ -489,11 +489,11 @@ CUTF8::~CUTF8()
 {
 }
 
-CUTF8::CUTF8(const char *p, int Encoding)
+CUTF8::CUTF8(const char *p, CharacterEncoding::CharacterEncodings Encoding)
 {
 	if (p)
 	{
-		if (Encoding == CharacterEncoding::UTF8/* || IsUTF8(p, strlen(p))*/)
+		if (Encoding == CharacterEncoding::CharacterEncodings::UTF8/* || IsUTF8(p, strlen(p))*/)
 		{
 			m_utf8 = p;
 		}

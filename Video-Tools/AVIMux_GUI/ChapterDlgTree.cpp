@@ -1,4 +1,4 @@
-// ChapterDlgTree.cpp: Implementierungsdatei
+ï»¿// ChapterDlgTree.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -42,8 +42,8 @@ CChapterDlgTree::~CChapterDlgTree()
 void CChapterDlgTree::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CUnicodeTreeCtrl::OnFinalRelease();
@@ -60,12 +60,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CChapterDlgTree, CUnicodeTreeCtrl)
 	//{{AFX_DISPATCH_MAP(CChapterDlgTree)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IChapterDlgTree zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IChapterDlgTree zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {BE1769F9-161E-4474-859C-1ECF844AE7FA}
@@ -77,7 +77,7 @@ BEGIN_INTERFACE_MAP(CChapterDlgTree, CUnicodeTreeCtrl)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CChapterDlgTree 
+// Behandlungsroutinen fÃ¼r Nachrichten CChapterDlgTree 
 
 void FillChapterSegmentUIDs(CChapters* c, int start_index, int end_index, char* cUID)
 {
@@ -99,7 +99,7 @@ void CChapterDlgTree::SetTitleLanguagePriorityString(char* title_language_priori
 
 void CChapterDlgTree::OnDropFiles(HDROP hDropInfo) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	DWORD dwCount=DragQueryFile(hDropInfo,0xFFFFFFFF,NULL,NULL);
 	int	chap_count = 0;
 
@@ -138,7 +138,7 @@ void CChapterDlgTree::OnDropFiles(HDROP hDropInfo)
 
 		CFileStream* file = new CFileStream;
 		file->Open(lpcName, StreamMode::Read);
-		CTextFile*	textfile = new CTextFile(StreamMode::Read, file, CharacterEncoding::UTF8);
+		CTextFile*	textfile = new CTextFile(StreamMode::Read, file, CharacterEncoding::CharacterEncodings::UTF8);
 
 		XMLNODE* xml = NULL;
 		CChapters* c = NULL;
@@ -170,7 +170,7 @@ void CChapterDlgTree::OnDropFiles(HDROP hDropInfo)
 		char t[1000]; t[0]=0;
 		std::string textFileLine;
 		textfile->ReadLine(textFileLine);
-		strcpy(t, textFileLine.c_str());
+		strcpy_s(t, textFileLine.c_str());
 		if (!strcmp("$Spruce_IFrame_List",t)) {
 			CChapters* chapters = ((CChapterDlg*)GetParent())->GetChapters();
 			CChapters* edition;
@@ -178,23 +178,23 @@ void CChapterDlgTree::OnDropFiles(HDROP hDropInfo)
 			edition = chapters;
 			chapters = chapters->GetSubChapters(chapters->GetChapterCount()-1);
 			while (textfile->ReadLine(textFileLine)>-1) {
-				t[0]=0; strcpy(t, textFileLine.c_str());
+				t[0]=0; strcpy_s(t, textFileLine.c_str());
 				__int64 iTime = SONChapStr2Millisec(t)*1000000;
 				if (iTime>=0) {
 					char cName[20];
-					sprintf(cName,"Chapter %02d",++chap_count);
+					sprintf_s(cName, "Chapter %02d", ++chap_count);
 					int j = chapters->AddChapter(iTime, -1, cName);
 					chapters->SetChapterLng(j, "eng", 0);
-					sprintf(cName,"Kapitel %02d",chap_count);
+					sprintf_s(cName, "Kapitel %02d", chap_count);
 					chapters->SetChapterText(j, cName, 1);
 					chapters->SetChapterLng(j, "ger", 1);
-					sprintf(cName,"Chapitre %02d",chap_count);
+					sprintf_s(cName, "Chapitre %02d", chap_count);
 					chapters->SetChapterText(j, cName, 2);
 					chapters->SetChapterLng(j, "fre", 2);
-					sprintf(cName,"Capitulo %02d",chap_count);
+					sprintf_s(cName, "Capitulo %02d", chap_count);
 					chapters->SetChapterText(j, cName, 3);
 					chapters->SetChapterLng(j, "spa", 3);
-					sprintf(cName,"Capitolo %02d",chap_count);
+					sprintf_s(cName, "Capitolo %02d", chap_count);
 					chapters->SetChapterText(j, cName, 4);
 					chapters->SetChapterLng(j, "ita", 4);
 					
@@ -356,7 +356,7 @@ void CChapterDlgTree::OnDropFiles(HDROP hDropInfo)
 void CChapterDlgTree::GetTextCallback(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	TV_DISPINFO* pTVDispInfo = (TV_DISPINFO*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	char cTxt[1024]; memset(cTxt, 0, sizeof(cTxt));
 
 	CHAPTER_ENTRY* pCE = (CHAPTER_ENTRY*)GetItemData(pTVDispInfo->item.hItem);
@@ -372,10 +372,10 @@ void CChapterDlgTree::GetTextCallback(NMHDR* pNMHDR, LRESULT* pResult)
 
 			if (scd.bIsEdition || display_uids) {
 				if (pCE->c->GetUIDLen(pCE->iIndex) <= 4)
-					sprintf(cTxt, "%08X: ", (unsigned __int32)pCE->c->GetUID(pCE->iIndex));
+					sprintf_s(cTxt, "%08X: ", (unsigned __int32)pCE->c->GetUID(pCE->iIndex));
 				else {
 					__int642hex(pCE->c->GetUID(pCE->iIndex), cTxt);
-					strcat(cTxt, ": ");
+					strcat_s(cTxt, ": ");
 				}
 			}
 
@@ -480,7 +480,7 @@ int FormatChapterEntry(__int64 iBegin, __int64 iEnd, char* cText, char* cBuffer)
 	if (iEnd != -1) {
 		Millisec2Str(iEnd/1000000,cTill);
 	} else {
-		sprintf(cTill, "end");
+		sprintf_s(cTill, "end");
 	}
 	sprintf(cBuffer,"%s - %s> %s",cFrom,cTill,cText);
 
@@ -512,7 +512,7 @@ CHAPTER_ENTRY* CChapterDlgTree::GetSelectedChapterEntry()
 
 void CChapterDlgTree::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	HTREEITEM hItem = GetSelectedItem();
 	HTREEITEM hNext = NULL;
 	HTREEITEM hNew = NULL;
@@ -656,26 +656,26 @@ void CChapterDlgTree::OpenContextMenu(CPoint point)
 
 		for (int j=0;j<CHIPE_COUNT;j++) {
 			csub->AppendMenu(
-				MF_STRING | ((pCE->c->GetChapterPhysicalEquiv(pCE->iIndex)==CHI_PHYSICAL_EQUIVALENTS[j])?MF_CHECKED:MF_UNCHECKED), 
+				MF_STRING | (pCE->c->GetChapterPhysicalEquiv(pCE->iIndex) == CHI_PHYSICAL_EQUIVALENTS[j] ? MF_CHECKED : MF_UNCHECKED),
 				IDM_CHI_PHYSICALEQUIV_BASE + j, 
 				physicalequiv2string(CHI_PHYSICAL_EQUIVALENTS[j]));
 		}
 
-		cUIDs->AppendMenu(MF_STRING | ((pCE->c->GetUIDLen(pCE->iIndex) == 4)?MF_CHECKED:MF_UNCHECKED),
+		cUIDs->AppendMenu(MF_STRING | (pCE->c->GetUIDLen(pCE->iIndex) == 4 ? MF_CHECKED : MF_UNCHECKED),
 			IDM_CHAPTER_REINIT_UID_32, "32 bit");
-		cUIDs->AppendMenu(MF_STRING | ((pCE->c->GetUIDLen(pCE->iIndex) == 8)?MF_CHECKED:MF_UNCHECKED),
+		cUIDs->AppendMenu(MF_STRING | (pCE->c->GetUIDLen(pCE->iIndex) == 8 ? MF_CHECKED : MF_UNCHECKED),
 			IDM_CHAPTER_REINIT_UID_64, "64 bit");
 
 
 
 		if (bEdition) {
-			c->AppendMenu(MF_STRING | (bHidden?MF_CHECKED:MF_UNCHECKED), 
+			c->AppendMenu(MF_STRING | (bHidden ? MF_CHECKED : MF_UNCHECKED),
 				IDM_HIDECHAPTER, LoadString(STR_CHPDLG_POPUP_EDITIONHIDDEN));
 
-			c->AppendMenu(MF_STRING | (bOrdered?MF_CHECKED:MF_UNCHECKED), 
+			c->AppendMenu(MF_STRING | (bOrdered ? MF_CHECKED : MF_UNCHECKED),
 				IDM_ORDEREDEDITION, LoadString(STR_CHPDLG_POPUP_EDITIONORDERD));
 
-			c->AppendMenu(MF_STRING | (bDefault?MF_CHECKED:MF_UNCHECKED), 
+			c->AppendMenu(MF_STRING | (bDefault ? MF_CHECKED : MF_UNCHECKED),
 				IDM_DEFAULTEDITION, LoadString(STR_CHPDLG_POPUP_EDITIONDEFAULT));
 
 			if (clipboard->GetChapterCount() && clipboard->IsEdition(0)) {
@@ -683,10 +683,10 @@ void CChapterDlgTree::OpenContextMenu(CPoint point)
 			}
 
 		} else {
-			c->AppendMenu(MF_STRING | (bEnabled)?MF_CHECKED:MF_UNCHECKED, 
+			c->AppendMenu(MF_STRING | (bEnabled ? MF_CHECKED : MF_UNCHECKED),
 				IDM_ENABLECHAPTER, LoadString(STR_CHPDLG_POPUP_CHAPTERENABLED));
 
-			c->AppendMenu(MF_STRING | (bHidden)?MF_CHECKED:MF_UNCHECKED,
+			c->AppendMenu(MF_STRING | (bHidden ? MF_CHECKED : MF_UNCHECKED),
 				IDM_HIDECHAPTER, LoadString(STR_CHPDLG_POPUP_CHAPTERHIDDEN));
 
 			c->AppendMenu(MF_POPUP, (UINT)csub->m_hMenu,"physical equivalent"); 
@@ -699,41 +699,41 @@ void CChapterDlgTree::OpenContextMenu(CPoint point)
 		}
 
 		c->AppendMenu(MF_STRING | (clipboard->GetChapterCount() &&
-			clipboard->IsEdition(0) != pCE->c->IsEdition(pCE->iIndex))?MF_GRAYED:0, 
+			clipboard->IsEdition(0) != pCE->c->IsEdition(pCE->iIndex) ? MF_GRAYED : 0),
 			IDM_CHAPTER_COPY, LoadString(STR_CHPDLG_POPUP_COPY));
 		
 		c->AppendMenu(MF_STRING | (clipboard->GetChapterCount() &&
-			clipboard->IsEdition(0) != pCE->c->IsEdition(pCE->iIndex))?MF_GRAYED:0, 
+			clipboard->IsEdition(0) != pCE->c->IsEdition(pCE->iIndex) ? MF_GRAYED : 0),
 			IDM_CHAPTER_COPY + 1000, LoadString(STR_CHPDLG_POPUP_COPYALL));
 
 		c->AppendMenu(MF_STRING | (clipboard->GetChapterCount() &&
-			clipboard->IsEdition(0) != pCE->c->IsEdition(pCE->iIndex))?MF_GRAYED:0, 
+			clipboard->IsEdition(0) != pCE->c->IsEdition(pCE->iIndex) ? MF_GRAYED : 0),
 			IDM_CHAPTER_COPY_CHILDREN, LoadString(STR_CHPDLG_POPUP_COPYCHILDREN));
 		c->AppendMenu(MF_STRING | (clipboard->GetChapterCount() &&
-			clipboard->IsEdition(0) != pCE->c->IsEdition(pCE->iIndex))?MF_GRAYED:0, 
+			clipboard->IsEdition(0) != pCE->c->IsEdition(pCE->iIndex) ? MF_GRAYED : 0), 
 			IDM_CHAPTER_COPY_CHILDREN + 1000, LoadString(STR_CHPDLG_POPUP_COPYALLCHILDREN));
 
 		
 
 		c->AppendMenu(MF_SEPARATOR);
 		
-		c->AppendMenu(MF_STRING | ((clipboard->GetChapterCount() && 
-			clipboard->IsEdition(0) == pCE->c->IsEdition(pCE->iIndex))?MF_ENABLED:MF_GRAYED),
+		c->AppendMenu(MF_STRING | (clipboard->GetChapterCount() && 
+			clipboard->IsEdition(0) == pCE->c->IsEdition(pCE->iIndex) ? MF_ENABLED : MF_GRAYED),
 			IDM_CHAPTER_PASTE_AFTER, LoadString(STR_CHPDLG_POPUP_PASTEONSAME));
 
-		c->AppendMenu(MF_STRING | (bChapsInClipboard?MF_ENABLED:MF_GRAYED),
+		c->AppendMenu(MF_STRING | (bChapsInClipboard ? MF_ENABLED : MF_GRAYED),
 			IDM_CHAPTER_PASTE_AS_CHILD, LoadString(STR_CHPDLG_POPUP_PASTEASSUBSCHAPS));
 
 		c->AppendMenu(MF_SEPARATOR);
 
-		c->AppendMenu(MF_STRING | (bChapsInClipboard?MF_ENABLED:MF_GRAYED),
+		c->AppendMenu(MF_STRING | (bChapsInClipboard ? MF_ENABLED : MF_GRAYED),
 			IDM_CHAPTER_PASTE_INTO_NEW_EDITION, LoadString(STR_CHPDLG_POPUP_PASTEALLINTOONEEDITION));
 
-		c->AppendMenu(MF_STRING | (bChapsInClipboard?MF_ENABLED:MF_GRAYED),
+		c->AppendMenu(MF_STRING | (bChapsInClipboard ? MF_ENABLED : MF_GRAYED),
 			IDM_CHAPTER_PASTE_EACH_INTO_EDITION, LoadString(STR_CHPDLG_POPUP_PASTEEACHINTOONEEDITION));
 
 		c->AppendMenu(MF_SEPARATOR);
-		c->AppendMenu(MF_STRING | (clipboard->GetChapterCount()?MF_ENABLED:MF_GRAYED),
+		c->AppendMenu(MF_STRING | (clipboard->GetChapterCount() ? MF_ENABLED : MF_GRAYED),
 			IDM_CHAPTER_DELETE_CLIPBOARD, LoadString(STR_CHPDLG_POPUP_DELETECLIPBOARD));
 
 		c->AppendMenu(MF_SEPARATOR);
@@ -741,9 +741,9 @@ void CChapterDlgTree::OpenContextMenu(CPoint point)
 
 		CMenu* cUIDs = new CMenu;
 		cUIDs->CreatePopupMenu();
-		cUIDs->AppendMenu(MF_STRING | ((pCE->c->GetUIDLen(pCE->iIndex) == 4)?MF_CHECKED:MF_UNCHECKED),
+		cUIDs->AppendMenu(MF_STRING | (pCE->c->GetUIDLen(pCE->iIndex) == 4 ? MF_CHECKED : MF_UNCHECKED),
 			IDM_CHAPTER_REINIT_UID_32 + 1000, "32 bit");
-		cUIDs->AppendMenu(MF_STRING | ((pCE->c->GetUIDLen(pCE->iIndex) == 8)?MF_CHECKED:MF_UNCHECKED),
+		cUIDs->AppendMenu(MF_STRING | (pCE->c->GetUIDLen(pCE->iIndex) == 8 ? MF_CHECKED : MF_UNCHECKED),
 			IDM_CHAPTER_REINIT_UID_64 + 1000, "64 bit");
 		c->AppendMenu(MF_POPUP, (UINT)cUIDs->m_hMenu, LoadString(STR_CHPDLG_POPUP_REINITALLUIDS));
 
@@ -758,7 +758,7 @@ void CChapterDlgTree::OpenContextMenu(CPoint point)
 
 BOOL CChapterDlgTree::OnCommand(WPARAM wParam, LPARAM lParam) 
 {
-	// TODO: Speziellen Code hier einfügen und/oder Basisklasse aufrufen
+	// TODO: Speziellen Code hier einfÃ¼gen und/oder Basisklasse aufrufen
 	CHAPTER_ENTRY* pCE = NULL;
 	HTREEITEM hItem = (hContextMenuTarget?hContextMenuTarget:GetSelectedItem());
 	RECT r;
@@ -893,23 +893,23 @@ BOOL CChapterDlgTree::OnCommand(WPARAM wParam, LPARAM lParam)
 			CChapters* sub = pCE->c->GetSubChapters(pCE->iIndex);
 			for (int i=0;i<sub->GetChapterCount();i++) {
 				char c[64]; c[0]=0;
-				sprintf(c, "Chapter %02d", i+1);
+				sprintf_s(c, "Chapter %02d", i+1);
 				sub->SetChapterText(i, c, 0);
 				sub->SetChapterLng(i, "eng", 0);
 
-				sprintf(c, "Kapitel %02d", i+1);
+				sprintf_s(c, "Kapitel %02d", i+1);
 				sub->SetChapterText(i, c, 1);
 				sub->SetChapterLng(i, "ger", 1);
 
-				sprintf(c, "Chapitre %02d", i+1);
+				sprintf_s(c, "Chapitre %02d", i+1);
 				sub->SetChapterText(i, c, 2);
 				sub->SetChapterLng(i, "fre", 2);
 
-				sprintf(c, "Capitulo %02d", i+1);
+				sprintf_s(c, "Capitulo %02d", i+1);
 				sub->SetChapterText(i, c, 3);
 				sub->SetChapterLng(i, "spa", 3);
 
-				sprintf(c, "Capitolo %02d", i+1);
+				sprintf_s(c, "Capitolo %02d", i+1);
 				sub->SetChapterText(i, c, 4);
 				sub->SetChapterLng(i, "ita", 4);
 

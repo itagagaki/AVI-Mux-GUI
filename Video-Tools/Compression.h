@@ -16,14 +16,14 @@ public:
 	TRACK_COMPRESSION_DESCRIPTOR();
 
 	/* copy constructor */
-	TRACK_COMPRESSION_DESCRIPTOR(const TRACK_COMPRESSION_DESCRIPTOR& other) {
+	TRACK_COMPRESSION_DESCRIPTOR(const TRACK_COMPRESSION_DESCRIPTOR& other) : is_decompressed(false) {
 		compression = other.compression;
 		order = other.order;
 		compressed_elements = other.compressed_elements;
 
 		compression_private_size = other.compression_private_size;
 		if (compression_private_size) {
-			compression_private = malloc(compression_private_size);
+			compression_private = malloc(compression_private_size);  // TODO: null check
 			memcpy(compression_private, other.compression_private,
 				compression_private_size);
 		} else

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "FileStream.h"
 #include "Filenames.h"
 #include "UTF-8.h"
@@ -19,6 +19,8 @@
 	long    lHi;
 } *LPQWORD;
 */
+#if false
+// Unable to overload.
 __int64 round(double x)
 {
 	if ((x-(__int64)x)>0.5) 
@@ -30,17 +32,18 @@ __int64 round(double x)
 		return (__int64)x;
 	}
 }
+#endif
 
 static bool SetFilePointer64 (HANDLE hFile, __int64 qwPos)
 {
-	SetFilePointer(hFile,((QWORD*)&qwPos)->lLo,&(((QWORD*)&qwPos)->lHi),FILE_BEGIN);
+	SetFilePointer(hFile,((AMG_QWORD*)&qwPos)->lLo,&(((AMG_QWORD*)&qwPos)->lHi),FILE_BEGIN);
 	return true;
 }
 
 static bool GetFilePointer64 (HANDLE hFile,__int64* qwPos)
 {
 	*qwPos=0;
-	((QWORD*)qwPos)->lLo=SetFilePointer(hFile,0,&(((QWORD*)qwPos)->lHi),FILE_CURRENT);
+	((AMG_QWORD*)qwPos)->lLo=SetFilePointer(hFile,0,&(((AMG_QWORD*)qwPos)->lHi),FILE_CURRENT);
 	return true;
 }
 
@@ -48,9 +51,9 @@ static bool GetFilePointer64 (HANDLE hFile,__int64* qwPos)
 static bool GetFileSize64 (HANDLE hFile,__int64* qwSize)
 {
 	*qwSize=0;
-	((QWORD*)qwSize)->lLo=GetFileSize(hFile,(DWORD*)&(((QWORD*)qwSize)->lHi));
+	((AMG_QWORD*)qwSize)->lLo=GetFileSize(hFile,(DWORD*)&(((AMG_QWORD*)qwSize)->lHi));
 
-    if (((QWORD*)qwSize)->lLo == INVALID_FILE_SIZE)
+    if (((AMG_QWORD*)qwSize)->lLo == INVALID_FILE_SIZE)
 		*qwSize = 0;
 
 	return true;
@@ -112,7 +115,7 @@ DWORD WINAPI DataTransfer_Thread(void* pData)
 					ReleaseSemaphore(j->hDone, 1, NULL);
 				} else if (j->dwOperation == DTJ_OPERATION_READ) {
 					SetFilePointer64(dttd->file, j->position);
-					ReadFile(dttd->file, j->pData, j->size, &j->dwTransferred, NULL);
+					(void)ReadFile(dttd->file, j->pData, j->size, &j->dwTransferred, NULL);
 					EnterCriticalSection(&dttd->critical);
 					if (!j->dwTransferred) {
 						j->bSuccess = false;
@@ -512,7 +515,7 @@ int CFileStream::Read(void* lpDest,DWORD dwBytes)
 	dwRead = 0;
 	if (!ReadFile(hFile, lpDest, dwBytes, &dwRead, NULL)) {
 		DWORD dwError = GetLastError();
-		void* msg = NULL;
+		char* msg = NULL;
 		FormatMessage( 
 		    FORMAT_MESSAGE_ALLOCATE_BUFFER | 
 		    FORMAT_MESSAGE_FROM_SYSTEM | 
@@ -560,7 +563,7 @@ int CFileStream::Write(void* lpSource, DWORD dwBytes)
 		DATA_TRANSFER_JOB* dtj = new DATA_TRANSFER_JOB;
 		dtj->bDataAllocated = true;
 		dtj->dwOperation = DTJ_OPERATION_WRITE;
-		dtj->pData = malloc(dwBytes);
+		dtj->pData = malloc(dwBytes);  // TODO: null check
 		memcpy(dtj->pData, lpSource, dwBytes);
 		dtj->position = iCurrPos;
 		dtj->size = dwBytes;
@@ -587,7 +590,7 @@ int CFileStream::Write(void* lpSource, DWORD dwBytes)
 
 	if (!WriteFile(hFile, lpSource, dwBytes, &dwWritten, 0)) {
 		DWORD dwError = GetLastError();
-		void* msg = NULL;
+		char* msg = NULL;
 		FormatMessage( 
 		    FORMAT_MESSAGE_ALLOCATE_BUFFER | 
 		    FORMAT_MESSAGE_FROM_SYSTEM | 

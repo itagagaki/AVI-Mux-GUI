@@ -171,8 +171,8 @@ int AACSOURCE::ReadFrame_ADTS(void* lpDest, DWORD* lpdwMicroSecRead, __int64* lp
 	SetProfile(h.profile);
 	SetChannelCount(h.channel_configuration);
 	switch (h.ID) {
-		case AACSOURCE::MPEGID::MPEG2: SetMPEGVersion(2); break;
-		case AACSOURCE::MPEGID::MPEG4: SetMPEGVersion(4); break;
+		case AACSOURCE::MPEGID::MPEGIDs::MPEG2: SetMPEGVersion(2); break;
+		case AACSOURCE::MPEGID::MPEGIDs::MPEG4: SetMPEGVersion(4); break;
 	}
 	
 	GetSource()->Seek(iPos + header_size);
@@ -204,8 +204,8 @@ int AACSOURCE::ReadFrame(MULTIMEDIA_DATA_PACKET** dataPacket)
 	SetProfile(h.profile);
 	SetChannelCount(h.channel_configuration);
 	switch (h.ID) {
-		case AACSOURCE::MPEGID::MPEG2: SetMPEGVersion(2); break;
-		case AACSOURCE::MPEGID::MPEG4: SetMPEGVersion(4); break;
+		case AACSOURCE::MPEGID::MPEGIDs::MPEG2: SetMPEGVersion(2); break;
+		case AACSOURCE::MPEGID::MPEGIDs::MPEG4: SetMPEGVersion(4); break;
 	}
 
 	char* data = (char*)malloc(h.frame_length - header_size);

@@ -188,7 +188,7 @@ __int64 EBMLElement_Writer::Write(char* pDest, int* iDest)
 			void* lpBuffer = new char[(int)info.iSize];
 			memset(lpBuffer, 0, (int)info.iSize);
 			iRes += Put(lpBuffer, (int)info.iSize, pDest, iDest);
-			delete lpBuffer;
+			delete[] lpBuffer;
 		}
 	} else {
 	// children: -> write all child element data and padd with VOID if necessary
@@ -219,7 +219,7 @@ __int64 EBMLElement_Writer::Write(char* pDest, int* iDest)
 			memcpy(pCRC32->GetData()->AsString(), &crc, 4);
 			iRes+=pCRC32->Write(pDest, iDest);
 			if (!pDest) IncWriteOverhead(6);
-			delete p;
+			delete[] p;
 		}
 
 		iRes += pChild->WriteList(pDest, iDest);

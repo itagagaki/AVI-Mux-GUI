@@ -1,4 +1,4 @@
-#if !defined(AFX_ADDSPLITPOINTDLG_H__0CBC624C_5F59_47D4_BECD_F3B54FB140DB__INCLUDED_)
+ï»¿#if !defined(AFX_ADDSPLITPOINTDLG_H__0CBC624C_5F59_47D4_BECD_F3B54FB140DB__INCLUDED_)
 #define AFX_ADDSPLITPOINTDLG_H__0CBC624C_5F59_47D4_BECD_F3B54FB140DB__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -25,17 +25,17 @@ public:
 // Dialogfelddaten
 	//{{AFX_DATA(AddSplitPointDlg)
 	enum { IDD = IDD_ADDSPLITPOINTDLG };
-		// HINWEIS: Der Klassen-Assistent fügt hier Datenelemente ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier Datenelemente ein
 	//}}AFX_DATA
 
 
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
+// Ãœberschreibungen
+	// Vom Klassen-Assistenten generierte virtuelle FunktionsÃ¼berschreibungen
 	//{{AFX_VIRTUAL(AddSplitPointDlg)
 	public:
 	virtual void OnFinalRelease();
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV-Unterstützung
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV-UnterstÃ¼tzung
 	//}}AFX_VIRTUAL
 
 // Implementierung
@@ -51,13 +51,13 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	// Generierte OLE-Dispatch-Zuordnungsfunktionen
 	//{{AFX_DISPATCH(AddSplitPointDlg)
-		// HINWEIS - Der Klassen-Assistent fügt hier Member-Funktionen ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Member-Funktionen ein und entfernt diese.
 	//}}AFX_DISPATCH
 	DECLARE_DISPATCH_MAP()
 	DECLARE_INTERFACE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ fügt unmittelbar vor der vorhergehenden Zeile zusätzliche Deklarationen ein.
+// Microsoft Visual C++ fÃ¼gt unmittelbar vor der vorhergehenden Zeile zusÃ¤tzliche Deklarationen ein.
 
 #endif // AFX_ADDSPLITPOINTDLG_H__0CBC624C_5F59_47D4_BECD_F3B54FB140DB__INCLUDED_

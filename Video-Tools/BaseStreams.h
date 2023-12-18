@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 STREAM:		abstract  
 CFileStream  file
@@ -27,7 +27,7 @@ BITSTREAM   access to a stream bit by bit
 
 const int READF_ASYNC = 0x01;
 
-// sowas wie abstrakter Basistyp f�r alle Streams
+// sowas wie abstrakter Basistyp für alle Streams
 class STREAM
 {
 	private:
@@ -94,7 +94,10 @@ class STREAM_FILTER: public STREAM
 
 
 
+#if false
+// Unable to overload.
 __int64 round(double x);
+#endif
 
 bool SetFilePointer64 (HANDLE hFile,_int64 qwPos);
 

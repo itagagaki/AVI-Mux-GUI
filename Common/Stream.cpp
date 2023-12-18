@@ -14,23 +14,23 @@ static char THIS_FILE[] = __FILE__;
 
 bool SetFilePointer64 (HANDLE hFile, __int64 qwPos)
 {
-	SetFilePointer(hFile,((QWORD*)&qwPos)->lLo,&(((QWORD*)&qwPos)->lHi),FILE_BEGIN);
+	SetFilePointer(hFile,((AMG_QWORD*)&qwPos)->lLo,&(((AMG_QWORD*)&qwPos)->lHi),FILE_BEGIN);
 	return true;
 }
 
 bool GetFilePointer64 (HANDLE hFile,__int64* qwPos)
 {
 	*qwPos=0;
-	((QWORD*)qwPos)->lLo=SetFilePointer(hFile,0,&(((QWORD*)qwPos)->lHi),FILE_CURRENT);
+	((AMG_QWORD*)qwPos)->lLo=SetFilePointer(hFile,0,&(((AMG_QWORD*)qwPos)->lHi),FILE_CURRENT);
 	return true;
 }
 
 bool GetFileSize64 (HANDLE hFile,__int64* qwSize)
 {
 	*qwSize=0;
-	((QWORD*)qwSize)->lLo=GetFileSize(hFile,(DWORD*)&(((QWORD*)qwSize)->lHi));
+	((AMG_QWORD*)qwSize)->lLo=GetFileSize(hFile,(DWORD*)&(((AMG_QWORD*)qwSize)->lHi));
 
-    if (((QWORD*)qwSize)->lLo == INVALID_FILE_SIZE)
+    if (((AMG_QWORD*)qwSize)->lLo == INVALID_FILE_SIZE)
 		*qwSize = 0;
 
 	return true;
@@ -90,7 +90,8 @@ CSimpleFileStream* CSimpleFileStream::FromHandle(HANDLE hFile)
 int CSimpleFileStream::Read(void *lpDest, DWORD dwBytes)
 {
 	DWORD dwRead = 0;
-	ReadFile(m_fileHandle, lpDest, dwBytes, &dwRead, NULL);
+	BOOL result = ReadFile(m_fileHandle, lpDest, dwBytes, &dwRead, NULL);
+	// TODO: Check result.
 
 	return dwRead;
 }

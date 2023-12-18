@@ -1,4 +1,4 @@
-// ClusterTimeEdit.cpp: Implementierungsdatei
+ï»¿// ClusterTimeEdit.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -36,8 +36,8 @@ CClusterTimeEdit::~CClusterTimeEdit()
 void CClusterTimeEdit::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CUserDrawEdit::OnFinalRelease();
@@ -46,18 +46,18 @@ void CClusterTimeEdit::OnFinalRelease()
 
 BEGIN_MESSAGE_MAP(CClusterTimeEdit, CUserDrawEdit)
 	//{{AFX_MSG_MAP(CClusterTimeEdit)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CClusterTimeEdit, CUserDrawEdit)
 	//{{AFX_DISPATCH_MAP(CClusterTimeEdit)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IClusterTimeEdit zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IClusterTimeEdit zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {11377649-623D-4A81-933C-E1931DDDEBAC}
@@ -69,4 +69,4 @@ BEGIN_INTERFACE_MAP(CClusterTimeEdit, CUserDrawEdit)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CClusterTimeEdit 
+// Behandlungsroutinen fÃ¼r Nachrichten CClusterTimeEdit 

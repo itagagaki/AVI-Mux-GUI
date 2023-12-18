@@ -1,4 +1,4 @@
-// SetStoreFileOptionsDlg.cpp: Implementierungsdatei
+ï»¿// SetStoreFileOptionsDlg.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -44,8 +44,8 @@ CSetStoreFileOptionsDlg::~CSetStoreFileOptionsDlg()
 void CSetStoreFileOptionsDlg::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CResizeableDialog::OnFinalRelease();
@@ -285,12 +285,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CSetStoreFileOptionsDlg, CResizeableDialog)
 	//{{AFX_DISPATCH_MAP(CSetStoreFileOptionsDlg)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_ISetStoreFileOptionsDlg zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_ISetStoreFileOptionsDlg zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {5398DDAF-2C81-4DF8-91EF-EA3C66AE3467}
@@ -302,7 +302,7 @@ BEGIN_INTERFACE_MAP(CSetStoreFileOptionsDlg, CResizeableDialog)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CSetStoreFileOptionsDlg 
+// Behandlungsroutinen fÃ¼r Nachrichten CSetStoreFileOptionsDlg 
 
 void AddControlDescriptor(CONTROL_DESCRIPTORS& c, void* control, int type, char* text, char** string_list)
 {
@@ -310,7 +310,7 @@ void AddControlDescriptor(CONTROL_DESCRIPTORS& c, void* control, int type, char*
 	cd.control = control;
 	cd.type = type;
 	memset(cd.attrib, 0 , sizeof(cd.attrib));
-	strcpy(cd.attrib, text);
+	strcpy_s(cd.attrib, text);
 	cd.string_list = string_list;
 	c.push_back(cd);
 }
@@ -593,7 +593,7 @@ void CSetStoreFileOptionsDlg::UpdateClusterSize()
 	FormatSize(cSize,settings->GetInt("output/mkv/clusters/size")*1024);
 	m_ClusterSize.SetWindowText(cSize);
 
-	sprintf(cSize,"%d ku",settings->GetInt("output/mkv/clusters/time")/1000);
+	sprintf_s(cSize, "%I64d ku", settings->GetInt("output/mkv/clusters/time") / 1000);
 	m_ClusterTime.SetWindowText(cSize);
 	m_ClusterTime.SetTime((int)settings->GetInt("output/mkv/clusters/time"));
 
@@ -606,7 +606,7 @@ void CSetStoreFileOptionsDlg::UpdateLaceLength()
 	char cSize[20]; cSize[0] = 0; int i;
 
 	if (m_Lacestyle.GetCurSel()) {
-		sprintf(cSize,"%d ms",i=(int)GetCurrentLaceDefinition()->GetInt("length"));
+		sprintf_s(cSize, "%d ms", i = (int)GetCurrentLaceDefinition()->GetInt("length"));
 		if (i) {
 			m_LaceSize.SetWindowText(cSize);
 		} else {
@@ -692,7 +692,7 @@ void CSetStoreFileOptionsDlg::UpdateLaceDefition()
 	m_UseLaceDefinition.SetCheck(!!c->GetInt("use"));
 	m_UseLaceDefinition.EnableWindow(!!iCurrentLaceDefinition);
 	
-	sprintf(s,"%I64d ms",c->GetInt("length"));
+	sprintf_s(s, "%I64d ms", c->GetInt("length"));
 
 	m_LaceSize.SetWindowText(s);
 	UpdateVideoLaceSetting();
@@ -710,7 +710,7 @@ void CSetStoreFileOptionsDlg::SaveCurrentLaceStyleDefinition()
 
 void CSetStoreFileOptionsDlg::OnOK() 
 {
-	// TODO: Zusätzliche Prüfung hier einfügen
+	// TODO: ZusÃ¤tzliche PrÃ¼fung hier einfÃ¼gen
 	
 	UpdateData();
 
@@ -1017,7 +1017,7 @@ BOOL CSetStoreFileOptionsDlg::OnInitDialog()
 
 	CResizeableDialog::OnInitDialog();
 
-	// TODO: Zusätzliche Initialisierung hier einfügen
+	// TODO: ZusÃ¤tzliche Initialisierung hier einfÃ¼gen
 
 	SetWindowText(LoadString(STR_SFO_TITLE));
 
@@ -1717,12 +1717,12 @@ BOOL CSetStoreFileOptionsDlg::OnInitDialog()
 	ReorderWindows(redo);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurückgeben
+	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurÃ¼ckgeben
 }
 
 void CSetStoreFileOptionsDlg::OnMaxsizeExtended() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	CSplitPointsDlg*	dlg;
 	CString				cStr;
 	CString				cstrError;
@@ -1742,7 +1742,7 @@ void CSetStoreFileOptionsDlg::OnMaxsizeExtended()
 void CSetStoreFileOptionsDlg::OnGenChapters() 
 {
 	CChapterDlg* ccdlg;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	ccdlg = new CChapterDlg;
 	ccdlg->SetChapters(sfoData.chapters);
@@ -1755,7 +1755,7 @@ void CSetStoreFileOptionsDlg::OnGenChapters()
 void CSetStoreFileOptionsDlg::OnDeltaposAc3framecountSpin(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	
 	CString c;
 	int  iPos;
@@ -1773,7 +1773,7 @@ void CSetStoreFileOptionsDlg::OnDeltaposAc3framecountSpin(NMHDR* pNMHDR, LRESULT
 void CSetStoreFileOptionsDlg::OnDeltaposClustersizeSpin(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	
 	int d = pNMUpDown->iDelta;
 
@@ -1796,7 +1796,7 @@ void CSetStoreFileOptionsDlg::OnDeltaposClustersizeSpin(NMHDR* pNMHDR, LRESULT* 
 
 void CSetStoreFileOptionsDlg::OnOpendml() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	
 	int i=m_OpenDML.GetCheck();
 	int j=m_MakeLegacyIndex.GetCheck();
@@ -1815,7 +1815,7 @@ void CSetStoreFileOptionsDlg::OnOpendml()
 void CSetStoreFileOptionsDlg::OnDeltaposMkvLacesizeSpin(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	int d = pNMUpDown->iDelta;
 	int j = (int)GetCurrentLaceDefinition()->GetInt("length");
@@ -1852,7 +1852,7 @@ void CSetStoreFileOptionsDlg::OnDeltaposMkvLacesizeSpin(NMHDR* pNMHDR, LRESULT* 
 
 void CSetStoreFileOptionsDlg::OnMkvLace() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	UpdateLaceLength();
 }
@@ -1860,7 +1860,7 @@ void CSetStoreFileOptionsDlg::OnMkvLace()
 void CSetStoreFileOptionsDlg::OnDeltaposClustertimeSpin(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	int d = pNMUpDown->iDelta;
 
@@ -1891,25 +1891,25 @@ void CSetStoreFileOptionsDlg::OnDeltaposClustertimeSpin(NMHDR* pNMHDR, LRESULT* 
 
 void CSetStoreFileOptionsDlg::OnUsenumbering() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateNumbering();
 }
 
 void CSetStoreFileOptionsDlg::OnUsemaxsize() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateMaxFileSize();	
 }
 
 void CSetStoreFileOptionsDlg::OnUsemaxfiles() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateMaxFiles();
 }
 
 void CSetStoreFileOptionsDlg::OnClose() 
 {
-		// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+		// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 
 	for (int i=0;i<3;i++) {
 		//pages[i]->DeleteAll();
@@ -1923,14 +1923,14 @@ void CSetStoreFileOptionsDlg::OnClose()
 
 void CSetStoreFileOptionsDlg::OnRadioGeneral() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	ShowPage(0);
 	sfoData.iActiveButton &=~15;
 }
 
 void CSetStoreFileOptionsDlg::OnRadioAvi() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	ShowPage(1);
 	sfoData.iActiveButton &=~15;
 	sfoData.iActiveButton |= 1;
@@ -1944,7 +1944,7 @@ void CSetStoreFileOptionsDlg::OnRadioAvi()
 
 void CSetStoreFileOptionsDlg::OnRadioMkv() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	ShowPage(2);
 	sfoData.iActiveButton &=~15;
 	sfoData.iActiveButton |= 2;
@@ -1959,7 +1959,7 @@ void CSetStoreFileOptionsDlg::OnRadioMkv()
 
 void CSetStoreFileOptionsDlg::OnRadioInputAvimp3() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	ShowPage(3);
 	sfoData.iActiveButton &=~15;
 	sfoData.iActiveButton |= 3;
@@ -1968,7 +1968,7 @@ void CSetStoreFileOptionsDlg::OnRadioInputAvimp3()
 
 void CSetStoreFileOptionsDlg::OnRadioInputMkv() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	ShowPage(4);
 	sfoData.iActiveButton &=~15;
 	sfoData.iActiveButton |= 4;
@@ -1982,13 +1982,13 @@ void CSetStoreFileOptionsDlg::OnChangeMkvAc3framesperblock()
 
 	// Benachrichtigung nicht, bevor Sie nicht die Funktion CDialog::OnInitDialog()
 
-	// überschreiben und CRichEditCrtl().SetEventMask() aufrufen, wobei
+	// Ã¼berschreiben und CRichEditCrtl().SetEventMask() aufrufen, wobei
 
 	// eine ODER-Operation mit dem Attribut ENM_CHANGE und der Maske erfolgt.
 
 	
 
-	// TODO: Fügen Sie hier Ihren Code für die Benachrichtigungsbehandlungsroutine des Steuerelements hinzu
+	// TODO: FÃ¼gen Sie hier Ihren Code fÃ¼r die Benachrichtigungsbehandlungsroutine des Steuerelements hinzu
 
 	
 }
@@ -1997,7 +1997,7 @@ void CSetStoreFileOptionsDlg::OnChangeMkvAc3framesperblock()
 void CSetStoreFileOptionsDlg::OnDeltaposMkvAc3framesperblockSpin(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	
 	CString c;
 	int  iPos;
@@ -2015,7 +2015,7 @@ void CSetStoreFileOptionsDlg::OnDeltaposMkvAc3framesperblockSpin(NMHDR* pNMHDR, 
 
 void CSetStoreFileOptionsDlg::OnSelchangeLacestyle() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateLaceDefition();
 	UpdateLaceLength();	
 }
@@ -2031,7 +2031,7 @@ CAttribs* CSetStoreFileOptionsDlg::GetCurrentLaceDefinition()
 void CSetStoreFileOptionsDlg::OnDeltaposLaceexceptionformatspin(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	int iDelta = pNMUpDown->iDelta;
 
 	if (iDelta < 0 && iCurrentLaceDefinition > 0) iCurrentLaceDefinition+=iDelta;
@@ -2045,7 +2045,7 @@ void CSetStoreFileOptionsDlg::OnDeltaposLaceexceptionformatspin(NMHDR* pNMHDR, L
 
 void CSetStoreFileOptionsDlg::OnCancel() 
 {
-	// TODO: Zusätzlichen Bereinigungscode hier einfügen
+	// TODO: ZusÃ¤tzlichen Bereinigungscode hier einfÃ¼gen
 	
 //	settings->Delete();
 //	delete settings;
@@ -2056,13 +2056,13 @@ void CSetStoreFileOptionsDlg::OnCancel()
 
 void CSetStoreFileOptionsDlg::OnUselacingexception() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	SaveCurrentLaceStyleDefinition();
 }
 
 void CSetStoreFileOptionsDlg::OnLacevideo() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	int j;
 
 	CAttribs* c = settings->GetAttr("output")->GetAttr("mkv")->
@@ -2077,7 +2077,7 @@ void CSetStoreFileOptionsDlg::OnLacevideo()
 void CSetStoreFileOptionsDlg::OnDeltaposLacevideoSpin(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	
 	int iDelta = pNMUpDown->iDelta;
 
@@ -2096,7 +2096,7 @@ void CSetStoreFileOptionsDlg::OnDeltaposLacevideoSpin(NMHDR* pNMHDR, LRESULT* pR
 
 void CSetStoreFileOptionsDlg::UpdateForceV() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	bool b = (bool)!AllowFreeStyle();
 
 	m_ForceMKV2Compliance.EnableWindow(!m_ForceMKV1Compliance.GetCheck());
@@ -2178,31 +2178,31 @@ void CSetStoreFileOptionsDlg::UpdateMakeLegacyIndex()
 
 void CSetStoreFileOptionsDlg::OnWritecues() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateCueSettings();	
 }
 
 void CSetStoreFileOptionsDlg::OnWritecuesVideo() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateCueSettings();	
 }
 
 void CSetStoreFileOptionsDlg::OnWritecuesAudio() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateCueSettings();	
 }
 
 void CSetStoreFileOptionsDlg::OnWritecuesOnlyaudioonly() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateCueSettings();	
 }
 
 void CSetStoreFileOptionsDlg::OnMkvPage1() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	// Button 2, Subbutton 1
 	ShowPage(2);
@@ -2215,7 +2215,7 @@ void CSetStoreFileOptionsDlg::OnMkvPage1()
 
 void CSetStoreFileOptionsDlg::OnMkvPage2() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	// Button 2, Subbutton 2
 	ShowPage(5);
@@ -2229,7 +2229,7 @@ void CSetStoreFileOptionsDlg::OnMkvPage2()
 
 void CSetStoreFileOptionsDlg::OnMkvPage3() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	ShowPage(8);
 	m_MKV_Page1.SetCheck(0);
 	m_MKV_Page2.SetCheck(0);
@@ -2241,13 +2241,13 @@ void CSetStoreFileOptionsDlg::OnMkvPage3()
 
 void CSetStoreFileOptionsDlg::OnMakeidx1() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateMakeLegacyIndex();	
 }
 
 void CSetStoreFileOptionsDlg::OnRadioInputGeneral() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	ShowPage(6);
 	sfoData.iActiveButton &=~15;
 	sfoData.iActiveButton |= 6;
@@ -2256,7 +2256,7 @@ void CSetStoreFileOptionsDlg::OnRadioInputGeneral()
 
 void CSetStoreFileOptionsDlg::OnSfoAllowunbufferedread() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateGeneralInput();	
 }
 
@@ -2271,7 +2271,7 @@ void CSetStoreFileOptionsDlg::UpdateGeneralInput()
 
 void CSetStoreFileOptionsDlg::OnAviPage1() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	ShowPage(1);	
 	m_MKV_Page2.SetCheck(0);
 	sfoData.iActiveButton &=~0x0F;
@@ -2281,7 +2281,7 @@ void CSetStoreFileOptionsDlg::OnAviPage1()
 
 void CSetStoreFileOptionsDlg::OnAviPage2() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	ShowPage(7);	
 	sfoData.iActiveButton &=~0x0F;
 	sfoData.iActiveButton |= 0x01; // button 1
@@ -2307,7 +2307,7 @@ bool CSetStoreFileOptionsDlg::AllowFreeStyle()
 void CSetStoreFileOptionsDlg::OnDeltaposFloatwidthSpin(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	int iDelta = pNMUpDown->iDelta;
 
 	if (iDelta < 0 && iCurrentFloatWidthIndex < 1) {
@@ -2339,7 +2339,7 @@ void CSetStoreFileOptionsDlg::OnChangeMkvHeadersize()
 
 void CSetStoreFileOptionsDlg::OnCuesAutosize() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateCueSettings();
 }
 
@@ -2350,7 +2350,7 @@ void CSetStoreFileOptionsDlg::OnChangeSizePerStreamAndHour()
 
 void CSetStoreFileOptionsDlg::OnForcemkv1() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	m_ForceMKV2Compliance.SetCheck(!m_ForceMKV1Compliance.GetCheck());		
 
 	UpdateForceV();
@@ -2358,13 +2358,13 @@ void CSetStoreFileOptionsDlg::OnForcemkv1()
 
 void CSetStoreFileOptionsDlg::OnForcemkv2() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	UpdateForceV();	
 }
 
 void CSetStoreFileOptionsDlg::OnInputOverlapped() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	m_Input_AllowUnbufferedRead.EnableWindow(!m_Input_Overlapped.GetCheck());
 	if (m_Input_Overlapped.GetCheck())
 		m_Input_AllowUnbufferedRead.SetCheck(1);
@@ -2373,14 +2373,14 @@ void CSetStoreFileOptionsDlg::OnInputOverlapped()
 
 void CSetStoreFileOptionsDlg::OnBnClickedSfoOGeneral()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 }
 
 
 /* pressing GUI general button -> page 9 */
 void CSetStoreFileOptionsDlg::OnBnClickedGuiGeneral()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 
 	ShowPage(9);
 
@@ -2390,7 +2390,7 @@ void CSetStoreFileOptionsDlg::OnBnClickedGuiGeneral()
 
 void CSetStoreFileOptionsDlg::OnBnClickedOutputThreaded()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 
 	if (m_Output_Thread.GetCheck())
 		m_Overlapped.SetCheck(0);

@@ -327,7 +327,7 @@ void CHUNK::SetData(void* lpNewData, DWORD dwFlags, DWORD dwOffset)
 		if (dwSize)
 		{
 			if (b) {
-				lpData=(CHUNK*)malloc(dwSize + dwSize % 2);
+				lpData=(CHUNK*)malloc(dwSize + dwSize % 2);  // TODO: null check
 			}
 			BYTE*  lpbData = (BYTE*)lpData;
 			memcpy(lpbData + dwOffset,lpNewData,dwNextSize);
@@ -346,7 +346,7 @@ void CHUNK::IncreaseSizeBy(DWORD dwAdditionalSize, DWORD* dwOldSize)
 		lpData = (CHUNK*)malloc(dwSize+=dwAdditionalSize);
 	} else {
 		int j = dwSize % 2;
-		lpData = (CHUNK*)realloc(lpData, dwSize+=j+dwAdditionalSize);
+		lpData = (CHUNK*)realloc(lpData, dwSize+=j+dwAdditionalSize);  // TODO: null check
 	}
 
 }
@@ -416,7 +416,7 @@ void CHUNK::StoreToStream(STREAM* lpstrDest,DWORD dwFlags)
 	}
 	else
 	{
-		lpBuffer=malloc(dwSize);
+		lpBuffer=malloc(dwSize);  // TODO: null check
 		ZeroMemory(lpBuffer,dwSize);
 		lpstrDest->Write(lpBuffer,dwSize);
 	}
@@ -425,7 +425,7 @@ void CHUNK::StoreToStream(STREAM* lpstrDest,DWORD dwFlags)
 
 	if ((dwFlags&LE_CHAIN)&&(lpNext)) lpNext->StoreToStream(lpstrDest,dwFlags);
 
-	if (lpBuffer) delete lpBuffer;
+	if (lpBuffer) free(lpBuffer);
 
 	return;
 }

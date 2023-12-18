@@ -5,8 +5,8 @@
 
 DWORD MessageBoxHelper::ShowByID(HWND parent, DWORD titleID, DWORD messageID, UINT uType)
 {
-	CUTF8 title(LoadString(titleID, LOADSTRING_UTF8), CharacterEncoding::UTF8);
-	CUTF8 msg(LoadString(messageID, LOADSTRING_UTF8), CharacterEncoding::UTF8);
+	CUTF8 title(LoadString(titleID, LOADSTRING_UTF8), CharacterEncoding::CharacterEncodings::UTF8);
+	CUTF8 msg(LoadString(messageID, LOADSTRING_UTF8), CharacterEncoding::CharacterEncodings::UTF8);
 
 	return MessageBox(parent, msg.TStr(), title.TStr(), uType);
 }

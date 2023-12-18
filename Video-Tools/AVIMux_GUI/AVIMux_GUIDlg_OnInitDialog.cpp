@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "AVIMux_GUIDlg.h"
 #include "global.h"
 #include "AVIMux_GUI.h"
@@ -26,7 +26,7 @@ BOOL CAVIMux_GUIDlg::OnInitDialog()
 	CLocalTracer trace(GetApplicationTraceFile(), _T("CAVIMux_GUIDlg::OnInitDialog()"));
 
 	char*	Buffer;
-	int		buffer_size = 65536;
+	const size_t	buffer_size = 65536;
 	int		i;
 	std::string	dir;
 //	char*	lf;
@@ -128,7 +128,7 @@ BOOL CAVIMux_GUIDlg::OnInitDialog()
 	dwLangs[14] = IDM_LANG15;
 	dwLangs[15] = IDM_LANG16;
 
-	Buffer=new char[65536];
+	Buffer=new char[buffer_size];
 
 	dir = CUTF8(CPath::GetAppDir((std::string*)NULL)).UTF8();
 	dir = CPath::GetLongFilename(dir);
@@ -150,7 +150,7 @@ BOOL CAVIMux_GUIDlg::OnInitDialog()
 		return 0;
 	}
 
-	textfile->SetOutputEncoding(CharacterEncoding::UTF8);
+	textfile->SetOutputEncoding(CharacterEncoding::CharacterEncodings::UTF8);
 	std::string textFileLine;
 	textfile->ReadLine(textFileLine);
 	strcpy(Buffer, textFileLine.c_str());
@@ -181,7 +181,7 @@ BOOL CAVIMux_GUIDlg::OnInitDialog()
 			Buffer[0]=0;
 			if (!(lplpLanguages[dwLngCount]=LoadLanguageFile(languageFile.c_str())))
 			{
-				sprintf(Buffer,"Couldn't open language file: \n\n%s\n\nIf you changed the original directory stucture inside the downloaded file, then shame on you! If you use Win 9x/ME, the problem could be a language file using UTF-8 coding. Open the file in Windows Editor and resave it using ANSI coding in that case.", languageFile.c_str());
+				sprintf(Buffer, "Couldn't open language file: \n\n%s\n\nIf you changed the original directory stucture inside the downloaded file, then shame on you! If you use Win 9x/ME, the problem could be a language file using UTF-8 coding. Open the file in Windows Editor and resave it using ANSI coding in that case.", languageFile.c_str());
 				MessageBox(Buffer,"Error",MB_OK | MB_ICONERROR);
 			} else dwLngCount++;
 		}
@@ -207,12 +207,12 @@ BOOL CAVIMux_GUIDlg::OnInitDialog()
 	CResizeableDialog::OnInitDialog();
 	UpdateLanguage();
 	m_Protocol.InitUnicode();
-	// Hinzufügen des Menübefehls "Info..." zum Systemmenü.
+	// HinzufÃ¼gen des MenÃ¼befehls "Info..." zum SystemmenÃ¼.
 
 	Buffer=new char[200];
-	// Symbol für dieses Dialogfeld festlegen. Wird automatisch erledigt
+	// Symbol fÃ¼r dieses Dialogfeld festlegen. Wird automatisch erledigt
 	//  wenn das Hauptfenster der Anwendung kein Dialogfeld ist
-	SetIcon(m_hIcon, TRUE);			// Großes Symbol verwenden
+	SetIcon(m_hIcon, TRUE);			// GroÃŸes Symbol verwenden
 	SetIcon(m_hIcon, FALSE);		// Kleines Symbol verwenden
 	
 // Einstellungen aus config.ini laden -- VERALTET!
@@ -298,7 +298,7 @@ BOOL CAVIMux_GUIDlg::OnInitDialog()
 
 	RECT r;
 
-	free (Buffer);
+	delete[] Buffer;
 
     m_Protocol.GetWindowRect(&rect);
 	m_Protocol.InsertColumn(0,"Time",LVCFMT_CENTER,(rect.right-rect.left)/7);
@@ -317,7 +317,7 @@ BOOL CAVIMux_GUIDlg::OnInitDialog()
 */
 	if (utf8_IsUnicodeEnabled() && !m_StreamTree.IsUnicode()) {
 		char c[8192]; c[0]=0;
-		sprintf(c, "Although this system is or pretends to be %s and supports Unicode, switching the stream tree to Unicode failed. Possible reasons are an archaic version of Internet Explorer (below 4.0) or you are running AVI-Mux GUI from an emulator not being able to switch tree views between ANSI and Unicode on runtime.\n\nThus, characters requiring Unicode will not be displayed correctly.", cwinver);
+		sprintf_s(c, "Although this system is or pretends to be %s and supports Unicode, switching the stream tree to Unicode failed. Possible reasons are an archaic version of Internet Explorer (below 4.0) or you are running AVI-Mux GUI from an emulator not being able to switch tree views between ANSI and Unicode on runtime.\n\nThus, characters requiring Unicode will not be displayed correctly.", cwinver.c_str());
 		MessageBox(c, "Warning", MB_OK);
 	}
 
@@ -518,8 +518,8 @@ BOOL CAVIMux_GUIDlg::OnInitDialog()
 	std::basic_string<TCHAR> strVersion = GetAMGVersionString();
 	strcpy_s(version, strVersion.c_str());
 
-	strcat(title, " ");
-	strcat(title, version);
+	strcat_s(title, " ");
+	strcat_s(title, version);
 	SetWindowText(title);
 
 /*	CString windowtitle;
@@ -552,19 +552,19 @@ BOOL CAVIMux_GUIDlg::OnInitDialog()
 	textfile = new CTextFile;
 	if (F->Open((char*)lngcodefile.c_str(), StreamMode::Read) == STREAM_OK) {
 		textfile->Open(StreamMode::Read, F);
-		textfile->SetOutputEncoding(CharacterEncoding::UTF8);
+		textfile->SetOutputEncoding(CharacterEncoding::CharacterEncodings::UTF8);
 		int j = 0;
 		char* buf = new char[j=1+(size_t)textfile->GetSize()];
 		textfile->Read(buf, j-1);
 		buf[j-1]=0;
 		if ((j=lngcd->LoadFromString(buf))<1) {
 			char c[256];
-			sprintf(c, "Could not load language_codes.txt: Error parsing line %d", -j);
+			sprintf_s(c, "Could not load language_codes.txt: Error parsing line %d", -j);
 			MessageBox(c, "Fatal Error",
 				MB_OK | MB_ICONERROR);
 			PostMessage(WM_QUIT);
 		}
-		delete buf;
+		delete[] buf;
 		textfile->Close();
 		delete textfile;
 		F->Close();
@@ -579,7 +579,7 @@ BOOL CAVIMux_GUIDlg::OnInitDialog()
 	for (i=0;i<lngcd->GetCount();i++) {
 		char buf[65536];
 		buf[0]=0;
-		sprintf(buf , "%s - %s", lngcd->GetCode(i), lngcd->GetFullName(i));
+		sprintf_s(buf, "%s - %s", lngcd->GetCode(i), lngcd->GetFullName(i));
 		m_Stream_Lng.SetItemData(m_Stream_Lng.AddString(buf),(LPARAM)lngcd->GetCode(i));
 	}
 

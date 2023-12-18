@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "basestreams.h"
 #include "memory.h"
 #include "math.h"
@@ -88,4 +88,4 @@ int STREAM_FILTER::Close()
 	return 1;
 }
 
-// für vernünftigen Zugriff auf Dateien > 4 GB)  
+// fÃ¼r vernÃ¼nftigen Zugriff auf Dateien > 4 GB)  

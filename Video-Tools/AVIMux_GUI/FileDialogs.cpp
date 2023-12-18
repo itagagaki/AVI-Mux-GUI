@@ -48,7 +48,7 @@ int GetOpenSaveFileNameUTF8(void* lpofn, int open)
 	char* cFileTitle = reserve(ofda->lpstrFileTitle);
 	char* cTemplateName = reserve(ofda->lpTemplateName);
 
-	OPENFILENAME* o = (OPENFILENAME*)calloc(1,sizeof(OPENFILENAME));
+	OPENFILENAME* o = (OPENFILENAME*)calloc(1,sizeof(OPENFILENAME));  // TODO: null check
 	memcpy(o, ofda, sizeof(OPENFILENAME));
 	o->lpstrFilter = cFilter;
 	o->lpstrCustomFilter = cCustomFilter;

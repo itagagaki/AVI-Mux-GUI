@@ -24,7 +24,7 @@ AUDIOSOURCELIST::~AUDIOSOURCELIST()
 
 int AUDIOSOURCELIST::Append(AUDIOSOURCE* pNext)
 {
-	info.audiosources = (AUDIOSOURCE**)realloc(info.audiosources,(info.iCount+1)*sizeof(AUDIOSOURCE*));
+	info.audiosources = (AUDIOSOURCE**)realloc(info.audiosources,(info.iCount+1)*sizeof(AUDIOSOURCE*));  // TODO: null check
 	info.audiosources[info.iCount] = pNext;
 
 	if (info.iCount) {
@@ -182,10 +182,10 @@ int AUDIOSOURCELIST::Read(void* lpDest, DWORD dwMicrosecDesired, DWORD* lpdwMicr
 				info.active_source->GetTimecodeScale() / 1000000, cTime);
 
 			char cName[1024]; memset(cName, 0, sizeof(cName));
-			GetName(cName);
+			GetName(cName, sizeof cName);
 
 			char cMsg[2048]; memset(cMsg, 0, sizeof(cMsg));
-			sprintf(cMsg, "End of stream encountered\nName: %s\nTimecode: %s",
+			sprintf_s(cMsg, "End of stream encountered\nName: %s\nTimecode: %s",
 				cName, cTime);
 
 		//	GetApplicationTraceFile()->Trace(TRACE_LEVEL_NOTE, "End of stream", cMsg);

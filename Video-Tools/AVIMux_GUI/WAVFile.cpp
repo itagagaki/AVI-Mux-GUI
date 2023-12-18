@@ -72,7 +72,7 @@ int WAVEFILE::Open(STREAM* lpStream,DWORD _dwAccess)
 			return WAVE_OPEN_ERROR;
 		}
 		dwHdrLen=max(sizeof(WAVEFORMATEX),chhdr.dwLength);
-		lpwfe=(WAVEFORMATEX*)malloc(dwHdrLen);
+		lpwfe=(WAVEFORMATEX*)malloc(dwHdrLen);  // TODO: null check
 		ZeroMemory(lpwfe,dwHdrLen);
 		GetSource()->Read(lpwfe,chhdr.dwLength);
 		if (!LocateData(MakeFourCC("data"),NULL,NULL,&chhdr,1000000,DT_CHUNK)) {

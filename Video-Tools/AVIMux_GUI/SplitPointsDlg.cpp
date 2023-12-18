@@ -1,4 +1,4 @@
-// SplitPointsDlg.cpp: Implementierungsdatei
+ï»¿// SplitPointsDlg.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -33,8 +33,8 @@ CSplitPointsDlg::CSplitPointsDlg(CWnd* pParent /*=NULL*/)
 void CSplitPointsDlg::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CDialog::OnFinalRelease();
@@ -60,12 +60,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CSplitPointsDlg, CDialog)
 	//{{AFX_DISPATCH_MAP(CSplitPointsDlg)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_ISplitPointsDlg zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_ISplitPointsDlg zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {7943B35E-59E0-467E-A949-A5A1A82B97E6}
@@ -77,7 +77,7 @@ BEGIN_INTERFACE_MAP(CSplitPointsDlg, CDialog)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CSplitPointsDlg 
+// Behandlungsroutinen fÃ¼r Nachrichten CSplitPointsDlg 
 
 void SplitPointDescriptor2String(SPLIT_POINT_DESCRIPTOR* d,char* pDest);
 
@@ -86,7 +86,7 @@ int CSplitPointsDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CDialog::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	
-	// TODO: Speziellen Erstellungscode hier einfügen
+	// TODO: Speziellen Erstellungscode hier einfÃ¼gen
 
 	return 0;
 }
@@ -124,7 +124,7 @@ BOOL CSplitPointsDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	
-	// TODO: Zusätzliche Initialisierung hier einfügen
+	// TODO: ZusÃ¤tzliche Initialisierung hier einfÃ¼gen
  
 	m_SplitPointList.ResetContent();
 	char	Buffer[50]; 
@@ -147,13 +147,13 @@ BOOL CSplitPointsDlg::OnInitDialog()
 
 	m_Splitpoint.SetFocus();
 	return FALSE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurückgeben
+	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurÃ¼ckgeben
 
 }
 
 void CSplitPointsDlg::OnOK() 
 {
-	// TODO: Zusätzliche Prüfung hier einfügen
+	// TODO: ZusÃ¤tzliche PrÃ¼fung hier einfÃ¼gen
 
 	CDialog::OnOK();
 }
@@ -179,18 +179,18 @@ void SplitPointDescriptor2String(SPLIT_POINT_DESCRIPTOR* d,char* pDest)
 			char cNbr[10];
 			for (int i=0;i<d->aChapBegin->GetCount()-1;i++) {
 				if (d->aChapBegin->At(i) != -2) {
-					sprintf(cNbr,"%d.",d->aChapBegin->At(i)+1);
+					sprintf_s(cNbr, "%d.", d->aChapBegin->At(i) + 1);
 				} else {
-					sprintf(cNbr,"%s", "*.");
+					sprintf_s(cNbr, "%s", "*.");
 				}
 				strcat(pDest,cNbr);
 			}
 			int j = d->aChapBegin->At(d->aChapBegin->GetCount()-1);
 			if (j>-2) {
-				sprintf(cNbr,"%d",j+1);
+				sprintf_s(cNbr, "%d", j + 1);
 			} else 
 			if (j==-2) {
-				sprintf(cNbr,"%c", '*');
+				sprintf_s(cNbr, "%c", '*');
 			} else *cNbr=0;
 
 			strcat(pDest,cNbr);
@@ -198,7 +198,7 @@ void SplitPointDescriptor2String(SPLIT_POINT_DESCRIPTOR* d,char* pDest)
 		if (d->iFlags & SPD_BFRAME) {
 			strcat(pDest, "frame ");
 			char cNbr[10];
-			sprintf(cNbr,"%d",d->iBegin);
+			sprintf_s(cNbr, "%I64d", d->iBegin);
 			strcat(pDest,cNbr);
 		} else {
 			char c[20];
@@ -210,7 +210,7 @@ void SplitPointDescriptor2String(SPLIT_POINT_DESCRIPTOR* d,char* pDest)
 
 void CSplitPointsDlg::OnAdd() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	SPLIT_POINT_DESCRIPTOR* d = new SPLIT_POINT_DESCRIPTOR;
 
 	CString c;
@@ -279,7 +279,7 @@ void CSplitPoints::Duplicate(CSplitPoints* pDest)
 
 void CSplitPointsDlg::OnDelete() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	int iIndex = m_SplitPointList.GetCurSel();
 
 	if (iIndex!=LB_ERR) {

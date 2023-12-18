@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "debug.h"
 #include "..\formattime.h"
 #include "languages.h"
@@ -18,7 +18,9 @@
 #include "..\FileStream.h"
 #include "fopenutf8.h"
 
+#ifndef INT64_MAX
 #define INT64_MAX 0x7FFFFFFFFFFFFFFF
+#endif
 
 DWORD					bStop=false;
 bool					bMuxing=false;
@@ -182,12 +184,12 @@ int RenderRateElement(CListCtrl* c,__int64 qwData,int i,int j,DWORD dwByteAccura
 {
 	char			cBuffer[500];
 
-	sprintf(cBuffer,s);
+	sprintf_s(cBuffer, s);
 	if (dwByteAccuracy) {
 		sprintf(cBuffer+strlen(s),"%I64d %s/s",qwData,LoadString(STR_KBYTE));
 	} else {
 		FormatSize(cBuffer+strlen(s),qwData*1000);
-		strcat(cBuffer,"/s");
+		strcat_s(cBuffer,"/s");
 	}
 
 	c->SetItemText(i,j,cBuffer);
@@ -313,14 +315,14 @@ int DisplayProgress_Thread(DISPLAY_PROGRESS_INFO* lpDPI)
 		if (iTotalDuration) 
 			lpDAI->dlg->m_Prg_Progress.SetPos((int)(iProgress/100/iTotalDuration));
 
-		strcpy(cBuffer, cWindowText);
-		strcat(cBuffer, " - ");
+		strcpy_s(cBuffer, cWindowText);
+		strcat_s(cBuffer, " - ");
 		if (!iTotalDuration) 
-			strcat(cBuffer, cCurrTime);
+			strcat_s(cBuffer, cCurrTime);
 		else {
 			char cPerc[32]; cPerc[0]=0;
-			sprintf(cPerc, "%4.1f%%", (float)iProgress / (float)iTotalDuration / 10000.);
-			strcat(cBuffer, cPerc);
+			sprintf_s(cPerc, "%4.1f%%", (float)iProgress / (float)iTotalDuration / 10000.);
+			strcat_s(cBuffer, cPerc);
 		}
 
 		lpDAI->dlg->SetWindowText(cBuffer);		
@@ -334,7 +336,7 @@ int DisplayProgress_Thread(DISPLAY_PROGRESS_INFO* lpDPI)
 	
 	HANDLE hSem_finish = OpenSemaphore(SEMAPHORE_ALL_ACCESS,false,sem_name_finish);
 	lpDPI->dwLeave=0;
-	delete qwStats;
+	free(qwStats);
 	lpDAI->dlg->SetWindowText(cWindowText);
 	CloseHandle(hSem);
 	ReleaseSemaphore(hSem_finish,1,NULL);
@@ -387,7 +389,7 @@ int	CheckExistence(char* cFilename, int ask, __int64* filesize)
 
 	char* cMsg1;
 	char* cMsg2;
-	char* cMsgT = (char*)calloc(1, 2048+strlen(cFilename));
+	char* cMsgT = (char*)calloc(1, 2048+strlen(cFilename));  // TODO: null check
 
 	cMsg1 = LoadString(IDS_EXISTINGFILES, LOADSTRING_UTF8);
 	cMsg2 = LoadString(STR_OVERWRITE, LOADSTRING_UTF8);
@@ -564,7 +566,7 @@ __int64 GetDirectoryFreeSpace(char* filename)
 	char* e = NULL;
 	char* path = (char*)calloc(1, 32768);
 
-	CUTF8 utf8FullFileName(filename, CharacterEncoding::UTF8);
+	CUTF8 utf8FullFileName(filename, CharacterEncoding::CharacterEncodings::UTF8);
 	std::wstring fileName;
 	std::wstring fileNameExtension;
 	std::wstring pathName;
@@ -590,7 +592,7 @@ bool FreeSpaceErrorMessage(int msg_id, __int64 free_space,
 	FormatSize(coverwriteable_space, overwriteable_space);
 	FormatSize(crequired_space, required_space);
 
-	sprintf(c, LoadString(msg_id), crequired_space, cfreespace, 
+	sprintf_s(c, LoadString(msg_id), crequired_space, cfreespace,
 		coverwriteable_space);
 
 	int result = MessageBox(NULL, c, LoadString(STR_GEN_ERROR), 
@@ -662,13 +664,13 @@ bool IsNTFS(char* cFileName, wchar_t** file_system, wchar_t** root)
 	bool result;
 	result = (!_stricmp(cFileSystem, "NTFS"));
 
-	delete wcPath;
-	delete cFileSystem;
+	free(cFileSystem);
+	delete[] wcPath;
 	if (!file_system)
-		delete wcFileSystem;
+		delete[] wcFileSystem;
 	if (!root)
-		delete wcVolumePath;
-	delete cPath;
+		delete[] wcVolumePath;
+	delete[] cPath;
 
 	return result;
 }
@@ -712,14 +714,14 @@ bool AddSizeStringToLog(DEST_AVI_INFO* lpDAI, char* text, int type, __int64 valu
 	char csize[64]; memset(csize, 0, sizeof(csize));
 	if (type == 1) {
 		QW2Str(value, csize, 1);
-		strcat(csize, " ");
-		strcat(csize, LoadString(STR_BYTES, LOADSTRING_UTF8));
+		strcat_s(csize, " ");
+		strcat_s(csize, LoadString(STR_BYTES, LOADSTRING_UTF8));
 	} else
 	if (type == 2)
 		FormatSize(csize, value);
 
 	char cfinal[1024]; memset(cfinal, 0, sizeof(cfinal));
-	sprintf(cfinal, "%s %s", text, csize);
+	sprintf_s(cfinal, "%s %s", text, csize);
 
 	lpDAI->dlg->AddProtocolLine(cfinal, 4, APL_UTF8);
 
@@ -732,7 +734,7 @@ bool AddNumberToLog(DEST_AVI_INFO* lpDAI, char* text, __int64 value)
 	char cfinal[1024]; memset(cfinal, 0, sizeof(cfinal));
 
 	QW2Str(value, cnbr, 1);
-	sprintf(cfinal, "%s %s", text, cnbr);
+	sprintf_s(cfinal, "%s %s", text, cnbr);
 
 	lpDAI->dlg->AddProtocolLine(cfinal, 4, APL_UTF8);
 
@@ -759,7 +761,7 @@ void AddCacheInfoToLog(DEST_AVI_INFO* lpDAI, CACHE_INFO* cache_info)
 
 	lpDAI->dlg->AddProtocolLine(Message_index(MSG_CACHE, cache_info->enabled), 4);
 	QW2Str(cache_info->cache_line_size >> 10, c2, 1);
-	sprintf(c1, LoadString(STR_MUXLOG_CACHE_INFO, LOADSTRING_UTF8), cache_info->cache_lines, c2);
+	sprintf_s(c1, LoadString(STR_MUXLOG_CACHE_INFO, LOADSTRING_UTF8), cache_info->cache_lines, c2);
 	lpDAI->dlg->AddProtocolLine(c1, 4, APL_UTF8);
 }
 
@@ -913,8 +915,8 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 	int  ai_value  = (int)s->GetInt("output/avi/audio interleave/value");
 
 	switch (iPattern) {
-		case SIP_RIFF:   sprintf(cPattern, LoadString(STR_MUXLOG_1STRIFFLIST_1));
-		case SIP_FRAMES: sprintf(cPattern, LoadString(STR_MUXLOG_1STRIFFLIST_2), iInterval);
+		case SIP_RIFF:   sprintf_s(cPattern, LoadString(STR_MUXLOG_1STRIFFLIST_1));
+		case SIP_FRAMES: sprintf_s(cPattern, LoadString(STR_MUXLOG_1STRIFFLIST_2), iInterval);
 	}
 
 	cStr[0]=LoadString(IDS_VI_AVITYPE);
@@ -931,7 +933,7 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 				break;
 	}
 
-	sprintf(Buffer,"%s: %s",cStr[0],cStr[1]);
+	sprintf_s(Buffer, "%s: %s", (LPCTSTR)cStr[0], (LPCTSTR)cStr[1]);
 	lpDAI->dlg->AddProtocolLine(Buffer,5);
 	lpDAI->dlg->AddProtocolLine(LoadString(MSG_LOWOVHDAVI[bHaalimode]),4);
 	lpDAI->dlg->AddProtocolLine(LoadString(MSG_RECLISTS[bReclists]),4);
@@ -943,13 +945,13 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 	// add audio interleave scheme to protocol
 	switch(ai_unit) {
 		case AIU_KB: 
-			sprintf(cPattern, LoadString(STR_MUXLOG_AUDIOINTERLEAVE_KB), ai_value); 
+			sprintf_s(cPattern, LoadString(STR_MUXLOG_AUDIOINTERLEAVE_KB), ai_value); 
 			if (bReclists)
 				estimated_number_of_reclists = (int)(estimated_raw_stream_size / ai_value / 1024);
 			
 			break;
 		case AIU_FRAME : 
-			sprintf(cPattern, LoadString(STR_MUXLOG_AUDIOINTERLEAVE_FR), ai_value); 
+			sprintf_s(cPattern, LoadString(STR_MUXLOG_AUDIOINTERLEAVE_FR), ai_value); 
 			if (bReclists)
 				estimated_number_of_reclists = (int)(v->GetDuration() * v->GetTimecodeScale() / v->GetNanoSecPerFrame() / ai_value);
 			break;
@@ -971,7 +973,7 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 	if (v)
 		estimated_number_of_chunks += v->GetNbrOfFrames();
 
-	sprintf(Buffer,cStr[0],lpDAI->dwNbrOfAudioStreams);
+	sprintf_s(Buffer, cStr[0], lpDAI->dwNbrOfAudioStreams);
 	lpDAI->dlg->AddProtocolLine(Buffer,5);
 	for (i=0;i<lpDAI->dwNbrOfAudioStreams;i++)
 	{
@@ -979,7 +981,7 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 		wsprintf(Buffer,LoadString(STR_MUXLOG_STREAM),i+1);
 		lpDAI->dlg->AddProtocolLine(Buffer,5);
 
-		lpDAI->asi[i]->audiosource->GetName(cName);
+		lpDAI->asi[i]->audiosource->GetName(cName, sizeof cName);
 		wsprintf(Buffer,LoadString(STR_MUXLOG_NAME),(strlen(cName)?cName:"n/a"));
 		lpDAI->dlg->AddProtocolLine(Buffer,5, APL_UTF8);
 		
@@ -995,28 +997,28 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 
 		if (a->GetFormatTag() == 0x2000) {
 			a->SetFrameMode(j = (int)lpDAI->settings->GetInt("output/avi/ac3/frames per chunk"));
-			sprintf(Buffer,LoadString(STR_MUXLOG_AC3AVIPATTERN), j);
+			sprintf_s(Buffer, LoadString(STR_MUXLOG_AC3AVIPATTERN), j);
 			lpDAI->dlg->AddProtocolLine(Buffer,5);
 		} else
 		if (a->GetFormatTag() == 0x2001) {
 			a->SetFrameMode(j = (int)lpDAI->settings->GetInt("output/avi/dts/frames per chunk"));
-			sprintf(Buffer,LoadString(STR_MUXLOG_DTSAVIPATTERN), j);
+			sprintf_s(Buffer, LoadString(STR_MUXLOG_DTSAVIPATTERN), j);
 			lpDAI->dlg->AddProtocolLine(Buffer,5);
 		} else
 		if (a->GetFormatTag() == 0x0055) {
 			if (a->IsCBR() && !lpDAI->asi[i]->iDelay) {
 				if  (!lpDAI->settings->GetInt("output/avi/mp3/cbr frame mode")) {
 					a->SetFrameMode(FRAMEMODE_OFF);
-					sprintf(Buffer,LoadString(STR_MUXLOG_MP3CBRDISFM), j);
+					sprintf_s(Buffer, LoadString(STR_MUXLOG_MP3CBRDISFM), j);
 				} else {
 					a->SetFrameMode(FRAMEMODE_ON);
-					sprintf(Buffer,LoadString(STR_MUXLOG_MP3CBRENFM), j);
+					sprintf_s(Buffer, LoadString(STR_MUXLOG_MP3CBRENFM), j);
 				}
 					lpDAI->dlg->AddProtocolLine(Buffer,5);
 			} else {
 				if (!a->IsCBR()) {
 					a->SetFrameMode(j=(int)lpDAI->settings->GetInt("output/avi/mp3/frames per chunk"));
-					sprintf(Buffer,LoadString(STR_MUXLOG_MP3VBRAVIPATTERN), j);
+					sprintf_s(Buffer, LoadString(STR_MUXLOG_MP3VBRAVIPATTERN), j);
 					lpDAI->dlg->AddProtocolLine(Buffer,5);
 					if (lpDAI->asi[i]->iScaleF)
 						delete lpDAI->asi[i]->iScaleF;
@@ -1027,9 +1029,9 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 				} else {
 					a->SetFrameMode(FRAMEMODE_ON);
 					if  (!lpDAI->settings->GetInt("output/avi/mp3/cbr frame mode")) {
-						sprintf(Buffer,LoadString(STR_MUXLOG_MP3CBRCANTDISFM));
+						sprintf_s(Buffer, LoadString(STR_MUXLOG_MP3CBRCANTDISFM));
 					} else {
-						sprintf(Buffer,LoadString(STR_MUXLOG_MP3CBRENFM));
+						sprintf_s(Buffer, LoadString(STR_MUXLOG_MP3CBRENFM));
 					}
 					
 					lpDAI->dlg->AddProtocolLine(Buffer,5);
@@ -1053,8 +1055,8 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 		wsprintf(Buffer,LoadString(STR_MUXLOG_STREAM),i+1);
 		lpDAI->dlg->AddProtocolLine(Buffer,5);
 
-		lpDAI->ssi[i]->lpsubs->GetName(cName);
-		sprintf(Buffer,LoadString(STR_MUXLOG_NAME),cName);
+		lpDAI->ssi[i]->lpsubs->GetName(cName, sizeof cName);
+		sprintf_s(Buffer, LoadString(STR_MUXLOG_NAME),cName);
 		lpDAI->dlg->AddProtocolLine(Buffer,5, APL_UTF8);
 	}
 
@@ -1270,7 +1272,7 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 // set stream headers and formats
 	AVIOut->SetStreamHeader(0,lpDAI->videosource->GetAVIStreamHeader());
 	AVIOut->SetStreamFormat(0,lpDAI->videosource->GetFormat());
-	v->GetName(Buffer);
+	v->GetName(Buffer, sizeof Buffer);
 	AVIOut->SetStreamName(0, Buffer);
 	AVIOut->GetStdIndexOverhead();
 
@@ -1280,7 +1282,7 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 
 		AVIOut->SetStreamHeader(i+1,lpDAI->asi[i]->lpASH);
 		AVIOut->SetStreamFormat(i+1,lpDAI->asi[i]->lpFormat);
-		a->GetName(Buffer);
+		a->GetName(Buffer, sizeof Buffer);
 		AVIOut->SetStreamName(i+1,Buffer);
 		a->ReInit();
 		AVIOut->SetStreamDefault(i+1, !!lpDAI->asi[i]->audiosource->IsDefault());
@@ -1291,7 +1293,7 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 	{
 		AVIOut->SetStreamHeader(i+1+lpDAI->dwNbrOfAudioStreams,lpDAI->ssi[i]->lpash);
 		AVIOut->SetStreamFormat(i+1+lpDAI->dwNbrOfAudioStreams,NULL);
-		lpDAI->ssi[i]->lpsubs->GetName(Buffer);
+		lpDAI->ssi[i]->lpsubs->GetName(Buffer, sizeof Buffer);
 		AVIOut->SetStreamName(i+1+lpDAI->dwNbrOfAudioStreams, Buffer);
 		lpDAI->ssi[i]->lpsubs->SetBias(0,BIAS_ABSOLUTE | BIAS_UNSCALED);
 		lpDAI->ssi[i]->lpsubs->ReInit();
@@ -1301,7 +1303,7 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 	AVIOut->SetMaxRIFFAVISize(i = (1<<20)*(int)lpDAI->settings->GetInt("output/avi/opendml/riff avi size")); 
 
 	QW2Str((__int64)((float(i)+(1<<19))/(1<<20)), cSize[0], 1);
-	sprintf(Buffer, LoadString(STR_MUXLOG_FIRSTRIFFSIZE), cSize);
+	sprintf_s(Buffer, LoadString(STR_MUXLOG_FIRSTRIFFSIZE), cSize);
 	lpDAI->dlg->AddProtocolLine(Buffer, 4);
 
 	dwLegIndOverHead=8*((!bOpenDML)||(bLegacyIndex));
@@ -1406,9 +1408,9 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 		lpDAI->dlg->AddProtocolLine("injecting spaces enabled", 4);
 		__int64 prob = lpDAI->settings->GetInt("output/avi/inject/probability");
 		char c[64];
-		sprintf(c, "probability: %1.2f%%", 100. * (double)prob/10000.);
+		sprintf_s(c, "probability: %1.2f%%", 100. * (double)prob/10000.);
 		lpDAI->dlg->AddProtocolLine(c, 4);
-		sprintf(c, "injecting %d bytes", lpDAI->settings->GetInt("output/avi/inject/size"));
+		sprintf_s(c, "injecting %I64d bytes", lpDAI->settings->GetInt("output/avi/inject/size"));
 		lpDAI->dlg->AddProtocolLine(c, 4);
 	}
 //	ResolveSplitpoints(lpDAI, RSPF_CHAPTERS);
@@ -1764,7 +1766,7 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 			
 						CloseHandle(hSem_finish);
 						CloseHandle(hSem);
-						delete lpDPI;
+						free(lpDPI);
 
 						return 0;
 					}
@@ -1792,12 +1794,12 @@ int MuxThread_AVI(DEST_AVI_INFO* lpDAI)
 						NextAVIOut->SetStreamDefault(i, AVIOut->IsDefault(i));
 					}
 					if (v) {
-						v->GetName(Buffer);
+						v->GetName(Buffer, sizeof Buffer);
 						AVIOut->SetStreamName(0, Buffer);
 					}
 					for (i=0;i<lpDAI->dwNbrOfAudioStreams;i++)
 					{
-						lpDAI->asi[i]->audiosource->GetName(Buffer);
+						lpDAI->asi[i]->audiosource->GetName(Buffer, sizeof Buffer);
 						NextAVIOut->SetStreamName(i+1,Buffer);
 					}
 					cBuffer[0]=0;
@@ -1860,7 +1862,7 @@ finish2:
 					}
 				}
 			}
-			delete qwStreamSizes;
+			free(qwStreamSizes);
 			qwStreamSizes=NULL;
 
 
@@ -1912,7 +1914,7 @@ finish:
 	lpDPI->dwLeave=1;
 	WaitForSingleObject(hSem_finish, INFINITE);
 	CloseHandle(hSem_finish);
-	delete lpDPI;
+	free(lpDPI);
 
 	lpDAI->dlg->ButtonState_STOP();
 	bStop=false;
@@ -1954,6 +1956,7 @@ finish:
 		MSG_LIST_append(msglist,cStr[0].GetBuffer(255));
 //		MSG_LIST_2_Msg(msglist,report);
 
+		report = ""; // I'm not sure where this 'report' should come from. Anyway, it is still uninitialized, so let it point to an empty string.
 		if (s->GetInt("gui/general/finished_muxing_dialog")) 
 			lpDAI->dlg->MessageBox(report,lpDAI->dlg->cstrInformation,
 				MB_OK | MB_ICONINFORMATION);
@@ -2004,10 +2007,10 @@ finish:
 	free(qwNanoSecStored);
 	free(lpBuffer);
 //	delete report;
-	delete cBuffer;
-	delete stream_report;
-	delete dwFrameSizes;
-	delete cFilename;
+	free(cBuffer);
+	free(stream_report);
+	free(dwFrameSizes);
+	free(cFilename);
 	silence->Close();
 	delete silence;
 	if (bExit) c->PostMessage(WM_COMMAND, ID_LEAVE, 0);
@@ -2093,7 +2096,7 @@ int FormatOutputFileName(char* cDest, const char* cFormat, const char* cRawFileN
 					cFormat += 2+end;
 				}
 
-				char cTempF[20]; cTempF[0]=0; sprintf(cTempF, "%%0%dd", nbr_len);
+				char cTempF[20]; cTempF[0]=0; sprintf_s(cTempF, "%%0%dd", nbr_len);
 				sprintf(cDest, cTempF, iCurrentFile);
 				cDest+=strlen(cDest);
 			} else
@@ -2201,7 +2204,7 @@ int FirstFilenameCheck(DEST_AVI_INFO* lpDAI, char* RawFilename, int format,
 					lpDAI->split_points->At(j-1), &flags);
 				len = strlen(cFN);
 				if (CheckExistence(cFN, CHECKEXISTENCE_NEVERASK, &s) == CHECKEXISTENCE_OVERWRITE) {
-					strcat(cExF, "  ");
+					strcat_s(cExF, "  ");
 					pos+=2;
 					strcat(cExF+pos, cFN);
 					pos += len;
@@ -2251,7 +2254,7 @@ int FirstFilenameCheck(DEST_AVI_INFO* lpDAI, char* RawFilename, int format,
 				if (result == IDYES)
 					check = CHECKEXISTENCE_ASKEACH;
 
-				delete cMsg;
+				free(cMsg);
 			}
 
 			if (cExF[0] && check != -1) {
@@ -2260,7 +2263,7 @@ int FirstFilenameCheck(DEST_AVI_INFO* lpDAI, char* RawFilename, int format,
 				char* cMsg3 = LoadString(STR_TOTAL_FILE_SIZE, LOADSTRING_UTF8);
 				char cSize[64]; cSize[0]=0; FormatSize(cSize, overwritable_size);
 
-				char* cMsg = (char*)calloc(1, 1024+strlen(cMsg1)+strlen(cMsg2)+strlen(cMsg3)+strlen(cSize)+pos);
+				char* cMsg = (char*)calloc(1, 1024+strlen(cMsg1)+strlen(cMsg2)+strlen(cMsg3)+strlen(cSize)+pos);  // TODO: null check
 				sprintf(cMsg, "%s%c%c%c%c%s %c%c%s: %s %c%c%c%c%s", cMsg1, 13, 10, 13, 10, cExF,
 					13, 10, cMsg3, cSize,
 					13, 10, 13, 10, cMsg2);
@@ -2287,7 +2290,7 @@ int FirstFilenameCheck(DEST_AVI_INFO* lpDAI, char* RawFilename, int format,
 				if (result == IDCANCEL)
 					check = -1;
 
-				delete cMsg;
+				free(cMsg);
 			}
 		}
 	}
@@ -2484,7 +2487,7 @@ int MuxThread_MKV(DEST_AVI_INFO* lpDAI)
 		L"Using file name pattern: %1", utf8FileNameFormat));
 
 	char mkv_ver[128]; mkv_ver[0]=0;
-	sprintf(mkv_ver, LoadString(STR_MUXLOG_MATROSKAVERSION), matroska_version);
+	sprintf_s(mkv_ver, LoadString(STR_MUXLOG_MATROSKAVERSION), matroska_version);
 	lpDAI->dlg->AddProtocolLine(mkv_ver, 4);
 
 	trace.Trace(TRACE_LEVEL_INFO, muxSettingsTitleString, CFormatHelper::FormatSimple<int>(
@@ -2564,7 +2567,7 @@ int MuxThread_MKV(DEST_AVI_INFO* lpDAI)
 	else 
 		ifloatlength = max(32,min(80,ifloatlength));
 	
-	sprintf(cBuffer, LoadString(STR_MUXLOG_FLOATWIDTH), ifloatlength);
+	sprintf_s(cBuffer, LoadString(STR_MUXLOG_FLOATWIDTH), ifloatlength);
 	lpDAI->dlg->AddProtocolLine(cBuffer, 4);
 	SetEBMLFloatMode(ifloatlength);
 
@@ -2783,7 +2786,7 @@ int MuxThread_MKV(DEST_AVI_INFO* lpDAI)
 	int iError = 0;
 	int resolve_split_points_result;
 	if ((resolve_split_points_result=ResolveSplitpoints(lpDAI, RSPF_CHAPTERS, &iError)) == RSP_ERROR) {
-		sprintf(cBuffer,LoadString(STR_MUXLOG_SPLITPOINTB0RKED),iError+1);
+		sprintf_s(cBuffer, LoadString(STR_MUXLOG_SPLITPOINTB0RKED), iError + 1);
 		lpDAI->dlg->MessageBox(cBuffer,LoadString(STR_GEN_ERROR),MB_OK | MB_ICONERROR);
 		lpDAI->dlg->SetDialogState_Config();
 		lpDAI->dlg->ButtonState_STOP();
@@ -2809,7 +2812,7 @@ int MuxThread_MKV(DEST_AVI_INFO* lpDAI)
 
 		char cTime[30];
 		Millisec2Str(p->iBegin / 1000000,cTime);
-		sprintf(cBuffer,LoadString(STR_MUXLOG_SPLITPOINTAT),i+1,cTime);
+		sprintf_s(cBuffer, LoadString(STR_MUXLOG_SPLITPOINTAT), i + 1, cTime);
 		lpDAI->dlg->AddProtocolLine(cBuffer,4);
 	}
 
@@ -2938,11 +2941,11 @@ start:
 		}
 
 		Millisec2HMSF(-qwBias/1000000,&dwHour,&dwMin,&dwSec,&dwFrac);
-		sprintf(cBuffer,LoadString(STR_MUXLOG_NEWFILE),dwHour,dwMin,dwSec,dwFrac,dwFrameCountTotal,cFilename);
+		sprintf_s(cBuffer, LoadString(STR_MUXLOG_NEWFILE), dwHour, dwMin, dwSec, dwFrac, dwFrameCountTotal, cFilename);
 		lpDAI->dlg->AddProtocolLine(cBuffer,5,APL_UTF8);
 
 		QW2Str(m->GetTimecodeScale(), cSize, 1);
-		sprintf(cBuffer, LoadString(STR_MUXLOG_OUTPUTTIMECODESCALE),cSize);
+		sprintf_s(cBuffer, LoadString(STR_MUXLOG_OUTPUTTIMECODESCALE), cSize);
 		lpDAI->dlg->AddProtocolLine(cBuffer,4);
 
 		__int64 min_cue_int = lpDAI->settings->GetInt("output/mkv/cues/minimum interval");
@@ -3086,13 +3089,13 @@ start:
 			m->SetCacheData(0,1,0);
 		//	m->SetTrackLanguageCode(0,"und");
 			char cName[512]; memset(cName, 0, sizeof(cName));
-			v->GetName(cName);
+			v->GetName(cName, sizeof cName);
 			//m->SetTrackName(0, cName);
 			m->GetTrackTitleSet()->Import(v->GetTitleSet());
 			
 			std::string languageCode;
 			v->GetLanguageCode(languageCode); // cName
-			strcpy(cName, languageCode.c_str());
+			strcpy_s(cName, languageCode.c_str());
 			m->SetTrackLanguageCode(0, cName);
 		}
 
@@ -3100,7 +3103,7 @@ start:
 		m->SetLaceStyle((int)s->GetInt("output/mkv/lacing/style"));
 		if (bLaceVideo) {
 			char msg[50]; msg[0]=0;
-			sprintf(msg, LoadString(STR_MUXLOG_VIDEOLACERATE), iVideoFramesPerLace);
+			sprintf_s(msg, LoadString(STR_MUXLOG_VIDEOLACERATE), iVideoFramesPerLace);
 			lpDAI->dlg->AddProtocolLine(msg, 4);
 		} else {
 			lpDAI->dlg->AddProtocolLine(LoadString(STR_MUXLOG_VIDEOLACINGOFF), 4);
@@ -3235,7 +3238,7 @@ start:
 				bDoLace[j] = 0;
 			}
 			m->SetFlags(i,1,bDoLace[j],as->IsDefault());
-			lpDAI->asi[j]->audiosource->GetName(cName);
+			lpDAI->asi[j]->audiosource->GetName(cName, sizeof cName);
 
 			if ((int)s->GetInt("output/mkv/lacing/style") || cName[0] || !languageCode.empty() || lpDAI->asi[j]->iDelay) {
 				wsprintf(cBuffer,LoadString(STR_MUXLOG_STREAM),i);
@@ -3244,10 +3247,10 @@ start:
 			
 			if ((int)s->GetInt("output/mkv/lacing/style")) {
 				if (bDoLace[j]) {
-					sprintf(cBuffer,LoadString(STR_MUXLOG_TRACKLACESIZE), (int)(audio_lace_config[j].iLength/1000000));
+					sprintf_s(cBuffer, LoadString(STR_MUXLOG_TRACKLACESIZE), (int)(audio_lace_config[j].iLength / 1000000));
 					lpDAI->dlg->AddProtocolLine(cBuffer,4);
 				} else {
-					sprintf(cBuffer,LoadString(STR_MUXLOG_TRACKLACINGOFF));
+					sprintf_s(cBuffer, LoadString(STR_MUXLOG_TRACKLACINGOFF));
 					lpDAI->dlg->AddProtocolLine(cBuffer,4);
 				}
 			}
@@ -3297,11 +3300,11 @@ start:
 				lpDAI->dlg->AddProtocolLine(cBuffer,5);
 
 				if (cName[0]) {
-					sprintf(cBuffer,LoadString(STR_MUXLOG_NAME),cName);
+					sprintf_s(cBuffer, LoadString(STR_MUXLOG_NAME), cName);
 					lpDAI->dlg->AddProtocolLine(cBuffer,5, APL_UTF8);
 				}
 				if (!languageCode.empty()) {
-					sprintf(cBuffer,LoadString(STR_MUXLOG_LANGUAGECODE),languageCode.c_str());
+					sprintf_s(cBuffer, LoadString(STR_MUXLOG_LANGUAGECODE), languageCode.c_str());
 					lpDAI->dlg->AddProtocolLine(cBuffer,5, APL_UTF8);
 				}
 
@@ -3315,15 +3318,15 @@ start:
 			switch (subs->GetFormat()) {
 				case SUBFORMAT_SRT:
 					m->SetCodecID(j,"S_TEXT/UTF8");
-					sprintf(cBuffer, LoadString(STR_MUXLOG_SUBTITLE_FORMAT), "SRT");
+					sprintf_s(cBuffer, LoadString(STR_MUXLOG_SUBTITLE_FORMAT), "SRT");
 					break;
 				case SUBFORMAT_SSA:
 					m->SetCodecID(j,"S_TEXT/SSA");
-					sprintf(cBuffer, LoadString(STR_MUXLOG_SUBTITLE_FORMAT), "SSA");
+					sprintf_s(cBuffer, LoadString(STR_MUXLOG_SUBTITLE_FORMAT), "SSA");
 					break;
 				case SUBFORMAT_VOBSUB:
 					m->SetCodecID(j,"S_VOBSUB");
-					sprintf(cBuffer, LoadString(STR_MUXLOG_SUBTITLE_FORMAT), "VOBSUB");
+					sprintf_s(cBuffer, LoadString(STR_MUXLOG_SUBTITLE_FORMAT), "VOBSUB");
 					break;
 			}
 
@@ -3333,10 +3336,10 @@ start:
 			cBuffer[0]=0;
 			if (subs->GetCompressionAlgo() == COMPRESSION_ZLIB) {
 				m->AddTrackCompression(j, COMPRESSION_ZLIB, NULL, 0);
-				sprintf(cBuffer, LoadString(STR_MUXLOG_COMPRESSION_TYPE), "zlib");
+				sprintf_s(cBuffer, LoadString(STR_MUXLOG_COMPRESSION_TYPE), "zlib");
 			} else if (subs->GetCompressionAlgo() == COMPRESSION_NONE) {
-				sprintf(cBuffer, LoadString(STR_MUXLOG_COMPRESSION_TYPE), "none");
-			} else sprintf(cBuffer, LoadString(STR_MUXLOG_COMPRESSION_TYPE), "unknown");
+				sprintf_s(cBuffer, LoadString(STR_MUXLOG_COMPRESSION_TYPE), "none");
+			} else sprintf_s(cBuffer, LoadString(STR_MUXLOG_COMPRESSION_TYPE), "unknown");
 
 			lpDAI->dlg->AddProtocolLine(cBuffer, 4);
 
@@ -3346,7 +3349,7 @@ start:
 		{
 			char cSize[20];
 			QW2Str(hdr_size, cSize, 1);
-			sprintf(cBuffer, LoadString(STR_MUXLOG_HEADERSIZE), cSize);
+			sprintf_s(cBuffer, LoadString(STR_MUXLOG_HEADERSIZE), cSize);
 			lpDAI->dlg->AddProtocolLine(cBuffer, 4);
 		}
 
@@ -3356,7 +3359,7 @@ start:
 			m->SetCueTargetSizeRatio((double)s->GetInt("output/mkv/cues/target size ratio") / 1000.);
 			double d = m->GetCueTargetSizeRatio() * 100.;
 			char cMsg[128]; cMsg[0]=0;
-			sprintf(cMsg, LoadString(STR_MUXLOG_CUETARGETSIZERATIO), d);
+			sprintf_s(cMsg, LoadString(STR_MUXLOG_CUETARGETSIZERATIO), d);
 			lpDAI->dlg->AddProtocolLine(cMsg, 4);
 		}
 
@@ -3426,8 +3429,8 @@ start:
 						char cTime[20];
 						char cText[200];
 						Millisec2Str(a.iTimecode,cTime);
-						sprintf(cText,"fixed: frame at %s refers to %I64d, but must be %d!",
-							cTime,a.iReferences[0],iNew);
+						sprintf_s(cText, "fixed: frame at %s refers to %I64d, but must be %d!",
+							cTime, a.iReferences[0], iNew);
 						lpDAI->dlg->AddProtocolLine(cText,4);
 						a.iReferences[0] = iNew;
 					}
@@ -3640,12 +3643,12 @@ start:
 						// source block not laced
 								if (aari.iFramecount<2) {
 									a.iFrameCountInLace++;
-									a.iFrameSizes = (int*)realloc(a.iFrameSizes,sizeof(int)*a.iFrameCountInLace);
+									a.iFrameSizes = (int*)realloc(a.iFrameSizes,sizeof(int)*a.iFrameCountInLace);  // TODO: null check
 									a.iFrameSizes[a.iFrameCountInLace-1] = iRead;
 								}
 								else for (j=0;j<aari.iFramecount;j++) {
 									a.iFrameCountInLace++;
-									a.iFrameSizes = (int*)realloc(a.iFrameSizes,sizeof(int)*a.iFrameCountInLace);
+									a.iFrameSizes = (int*)realloc(a.iFrameSizes,sizeof(int)*a.iFrameCountInLace);  // TODO: null check
 									a.iFrameSizes[a.iFrameCountInLace-1] = aari.iFramesizes[j];
 									iSourceLaces++;
 								}
@@ -3661,7 +3664,7 @@ start:
 								if (iRead>0) {
 									bDoLace[i] = false;
 									char cBuffer[100];
-									sprintf(cBuffer,"switched off lacing for audio stream stream %d",i+1);
+									sprintf_s(cBuffer, "switched off lacing for audio stream stream %d",i+1);
 									lpDAI->dlg->AddProtocolLine(cBuffer,4);
 									qwMaxAudio = -1;
 									iMSD = -1;
@@ -3768,7 +3771,7 @@ start:
 			char cSize3[20];
 			QW2Str(clstats.iCount, cSize1, 1);
 			QW2Str(clstats.iOverhead, cSize2, 1);
-			sprintf(cBuffer, LoadString(STR_MUXLOG_CLUSTERS),cSize1,cSize2);
+			sprintf_s(cBuffer, LoadString(STR_MUXLOG_CLUSTERS), cSize1, cSize2);
 			lpDAI->dlg->AddProtocolLine(cBuffer,4);
 			
 
@@ -3780,7 +3783,7 @@ start:
 					m->GetLaceStatistics(j,iLaceSchemes[i],&stats[i]);
 				}
 				if (stats[1].iCount + stats[2].iCount + stats[3].iCount) {
-					sprintf(cBuffer,"track %d",j);
+					sprintf_s(cBuffer, "track %d", j);
 					lpDAI->dlg->AddProtocolLine(cBuffer,4);
 				}
 				for (i=1;i<4;i++) {
@@ -3790,7 +3793,7 @@ start:
 						QW2Str(stats[i].iCount,cSize1,1);
 						QW2Str(stats[i].iTotalHdrSize,cSize2,1);
 						QW2Str(stats[i].iFrameCount,cSize3,1);
-						sprintf(cBuffer,LoadString(STR_MUXLOG_LACESTATS),cLaceSchemes[i],cSize1,cSize3,cSize2);
+						sprintf_s(cBuffer, LoadString(STR_MUXLOG_LACESTATS), cLaceSchemes[i], cSize1, cSize3, cSize2);
 						lpDAI->dlg->AddProtocolLine(cBuffer,4);
 					}
 				}
@@ -3805,7 +3808,7 @@ start:
 			QW2Str(m->GetCueCount(1), cSize1, 1);
 			QW2Str(m->GetCueCount(2), cSize2, 1);
 
-			sprintf(cBuffer,LoadString(STR_MUXLOG_CUES),cSize1, cSize2);
+			sprintf_s(cBuffer, LoadString(STR_MUXLOG_CUES), cSize1, cSize2);
 			lpDAI->dlg->AddProtocolLine(cBuffer,4);
 			
 			memcpy(cPrevUID, cSegmentUID, 16);
@@ -3819,7 +3822,7 @@ start:
 			{
 				char cSize1[20];
 				QW2Str(m->GetSeekheadSize(), cSize1, 1);
-				sprintf(cBuffer,LoadString(STR_MUXLOG_SEEKHEAD_SIZE),cSize1,
+				sprintf_s(cBuffer, LoadString(STR_MUXLOG_SEEKHEAD_SIZE), cSize1,
 					LoadString(STR_BYTES));
 				lpDAI->dlg->AddProtocolLine(cBuffer,4);
 			}
@@ -3847,7 +3850,7 @@ start:
 	}
 
 	QW2Str(qwStats[6],cSize,15);
-	sprintf(cBuffer,LoadString(STR_MUXLOG_OVERHEADWRITTEN),cSize,LoadString(STR_BYTES));
+	sprintf_s(cBuffer, LoadString(STR_MUXLOG_OVERHEADWRITTEN), cSize, LoadString(STR_BYTES));
 	lpDAI->dlg->AddProtocolLine(cBuffer,5);
 
 	lpDAI->dlg->AddProtocolLine(LoadString(STR_MUXLOG_DONE),5);
@@ -3865,7 +3868,7 @@ start:
 //	delete lpDAI->lpFormat;
 	lpDAI->split_points->DeleteAll();
 	delete lpDAI->split_points;
-	delete lpDPI;
+	free(lpDPI);
 
 	if (s->GetInt("gui/general/finished_muxing_dialog"))
 		lpDAI->dlg->MessageBox(LoadString(IDS_READY),lpDAI->dlg->cstrInformation,MB_OK | MB_ICONINFORMATION);

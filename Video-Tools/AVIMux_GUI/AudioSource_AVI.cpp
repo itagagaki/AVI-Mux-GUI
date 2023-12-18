@@ -132,7 +132,7 @@ int AUDIOSOURCEFROMAVI::GetName(char* lpDest)
 	char cTemp[256]; cTemp[0] = 0;
 	info.avifile->GetStreamName(info.iStream,cTemp);
 	Str2UTF8(cTemp, cTemp);
-	strcpy(cTemp, lpDest);
+	strcpy_s(cTemp, lpDest);
 	return (strlen(cTemp));
 }
 

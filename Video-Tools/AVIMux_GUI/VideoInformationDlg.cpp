@@ -1,4 +1,4 @@
-// VideoInformationDlg.cpp: Implementierungsdatei
+ï»¿// VideoInformationDlg.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -49,8 +49,8 @@ CVideoInformationDlg::CVideoInformationDlg(CWnd* pParent /*=NULL*/)
 void CVideoInformationDlg::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CResizeableDialog::OnFinalRelease();
@@ -81,12 +81,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CVideoInformationDlg, CResizeableDialog)
 	//{{AFX_DISPATCH_MAP(CVideoInformationDlg)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IVideoInformationDlg zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IVideoInformationDlg zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {B0D1411A-21A1-4FB5-BDDC-A6ECF0404B06}
@@ -98,7 +98,7 @@ BEGIN_INTERFACE_MAP(CVideoInformationDlg, CResizeableDialog)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CVideoInformationDlg 
+// Behandlungsroutinen fÃ¼r Nachrichten CVideoInformationDlg 
 
 
 #define LBE_DWFOURCC		0x00000001
@@ -139,8 +139,8 @@ bool CVideoInformationDlg::RenderChapters(CUnicodeTreeCtrl* cTree,HTREEITEM hPar
 		cLng[0]=0;
 		cStr[0]=0;
 		if (chapters->chapters[i]->display.size()) {
-			strcpy(cLng, c->display[0].cLanguage->AsString());
-			strcpy(cStr, c->display[0].cString->AsString());
+			strcpy_s(cLng, c->display[0].cLanguage->AsString());
+			strcpy_s(cStr, c->display[0].cString->AsString());
 		}
 
 		char cUID[32]; memset(cUID, 0, sizeof(cUID));
@@ -148,16 +148,16 @@ bool CVideoInformationDlg::RenderChapters(CUnicodeTreeCtrl* cTree,HTREEITEM hPar
 
 		if (c->bEdition) {
 
-			sprintf(buffer,"Edition %d (%s, %s, %s, UID: 0x%s)", i+1,
-				(c->bDefault?"default":"not default"),
-				(c->bHidden?"hidden":"not hidden"),
-				(c->bOrdered?"ordered":"not ordered"),
+			sprintf_s(buffer, "Edition %d (%s, %s, %s, UID: 0x%s)", i + 1,
+				(c->bDefault ? "default" : "not default"),
+				(c->bHidden ? "hidden" : "not hidden"),
+				(c->bOrdered ? "ordered" : "not ordered"),
 				cUID);
 		} else {
 			if (c->iTimeend != -1) 
-				sprintf(buffer,"Chapter %2d: %s - %s (UID: 0x%s)",i+1,time[0],time[1],cUID);
+				sprintf_s(buffer, "Chapter %2d: %s - %s (UID: 0x%s)", i + 1, time[0], time[1], cUID);
 			else
-				sprintf(buffer,"Chapter %2d: %s (UID: 0x%s)",i+1,time[0],cUID);				
+				sprintf_s(buffer, "Chapter %2d: %s (UID: 0x%s)", i + 1, time[0], cUID);
 			
 		}
 		
@@ -167,11 +167,12 @@ bool CVideoInformationDlg::RenderChapters(CUnicodeTreeCtrl* cTree,HTREEITEM hPar
 		AddTags(c->pTags, hChapters[0]);
 		if (iDC>0) 
 			for (j=0;j<c->display.size();j++) {
-				char* buffer = (char*)calloc(1, 2048);
+				size_t bufferSize = 2048;
+				char* buffer = (char*)calloc(1, bufferSize);  // TODO: null check
 				strncpy(cLng, c->display[j].cLanguage->AsString(), 14);
 				strncpy(cStr, c->display[j].cString->AsString(), 2000);
 
-				sprintf(buffer,"%s: %s", 
+				sprintf_s(buffer, bufferSize, "%s: %s", 
 					cLng, cStr);
 
 				printf("%s\n", buffer);
@@ -198,7 +199,7 @@ void CVideoInformationDlg::AddTags(TAG_INDEX_LIST& tags, HTREEITEM hParent)
 {
 	char buffer[4096]; buffer[0]=0;
 	if (!tags.empty()) {
-		sprintf(buffer,"%-20s","Tags");
+		sprintf_s(buffer, "%-20s", "Tags");
 		HTREEITEM hTags = Tree_Insert(&m_Tree,buffer,hParent);
 		for (size_t z=0;z<tags.size();z++) {
 			char cName[4096]; cName[0]=0;
@@ -206,9 +207,9 @@ void CVideoInformationDlg::AddTags(TAG_INDEX_LIST& tags, HTREEITEM hParent)
 			char cLng[64]; cLng[0]=0;
 			mkvfile->GetTag(tags[z], cName, cValue, cLng);
 			if (!strcmp(cLng,"und")) 
-				sprintf(buffer,"%-20s: %s",cName,cValue);
+				sprintf_s(buffer, "%-20s: %s", cName, cValue);
 			else 
-				sprintf(buffer,"%-20s: %s (Language: %s)",cName,cValue,cLng);
+				sprintf_s(buffer, "%-20s: %s (Language: %s)", cName, cValue, cLng);
 			Tree_Insert(&m_Tree,buffer,hTags);
 		}
 		m_Tree.Expand(hTags, TVE_EXPAND);
@@ -230,7 +231,7 @@ public:
 	void FormatTitle(DWORD stringID, std::basic_ostringstream<TCHAR>& target)
 	{
 		target << std::setw(m_titleWidth) << std::left << 
-			CUTF8(LoadString(stringID, LOADSTRING_UTF8), CharacterEncoding::UTF8).TStr(); 
+			CUTF8(LoadString(stringID, LOADSTRING_UTF8), CharacterEncoding::CharacterEncodings::UTF8).TStr();
 		target << _T(": ");
 	}
 
@@ -369,25 +370,25 @@ bool CVideoInformationDlg::InitDialog_Matroska()
 		if (!WritingApp || !WritingApp[0])
 			WritingApp = "<n/a>";
 		Insert(formatter.Direct(CUTF8("Writing app"), 
-			CUTF8(WritingApp, CharacterEncoding::UTF8)), hSegment);
+			CUTF8(WritingApp, CharacterEncoding::CharacterEncodings::UTF8)), hSegment);
 
 		char* MuxingApp = mkvfile->GetSegmentMuxingApp();
 		if (!MuxingApp || !MuxingApp[0])
 			MuxingApp = "<n/a>";
 		Insert(formatter.Direct(CUTF8("Muxing app"), 
-			CUTF8(MuxingApp, CharacterEncoding::UTF8)), hSegment);
+			CUTF8(MuxingApp, CharacterEncoding::CharacterEncodings::UTF8)), hSegment);
 
 		char* SegmentTitle = mkvfile->GetSegmentTitle();
 		if (SegmentTitle && strcmp(SegmentTitle,"")) {
 			Insert(formatter.Direct(CUTF8("Segment title"), 
-				CUTF8(SegmentTitle, CharacterEncoding::UTF8)), hSegment);
+				CUTF8(SegmentTitle, CharacterEncoding::CharacterEncodings::UTF8)), hSegment);
 		}
 
 		for (int uid_type = 0; uid_type < 4; uid_type++) {
 			char* UID = mkvfile->GetUID(uid_type);
 			if (UID && strcmp(UID,"")) {
 				memset(buffer, 0, sizeof(buffer));
-				sprintf(buffer,"%-20s: ",MKV_UID_NAMES[uid_type]);
+				sprintf_s(buffer, "%-20s: ", MKV_UID_NAMES[uid_type]);
 				__int128hex(UID, buffer+strlen(buffer), 1);
 				Tree_Insert(&m_Tree,buffer,hSegment);
 			}
@@ -431,16 +432,16 @@ bool CVideoInformationDlg::InitDialog_Matroska()
 					char	FourCC[5];
 					*(int*)FourCC = bmi->biCompression;
 					FourCC[4] = 0;
-					sprintf(buffer,"%-20s: %s","biCompression",FourCC);
+					sprintf_s(buffer, "%-20s: %s", "biCompression", FourCC);
 					Tree_Insert(&m_Tree,buffer,hCodecID);
 					if (bmi->biBitCount) {
-						sprintf(buffer,"%-20s: %d","biBitcount",bmi->biBitCount);
+						sprintf_s(buffer, "%-20s: %d", "biBitcount", bmi->biBitCount);
 						Tree_Insert(&m_Tree,buffer,hCodecID);
 					}
 				}
 				if (!strcmp(CodecID,"A_MS/ACM")) {
 					WAVEFORMATEX* wfe = (WAVEFORMATEX*)mkvfile->GetCodecPrivate();
-					sprintf(buffer,"%-20s:    0x%04X","wFormatTag",wfe->wFormatTag);
+					sprintf_s(buffer, "%-20s:    0x%04X", "wFormatTag", wfe->wFormatTag);
 					Tree_Insert(&m_Tree,buffer,hCodecID);
 
 					QW2Str(wfe->nAvgBytesPerSec,size,9);
@@ -477,18 +478,18 @@ bool CVideoInformationDlg::InitDialog_Matroska()
 					mkvfile->GetResolution(&dwX1,&dwY1,&dwX2,&dwY2,&dwDU);
 					RECT crop;
 					mkvfile->GetCropping(&crop);
-					sprintf(buffer,"Resolution (Pixels) : %dx%d",dwX1,dwY1);
+					sprintf_s(buffer, "Resolution (Pixels) : %dx%d", dwX1, dwY1);
 					Tree_Insert(&m_Tree,buffer,hTrackType);
-					sprintf(buffer,"Cropped to          : (%dx%d)-(%dx%d)",crop.left, crop.top,
+					sprintf_s(buffer, "Cropped to          : (%dx%d)-(%dx%d)", crop.left, crop.top,
 						dwX1-crop.right, dwY1-crop.bottom);
 					Tree_Insert(&m_Tree,buffer,hTrackType);
-					sprintf(buffer,"Resolution (Display): %dx%d %s",dwX2,dwY2,MDISPU_names[dwDU]);
+					sprintf_s(buffer, "Resolution (Display): %dx%d %s", dwX2, dwY2, MDISPU_names[dwDU]);
 					Tree_Insert(&m_Tree,buffer,hTrackType);
 
 					break;
 				case MSTRT_AUDIO:
 					if (mkvfile->GetSamplingFrequency()) {
-						sprintf(buffer,"%-20s: %d Hz","sampling frequency",(int)mkvfile->GetSamplingFrequency());
+						sprintf_s(buffer, "%-20s: %d Hz", "sampling frequency", (int)mkvfile->GetSamplingFrequency());
 						Tree_Insert(&m_Tree,buffer,hTrackType);
 					}
 			
@@ -504,7 +505,7 @@ bool CVideoInformationDlg::InitDialog_Matroska()
 
 			char* track_name = mkvfile->GetTrackName();
 			if (strcmp(track_name,"")) {
-				Insert(formatter.Direct("name", CUTF8(track_name, CharacterEncoding::UTF8)), hTrack);
+				Insert(formatter.Direct("name", CUTF8(track_name, CharacterEncoding::CharacterEncodings::UTF8)), hTrack);
 			}
 
 
@@ -512,29 +513,29 @@ bool CVideoInformationDlg::InitDialog_Matroska()
 			char cTrackUID[32]; memset(cTrackUID, 0, sizeof(cTrackUID));
 			track_uid = mkvfile->GetTrackUID();
 			__int642hex(track_uid, cTrackUID, 4);
-			sprintf(buffer,"%-20s: 0x%s","UID",cTrackUID);
+			sprintf_s(buffer, "%-20s: 0x%s", "UID", cTrackUID);
 			Tree_Insert(&m_Tree,buffer,hTrack);
 
-			sprintf(buffer,"%-20s: %s","lacing",YN[mkvfile->IsLaced()]);
+			sprintf_s(buffer, "%-20s: %s", "lacing", YN[mkvfile->IsLaced()]);
 			Tree_Insert(&m_Tree,buffer,hTrack);
 
 			if (mkvfile->IsBitrateIndicated()) {
 				QW2Str((__int64)((mkvfile->GetTrackBitrate()+500)/1000),size,10);
-				sprintf(buffer, "%-20s: %s kbps",LoadString(IDS_VI_BITRATE),size);
+				sprintf_s(buffer, "%-20s: %s kbps", LoadString(IDS_VI_BITRATE), size);
 				Tree_Insert(&m_Tree,buffer,hTrack);
 			}
 
-			sprintf(buffer,"%-20s: %s","default",YN[mkvfile->IsDefault()]);
+			sprintf_s(buffer, "%-20s: %s", "default", YN[mkvfile->IsDefault()]);
 			Tree_Insert(&m_Tree,buffer,hTrack);
 
-			sprintf(buffer,"%-20s: %s","enabled",YN[mkvfile->IsEnabled()]);
+			sprintf_s(buffer, "%-20s: %s", "enabled", YN[mkvfile->IsEnabled()]);
 			Tree_Insert(&m_Tree,buffer,hTrack);
 
 			QW2Str(mkvfile->GetDefaultDuration(),size,10);
-			sprintf(buffer,"%-20s: %s ns","default duration",size);
+			sprintf_s(buffer, "%-20s: %s ns", "default duration", size);
 			Tree_Insert(&m_Tree,buffer,hTrack);
 
-			sprintf(buffer,"%-20s: %s","language",mkvfile->GetLanguage());
+			sprintf_s(buffer, "%-20s: %s", "language", mkvfile->GetLanguage());
 			Tree_Insert(&m_Tree,buffer,hTrack);
 
 			for (int k=0; k<mkvfile->GetTrackCompressionDescriptorCount(j); k++) {
@@ -546,7 +547,7 @@ bool CVideoInformationDlg::InitDialog_Matroska()
 					if (mkvfile->GetTrackCompression(j, k) == COMPRESSION_HDRSTRIPPING) 
 						compr = "header stripping";
 
-					sprintf(buffer,"%-20s: #%02d %s", "compression", k, compr);
+					sprintf_s(buffer, "%-20s: #%02d %s", "compression", k, compr);
 					Tree_Insert(&m_Tree,buffer,hTrack);
 				}
 
@@ -569,28 +570,28 @@ bool CVideoInformationDlg::InitDialog_Matroska()
 				char fn[1024]; fn[0]=0;
 				mkvfile->GetAttachmentFilename(j, fn, sizeof(fn));
 
-				sprintf(buffer,"%s %d: %s","Attachment", j+1, fn);
+				sprintf_s(buffer, "%s %d: %s", "Attachment", j + 1, fn);
 				HTREEITEM hAtt = Tree_Insert(&m_Tree, buffer, hAtts);			
 
 				char csize[32]; csize[0]=0;
 				QW2Str(mkvfile->GetAttachmentFileSize(j), csize, 1);
-				sprintf(buffer, "%-20s: %s %s", "size", csize, LoadString(STR_BYTES));
+				sprintf_s(buffer, "%-20s: %s %s", "size", csize, LoadString(STR_BYTES));
 				Tree_Insert(&m_Tree,buffer,hAtt);
 
 				char cuid[32]; cuid[0]=0;
 				__int642hex(mkvfile->GetAttachmentUID(j), cuid, 4, 1, 0);
 		
-				sprintf(buffer,"%-20s: 0x%s","UID",cuid);
+				sprintf_s(buffer, "%-20s: 0x%s", "UID", cuid);
 				Tree_Insert(&m_Tree,buffer,hAtt);
 
 				char descr[1024]; descr[0]=0;
 				mkvfile->GetAttachmentFileDescription(j, descr, sizeof(descr));
-				sprintf(buffer,"%-20s: %s","Description",descr);
+				sprintf_s(buffer, "%-20s: %s", "Description", descr);
 				Tree_Insert(&m_Tree,buffer,hAtt);
 
 				char mime[1024]; mime[0]=0;
 				mkvfile->GetAttachmentMimeType(j, mime, sizeof(mime));
-				sprintf(buffer,"%-20s: %s","Mime-Type",mime);
+				sprintf_s(buffer, "%-20s: %s", "Mime-Type", mime);
 				Tree_Insert(&m_Tree,buffer,hAtt);
 
 				char binary[1024];
@@ -845,7 +846,7 @@ BOOL CVideoInformationDlg::OnInitDialog()
 	sprintf(lpDest,"%-23s (avih): %s fps",cStr[0].GetBuffer(255),buffer);
 	clb->AddString(lpDest);
 
-	if (avifile->lpMainAVIHeader->dwMicroSecPerFrame!=round((double)(avifile->GetNanoSecPerFrame())/1000))
+	if (avifile->lpMainAVIHeader->dwMicroSecPerFrame!=(__int64)round((double)(avifile->GetNanoSecPerFrame())/1000))
 	{
 		cStr[0]=LoadString(IDS_VI_FRWRITTENBYIDIOT);
 		sprintf(lpDest,"  %s",cStr[0].GetBuffer(255));
@@ -860,8 +861,8 @@ BOOL CVideoInformationDlg::OnInitDialog()
 	x=avifile->GetNbrOfChunks(0);
 	dwChunkCount=x;
 	dSeconds=((double)x/(double)framerate1);
-	dwMillisec=(DWORD)(round(1000*double(x)/(double)framerate1)%1000);
-	sprintf(buffer,"%d:%02d:%02d.%03d",((DWORD)dSeconds/3600),((DWORD)dSeconds%3600)/60,((DWORD)dSeconds%60),dwMillisec);
+	dwMillisec=(DWORD)((__int64)round(1000*double(x)/(double)framerate1)%1000);
+	sprintf_s(buffer, "%d:%02d:%02d.%03d", ((DWORD)dSeconds/3600), ((DWORD)dSeconds%3600)/60, ((DWORD)dSeconds%60), dwMillisec);
 	sprintf(lpDest,"%-30s:%10d (%s)",cStr[0].GetBuffer(255),x,buffer);
 	clb->AddString(lpDest);
 
@@ -882,7 +883,7 @@ BOOL CVideoInformationDlg::OnInitDialog()
 	sprintf(lpDest,"%-30s:%10d","MainAVIHeader.dwTotalFrames",dw1);
 	clb->AddString(lpDest);
 	cStr[0]=LoadString(IDS_VILB_REALFRAMESINRIFF);
-	sprintf(lpDest,"%-30s:%10d",cStr[0],dw2);
+	sprintf(lpDest,"%-30s:%10d",(LPCTSTR)cStr[0],dw2);
 	clb->AddString(lpDest);
 	if (dw1!=dw2)
 	{
@@ -941,12 +942,12 @@ BOOL CVideoInformationDlg::OnInitDialog()
 	cStr[1]=LoadString(STR_BYTES);
 	char cSize[30];
 	QW2Str(avifile->GetStreamSize(0),cSize,16);
-	sprintf(lpDest,"%-30s: %s %s",cStr[0],cSize,cStr[1]);
+	sprintf(lpDest,"%-30s: %s %s",(LPCTSTR)cStr[0],(LPCTSTR)cSize,(LPCTSTR)cStr[1]);
 	clb->AddString(lpDest);
 	
 	cStr[0]=LoadString(IDS_VI_VIDEODATARATE);
 	cStr[1]=LoadString(STR_KBYTE);
-	sprintf(lpDest,"%-30s: %d %s/s",cStr[0],DWORD(avifile->GetStreamSize(0)/dSeconds)>>10,cStr[1]);
+	sprintf(lpDest,"%-30s: %d %s/s",(LPCTSTR)cStr[0],DWORD(avifile->GetStreamSize(0)/dSeconds)>>10,(LPCTSTR)cStr[1]);
 	clb->AddString(lpDest);
 
 	dwAudioStreams=0;
@@ -974,16 +975,16 @@ BOOL CVideoInformationDlg::OnInitDialog()
 		// Bitrate
 			cStr[0]=LoadString(IDS_VI_BITRATE);
 			QW2Str(avifile->GetAvgBytesPerSec(i)*8,buffer,16);
-			sprintf(lpDest,"  %-25s: %s Bit/s",cStr[0],buffer);
+			sprintf(lpDest,"  %-25s: %s Bit/s",(LPCTSTR)cStr[0],buffer);
 			clb->AddString(lpDest);
 
 			cStr[4]=LoadString(STR_BYTES);
 			if ((!IsMP3SampleCount(strf->nBlockAlign))||(strf->wFormatTag!=0x0055))
 			{
-			// nicht (MP3-VBR) => Anzahl an dwSamplesize-großer Blöcke
+			// nicht (MP3-VBR) => Anzahl an dwSamplesize-groÃŸer BlÃ¶cke
 				cStr[0]=LoadString(STR_VILB_STREAMSIZE_STRH);
 				QW2Str(strh->dwLength,buffer,16);
-				sprintf(lpDest,"  %-25s: %s units à %d %s",cStr[0],
+				sprintf(lpDest,"  %-25s: %s units Ã  %d %s",(LPCTSTR)cStr[0],
 					buffer,strh->dwSampleSize,cStr[4].GetBuffer(255));
 				clb->AddString(lpDest);
 
@@ -1004,7 +1005,7 @@ BOOL CVideoInformationDlg::OnInitDialog()
 		// Anzahl Chunks		
 			cStr[0]=LoadString(IDS_VI_AUDIOSTREAMCHUNKS);
 			QW2Str(avifile->GetNbrOfChunks(i),buffer,16);
-			sprintf(lpDest,"  %-25s: %s",cStr[0],buffer);
+			sprintf(lpDest,"  %-25s: %s",(LPCTSTR)cStr[0],buffer);
 			clb->AddString(lpDest);
 			dwChunkCount+=avifile->GetNbrOfChunks(i);
 	// Format-Tag
@@ -1014,17 +1015,17 @@ BOOL CVideoInformationDlg::OnInitDialog()
 	// Samplingrate
 			cStr[0]=LoadString(IDS_VI_SAMPLINGRATE);
 			QW2Str(strf->nSamplesPerSec,buffer,16);
-			sprintf(lpDest,"  %-25s: %s",cStr[0],buffer);
+			sprintf(lpDest,"  %-25s: %s",(LPCTSTR)cStr[0],buffer);
 			clb->AddString(lpDest);
-	// Kanäle
+	// KanÃ¤le
 			cStr[0]=LoadString(IDS_VI_CHANNELS);
 			QW2Str(strf->nChannels,buffer,16);
-			sprintf(lpDest,"  %-25s: %s",cStr[0],buffer);
+			sprintf(lpDest,"  %-25s: %s",(LPCTSTR)cStr[0],buffer);
 			clb->AddString(lpDest);
 	// suggested buffer size
 			cStr[0]=LoadString(IDS_VILB_SBS);
 			QW2Str(strh->dwSuggestedBufferSize,buffer,16);
-			sprintf(lpDest,"  %-25s: %s",cStr[0],buffer);
+			sprintf(lpDest,"  %-25s: %s",(LPCTSTR)cStr[0],buffer);
 			clb->AddString(lpDest);
 
 			clb->AddString(" ");
@@ -1062,7 +1063,7 @@ BOOL CVideoInformationDlg::OnInitDialog()
 
 	if (lpRSIP)
 	{
-	// Info über OpenDML-Index
+	// Info Ã¼ber OpenDML-Index
 		cStr[0]=LoadString(IDS_VI_OPENDMLINDEX);
 		sprintf(lpDest,"%s: ",cStr[0].GetBuffer(255));
 		clb->AddString(lpDest);
@@ -1072,7 +1073,7 @@ BOOL CVideoInformationDlg::OnInitDialog()
 			cStr[0]=LoadString(IDS_VI_STREAM);
 			sprintf(lpDest,"  %s: %d",cStr[0].GetBuffer(255),i);
 			clb->AddString(lpDest);
-		// Anzahl Einträge im Superindex
+		// Anzahl EintrÃ¤ge im Superindex
 			cStr[0]=LoadString(IDS_VI_SUPERINDEXENTRIES);
 			sprintf(lpDest,"      %s: %d ",cStr[0].GetBuffer(255),lpRSIP[i].dwEntries);
 			clb->AddString(lpDest);
@@ -1084,7 +1085,7 @@ BOOL CVideoInformationDlg::OnInitDialog()
 			sprintf(lpDest,"                     %-20s    %-20s",cStr[3].GetBuffer(255),cStr[2].GetBuffer(255));
 			clb->AddString(lpDest);
 			clb->AddString("                     ------------------------------------------------");
-		// Einzelne Einträge durchgehen
+		// Einzelne EintrÃ¤ge durchgehen
 			for (j=0;j<(int)lpRSIP[i].dwEntries;j++)
 			{
 				QW2Str(lpRSIP[i].rsipEntries[j].dwDurationValue,nbr1,20);
@@ -1103,7 +1104,7 @@ BOOL CVideoInformationDlg::OnInitDialog()
 	sprintf(lpDest,"%s: %d",cStr[0].GetBuffer(255),dwChunkCount);
 	clb->AddString(lpDest);
 
-	// Info über Chunkgrößen
+	// Info Ã¼ber ChunkgrÃ¶ÃŸen
 	cStr[0]=LoadString(IDS_VILB_CHUNKSIZES);
 	clb->AddString(cStr[0]);
 	for (i=avifile->GetNbrOfStreams()-1;i>=0;i--)
@@ -1150,13 +1151,13 @@ BOOL CVideoInformationDlg::OnInitDialog()
 
 	if (lpFI->dwType&FILETYPE_M2F2) clb->SetUnavailableRepairs(0xFFFFFFFF);
 
-	// TODO: Zusätzliche Initialisierung hier einfügen
+	// TODO: ZusÃ¤tzliche Initialisierung hier einfÃ¼gen
 	
-	free(lpDest);
+	delete[] lpDest;
 
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurückgeben
+	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurÃ¼ckgeben
 }
 
 void CVideoInformationDlg::OnApplyrepairs() 
@@ -1215,7 +1216,7 @@ void CVideoInformationDlg::OnApplyrepairs()
 
 void CVideoInformationDlg::OnOK() 
 {
-	// TODO: Zusätzliche Prüfung hier einfügen
+	// TODO: ZusÃ¤tzliche PrÃ¼fung hier einfÃ¼gen
 	CVideoInformationDlgListbox*	clb;
 	clb=(CVideoInformationDlgListbox*)GetDlgItem(IDE_VIDEOINFORMATION);
 	clb->ClearRepairs(false);
@@ -1250,7 +1251,7 @@ void CVideoInformationDlg::SetVideoSource(VIDEOSOURCE* _lpVS)
 */
 void CVideoInformationDlg::OnRIFFChunkTree() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	CRIFFChunkTreeDlg*	crctd;
 //	CEBMLTreeDlg* cetg;
 
@@ -1278,11 +1279,11 @@ void CVideoInformationDlg::OnRIFFChunkTree()
 BOOL CVideoInformationDlg::OnCommand(WPARAM wParam, LPARAM lParam) 
 {
 	char	Buffer[50];
-	// TODO: Speziellen Code hier einfügen und/oder Basisklasse aufrufen
+	// TODO: Speziellen Code hier einfÃ¼gen und/oder Basisklasse aufrufen
 	switch (LOWORD(wParam))
 	{
 		case IDM_BUILDRIFFSTATE:
-			sprintf(Buffer,"%d MB",lParam);
+			sprintf_s(Buffer, "%d MB", lParam);
 			SendDlgItemMessage(IDC_BUTTON1,WM_SETTEXT,0,(LPARAM)Buffer);
 			break;
 	}
@@ -1293,7 +1294,7 @@ BOOL CVideoInformationDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 
 void CVideoInformationDlg::OnSavetree() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 /*	std::auto_ptr<CFileDialog> dlg(new CFileDialog(false, _T("txt"), _T(""), OFN_OVERWRITEPROMPT,
 		NULL));
 */	
@@ -1326,8 +1327,8 @@ void CVideoInformationDlg::OnSavetree()
 
 void CVideoInformationDlg::OnBnClickedOk()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
-	// TODO: Zusätzliche Prüfung hier einfügen
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
+	// TODO: ZusÃ¤tzliche PrÃ¼fung hier einfÃ¼gen
 	CVideoInformationDlgListbox*	clb;
 	clb=(CVideoInformationDlgListbox*)GetDlgItem(IDE_VIDEOINFORMATION);
 	clb->ClearRepairs(false);

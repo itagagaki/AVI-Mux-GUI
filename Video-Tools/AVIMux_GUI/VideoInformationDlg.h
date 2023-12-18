@@ -1,4 +1,4 @@
-#if !defined(AFX_VIDEOINFORMATIONDLG_H__F7EDD748_F8CE_4DBE_B7F0_489AE67BF754__INCLUDED_)
+ï»¿#if !defined(AFX_VIDEOINFORMATIONDLG_H__F7EDD748_F8CE_4DBE_B7F0_489AE67BF754__INCLUDED_)
 #define AFX_VIDEOINFORMATIONDLG_H__F7EDD748_F8CE_4DBE_B7F0_489AE67BF754__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -46,13 +46,13 @@ public:
 	//}}AFX_DATA
 
 
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
+// Ãœberschreibungen
+	// Vom Klassen-Assistenten generierte virtuelle FunktionsÃ¼berschreibungen
 	//{{AFX_VIRTUAL(CVideoInformationDlg)
 	public:
 	virtual void OnFinalRelease();
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV-Unterstützung
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV-UnterstÃ¼tzung
 	virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
 	//}}AFX_VIRTUAL
 
@@ -75,7 +75,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	// Generierte OLE-Dispatch-Zuordnungsfunktionen
 	//{{AFX_DISPATCH(CVideoInformationDlg)
-		// HINWEIS - Der Klassen-Assistent fügt hier Member-Funktionen ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Member-Funktionen ein und entfernt diese.
 	//}}AFX_DISPATCH
 	DECLARE_DISPATCH_MAP()
 	DECLARE_INTERFACE_MAP()
@@ -84,6 +84,6 @@ public:
 };
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ fügt unmittelbar vor der vorhergehenden Zeile zusätzliche Deklarationen ein.
+// Microsoft Visual C++ fÃ¼gt unmittelbar vor der vorhergehenden Zeile zusÃ¤tzliche Deklarationen ein.
 
 #endif // AFX_VIDEOINFORMATIONDLG_H__F7EDD748_F8CE_4DBE_B7F0_489AE67BF754__INCLUDED_

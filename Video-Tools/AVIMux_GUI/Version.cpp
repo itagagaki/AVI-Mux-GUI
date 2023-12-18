@@ -26,7 +26,7 @@ std::wstring GetAMGVersionStringW()
 std::string GetAMGVersionStringA()
 {
 	CString c;
-	c.LoadString(IDS_VERSION_INFO);
+	(void)c.LoadString(IDS_VERSION_INFO);
 
 	std::string result = c.GetBuffer(64);
 	return result;	

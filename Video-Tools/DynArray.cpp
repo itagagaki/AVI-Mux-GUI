@@ -41,7 +41,7 @@ int CDynIntArray::Insert(int iItem)
 {
 	if (iCount == iMaxCount) {
 		iMaxCount = iMaxCount*3/2+1;
-		pData = (int*)realloc(pData,iMaxCount*iElementSize);
+		pData = (int*)realloc(pData,iMaxCount*iElementSize);  // TODO: null check
 	}
 
 	pData[iCount++] = iItem;

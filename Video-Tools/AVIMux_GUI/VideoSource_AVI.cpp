@@ -40,6 +40,7 @@ __int64 VIDEOSOURCEFROMAVI::GetUnstretchedDuration()
 int VIDEOSOURCEFROMAVI::Open(AVIFILEEX* avifile)
 {
 	info.avifile = (AVIFILEEX**)malloc(sizeof(AVIFILEEX*));
+	// TODO: info.avifile could be null.
 	info.avifile[0] = avifile;
 
 	SetCurrentTimecode(-avifile->GetNanoSecPerFrame(),TIMECODE_UNSCALED);

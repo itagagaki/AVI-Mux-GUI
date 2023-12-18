@@ -1,4 +1,4 @@
-#if !defined(AFX_AUDIOSOURCETREE_H__DBEF7E65_CA96_491A_9D46_FDA849441A13__INCLUDED_)
+ï»¿#if !defined(AFX_AUDIOSOURCETREE_H__DBEF7E65_CA96_491A_9D46_FDA849441A13__INCLUDED_)
 #define AFX_AUDIOSOURCETREE_H__DBEF7E65_CA96_491A_9D46_FDA849441A13__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -153,8 +153,8 @@ public:
 	TREE_ITEM_INFO* GetItemInfo(HTREEITEM hItem);
 	TREE_ITEM_INFO*	FindItemOriginalPosition(int original_position);
 	void GetAllInfo(HTREEITEM hParent, std::vector<TREE_ITEM_INFO*>& result);
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
+// Ãœberschreibungen
+	// Vom Klassen-Assistenten generierte virtuelle FunktionsÃ¼berschreibungen
 	//{{AFX_VIRTUAL(CAudioSourceTree)
 	public:
 	virtual void OnFinalRelease();
@@ -179,7 +179,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	// Generierte OLE-Dispatch-Zuordnungsfunktionen
 	//{{AFX_DISPATCH(CAudioSourceTree)
-		// HINWEIS - Der Klassen-Assistent fügt hier Member-Funktionen ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Member-Funktionen ein und entfernt diese.
 	//}}AFX_DISPATCH
 	DECLARE_DISPATCH_MAP()
 	DECLARE_INTERFACE_MAP()
@@ -191,6 +191,6 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ fügt unmittelbar vor der vorhergehenden Zeile zusätzliche Deklarationen ein.
+// Microsoft Visual C++ fÃ¼gt unmittelbar vor der vorhergehenden Zeile zusÃ¤tzliche Deklarationen ein.
 
 #endif // AFX_AUDIOSOURCETREE_H__DBEF7E65_CA96_491A_9D46_FDA849441A13__INCLUDED_

@@ -1,4 +1,4 @@
-// AudioSourceTree.cpp: Implementierungsdatei
+ï»¿// AudioSourceTree.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -144,8 +144,8 @@ void CAudioSourceTree::DeleteAllTitlesFromStreamTree(HTREEITEM hParent)
 void CAudioSourceTree::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CUnicodeTreeCtrl::OnFinalRelease();
@@ -168,12 +168,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CAudioSourceTree, CUnicodeTreeCtrl)
 	//{{AFX_DISPATCH_MAP(CAudioSourceTree)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IAudioSourceTree zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IAudioSourceTree zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {3FB9EBAC-133F-4456-AD29-21475221D982}
@@ -185,7 +185,7 @@ BEGIN_INTERFACE_MAP(CAudioSourceTree, CUnicodeTreeCtrl)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CAudioSourceTree 
+// Behandlungsroutinen fÃ¼r Nachrichten CAudioSourceTree 
 
 TREE_ITEM_INFO*	BuildTIIfromASI(AUDIO_STREAM_INFO* asi)
 {
@@ -377,7 +377,7 @@ void CAudioSourceTree::OpenContextMenu(CPoint point)
 			}
 			if (asi->dwType == AUDIOTYPE_AAC) {
 				put_sep;
-				c->AppendMenu(MF_STRING | (a->FormatSpecific(MMSGFS_AAC_ISSBR))?MF_CHECKED:MF_UNCHECKED,
+				c->AppendMenu(MF_STRING | ((a->FormatSpecific(MMSGFS_AAC_ISSBR)) ? MF_CHECKED : MF_UNCHECKED),
 					IDM_CHANGESBR, _T("SBR"));
 			}
 			
@@ -420,7 +420,7 @@ void CAudioSourceTree::OpenContextMenu(CPoint point)
 /*
 void CAudioSourceTree::OnRButtonUp(UINT nFlags, CPoint point) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 
 	//Beep(100,200);
 
@@ -458,8 +458,8 @@ int ExtractThread(EXTRACT_THREAD_DATA*	lpETD)
 	lpETD->m->ReInit();
 
 	while (!a->IsEndOfStream() && !DoStop()) {
-		__int64 iTimecode;
-		__int64 iNS;
+		__int64 iTimecode = 0;
+		__int64 iNS = 0;
 
 		if (lpETD->id == TIIID_ASI)
 			f->Write(lpBuffer,a->Read(lpBuffer,1000000,NULL,&iNS,&iTimecode));
@@ -472,7 +472,7 @@ int ExtractThread(EXTRACT_THREAD_DATA*	lpETD)
 		}
 
 		if (GetTickCount()-iLastTime>100 || a->IsEndOfStream()) {
-			Millisec2Str((iTimecode * a->GetTimecodeScale() + iNS)/ 1000000,cTime);
+			Millisec2Str((iTimecode * a->GetTimecodeScale() + iNS) / 1000000, cTime);
 			lpETD->dlg->m_Prg_Frames.SetWindowText(CUTF8(cTime).TStr());
 			iLastTime+=100;
 		}
@@ -480,7 +480,7 @@ int ExtractThread(EXTRACT_THREAD_DATA*	lpETD)
 
 	lpETD->dlg->SetDialogState_Config();
 	lpETD->dlg->ButtonState_STOP();
-	delete lpBuffer;
+	delete[] lpBuffer;
 	StopMuxing(false);
 	lpETD->file->Close();
 	lpETD->dlg->AddProtocol_Separator();
@@ -521,8 +521,8 @@ int ExtractThread_ADTS(EXTRACT_THREAD_DATA*	lpETD)
 
 	lpETD->dlg->SetDialogState_Config();
 	lpETD->dlg->ButtonState_STOP();
-	delete lpBuffer_in;
-	delete lpBuffer_out;
+	delete[] lpBuffer_in;
+	delete[] lpBuffer_out;
 	StopMuxing(false);
 	lpETD->file->Close();
 	lpETD->dlg->AddProtocol_Separator();
@@ -537,7 +537,7 @@ int ExtractThread_OGGVorbis(EXTRACT_THREAD_DATA*	lpETD)
 {
 	char cBuffer[50]; cBuffer[0]=0; __int64 j;
 	lpETD->dlg->AddProtocolLine("started extracting to OGG", 4);
-	sprintf(cBuffer, "using page size of %d kByte", 
+	sprintf_s(cBuffer, "using page size of %I64d kByte",
 		(j=lpETD->dlg->GetSettings()->GetInt("output/ogg/pagesize")+512)>>10);
 	lpETD->dlg->AddProtocolLine(cBuffer, 4);
 
@@ -609,7 +609,7 @@ int ExtractThread_OGGVorbis(EXTRACT_THREAD_DATA*	lpETD)
 
 	lpETD->dlg->SetDialogState_Config();
 	lpETD->dlg->ButtonState_STOP();
-	delete lpBuffer_in;
+	delete[] lpBuffer_in;
 	StopMuxing(false);
 
 	ogg->Close(true);
@@ -622,7 +622,7 @@ int ExtractThread_OGGVorbis(EXTRACT_THREAD_DATA*	lpETD)
 
 BOOL CAudioSourceTree::OnCommand(WPARAM wParam, LPARAM lParam) 
 {
-	// TODO: Speziellen Code hier einfügen und/oder Basisklasse aufrufen
+	// TODO: Speziellen Code hier einfÃ¼gen und/oder Basisklasse aufrufen
 	CWinThread*	thread;
 //	CFileDialog*	cfd;
 	CAVIMux_GUIDlg*	cMainDlg = (CAVIMux_GUIDlg*)GetParent();
@@ -836,7 +836,7 @@ BOOL CAudioSourceTree::OnCommand(WPARAM wParam, LPARAM lParam)
 					f->Write(lpBuffer,s->Render2Text(lpBuffer));
 					f->Close();
 					delete f;
-					delete lpBuffer;
+					delete[] lpBuffer;
 				} else {
 					MessageBox(
 						CUTF8(LoadString(IDS_COULDNOTOPENOUTPUTFILE)).TStr(),
@@ -875,7 +875,7 @@ BOOL CAudioSourceTree::OnCommand(WPARAM wParam, LPARAM lParam)
 
 LRESULT CAudioSourceTree::WindowProc(UINT message, WPARAM wParam, LPARAM lParam) 
 {
-	// TODO: Speziellen Code hier einfügen und/oder Basisklasse aufrufen
+	// TODO: Speziellen Code hier einfÃ¼gen und/oder Basisklasse aufrufen
 
 	switch (message) {
 		case WM_RBUTTONDOWN:
@@ -893,7 +893,7 @@ LRESULT CAudioSourceTree::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 
 void CAudioSourceTree::OnRclick(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 //				b_rdown = 0;
 	CPoint p;
 	TVHITTESTINFO tvhi;
@@ -915,7 +915,7 @@ void CAudioSourceTree::OnRclick(NMHDR* pNMHDR, LRESULT* pResult)
 void CAudioSourceTree::OnBegindrag(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	
 	bDragging = true;
 
@@ -930,7 +930,7 @@ void CAudioSourceTree::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	unsigned int	iFlags;
 	HTREEITEM	hItem;
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	if (bDragging) {
 		bDragging = false;
 		hItem = HitTest(point, &iFlags);
@@ -960,6 +960,8 @@ void CAudioSourceTree::OnLButtonUp(UINT nFlags, CPoint point)
 
 int CAudioSourceTree::GetRootCount()
 {
+	// TODO: Do not call GetNextSiblingItem(hItem) with (hItem == 0). This function should be written more concisely.
+
 	HTREEITEM hItem;
 	int iCount = !!(hItem = GetRootItem());
 
@@ -974,7 +976,7 @@ int CAudioSourceTree::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CUnicodeTreeCtrl::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	
-	// TODO: Speziellen Erstellungscode hier einfügen
+	// TODO: Speziellen Erstellungscode hier einfÃ¼gen
 	
 	return 0;
 }
@@ -1004,7 +1006,7 @@ void CAudioSourceTree::GetAllInfo(HTREEITEM hParent, std::vector<TREE_ITEM_INFO*
 void CAudioSourceTree::OnTvnGetdispinfo(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMTVDISPINFO pTVDispInfo = reinterpret_cast<LPNMTVDISPINFO>(pNMHDR);
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 	*pResult = 0;
 
 	AUDIO_STREAM_INFO* asi = NULL;
@@ -1321,13 +1323,13 @@ void CAudioSourceTree::OnTvnGetdispinfo(NMHDR *pNMHDR, LRESULT *pResult)
 				char fourcc[32]; memset(fourcc, 0, sizeof(fourcc));
 				char fmts[64];
 				if (!codecid)
-					strcpy(fmts, "FourCC: %c%c%c%c");
+					strcpy_s(fmts, "FourCC: %c%c%c%c");
 				else {
-					strcpy(fmts, "(FourCC: %c%c%c%c, ");
+					strcpy_s(fmts, "(FourCC: %c%c%c%c, ");
 					bracket = false;
 				}
 
-				sprintf(fourcc, fmts, (dwfourcc >> 0) & 0xFF,
+				sprintf_s(fourcc, fmts, (dwfourcc >> 0) & 0xFF,
 					(dwfourcc >> 8) & 0xFF, (dwfourcc >> 16) & 0xFF,
 					(dwfourcc >> 24) & 0xFF);
 				sstrDisplayText << CUTF8(fourcc).TStr();
@@ -1400,16 +1402,16 @@ void CAudioSourceTree::OnTvnGetdispinfo(NMHDR *pNMHDR, LRESULT *pResult)
 		} else
 
 		if (tii && tii->iID == TIIID_LNGCODE) {
-			sprintf(c,"language code: %s", tii->pText);
+			sprintf_s(c, "language code: %s", tii->pText);
 			sstrDisplayText << c;
 		} else
 		if (tii && tii->iID == TIIID_TITLELNG) {
-			sprintf(c,"language code: %s", tii->pText);
+			sprintf_s(c, "language code: %s", tii->pText);
 			sstrDisplayText << c;
 		} else
 
 		if (tii && tii->iID == TIIID_STRNAME) {
-			sprintf(c,"stream name: %s", tii->pText);
+			sprintf_s(c, "stream name: %s", tii->pText);
 			sstrDisplayText << c;
 		} else
 
@@ -1422,7 +1424,7 @@ void CAudioSourceTree::OnTvnGetdispinfo(NMHDR *pNMHDR, LRESULT *pResult)
 					sstrDisplayText << _T(", ");
 
 				bAddComma = true;
-				sprintf(c,"%s",tii->pText);
+				sprintf_s(c, "%s",tii->pText);
 				sstrDisplayText << c;
 			}
 
@@ -1432,12 +1434,12 @@ void CAudioSourceTree::OnTvnGetdispinfo(NMHDR *pNMHDR, LRESULT *pResult)
 					sstrDisplayText << _T(", ");
 
 				bAddComma = false;
-				sprintf(c,"%s",tii->pText);
+				sprintf_s(c, "%s",tii->pText);
 				sstrDisplayText << c;
 
 			}
 		} else {
-			sprintf(c, "Internal error: tii->iID = %d", tii?tii->iID:-17);
+			sprintf_s(c, "Internal error: tii->iID = %d", tii?tii->iID:-17);
 						sstrDisplayText << c;
 		}
 
@@ -1449,7 +1451,7 @@ void CAudioSourceTree::OnTvnGetdispinfo(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CAudioSourceTree::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
 
 	TREE_ITEM_INFO* tii = GetItemInfo(GetSelectedItem());
 	if (!tii)

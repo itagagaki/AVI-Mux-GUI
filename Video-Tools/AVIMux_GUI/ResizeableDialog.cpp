@@ -1,4 +1,4 @@
-// ResizeableDialog.cpp: Implementierungsdatei
+ï»¿// ResizeableDialog.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -69,7 +69,7 @@ CResizeableDialog::CResizeableDialog(UINT nID, CWnd* pParent /*=NULL*/)
 	user_font = NULL;
 
 	//{{AFX_DATA_INIT(CResizeableDialog)
-		// HINWEIS: Der Klassen-Assistent fügt hier Elementinitialisierung ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier Elementinitialisierung ein
 	//}}AFX_DATA_INIT
 
 	EnumDisplayMonitors(NULL, NULL, MyMonitorEnumProc, (LPARAM)&displayRectangles);
@@ -140,8 +140,8 @@ void CResizeableDialog::GetBorder(int &w, int &h)
 void CResizeableDialog::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CDialog::OnFinalRelease();
@@ -151,7 +151,7 @@ void CResizeableDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CResizeableDialog)
-		// HINWEIS: Der Klassen-Assistent fügt hier DDX- und DDV-Aufrufe ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier DDX- und DDV-Aufrufe ein
 	//}}AFX_DATA_MAP
 }
 
@@ -171,12 +171,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CResizeableDialog, CDialog)
 	//{{AFX_DISPATCH_MAP(CResizeableDialog)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IResizeableDialog zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IResizeableDialog zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {82AB1335-7373-4172-9095-FAC273048AB4}
@@ -188,7 +188,7 @@ BEGIN_INTERFACE_MAP(CResizeableDialog, CDialog)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CResizeableDialog 
+// Behandlungsroutinen fÃ¼r Nachrichten CResizeableDialog 
 
 void CResizeableDialog::OnSize(UINT nType, int cx, int cy) 
 {
@@ -227,7 +227,7 @@ void CResizeableDialog::OnSize(UINT nType, int cx, int cy)
 	if (nType == SIZE_MAXIMIZED || nType == SIZE_MINIMIZED)
 		PostMessage(WM_SIZE, SIZE_RESTORED, cx + (cy << 16));
 
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen
 }
 
 #ifdef I_ATTRIBUTES
@@ -257,7 +257,7 @@ void CResizeableDialog::ReinitFont(CFont* f)
 			char* fname = NULL;
 			if (f->Exists("face")) {
 				f->GetStr("face", &fname);
-				strcpy(logfont.lfFaceName, fname);
+				strcpy_s(logfont.lfFaceName, fname);
 				free(fname);
 			}
 
@@ -400,7 +400,7 @@ BOOL CResizeableDialog::OnInitDialog()
 	ReinitPosition();
 #endif
 
-	// TODO: Zusätzliche Initialisierung hier einfügen
+	// TODO: ZusÃ¤tzliche Initialisierung hier einfÃ¼gen
 	
 	RECT r;
 	GetWindowRect(&r);
@@ -408,7 +408,7 @@ BOOL CResizeableDialog::OnInitDialog()
 		PostMessage(WM_SIZE, 0, (r.right-r.left) | ((r.bottom-r.top)<<16));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurückgeben
+	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurÃ¼ckgeben
 }
 
 BOOL CALLBACK EnumChildProcSetFont(HWND hwnd, LPARAM lParam)
@@ -452,7 +452,7 @@ void CResizeableDialog::AttachWindow(HWND hWnd, HWND hWndAttachTo, int flags, fl
 
 void CResizeableDialog::OnDeleteItem(int nIDCtl, LPDELETEITEMSTRUCT lpDeleteItemStruct) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	
 	CDialog::OnDeleteItem(nIDCtl, lpDeleteItemStruct);
 }
@@ -473,7 +473,7 @@ void CResizeableDialog::OnDestroy()
 	if (user_font)
 		delete user_font;
 
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen
 	
 }
 
@@ -523,7 +523,7 @@ void CResizeableDialog::AttachRowBeneath(HWND* hWnd_row, HWND hWndTo, int first_
 
 BOOL CResizeableDialog::OnCommand(WPARAM wParam, LPARAM lParam) 
 {
-	// TODO: Speziellen Code hier einfügen und/oder Basisklasse aufrufen
+	// TODO: Speziellen Code hier einfÃ¼gen und/oder Basisklasse aufrufen
 
 	return CDialog::OnCommand(wParam, lParam);
 }
@@ -562,7 +562,7 @@ void CResizeableDialog::OnMove(int x, int y)
 		}
 	}
 #endif
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen
 	
 }
 
@@ -573,7 +573,7 @@ void CResizeableDialog::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized
 	if (nState == WA_ACTIVE) {
 		ReinitPosition();
 	}
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein.
 }
 
 void CResizeableDialog::OnSizing(UINT fwSide, LPRECT pRect)
@@ -581,7 +581,7 @@ void CResizeableDialog::OnSizing(UINT fwSide, LPRECT pRect)
 	CDialog::OnSizing(fwSide, pRect);
 
 	has_been_initialized = 1;
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein.
 }
 
 void CResizeableDialog::OnMoving(UINT fwSide, LPRECT pRect)
@@ -589,5 +589,5 @@ void CResizeableDialog::OnMoving(UINT fwSide, LPRECT pRect)
 	CDialog::OnMoving(fwSide, pRect);
 
 	has_been_initialized = 1;
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein.
 }

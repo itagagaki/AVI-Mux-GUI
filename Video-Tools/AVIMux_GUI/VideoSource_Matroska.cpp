@@ -54,7 +54,7 @@ int VIDEOSOURCEFROMMATROSKA::GetStrippableHeaderBytes(void* pBuffer, int max)
 
 	if (!strcmp(c_codecid, "V_MPEG4/ISO/ASP")) {
 		unsigned char b[] = {  0x00, 0x00, 0x01, 0xB6 };
-		memcpy(pBuffer, (void*)b, max(max, 4));
+		memcpy(pBuffer, (void*)b, min(max, 4));
 		return 4;
 	}
 	if (!strcmp(c_codecid, "V_MPEG4/ISO/AVC")) {
@@ -63,7 +63,7 @@ int VIDEOSOURCEFROMMATROSKA::GetStrippableHeaderBytes(void* pBuffer, int max)
 
 	if (GetSource()->GetTrackCompression(GetSourceStream(), 0) == COMPRESSION_HDRSTRIPPING) {
 		int size = GetSource()->GetTrackCompressionPrivateSize(GetSourceStream(), 0);
-		void* p = malloc(size);
+		void* p = malloc(size);  // TODO: null check
 		GetSource()->GetTrackCompressionPrivate(GetSourceStream(), 0, p);
 		int bytes_to_copy = min(size, max);
 		memcpy(pBuffer, p, bytes_to_copy);
@@ -199,7 +199,7 @@ int VIDEOSOURCEFROMMATROSKA::Open(MATROSKA* matroska, int iStream)
 	}
 	
 	ReInit();
-	delete c;
+	delete[] c;
 
 	return VS_OK;
 }

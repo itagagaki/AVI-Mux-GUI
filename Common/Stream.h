@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 STREAM:		abstract  
 CFileStream  file
@@ -125,9 +125,9 @@ typedef struct
 {
 	long	lLo;
 	long    lHi;
-} QWORD, *LPQWORD;
+} AMG_QWORD, *AMG_LPQWORD;
 
-// sowas wie abstrakter Basistyp f�r alle Streams
+// sowas wie abstrakter Basistyp für alle Streams
 class STREAM
 {
 	private:
@@ -147,7 +147,7 @@ class STREAM
 		bool		IsEnabled(int flag);
 		bool		SetFlag(int flag, int value);
 
-		int			virtual Open(StreamMode::StreamModes _dwMode) { dwMode=_dwMode; return (STREAM_ERR); }
+		int			virtual Open(DWORD /* StreamMode::StreamModes */ _dwMode) { dwMode = _dwMode; return (STREAM_ERR); }
 		int			virtual	Read(void* lpDest,DWORD dwBytes) { return (STREAM_ERR); }
 		int			virtual WaitForAsyncIOCompletion(OVERLAPPED* overlapped, DWORD* pdwBytesTransferred) { return STREAM_ERR; };
 		int			virtual IsOverlappedIOComplete(OVERLAPPED* overlapped) { return false; };

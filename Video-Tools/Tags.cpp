@@ -6,7 +6,7 @@ void DeleteTagList(TAG_LIST** tag_list)
 	if (!tag_list || !*tag_list)
 		return;
 
-	for (size_t i=0;i<(*tag_list)->iCount;i++) {
+	for (int i = 0; i < (*tag_list)->iCount; i++) {
 		TAG* tag = (*tag_list)->pTags[i];
 
 		if (tag->cName)

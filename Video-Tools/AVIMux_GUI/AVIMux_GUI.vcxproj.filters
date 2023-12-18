@@ -1,0 +1,843 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quellcodedateien">
+      <UniqueIdentifier>{227b9e7c-2b92-45a0-94cb-d758ac7088ea}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Quellcodedateien\Audio - Source - Code">
+      <UniqueIdentifier>{461710fe-e6be-4f58-9b0a-7181379a20ec}</UniqueIdentifier>
+      <Extensions>cpp</Extensions>
+    </Filter>
+    <Filter Include="Quellcodedateien\Video - Source - Code">
+      <UniqueIdentifier>{4f9dc146-1572-4e7f-8ee1-91e9b7ac3dfc}</UniqueIdentifier>
+      <Extensions>cpp</Extensions>
+    </Filter>
+    <Filter Include="Quellcodedateien\Edit - Field - Code">
+      <UniqueIdentifier>{6fbeb7f0-1c83-4152-a89d-b4af74aeaa83}</UniqueIdentifier>
+      <Extensions>cpp</Extensions>
+    </Filter>
+    <Filter Include="Quellcodedateien\AVI - Stuff">
+      <UniqueIdentifier>{a87f513d-2e3a-40c6-858f-2c15f5774bd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quellcodedateien\Matroska - Code">
+      <UniqueIdentifier>{c40d5a0c-08f0-4d78-89eb-4c5ad5739cf9}</UniqueIdentifier>
+      <Extensions>cpp</Extensions>
+    </Filter>
+    <Filter Include="Header-Dateien">
+      <UniqueIdentifier>{9f8bb902-3594-4b89-8d31-822a4c194547}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Header-Dateien\Audio - Source - Headers">
+      <UniqueIdentifier>{4f52139e-529a-443e-8bd7-37db7c576bbf}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Header-Dateien\Video - Source - Headers">
+      <UniqueIdentifier>{35dccbcd-272a-4ed9-af54-3a7d4c596aa4}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Header-Dateien\Edit - Field - Headers">
+      <UniqueIdentifier>{be72fde5-67d0-4ee0-999b-a0faa35444c4}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Header-Dateien\AVI - Stuff - Headers">
+      <UniqueIdentifier>{d7c28c32-07ba-4709-9c8d-3267e37ae214}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header-Dateien\Matroska - Header">
+      <UniqueIdentifier>{c24638eb-08d6-43ec-9b3c-7b5f520dfed5}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{79b72bb0-d1ba-46fb-ba2d-71bae55e2d84}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AttachedWindows.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSourceTree.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AVIMux_GUI.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AVIMux_GUIDlg.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AVIMux_GUIDlg_AddFile.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AVIMux_GUIDlg_AddFileList.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AVIMux_GUIDlg_MainWindowStates.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AVIMux_GUIDlg_OnInitDialog.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AVIMux_GUIDlg_UsedFilesDisplayFlags.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\basestreams.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Bitstream.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BitStreamFactory.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Buffers.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Cache.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ChapterDlg.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ChapterDlgList.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ChapterDlgTree.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Chapters.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Compression.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigScripts.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CRC.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DynArray.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="EBMLTree.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="EBMLTreeDlg.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="edc_ecc.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="EnhancedListBox.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="FileDialogs.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Filenames.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Filestream.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="FillASIs.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="fopenutf8.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FormatInt64.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="FormatText.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FormatTime.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="HexViewListBox.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\HighPrecisionTimer.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\IBitStream.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="LanguageCodes.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Languages.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageBoxHelper.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageLists.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Mode2Form2Reader.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\multimedia_source.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Muxing.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="OGGFile.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\controls\OSSpecific.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="OSVersion.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgressList.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ProtocolListCtrl.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ResizeableDialog.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="RIFFChunkTreeDlg.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="RIFFFile.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SetFramerateDlg.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SetMainAVIHeaderFlagsDlg.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SetStoreFileOptionsDlg.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Silence.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFileListBox.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SplitPointList.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SplitPointsDlg.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Stream.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Strings.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SubTitles.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="TABHandler.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Tags.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\TextFiles.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TitleSet.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\TraceFiles\Tracefile.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformFilter.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Trees.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="UnicodeBase.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UnicodeCalls.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="UnicodeListControl.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="UnicodeTreeCtrl.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\utf-8.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="UTF8Windows.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Version.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoInformationDlg.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoInformationDlgListbox.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="WAVFile.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\XML.CPP">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLFiles.cpp">
+      <Filter>Quellcodedateien</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource_AAC.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource_AC3.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource_AVI.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource_binary.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource_DTS.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource_generic.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource_List.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource_Matroska.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource_MP3.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource_Vorbis.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioSource_WAV.cpp">
+      <Filter>Quellcodedateien\Audio - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoSource_AVI.cpp">
+      <Filter>Quellcodedateien\Video - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoSource_generic.cpp">
+      <Filter>Quellcodedateien\Video - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoSource_List.cpp">
+      <Filter>Quellcodedateien\Video - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoSource_Matroska.cpp">
+      <Filter>Quellcodedateien\Video - Source - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AC3FrameCountEdit.cpp">
+      <Filter>Quellcodedateien\Edit - Field - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AddSplitPointDlg.cpp">
+      <Filter>Quellcodedateien\Edit - Field - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="ChapterSegmentUIDEdit.cpp">
+      <Filter>Quellcodedateien\Edit - Field - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="ClusterTimeEdit.cpp">
+      <Filter>Quellcodedateien\Edit - Field - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="MKVAC3FrameCountEdit.cpp">
+      <Filter>Quellcodedateien\Edit - Field - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="MKVHeaderSizeEdit.cpp">
+      <Filter>Quellcodedateien\Edit - Field - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="ResolutionEdit.cpp">
+      <Filter>Quellcodedateien\Edit - Field - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="UserDrawEdit.cpp">
+      <Filter>Quellcodedateien\Edit - Field - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="VerifyEdit.cpp">
+      <Filter>Quellcodedateien\Edit - Field - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="AVIFile.cpp">
+      <Filter>Quellcodedateien\AVI - Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="AVIIndices.cpp">
+      <Filter>Quellcodedateien\AVI - Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="AVIStream.cpp">
+      <Filter>Quellcodedateien\AVI - Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\EBML.CPP">
+      <Filter>Quellcodedateien\Matroska - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\EBML_matroska.cpp">
+      <Filter>Quellcodedateien\Matroska - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Integers.cpp">
+      <Filter>Quellcodedateien\Matroska - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Matroska.cpp">
+      <Filter>Quellcodedateien\Matroska - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Matroska_Block.cpp">
+      <Filter>Quellcodedateien\Matroska - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Matroska_Clusters.cpp">
+      <Filter>Quellcodedateien\Matroska - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Matroska_Segment.cpp">
+      <Filter>Quellcodedateien\Matroska - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Matroska_Writing.cpp">
+      <Filter>Quellcodedateien\Matroska - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Queue.cpp">
+      <Filter>Quellcodedateien\Matroska - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UID.cpp">
+      <Filter>Quellcodedateien\Matroska - Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Warnings.cpp">
+      <Filter>Quellcodedateien\Matroska - Code</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AVIMux_GUI.rc">
+      <Filter>Quellcodedateien</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TreeItemDeleter.h">
+      <Filter>Quellcodedateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AddSplitPointDlg.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Assert.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AttachedWindows.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSourceTree.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AVIMux_GUI.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AVIMux_GUIDlg.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BaseStreams.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Bitstream.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BitStreamFactory.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Buffers.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Cache.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ChapterDlg.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ChapterDlgList.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ChapterDlgTree.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Chapters.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Compression.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigScripts.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CRC.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="DynArray.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="EBMLTree.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="EBMLTreeDlg.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ecc.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="EnhancedListBox.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="FILE_INFO.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="FileDialogs.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Filenames.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Filestream.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="FillASIs.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Finalizer.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="fopenutf8.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FormatInt64.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="FormatText.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FormatTime.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="HexViewListBox.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\IBitStream.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="IncResource.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ITitleSet.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="LanguageCodes.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Languages.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageBoxHelper.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageLists.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Mode2Form2Reader.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\multimedia_source.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Muxing.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="OGGFile.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="OSVersion.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\Path.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressList.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtocolListCtrl.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ResizeableDialog.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="RIFFChunkTreeDlg.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="RIFFFile.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SetFramerateDlg.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SetMainAVIHeaderFlagsDlg.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SetStoreFileOptionsDlg.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Silence.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFileListBox.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SplitPointList.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SplitPointsDlg.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Strings.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SubTitles.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="TABHandler.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Tags.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\TextFiles.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TitleSet.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformFilter.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Trees.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Types.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="UnicodeBase.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UnicodeCalls.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="UnicodeListControl.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="UnicodeTreeCtrl.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utf-8.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="UTF8Windows.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Version.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoInformationDlg.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoInformationDlgListbox.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoInformationDlgTypes.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="WAVFile.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowHelper.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\XML.H">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLFiles.h">
+      <Filter>Header-Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource_AAC.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource_AC3.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource_AVI.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource_binary.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource_DTS.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource_generic.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource_List.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource_Matroska.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource_MP3.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource_Vorbis.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource_WAV.h">
+      <Filter>Header-Dateien\Audio - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoSource.h">
+      <Filter>Header-Dateien\Video - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoSource_AVI.h">
+      <Filter>Header-Dateien\Video - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoSource_generic.h">
+      <Filter>Header-Dateien\Video - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoSource_List.h">
+      <Filter>Header-Dateien\Video - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoSource_Matroska.h">
+      <Filter>Header-Dateien\Video - Source - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AC3FrameCountEdit.h">
+      <Filter>Header-Dateien\Edit - Field - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ChapterSegmentUIDEdit.h">
+      <Filter>Header-Dateien\Edit - Field - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ClusterTimeEdit.h">
+      <Filter>Header-Dateien\Edit - Field - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MKVAC3FrameCountEdit.h">
+      <Filter>Header-Dateien\Edit - Field - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MKVHeaderSizeEdit.h">
+      <Filter>Header-Dateien\Edit - Field - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ResolutionEdit.h">
+      <Filter>Header-Dateien\Edit - Field - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="UserDrawEdit.h">
+      <Filter>Header-Dateien\Edit - Field - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VerifyEdit.h">
+      <Filter>Header-Dateien\Edit - Field - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AVIFile.h">
+      <Filter>Header-Dateien\AVI - Stuff - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AVIIndices.h">
+      <Filter>Header-Dateien\AVI - Stuff - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AVIStream.h">
+      <Filter>Header-Dateien\AVI - Stuff - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AVIStructs.h">
+      <Filter>Header-Dateien\AVI - Stuff - Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EBML.H">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EBML_IDs.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\EBML_matroska.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Integers.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Matroska.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Matroska_Block.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Matroska_Clusters.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Matroska_IDs.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Matroska_Segment.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Matroska_writing.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Queue.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UID.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Warnings.h">
+      <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\AVIMux_GUI.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res_deu\res\AVIMux_GUI.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res_eng\res\AVIMux_GUI.ico">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="res\bitmap1.bmp">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HexViewListBox.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\fastintops.asm" />
+  </ItemGroup>
+</Project>

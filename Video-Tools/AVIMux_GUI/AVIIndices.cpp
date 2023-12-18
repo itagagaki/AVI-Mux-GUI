@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "aviindices.h"
 
 
@@ -40,7 +40,7 @@ DWORD INDEX::GetSize()
 	INDEX*	lpCurr;
 	DWORD	dwSize=0;
 	
-// rekursiver Aufruf führt zu Stack-Overflows!
+// rekursiver Aufruf fÃ¼hrt zu Stack-Overflows!
 	lpCurr=this;
 	while (lpCurr)
 	{
@@ -76,7 +76,7 @@ DWORD INDEX::Store(void* lpDest)
 	DWORD*	lpdwDest=(DWORD*)lpDest;
 	INDEX*	lpCurr;
 	
-// rekursiver Aufruf führt zu Stack-Overflows!
+// rekursiver Aufruf fÃ¼hrt zu Stack-Overflows!
 	lpCurr=this;
 	while (lpCurr)
 	{
@@ -321,7 +321,7 @@ DWORD SUPERINDEX::Store(void* lpDest)
 			*lpdwDest++=lpCurr->GetChunkSize();
 			if (lpCurr->GetKindOfStream()==AVI_VIDEOSTREAM)
 			{
-				// Video: dwStreamTicks = Anzahl Frames = Anzahl Einträge
+				// Video: dwStreamTicks = Anzahl Frames = Anzahl EintrÃ¤ge
 				*lpdwDest++=(DWORD)round((lpCurr->GetChunkSize()-32)/8);
 			}
 			else

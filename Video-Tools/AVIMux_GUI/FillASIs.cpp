@@ -54,7 +54,7 @@ void FillAAC_ASI(AUDIO_STREAM_INFO** asi,AACSOURCE* aacsource)
 		ZeroMemory((*asi)->lpASH,sizeof(AVIStreamHeader));
 	}
 //	(*asi)->iDelay=0;
-	(*asi)->lpFormat=malloc(sizeof(WAVEFORMATEX)+5);
+	(*asi)->lpFormat=malloc(sizeof(WAVEFORMATEX)+5);  // TODO: null check
 	lpwfe=(WAVEFORMATEX*)((*asi)->lpFormat);
 	ZeroMemory((*asi)->lpFormat,sizeof(WAVEFORMATEX)+5);
 
@@ -161,7 +161,7 @@ void FillVorbis_ASI (AUDIO_STREAM_INFO** asi,VORBISFROMOGG* vorbis)
 		(*asi)->dwFlags=ASIF_ALLOCATED;
 	}
 
-	(*asi)->lpFormat=malloc(sizeof(WAVEFORMATEXTENSIBLE)+5);
+	(*asi)->lpFormat=malloc(sizeof(WAVEFORMATEXTENSIBLE)+5);  // TODO: null check
 	lpwfe=(WAVEFORMATEXTENSIBLE*)((*asi)->lpFormat);
 	ZeroMemory((*asi)->lpFormat,sizeof(WAVEFORMATEXTENSIBLE)+5);
 

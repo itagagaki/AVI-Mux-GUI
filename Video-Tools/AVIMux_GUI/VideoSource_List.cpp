@@ -24,7 +24,7 @@ int VIDEOSOURCELIST::Append(VIDEOSOURCE *pNext)
 {
 	if (CanAppend(pNext)) {
 
-		info.videosources = (VIDEOSOURCE**)realloc(info.videosources,(info.iCount+1)*sizeof(VIDEOSOURCE*));
+		info.videosources = (VIDEOSOURCE**)realloc(info.videosources,(info.iCount+1)*sizeof(VIDEOSOURCE*));  // TODO: null check
 		info.videosources[info.iCount] = pNext;
 //		pNext->UpdateDuration(pNext->GetDuration());
 		if (info.iCount) {
@@ -35,7 +35,7 @@ int VIDEOSOURCELIST::Append(VIDEOSOURCE *pNext)
 			pNext->GetOutputResolution(&r);
 			SetOutputResolution(&r);
 			char c[1024]; c[0]=0;
-			pNext->GetName(c);
+			pNext->GetName(c, sizeof c);
 			GetTitleSet()->Import(pNext->GetTitleSet());
 //			SetName(c);
 			

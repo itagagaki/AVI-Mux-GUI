@@ -1,4 +1,4 @@
-#if !defined(AFX_RIFFCHUNKTREEDLG_H__A85847D2_EE36_4B4E_A3B5_61C7FB2C0400__INCLUDED_)
+ï»¿#if !defined(AFX_RIFFCHUNKTREEDLG_H__A85847D2_EE36_4B4E_A3B5_61C7FB2C0400__INCLUDED_)
 #define AFX_RIFFCHUNKTREEDLG_H__A85847D2_EE36_4B4E_A3B5_61C7FB2C0400__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -46,11 +46,11 @@ public:
 	//}}AFX_DATA
 
 
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
+// Ãœberschreibungen
+	// Vom Klassen-Assistenten generierte virtuelle FunktionsÃ¼berschreibungen
 	//{{AFX_VIRTUAL(CRIFFChunkTreeDlg)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV-Unterstützung
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV-UnterstÃ¼tzung
 	//}}AFX_VIRTUAL
 
 // Implementierung
@@ -75,6 +75,6 @@ public:
 };
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ fügt unmittelbar vor der vorhergehenden Zeile zusätzliche Deklarationen ein.
+// Microsoft Visual C++ fÃ¼gt unmittelbar vor der vorhergehenden Zeile zusÃ¤tzliche Deklarationen ein.
 
 #endif // AFX_RIFFCHUNKTREEDLG_H__A85847D2_EE36_4B4E_A3B5_61C7FB2C0400__INCLUDED_

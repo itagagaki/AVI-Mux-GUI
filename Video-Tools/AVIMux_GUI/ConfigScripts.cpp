@@ -51,7 +51,7 @@ bool	LoadScript(char* lpcName,HWND hwnd,UINT message)
 	fs->Open(lpcName, StreamMode::Read);
 	CTextFile* f = new CTextFile;
 	f->Open(StreamMode::Read,fs);
-	f->SetOutputEncoding(CharacterEncoding::UTF8);
+	f->SetOutputEncoding(CharacterEncoding::CharacterEncodings::UTF8);
 		
 	char*	buffer = NULL;
 	char*   entire_line = NULL;
@@ -120,7 +120,7 @@ bool	LoadScript(char* lpcName,HWND hwnd,UINT message)
 		{	}
 		else
 		if (!strcmp(w,"LOAD"))	{
-			cText = (char*)calloc(2, 32768);
+			cText = (char*)calloc(2, 32768);  // TODO: null check
 
 			std::string fullPathToLoad = CPath::Combine(path, l);
 			CUTF8 utf8PathToLoad(fullPathToLoad.c_str());
@@ -208,7 +208,7 @@ bool	LoadScript(char* lpcName,HWND hwnd,UINT message)
 		if (!strcmp(w,"SET")) { 
 			w=getword(&l);
 			if (!strcmp(w,"OPTION")) {
-				cText = (char*)calloc(1,1+strlen(l));
+				cText = (char*)calloc(1,1+strlen(l));  // TODO: null check
 				strcpy(cText,l);
 				PostMessage(hwnd,message,IDM_SETOPTION,(LPARAM)cText);
 			}
@@ -235,7 +235,7 @@ bool	LoadScript(char* lpcName,HWND hwnd,UINT message)
 		if (!strcmp(w,"START"))
 		{
 			char*	lpcFile;
-			lpcFile = (char*)malloc(1+strlen(l));
+			lpcFile = (char*)malloc(1+strlen(l));  // TODO: null check
 			strcpy(lpcFile,buffer+6);
 			bWait = true;
 			PostMessage(hwnd,message,IDM_STARTMUXING,(LPARAM)lpcFile);
@@ -272,10 +272,10 @@ bool	LoadScript(char* lpcName,HWND hwnd,UINT message)
 	fs->Close();
 	delete f;
 	delete fs;
-	delete with;
-	delete entire_line;
-	delete buffer;
-	delete line;
+	free(with);
+	free(entire_line);
+	free(buffer);
+	free(line);
 	CloseHandle(hGlobalMuxingStartedSemaphore);
 	CloseHandle(hGlobalMuxSemaphore);
 	return true;

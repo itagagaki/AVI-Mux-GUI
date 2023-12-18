@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// German (Germany) resources
+// ƒhƒCƒcŒê (ƒhƒCƒc) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
-#ifdef _WIN32
 LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -67,6 +65,7 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\AVIMux_GUI.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -312,7 +311,7 @@ BEGIN
     CONTROL         "List2",IDC_ENHLIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | NOT WS_VISIBLE | WS_BORDER,14,55,416,23,WS_EX_ACCEPTFILES
     CONTROL         "List1",IDC_PROGRESS_LIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER,20,313,399,41
     CONTROL         "List1",IDC_PROTOCOL,"SysListView32",LVS_REPORT | LVS_NOSORTHEADER | WS_BORDER,51,250,65,30
-    CONTROL         "Progress1",IDC_PROGCTRL,"msctls_progress32",WS_BORDER | 0x1,69,357,203,12,WS_EX_CLIENTEDGE
+    CONTROL         "Progress1",IDC_PROGCTRL,"msctls_progress32",PBS_SMOOTH | WS_BORDER,69,357,203,12,WS_EX_CLIENTEDGE
     EDITTEXT        IDC_VIDEOSTRETCHFACTOR,327,104,44,12,ES_AUTOHSCROLL | NOT WS_VISIBLE | NOT WS_TABSTOP
     LTEXT           "stretch by",IDC_VIDEOSTRETCHFACTORLABEL,290,106,33,8,NOT WS_VISIBLE
     EDITTEXT        IDC_TITLE,65,91,212,12,ES_AUTOHSCROLL | NOT WS_TABSTOP
@@ -328,7 +327,7 @@ BEGIN
     PUSHBUTTON      "Button1",IDCANCEL,390,240,31,13,NOT WS_VISIBLE
 END
 
-IDD_SPLITPOINTS DIALOG  0, 0, 213, 169
+IDD_SPLITPOINTS DIALOG 0, 0, 213, 169
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Split-Punkte manuell eingeben"
 FONT 8, "MS Sans Serif"
@@ -344,7 +343,7 @@ BEGIN
     LTEXT           "Chapters: chapter 3  or  chapter 2.*  =>  2.1, 2.2, 2.3, ....",IDC_STATIC,8,30,190,8
 END
 
-IDD_ADDSPLITPOINTDLG DIALOG  0, 0, 154, 82
+IDD_ADDSPLITPOINTDLG DIALOG 0, 0, 154, 82
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Split-punkt"
 FONT 8, "MS Sans Serif"
@@ -369,7 +368,7 @@ BEGIN
     PUSHBUTTON      "Save",IDC_SAVETREE,361,207,50,14
 END
 
-IDD_SETFRAMERATE DIALOG  0, 0, 151, 103
+IDD_SETFRAMERATE DIALOG 0, 0, 151, 103
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Framerate"
 FONT 8, "MS Sans Serif"
@@ -383,7 +382,7 @@ BEGIN
     CONTROL         "nspf",IDR_FR_NSPF,"Button",BS_AUTORADIOBUTTON,109,19,29,10
 END
 
-IDD_SETFLAGS DIALOG  0, 0, 215, 133
+IDD_SETFLAGS DIALOG 0, 0, 215, 133
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "dwFlags festlegen"
 FONT 8, "MS Sans Serif"
@@ -495,7 +494,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_SETOUTPUTOPTIONS, DIALOG
     BEGIN
@@ -591,7 +590,7 @@ END
 // Menu
 //
 
-IDR_SOURCEFILEMENU MENU 
+IDR_SOURCEFILEMENU MENU
 BEGIN
     MENUITEM "IDM_ADDAVILIST",              IDM_ADDAVILIST
     MENUITEM "IDM_ADDFILE",                 IDM_ADDFILE
@@ -669,14 +668,14 @@ BEGIN
     MENUITEM "IDM_DELETESTREAMLANGUAGE",    40113
 END
 
-IDR_SPLITPOINTLISTMENU MENU 
+IDR_SPLITPOINTLISTMENU MENU
 BEGIN
     MENUITEM "hinzufügen",                  IDM_ADDSPLITPOINT
     MENUITEM "entfernen",                   IDM_REMOVESPLITPOINT
     MENUITEM "ändern",                      IDM_CHANGESPLITPOINT
 END
 
-IDR_AUDIOSTREAMSMENU MENU 
+IDR_AUDIOSTREAMSMENU MENU
 BEGIN
     MENUITEM "Delay festlegen",             IDM_SETDELAY
     MENUITEM "MP3 extrahieren",             IDM_EXTRACTMP3
@@ -689,7 +688,7 @@ BEGIN
     MENUITEM "extract to OGG",              IDM_EXTRACT_OGGVORBIS
 END
 
-IDR_VIDEOINFOMENU MENU 
+IDR_VIDEOINFOMENU MENU
 BEGIN
     MENUITEM "defekte dwDuration-Werte reparieren", IDM_VILB_REPAIRODML
     MENUITEM "fehlerhaften dwMicroSecPerFrame-Wert reparieren", IDM_VILB_REPAIRFRAMERATE
@@ -699,7 +698,7 @@ BEGIN
     MENUITEM "MainAVIHeader.dwTotalFrames reparieren", IDM_VILB_TOTALFRAMES
 END
 
-IDR_LANGUAGES MENU 
+IDR_LANGUAGES MENU
 BEGIN
     MENUITEM "IDM_LANG1",                   IDM_LANG1
     MENUITEM "IDM_LANG2",                   IDM_LANG2
@@ -719,7 +718,7 @@ BEGIN
     MENUITEM "IDM_LANG16",                  IDM_LANG16
 END
 
-IDR_SUBTITLEMENU MENU 
+IDR_SUBTITLEMENU MENU
 BEGIN
     MENUITEM "extract srt",                 IDM_EXTRACTSRT
     MENUITEM "extract ssa",                 IDM_EXTRACTSSA
@@ -733,6 +732,7 @@ END
 
 IDB_BITMAP1             BITMAP                  "res\\bitmap1.bmp"
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // HTML
@@ -740,12 +740,13 @@ IDB_BITMAP1             BITMAP                  "res\\bitmap1.bmp"
 
 IDR_HTML_HEXVIEWLISTBOX HTML                    "HexViewListBox.htm"
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_ABOUTBOX            "Inf&o über AVIMux_GUI..."
     IDS_FILEISMP3CBR        "Diese MP3-Datei ist CBR"
@@ -760,7 +761,7 @@ BEGIN
     IDS_NOVIDEOSOURCECHOSEN "Keine Videoquelle ausgewählt!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_FILETYPENOTSUPPORTED 
                             "Es werden nur AVI-, MP3-, WAV-, AC3-, DTS-, SRT- und gültige AVI-Mux GUI - Scriptdateien akzeptiert!"
@@ -779,7 +780,7 @@ BEGIN
     IDS_ADD                 "hinzufügen"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_REMOVE              "entfernen"
     IDS_CHANGE              "ändern"
@@ -799,7 +800,7 @@ BEGIN
     IDS_VI_SIZEOFVIDEO      "Größe des Videostreams"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_VI_VIDEODATARATE    "Videodatenrate"
     IDS_VI_AUDIOSTREAMS     "Anzahl Audiostreams"
@@ -819,7 +820,7 @@ BEGIN
     IDS_VI_FRAMES           "Frames"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_VI_OPENDMLINDEX     "Open-DML-Index"
     IDS_VI_SUPERINDEXENTRIES "Einträge im Superindex"
@@ -838,7 +839,7 @@ BEGIN
     IDS_VILB_REPAIRFRAMERATE "fehlerhaften dwMicroSecPerFrame-Wert reparieren"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_VILB_SETFRAMERATE   "Framerate ändern..."
     IDS_FILEALREADYINUSE    "Diese Datei wird bereits verwendet:%c%c%c%c%s"
@@ -846,7 +847,7 @@ BEGIN
     IDS_CANTOPENMP3         "Die MP3/AC3/DTS-Quelldatei konnte nicht geöffnet werden. Vermutlich ist der erste Frameheader fehlerhaft."
     IDS_VILB_SETMAHFLAGS    "MainAVIHeader.dwFlags ändern"
     IDS_VERSION             "Version"
-    IDS_VERSION_INFO        "1.17.8.3"
+    IDS_VERSION_INFO        "1.17.8.3 + WIP"
     IDS_VILB_CHUNKSIZES     "Chunkgrößen"
     IDS_VILB_OVER           "über"
     IDS_VILB_UPTO           "bis zu"
@@ -858,7 +859,7 @@ BEGIN
     IDS_CONTINUE            "Fortsetzen?"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_CRAPAC3DATA         "An folgenden Positionen wurden Fehler im AC3-Stream gefunden:"
     IDS_NOPERCENT_D         "Auf Grund der gewählten maximalen Dateigröße wird mehr als eine Ausgabedatei entstehen.%c%cDie fortlaufende Nummer der Datei hat jedoch keinen Einfluß auf den Dateinamen (es fehlt ein %%d im Numerierungsstring).%c%c%c%cForsetzen (nicht empfohlen)?"
@@ -875,14 +876,14 @@ BEGIN
     IDS_MBYTE               "MByte"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_TOOMANYSTRFORSTDAVI "Es soll eine Standard-AVI-Datei mit mehr als 9 Streams erzeugt werden. Auf Grund eines Bugs in DirectShow ist es jedoch nötig, Open-DML zu verwenden, da die Datei sonst nicht korrekt wiedergegeben werden wird.\n\nSoll der Vorgang fortgesetzt und die Ausgabe auf Open-DML eingestellt werden?"
     IDS_LANGUAGE            "Sprache"
     IDS_COULDNTMERGESUBS    "Untertitel konnten nicht zusammengefügt werden!"
 END
 
-#endif    // German (Germany) resources
+#endif    // ƒhƒCƒcŒê (ƒhƒCƒc) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

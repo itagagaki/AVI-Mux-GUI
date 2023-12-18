@@ -56,7 +56,7 @@ LANGUAGE_DESCRIPTOR* LoadLanguageFile(const char* lpcName)
 	s->Open(lpcName, StreamMode::Read);
 	CTextFile* f = new CTextFile;
 	f->Open(StreamMode::Read, s);
-	f->SetOutputEncoding(CharacterEncoding::UTF8);
+	f->SetOutputEncoding(CharacterEncoding::CharacterEncodings::UTF8);
 	
 	std::string textFileLine;
 	f->ReadLine(textFileLine);

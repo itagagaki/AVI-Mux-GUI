@@ -16,7 +16,7 @@
 class TraceLevel
 {
 public:
-	enum TraceLevels {
+	enum class TraceLevels {
 		Debug = TRACE_LEVEL_DEBUG,
 		Info = TRACE_LEVEL_INFO,
 		Note = TRACE_LEVEL_NOTE,
@@ -47,7 +47,7 @@ public:
 
 	operator unsigned int() const
 	{
-		return m_value;
+		return static_cast<unsigned int>(m_value);
 	}
 
 	const char* GetText() const;

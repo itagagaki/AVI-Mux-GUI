@@ -236,7 +236,7 @@ int DTSSOURCE::ReadFrame(void* lpDest,DWORD* lpdwMicroSecRead,__int64 *lpqwNanoS
 		*lpqwNanoSecRead = dtsinfo.nano_seconds_per_frame;
 
 	if (lpdwMicroSecRead)
-		*lpdwMicroSecRead = (DWORD)(round( (((double)dtsinfo.nano_seconds_per_frame) + 499.0) / 1000.0));
+		*lpdwMicroSecRead = (DWORD)((__int64)round( (((double)dtsinfo.nano_seconds_per_frame) + 499.0) / 1000.0));
 
 	return dwRead;
 }

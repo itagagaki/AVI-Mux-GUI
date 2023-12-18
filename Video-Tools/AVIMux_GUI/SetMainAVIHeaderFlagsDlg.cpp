@@ -1,4 +1,4 @@
-// SetMainAVIHeaderFlagsDlg.cpp: Implementierungsdatei
+ï»¿// SetMainAVIHeaderFlagsDlg.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -24,7 +24,7 @@ CSetMainAVIHeaderFlagsDlg::CSetMainAVIHeaderFlagsDlg(CWnd* pParent /*=NULL*/)
 	bActive=false;
 
 	//{{AFX_DATA_INIT(CSetMainAVIHeaderFlagsDlg)
-		// HINWEIS: Der Klassen-Assistent fügt hier Elementinitialisierung ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier Elementinitialisierung ein
 	//}}AFX_DATA_INIT
 }
 
@@ -39,7 +39,7 @@ void CSetMainAVIHeaderFlagsDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CSetMainAVIHeaderFlagsDlg)
-		// HINWEIS: Der Klassen-Assistent fügt hier DDX- und DDV-Aufrufe ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier DDX- und DDV-Aufrufe ein
 	//}}AFX_DATA_MAP
 }
 
@@ -78,12 +78,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CSetMainAVIHeaderFlagsDlg, CDialog)
 	//{{AFX_DISPATCH_MAP(CSetMainAVIHeaderFlagsDlg)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_ISetMainAVIHeaderFlagsDlg zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_ISetMainAVIHeaderFlagsDlg zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {AB3A79A4-6406-48ED-8DC4-048F6D187BFB}
@@ -95,13 +95,13 @@ BEGIN_INTERFACE_MAP(CSetMainAVIHeaderFlagsDlg, CDialog)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CSetMainAVIHeaderFlagsDlg 
+// Behandlungsroutinen fÃ¼r Nachrichten CSetMainAVIHeaderFlagsDlg 
 
 BOOL CSetMainAVIHeaderFlagsDlg::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
 	bActive=true;
-	// TODO: Zusätzliche Initialisierung hier einfügen
+	// TODO: ZusÃ¤tzliche Initialisierung hier einfÃ¼gen
 	RefreshCheckboxes();
 	
 	SetWindowText(LoadString(STR_SAHF_TITLE));
@@ -113,19 +113,19 @@ BOOL CSetMainAVIHeaderFlagsDlg::OnInitDialog()
 	SendDlgItemMessage(IDC_SAHF_FLAGS,WM_SETTEXT,NULL,(LPARAM)LoadString(STR_SAHF_AVAILABLEFLAGS));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurückgeben
+	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurÃ¼ckgeben
 }
 
 void CSetMainAVIHeaderFlagsDlg::OnSetfalgsRestore() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	SetData(dwData);
 }
 
 void CSetMainAVIHeaderFlagsDlg::OnOK() 
 {
-	// TODO: Zusätzliche Prüfung hier einfügen
+	// TODO: ZusÃ¤tzliche PrÃ¼fung hier einfÃ¼gen
 	UpdateData();	
 	CDialog::OnOK();
 }

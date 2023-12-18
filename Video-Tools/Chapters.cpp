@@ -204,9 +204,9 @@ int CChapters::AddChapter(__int64 qwBegin, __int64 qwEnd, char* cText, int bEnab
 	scd.bHidden   = bHidden;
 	scd.iBegin    = qwBegin;
 	scd.iEnd      = qwEnd;
-	strcpy(scd.cText, cText);
+	strcpy_s(scd.cText, cText);
 	ZeroMemory(scd.cLng, sizeof(scd.cLng));
-	strcpy(scd.cLng, "und");
+	strcpy_s(scd.cLng, "und");
 
 	return AddChapter(&scd);
 }
@@ -248,7 +248,7 @@ int CChapters::AddChapter(SINGLE_CHAPTER_DATA* pSCD)
 	if (!chapters) 	chapters = (CHAPTERS*)calloc(1,sizeof(CHAPTERS));
 
 	int i = chapters->iCount;
-	chapters->chapters = (CHAPTER_INFO**)realloc(chapters->chapters,(i+1)*sizeof(CHAPTER_INFO*));
+	chapters->chapters = (CHAPTER_INFO**)realloc(chapters->chapters,(i+1)*sizeof(CHAPTER_INFO*));  // TODO: null check
 	chapters->chapters[i] = new CHAPTER_INFO;
 
 	c = chapters->chapters[i];
@@ -495,7 +495,7 @@ int CChapters::GetChapter(CDynIntArray* aIndex, SINGLE_CHAPTER_DATA *lpSCD)
 	lpSCD->iBegin = GetChapterBegin(iIndex);
 	lpSCD->iEnd = GetChapterEnd(iIndex);
 
-	strcpy(lpSCD->cText, chapters->chapters[iIndex]->display[0].cString->Get());
+	strcpy_s(lpSCD->cText, chapters->chapters[iIndex]->display[0].cString->Get());
 	lpSCD->bEnabled = chapters->chapters[iIndex]->bEnabled;
 	lpSCD->bHidden = chapters->chapters[iIndex]->bHidden;
 	
@@ -530,7 +530,7 @@ int CChapters::GetChapter(int iIndex, SINGLE_CHAPTER_DATA *lpSCD)
 	if (GetChapterDisplayCount(iIndex)>0) {
 		CHAPTER_DISPLAY_INFO& cdi = chapters->chapters[iIndex]->display[0]; 
 		if (cdi.cString) {
-			strcpy(lpSCD->cText, cdi.cString->Get());
+			strcpy_s(lpSCD->cText, cdi.cString->Get());
 			b =                  cdi.cLanguage;
 		} else
 			lpSCD->cText[0] = 0;
@@ -540,7 +540,7 @@ int CChapters::GetChapter(int iIndex, SINGLE_CHAPTER_DATA *lpSCD)
 
 	char* c = NULL;
 	if (b) c = (char*)chapters->chapters[iIndex]->display[0].cLanguage->GetData();
-	if (c) 	strcpy(lpSCD->cLng, c); else lpSCD->cLng[0]=0;
+	if (c) 	strcpy_s(lpSCD->cLng, c); else lpSCD->cLng[0]=0;
 	
 	lpSCD->bEnabled   = chapters->chapters[iIndex]->bEnabled;
 	lpSCD->bHidden    = chapters->chapters[iIndex]->bHidden;
@@ -1147,7 +1147,7 @@ int CChapters::GetChapterSize(int iIndex, int flags)
 		size += 4;
 
 	// ordered
-	if (scd.bOrdered && scd.bOrdered)
+	if (scd.bOrdered && scd.bOrdered)  // TODO: Probably a mistake.
 		size += 4;
 
 	// segment uid
@@ -1375,7 +1375,7 @@ int CChapters::ImportFromXML(XMLNODE* xmlNode, int depth)
 			if (!_stricmp(xmlCurr->cNodeName.c_str(), "EditionFlagDefault"))
 				scd.bDefault = !!atoi(xmlCurr->cValue.c_str()); else
 			if (!_stricmp(xmlCurr->cNodeName.c_str(), "EditionUID"))
-				sscanf(xmlCurr->cValue.c_str(), "%I64u", &uid);
+				(void)sscanf(xmlCurr->cValue.c_str(), "%I64u", &uid);
 //				uid = _atoi64(xmlCurr->cValue);
 			
 			xmlCurr = (XMLNODE*)xmlCurr->pNext;
@@ -1395,8 +1395,8 @@ int CChapters::ImportFromXML(XMLNODE* xmlNode, int depth)
 
 		if (res == CHAP_IMPXML_UNKNOWN_ELEMENT) {
 			char msg[1024]; msg[0]=0;
-			sprintf(msg, "Error parsing edition #%d: Unknown child in <EditionEntry>", GetChapterCount(),
-				xmlNode->cNodeName);
+			sprintf_s(msg, "Error parsing edition #%d: Unknown child in <%s>", GetChapterCount(),
+				xmlNode->cNodeName.c_str());
 			MessageBoxA(0, msg, "XML Chapter File Parser Error", MB_OK | MB_ICONERROR);
 			res = CHAP_IMPXML_OK;				 
 		}
@@ -1413,7 +1413,7 @@ int CChapters::ImportFromXML(XMLNODE* xmlNode, int depth)
 		scd.bHidden = 0;
 		scd.bEnabled = 1;
 		
-		strcpy(scd.cLng, "und");
+		strcpy_s(scd.cLng, "und");
 		AddChapter(&scd);
 		i = GetChapterCount()-1;
 		XMLNODE* xmlCurr = (XMLNODE*)xmlNode->pChild;
@@ -1440,7 +1440,7 @@ int CChapters::ImportFromXML(XMLNODE* xmlNode, int depth)
 
 			if IS(xmlCurr, "ChapterUID") {
 
-				sscanf(xmlCurr->cValue.c_str(), "%I64u", &uid);
+				(void)sscanf(xmlCurr->cValue.c_str(), "%I64u", &uid);
 				//uid = _atoi64(xmlCurr->cValue);
 				
 			
@@ -1582,7 +1582,7 @@ int CChapters::CreateXMLTree_aux(XMLNODE** ppNode)
 			if (scd.bOrdered)
 				xmlAddChild(pNode, "EditionFlagOrdered", "1");
 			
-			sprintf(cTxt, "%I64u", GetUID(i));
+			sprintf_s(cTxt, "%I64u", GetUID(i));
 			pNode = xmlAddChild(pNode, "EditionUID", cTxt);
 		} else {
 			pNode = xmlAddSibling(ppNode, "ChapterAtom", "");
@@ -1599,10 +1599,10 @@ int CChapters::CreateXMLTree_aux(XMLNODE** ppNode)
 			if (!scd.bEnabled) 
 				xmlAddChild(pNode, "ChapterFlagEnabled", (scd.bEnabled)?"1":"0");
 			if (scd.iPhysicalEquiv != CHIPE_UNDEFINED) {
-				sprintf(cTxt,"%d", scd.iPhysicalEquiv);
+				sprintf_s(cTxt, "%d", scd.iPhysicalEquiv);
 				xmlAddChild(pNode, "ChapterPhysicalEquiv", cTxt);
 			}
-			sprintf(cTxt, "%I64u", GetUID(i));
+			sprintf_s(cTxt, "%I64u", GetUID(i));
 			xmlAddChild(pNode, "ChapterUID", cTxt);
 			if (scd.bSegmentUIDValid) {
 				__int128hex(scd.cSegmentUID, cTxt, 1);
@@ -1638,7 +1638,7 @@ int CChapters::CreateXMLTree_tags(XMLNODE** ppNode)
 	for (j=0;j<GetChapterCount();j++) 
 		if (IsEdition(j)) {
 			pTag = xmlAddSibling(ppNode, "Tag", "");
-			sprintf(cTxt,"%I64u",GetUID(j));
+			sprintf_s(cTxt, "%I64u", GetUID(j));
 			pTarget = xmlAddChild(pTag,"Targets","");
 			xmlAddChild(pTarget,"EditionUID",cTxt);
 

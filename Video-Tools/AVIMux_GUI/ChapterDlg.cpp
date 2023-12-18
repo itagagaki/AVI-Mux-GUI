@@ -1,4 +1,4 @@
-// ChapterDlg.cpp: Implementierungsdatei
+ï»¿// ChapterDlg.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -44,8 +44,8 @@ CChapterDlg::CChapterDlg(CWnd* pParent /*=NULL*/)
 void CChapterDlg::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CResizeableDialog::OnFinalRelease();
@@ -100,12 +100,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CChapterDlg, CResizeableDialog)
 	//{{AFX_DISPATCH_MAP(CChapterDlg)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IChapterDlg zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IChapterDlg zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {0ED67DC1-B00E-4DC7-B6F8-F8EA55C83790}
@@ -117,7 +117,7 @@ BEGIN_INTERFACE_MAP(CChapterDlg, CResizeableDialog)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CChapterDlg 
+// Behandlungsroutinen fÃ¼r Nachrichten CChapterDlg 
 
 HTREEITEM CChapterDlg::GetSelectedChapter()
 {
@@ -237,7 +237,7 @@ void CChapterDlg::InitChapterDisplayColumns()
 
 BOOL CChapterDlg::OnInitDialog() 
 {
-	// TODO: Zusätzliche Initialisierung hier einfügen
+	// TODO: ZusÃ¤tzliche Initialisierung hier einfÃ¼gen
 	selected_chapter_entry = 0;
 	chapter_title_changed = 0;
 	iSelectedChapterLanguageEntry=-1;
@@ -272,7 +272,7 @@ BOOL CChapterDlg::OnInitDialog()
 	for (int i=0;i<lngcd->GetCount();i++) {
 		char buf[65536];
 		buf[0]=0;
-		sprintf(buf , "%s - %s", lngcd->GetCode(i), lngcd->GetFullName(i));
+		sprintf_s(buf, "%s - %s", lngcd->GetCode(i), lngcd->GetFullName(i));
 		m_ChapterDisplay_Lng.SetItemData(m_ChapterDisplay_Lng.AddString(buf),(LPARAM)lngcd->GetCode(i));
 	}
 
@@ -379,12 +379,12 @@ BOOL CChapterDlg::OnInitDialog()
 //	ReinitPosition();
 
 	return false;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurückgeben
+	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurÃ¼ckgeben
 }
 
 BOOL CChapterDlg::DestroyWindow() 
 {
-	// TODO: Speziellen Code hier einfügen und/oder Basisklasse aufrufen
+	// TODO: Speziellen Code hier einfÃ¼gen und/oder Basisklasse aufrufen
 	RemoveFromTree(&m_Chapters,m_Chapters.GetRootItem());
 
 	
@@ -401,7 +401,7 @@ void CChapterDlg::OnEndlabeleditTree1(NMHDR* pNMHDR, LRESULT* pResult)
 	int u = SendDlgItemMessage(IDC_CHAPTERTREE, TVM_GETUNICODEFORMAT);
 
 	TV_DISPINFO* pTVDispInfo = (TV_DISPINFO*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	HTREEITEM hItem = GetSelectedChapter();
 	CHAPTER_ENTRY* pCE = (CHAPTER_ENTRY*)m_Chapters.GetItemData(hItem);
@@ -450,7 +450,7 @@ void CChapterDlg::OnEndlabeleditTree1(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CChapterDlg::OnMakesubchapter() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	HTREEITEM hItem = GetSelectedChapter();//m_Chapters.GetSelectedItem();
 	HTREEITEM hNext = NULL;
 	HTREEITEM hNew = NULL;
@@ -503,10 +503,10 @@ int RenderChapters2File(CFileStream* f, CChapters* c)
 		if (scd.iEnd!=-1) {
 			Millisec2Str(scd.iEnd/1000000,cTime);
 		} else {
-			sprintf(cTime,"END");
+			sprintf_s(cTime, "END");
 		}
 
-		sprintf(cTotal,"%s %s %d %d %s",cTime,scd.cLng,scd.bEnabled,scd.bHidden,scd.cText);
+		sprintf_s(cTotal, "%s %s %d %d %s", cTime, scd.cLng, scd.bEnabled, scd.bHidden, scd.cText);
 		f->WriteString(cTotal);
 		f->WriteString("\n");
 
@@ -536,10 +536,10 @@ int RenderChapters2File(FILE* f, CChapters* c)
 		if (scd.iEnd!=-1) {
 			Millisec2Str(scd.iEnd/1000000,cTime);
 		} else {
-			sprintf(cTime,"END");
+			sprintf_s(cTime, "END");
 		}
 
-		sprintf(cTotal,"%s %s %d %d %s",cTime,scd.cLng,scd.bEnabled,scd.bHidden,scd.cText);
+		sprintf_s(cTotal, "%s %s %d %d %s", cTime, scd.cLng, scd.bEnabled, scd.bHidden, scd.cText);
 		fprintf(f, cTotal);
 		fprintf(f, "\n");
 
@@ -572,17 +572,17 @@ void CChapterDlg::OnSaveas()
 	char buf[1024]; 
 
 	buf[0]=0;
-	sprintf(buf,"%c%c%c%s%c%c%s%c%c",0xEF,0xBB,0xBF,"<?xml version=\"1.0\" encoding=\"utf-8\"?>",13,10,
+	sprintf_s(buf, "%c%c%c%s%c%c%s%c%c", 0xEF, 0xBB, 0xBF, "<?xml version=\"1.0\" encoding=\"utf-8\"?>", 13, 10,
 		"<!DOCTYPE Segment SYSTEM \"matroskasegment.dtd\">", 13, 10);
 	std::string st_all = buf;
 
 	buf[0]=0;
-	sprintf(buf,"%c%c%c%s%c%c%s%c%c",0xEF,0xBB,0xBF,"<?xml version=\"1.0\" encoding=\"utf-8\"?>",13,10,
+	sprintf_s(buf, "%c%c%c%s%c%c%s%c%c", 0xEF, 0xBB, 0xBF, "<?xml version=\"1.0\" encoding=\"utf-8\"?>", 13, 10,
 		"<!DOCTYPE Chapters SYSTEM \"matroskachapters.dtd\">", 13, 10);
 	std::string st_chp = buf;
 
 	buf[0]=0;
-	sprintf(buf,"%c%c%c%s%c%c%s%c%c",0xEF,0xBB,0xBF,"<?xml version=\"1.0\" encoding=\"utf-8\"?>",13,10,
+	sprintf_s(buf, "%c%c%c%s%c%c%s%c%c", 0xEF, 0xBB, 0xBF, "<?xml version=\"1.0\" encoding=\"utf-8\"?>", 13, 10,
 		"<!DOCTYPE Tags SYSTEM \"matroskatags.dtd\">", 13, 10);
 	std::string st_tag = buf;
 
@@ -612,19 +612,19 @@ void CChapterDlg::OnSaveas()
 		};
 
 		if (!_stricmp(def_ext, "xml")) {
-			strcat(file_types, possible_file_types[0]);
-			strcat(file_types, "|");
-			strcat(file_types, possible_file_types[1]);
-			strcat(file_types, "|");
-			strcat(file_types, possible_file_types[2]);
+			strcat_s(file_types, possible_file_types[0]);
+			strcat_s(file_types, "|");
+			strcat_s(file_types, possible_file_types[1]);
+			strcat_s(file_types, "|");
+			strcat_s(file_types, possible_file_types[2]);
 		} else {
-			strcat(file_types, possible_file_types[1]);
-			strcat(file_types, "|");
-			strcat(file_types, possible_file_types[0]);
-			strcat(file_types, "|");
-			strcat(file_types, possible_file_types[2]);
+			strcat_s(file_types, possible_file_types[1]);
+			strcat_s(file_types, "|");
+			strcat_s(file_types, possible_file_types[0]);
+			strcat_s(file_types, "|");
+			strcat_s(file_types, possible_file_types[2]);
 		}
-		strcat(file_types, "||");
+		strcat_s(file_types, "||");
 
 
 		OPENFILENAME o; 
@@ -661,9 +661,9 @@ void CChapterDlg::OnSaveas()
 					f->Close();
 
 					char c[4096]; c[0]=0;
-					strcpy(c, t);
+					strcpy_s(c, t);
 					c[strlen(c)-4] = 0;
-					strcat(c, ".mkvmerge.chapters.xml");
+					strcat_s(c, ".mkvmerge.chapters.xml");
 					if (f->Open(c, StreamMode::Write) != STREAM_OK) {
 						MessageBox(LoadString(IDS_COULDNOTOPENOUTPUTFILE), LoadString(IDS_ERROR), MB_OK);
 					} else {
@@ -672,7 +672,7 @@ void CChapterDlg::OnSaveas()
 					}
 
 					c[strlen(c)-strlen(".mkvmerge.chapters.xml")] = 0;
-					strcat(c, ".mkvmerge.tags.xml");
+					strcat_s(c, ".mkvmerge.tags.xml");
 					if (f->Open(c, StreamMode::Write) != STREAM_OK) {
 						MessageBox(LoadString(IDS_COULDNOTOPENOUTPUTFILE), LoadString(IDS_ERROR), MB_OK);
 					} else {
@@ -709,7 +709,7 @@ void CChapterDlg::OnSaveas()
 void CChapterDlg::OnBeginlabeleditTree1(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	TV_DISPINFO* pTVDispInfo = (TV_DISPINFO*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	int u = SendDlgItemMessage(IDC_CHAPTERTREE, TVM_GETUNICODEFORMAT);
 	char cBuffer[1024]; cBuffer[0]=0;
 
@@ -727,7 +727,7 @@ void CChapterDlg::OnBeginlabeleditTree1(NMHDR* pNMHDR, LRESULT* pResult)
 			FormatChapterEntry(pCE->c->GetChapterBegin(pCE->iIndex), 
 				pCE->c->GetChapterEnd(pCE->iIndex), "", cBuffer);
 		else
-			strcpy(cBuffer, pCE->cText);
+			strcpy_s(cBuffer, pCE->cText);
 
 		UTF82Str(cBuffer, c);
 		edit->SetWindowText(c);
@@ -739,7 +739,7 @@ void CChapterDlg::OnBeginlabeleditTree1(NMHDR* pNMHDR, LRESULT* pResult)
 			FormatChapterEntry(pCE->c->GetChapterBegin(pCE->iIndex), 
 				pCE->c->GetChapterEnd(pCE->iIndex), "", cBuffer);
 		else
-			strcpy(cBuffer, pCE->cText);
+			strcpy_s(cBuffer, pCE->cText);
 
 		UTF82WStr(cBuffer, c);
 		SendMessageW(edit, WM_SETTEXT, 0, (long)c);
@@ -756,14 +756,14 @@ void CChapterDlg::OnBeginlabeleditTree1(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CChapterDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	
 	CResizeableDialog::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
 void CChapterDlg::OnRclickChaptertree(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	CPoint p;
 	p.x = m_Chapters.GetMouseX();
@@ -814,7 +814,7 @@ void CChapterDlg::ApplyNewChapterTitle()
 void CChapterDlg::OnSelchangedChaptertree(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	
 	HTREEITEM  hNewItem = pNMTreeView->itemNew.hItem;
 	hSelectedChapter = hNewItem;
@@ -947,7 +947,7 @@ void CChapterDlg::UpdateChapterDisplayLngEdit(int iItem)
 void CChapterDlg::OnItemchangedChapterDisplay(NMHDR* pNMHDR, LRESULT* pResult) 
 {
 	NM_LISTVIEW* pNMListView = (NM_LISTVIEW*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 
 	if (!m_Chapters.GetRootItem()) return;
 	
@@ -980,7 +980,7 @@ void CChapterDlg::OnItemchangedChapterDisplay(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CChapterDlg::OnSelchangeChapterdisplayLng() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	char* lng_code = NULL; CString s;
 			
 	if (!m_Chapters.GetRootItem()) return;
@@ -1037,7 +1037,7 @@ void CChapterDlg::OnKeydownChapterDisplay(NMHDR* pNMHDR, LRESULT* pResult)
 
 	CHAPTER_ENTRY* ce		= m_Chapters.GetSelectedChapterEntry();
 	LV_KEYDOWN* pLVKeyDown	= (LV_KEYDOWN*)pNMHDR;
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	int key = pLVKeyDown->wVKey;
 
 	if (ce && key == VK_DELETE) {
@@ -1068,7 +1068,7 @@ void CChapterDlg::OnKeydownChapterDisplay(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CChapterDlg::OnDisplayChapterUids() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	m_Chapters.SetDisplayUIDs(0);//!!m_DisplayChapterUIDs.GetCheck());
 	m_Chapters.InvalidateRect(NULL);
 	m_Chapters.UpdateWindow();
@@ -1120,7 +1120,7 @@ void CChapterDlg::OnChangeChaptersegmentuid()
 
 BOOL CChapterDlg::OnCommand(WPARAM wParam, LPARAM lParam) 
 {
-	// TODO: Speziellen Code hier einfügen und/oder Basisklasse aufrufen
+	// TODO: Speziellen Code hier einfÃ¼gen und/oder Basisklasse aufrufen
 
 	if (HIWORD(wParam) == EN_KILLFOCUS && lParam == (LPARAM)hChapterTitle) {
 		int chp_lng_index = iSelectedChapterLanguageEntry;
@@ -1167,7 +1167,7 @@ BOOL CChapterDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 
 void CChapterDlg::OnCancel() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	Sleep(1);
 }
 
@@ -1209,17 +1209,17 @@ void CChapterDlg::OnSize(UINT nType, int cx, int cy)
 
 void CChapterDlg::OnStnClickedChaptersUsageLabel()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 }
 
 void CChapterDlg::OnBnClickedOk()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 }
 
 void CChapterDlg::OnBnClickedCancel()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 }
 
 void CChapterDlg::OnDestroy()
@@ -1227,5 +1227,5 @@ void CChapterDlg::OnDestroy()
 	CResizeableDialog::OnDestroy();
 
 
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein.
 }

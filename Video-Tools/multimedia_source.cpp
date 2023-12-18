@@ -171,7 +171,7 @@ void MULTIMEDIASOURCE::SetLanguageCode(const std::string& languageCode)
 	m_languageCode = languageCode;
 }
 
-int MULTIMEDIASOURCE::GetName(char* lpDest)
+int MULTIMEDIASOURCE::GetName(char* lpDest, size_t size)
 {
 	/*
 	unsigned char*	lpbDest=(unsigned char*)lpDest;
@@ -185,14 +185,19 @@ int MULTIMEDIASOURCE::GetName(char* lpDest)
 
 	char* pTitle = NULL;
 	GetTitleSet()->GetTitle(&pTitle);
-	if (lpDest) {
-		if (pTitle)
-			strcpy(lpDest, pTitle);
-		else
-			strcpy(lpDest, "");
-	}
+	if (pTitle)
+		strcpy_s(lpDest, size, pTitle);
+	else
+		strcpy_s(lpDest, size, "");
 
-	return (int)strlen(lpDest?lpDest:pTitle?pTitle:"");
+	return (int)strlen(lpDest);
+}
+
+int MULTIMEDIASOURCE::GetName()
+{
+	char* pTitle = NULL;
+	GetTitleSet()->GetTitle(&pTitle);
+	return pTitle ? (int)strlen(pTitle) : 0;
 }
 
 int MULTIMEDIASOURCE::GetLanguageCode(std::string& result)

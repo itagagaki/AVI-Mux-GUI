@@ -225,7 +225,7 @@ int OGGFILE::LoadNextPage()
 void OGGFILE::InsertStreamSerialNumber(int i)
 {
 	stream_serial_numbers.count++;
-	stream_serial_numbers.serial_nbr = (int*)realloc(stream_serial_numbers.serial_nbr, sizeof(int)*stream_serial_numbers.count);
+	stream_serial_numbers.serial_nbr = (int*)realloc(stream_serial_numbers.serial_nbr, sizeof(int)*stream_serial_numbers.count);  // TODO: null check
 	stream_serial_numbers.serial_nbr[stream_serial_numbers.count-1] = i;
 }
 
@@ -363,7 +363,7 @@ int OGGFILE::FindPage(__int64 iPosition)
 									
 	}
 
-	delete pBuffer;
+	delete[] pBuffer;
 
 	return 0;
 }

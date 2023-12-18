@@ -6,14 +6,14 @@
 
 CTextFile::CTextFile()
 {
-	iCharCoding = CharacterEncoding::Undefined;
+	iCharCoding = CharacterEncoding::CharacterEncodings::Undefined;
 	iHdrSize = 0;
 	source=NULL;
 }
 
 CTextFile::CTextFile(StreamMode::StreamModes _dwMode, STREAM* s, CharacterEncoding::CharacterEncodings iOutputFormat)
 {
-	iCharCoding = CharacterEncoding::Undefined;
+	iCharCoding = CharacterEncoding::CharacterEncodings::Undefined;
 	iHdrSize = 0;
 	Open(_dwMode, s);
 	SetOutputEncoding(iOutputFormat);
@@ -35,26 +35,26 @@ int CTextFile::Open(StreamMode::StreamModes _dwMode, STREAM* s)
 	source = s;
 	Seek(0);
 
-	while (!iCharCoding) {
+	while (CharacterEncoding::CharacterEncodings::Undefined == iCharCoding) {
 		int c = 0;
 		source->Read(&c,1);
 		if (c == 0xEF) {
 			if (source->Read(&c,1) && c == 0xBB && 
 				source->Read(&c,1) && c == 0xBF) 
 			{
-				iCharCoding = CharacterEncoding::UTF8;	
+				iCharCoding = CharacterEncoding::CharacterEncodings::UTF8;
 				iHdrSize = 3;
 			}
 		} else
 		if (c == 0xFF) {
 			if (source->Read(&c,1) && c == 0xFE) {
-				iCharCoding = CharacterEncoding::UTF16LE;
+				iCharCoding = CharacterEncoding::CharacterEncodings::UTF16LE;
 				iHdrSize = 2;
 			}
 		} else
 		if (c == 0xFE) {
 			if (source->Read(&c, 1) && c == 0xFF) {
-				iCharCoding = CharacterEncoding::UTF16BE;
+				iCharCoding = CharacterEncoding::CharacterEncodings::UTF16BE;
 				iHdrSize = 2;
 			}
 		}
@@ -62,7 +62,7 @@ int CTextFile::Open(StreamMode::StreamModes _dwMode, STREAM* s)
 			// Change default encoding to UTF-8 in order to allow for BOMless UTF-8 text files.
 			// This should work because the line reader verifies each line if it really is UTF-8
 			// and uses ANSI if not
-			iCharCoding = CharacterEncoding::UTF8;
+			iCharCoding = CharacterEncoding::CharacterEncodings::UTF8;
 			iHdrSize = 0;
 		}
 
@@ -74,9 +74,9 @@ int CTextFile::Open(StreamMode::StreamModes _dwMode, STREAM* s)
 
 int CTextFile::ReOpen()
 {
-	iCharCoding = CharacterEncoding::Undefined;
+	iCharCoding = CharacterEncoding::CharacterEncodings::Undefined;
 	iHdrSize = 0;
-	return Open(StreamMode::Read,source);
+	return Open(StreamMode::StreamModes::Read,source);
 }
 
 int CTextFile::Seek(__int64 qwPos)
@@ -91,33 +91,33 @@ __int64 CTextFile::GetSize()
 
 bool CTextFile::IsUTF8In()
 {
-	return (iCharCoding == CharacterEncoding::UTF8);
+	return (iCharCoding == CharacterEncoding::CharacterEncodings::UTF8);
 }
 
 bool CTextFile::IsUTF8Out()
 {
-	return (iOutputCoding == CharacterEncoding::UTF8);
+	return (iOutputCoding == CharacterEncoding::CharacterEncodings::UTF8);
 }
 
 bool CTextFile::IsAnsiIn()
 {
-	return (iCharCoding == CharacterEncoding::ANSI);
+	return (iCharCoding == CharacterEncoding::CharacterEncodings::ANSI);
 }
 
 bool CTextFile::IsAnsiOut()
 {
-	return (iOutputCoding == CharacterEncoding::ANSI);
+	return (iOutputCoding == CharacterEncoding::CharacterEncodings::ANSI);
 }
 
 bool CTextFile::IsUTF16In()
 {
-	return (iCharCoding == CharacterEncoding::UTF16LE ||
-		iCharCoding == CharacterEncoding::UTF16BE);
+	return (iCharCoding == CharacterEncoding::CharacterEncodings::UTF16LE ||
+		iCharCoding == CharacterEncoding::CharacterEncodings::UTF16BE);
 }
 
 bool CTextFile::IsUTF16Out()
 {
-	return (iOutputCoding == CharacterEncoding::UTF16LE);
+	return (iOutputCoding == CharacterEncoding::CharacterEncodings::UTF16LE);
 }
 
 CharacterEncoding::CharacterEncodings CTextFile::GetFileInputEncoding()
@@ -127,10 +127,10 @@ CharacterEncoding::CharacterEncodings CTextFile::GetFileInputEncoding()
 
 CharacterEncoding::CharacterEncodings CTextFile::GetInputEncoding()
 {
-	if (iCharCoding != CharacterEncoding::UTF16BE)
+	if (iCharCoding != CharacterEncoding::CharacterEncodings::UTF16BE)
 		return GetFileInputEncoding();
 	else
-		return CharacterEncoding::UTF16LE;
+		return CharacterEncoding::CharacterEncodings::UTF16LE;
 }
 
 CharacterEncoding::CharacterEncodings CTextFile::GetOutputEncoding()
@@ -194,8 +194,8 @@ int CTextFile::ReadLine(std::wstring& result)
 		return -1;
 
 	CharacterEncoding::CharacterEncodings inputFileEncoding = GetFileInputEncoding();
-	if (inputFileEncoding == CharacterEncoding::UTF16LE ||
-		inputFileEncoding == CharacterEncoding::UTF16BE)
+	if (inputFileEncoding == CharacterEncoding::CharacterEncodings::UTF16LE ||
+		inputFileEncoding == CharacterEncoding::CharacterEncodings::UTF16BE)
 	{
 		// input and output character encoding is UTF-16
 		std::wstring line;
@@ -210,7 +210,7 @@ int CTextFile::ReadLine(std::wstring& result)
 			else
 			{
 				// character read successfully
-				if (inputFileEncoding == CharacterEncoding::UTF16BE)
+				if (inputFileEncoding == CharacterEncoding::CharacterEncodings::UTF16BE)
 				{
 					nextCharacter = ((nextCharacter >> 8) | (nextCharacter << 8)) & 0xFFFF;
 				}
@@ -248,20 +248,20 @@ int CTextFile::ReadLine(std::wstring& result)
 
 		} while (true);
 
-		if (inputFileEncoding == CharacterEncoding::UTF8) 
+		if (inputFileEncoding == CharacterEncoding::CharacterEncodings::UTF8)
 		{
 			if (IsUTF8(line.c_str(), line.size())) {
-				CUTF8 temp(line.c_str(), CharacterEncoding::UTF8);
+				CUTF8 temp(line.c_str(), CharacterEncoding::CharacterEncodings::UTF8);
 				result = temp;
 			} else {
-				CUTF8 temp(line.c_str(), CharacterEncoding::ANSI);
+				CUTF8 temp(line.c_str(), CharacterEncoding::CharacterEncodings::ANSI);
 				result = temp;
 			}
 		} 
 
-		if (inputFileEncoding == CharacterEncoding::ANSI)
+		if (inputFileEncoding == CharacterEncoding::CharacterEncodings::ANSI)
 		{
-			CUTF8 temp(line.c_str(), CharacterEncoding::ANSI);
+			CUTF8 temp(line.c_str(), CharacterEncoding::CharacterEncodings::ANSI);
 			result = temp;
 		}
 
@@ -277,8 +277,8 @@ int CTextFile::ReadLine(std::string& result)
 		return -1;
 
 	CharacterEncoding::CharacterEncodings inputFileEncoding = GetFileInputEncoding();
-	if (inputFileEncoding == CharacterEncoding::UTF16LE ||
-		inputFileEncoding == CharacterEncoding::UTF16BE)
+	if (inputFileEncoding == CharacterEncoding::CharacterEncodings::UTF16LE ||
+		inputFileEncoding == CharacterEncoding::CharacterEncodings::UTF16BE)
 	{
 		std::wstring line;
 		int readLineResult = ReadLine(line);
@@ -286,9 +286,9 @@ int CTextFile::ReadLine(std::string& result)
 			return readLineResult;
 
 		CUTF8 utf8Line(line.c_str());
-		if (GetOutputEncoding() == CharacterEncoding::ANSI)
+		if (GetOutputEncoding() == CharacterEncoding::CharacterEncodings::ANSI)
 			result = utf8Line.Str();
-		if (GetOutputEncoding() == CharacterEncoding::UTF8)
+		if (GetOutputEncoding() == CharacterEncoding::CharacterEncodings::UTF8)
 			result = utf8Line.UTF8();
 
 		return static_cast<int>(result.size());
@@ -314,17 +314,17 @@ int CTextFile::ReadLine(std::string& result)
 
 		} while (true);
 
-		if (inputFileEncoding == CharacterEncoding::UTF8) 
+		if (inputFileEncoding == CharacterEncoding::CharacterEncodings::UTF8)
 		{
 			if (IsUTF8(line.c_str(), line.size())) {
-				CUTF8 temp(line.c_str(), CharacterEncoding::UTF8);
+				CUTF8 temp(line.c_str(), CharacterEncoding::CharacterEncodings::UTF8);
 				if (IsUTF8Out())
 					result = temp.UTF8();
 				else
 					result = temp.Str();
 
 			} else {
-				CUTF8 temp(line.c_str(), CharacterEncoding::ANSI);
+				CUTF8 temp(line.c_str(), CharacterEncoding::CharacterEncodings::ANSI);
 				if (IsUTF8Out())
 					result = temp.UTF8();
 				else
@@ -334,9 +334,9 @@ int CTextFile::ReadLine(std::string& result)
 			return static_cast<int>(result.size());
 		} 
 
-		if (inputFileEncoding == CharacterEncoding::ANSI)
+		if (inputFileEncoding == CharacterEncoding::CharacterEncodings::ANSI)
 		{
-			CUTF8 temp(line.c_str(), CharacterEncoding::ANSI);
+			CUTF8 temp(line.c_str(), CharacterEncoding::CharacterEncodings::ANSI);
 			if (IsUTF8Out())
 				result = temp.UTF8();
 			else
@@ -434,21 +434,21 @@ __int64 CTextFile::GetPos()
 
 int CTextFile::ReadInputChar(unsigned char* pDest, size_t max_len)
 {
-	if (GetInputEncoding() == CharacterEncoding::ANSI) {
+	if (GetInputEncoding() == CharacterEncoding::CharacterEncodings::ANSI) {
 		if (max_len < 1)
 			return 0;
 
 		return Read(pDest, 1);
 	}
 
-	if (GetInputEncoding() == CharacterEncoding::UTF16LE) {
+	if (GetInputEncoding() == CharacterEncoding::CharacterEncodings::UTF16LE) {
 		if (max_len < 2)
 			return 0;
 
 		return Read(pDest, 2);
 	}
 
-	if (GetInputEncoding() == CharacterEncoding::UTF8) {
+	if (GetInputEncoding() == CharacterEncoding::CharacterEncodings::UTF8) {
 		char _1st;
 		if (Read(&_1st, 1) != 1)
 			return 0;
@@ -478,7 +478,7 @@ char CTextFile::ReadChar<char>(int flags)
 
 	char* out = NULL;
 	StringConvert((const char*)buf, GetInputEncoding(), &out,
-		CharacterEncoding::ANSI);
+		CharacterEncoding::CharacterEncodings::ANSI);
 
 	char result = out[0];
 	free(out);
@@ -494,7 +494,7 @@ wchar_t CTextFile::ReadChar<wchar_t>(int flags)
 
 	char* out = NULL;
 	StringConvert((const char*)buf, GetInputEncoding(), &out, 
-		CharacterEncoding::UTF16LE);
+		CharacterEncoding::CharacterEncodings::UTF16LE);
 
 	wchar_t result = out[0];
 	free(out);

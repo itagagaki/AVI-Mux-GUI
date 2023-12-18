@@ -1,4 +1,4 @@
-// EBMLTreeDlg.cpp: Implementierungsdatei
+ï»¿// EBMLTreeDlg.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -43,8 +43,8 @@ CEBMLTreeDlg::CEBMLTreeDlg(CWnd* pParent /*=NULL*/)
 void CEBMLTreeDlg::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CResizeableDialog::OnFinalRelease();
@@ -81,12 +81,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CEBMLTreeDlg, CResizeableDialog)
 	//{{AFX_DISPATCH_MAP(CEBMLTreeDlg)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IEBMLTreeDlg zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IEBMLTreeDlg zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {1B7FAF77-38F6-4D01-B045-1BD4EC892CF9}
@@ -98,7 +98,7 @@ BEGIN_INTERFACE_MAP(CEBMLTreeDlg, CResizeableDialog)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CEBMLTreeDlg 
+// Behandlungsroutinen fÃ¼r Nachrichten CEBMLTreeDlg 
 
 #include "trees.h"
 #include "..\ebml.h"
@@ -191,12 +191,12 @@ void AddChildren(CEBMLTree* tree, HTREEITEM hParent, EBMLElement* eParent,
 					CLBLOCKHEADER hdr;
 
 					CBuffer* buffer = block->Read(&hdr);
-					sprintf(msg,"stream: %d %s%s",hdr.iStream,
+					sprintf_s(msg, "stream: %d %s%s", hdr.iStream,
 						((hdr.iFlags & BLKHDRF_KEYFRAME) == BLKHDRF_KEYFRAME)?"keyframe ":"",
 						((hdr.iFlags & BLKHDRF_DISCARDABLE) == BLKHDRF_DISCARDABLE)?"discardable ":"");
 					Tree_Insert(tree,msg,hThis);				
 					if (hdr.frame_sizes.size() > 1) {
-						sprintf(msg,"number of frames: %d %s ",hdr.frame_sizes.size(),
+						sprintf_s(msg, "number of frames: %d %s ",hdr.frame_sizes.size(),
 							((hdr.iFlags & BLKHDRF_LACINGNEW) == BLKHDRF_LACINGEBML)?"(EBML lacing)":
 							((hdr.iFlags & BLKHDRF_LACINGNEW) == BLKHDRF_LACINGCONST)?"(constant lacing)":
 							((hdr.iFlags & BLKHDRF_LACINGNEW) == BLKHDRF_LACING)?"(xiph lacing)":"");
@@ -204,15 +204,14 @@ void AddChildren(CEBMLTree* tree, HTREEITEM hParent, EBMLElement* eParent,
 						HTREEITEM h = Tree_Insert(tree,msg,hThis);				
 						for (size_t i=0;i<hdr.frame_sizes.size();i++) {
 							char cSize[20]; QW2Str(hdr.frame_sizes[i],cSize, 1);
-							sprintf(msg,"frame size: %s bytes", cSize);
+							sprintf_s(msg, "frame size: %s bytes", cSize);
 							Tree_Insert(tree, msg, h);
 						}
 					}
 					char cTC[64]; cTC[0]=0; 
 					QW2Str((__int64)((__int16)(hdr.iTimecode)), cTC, 1);
 
-					sprintf(msg,"time code, relative to cluster: %s", 
-						cTC,0);
+					sprintf_s(msg, "time code, relative to cluster: %s", cTC);
 					Tree_Insert(tree,msg,hThis);	
 					cTC[0]=0;
 					if (e->GetType() == IDVALUE(MID_CL_BLOCK)) {
@@ -220,7 +219,7 @@ void AddChildren(CEBMLTree* tree, HTREEITEM hParent, EBMLElement* eParent,
 					} else {
 						QW2Str((__int64)(__int16)hdr.iTimecode +((EBMLM_Cluster*)e->GetParent())->GetTimecode(), cTC, 1);
 					}
-					sprintf(msg,"absolute time code: %s", cTC);
+					sprintf_s(msg, "absolute time code: %s", cTC);
 					Tree_Insert(tree,msg,hThis);	
 					e->Delete();
 				}
@@ -386,7 +385,7 @@ BOOL CEBMLTreeDlg::OnInitDialog()
 {
 	CResizeableDialog::OnInitDialog();
 	
-	// TODO: Zusätzliche Initialisierung hier einfügen
+	// TODO: ZusÃ¤tzliche Initialisierung hier einfÃ¼gen
 	
 	m_EBMLTree.InitUnicode();
 	
@@ -476,7 +475,7 @@ BOOL CEBMLTreeDlg::OnInitDialog()
 	GetDlgItem(IDC_FULLEXPAND)->SetWindowText(LoadString(STR_EBMLDLG_FULL));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurückgeben
+	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurÃ¼ckgeben
 }
 
 void CEBMLTreeDlg::SetSource(STREAM* lpSource)
@@ -493,7 +492,7 @@ void CEBMLTreeDlg::OnSelchangedTree1(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
 	TVITEM* item = &(pNMTreeView->itemNew);
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	
 	EBMLITEM_DESCRIPTOR* d = (EBMLITEM_DESCRIPTOR*)m_EBMLTree.GetItemData(item->hItem);
 	if (d && item && !bDoClose) {
@@ -515,7 +514,7 @@ void CEBMLTreeDlg::OnSelchangedTree1(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CEBMLTreeDlg::OnOK() 
 {
-	// TODO: Zusätzliche Prüfung hier einfügen
+	// TODO: ZusÃ¤tzliche PrÃ¼fung hier einfÃ¼gen
 	bDoClose = true;
 
 	if (iDepth) {  // don't hang here, otherwise it will completely hang
@@ -532,13 +531,13 @@ void CEBMLTreeDlg::OnOK()
 
 void CEBMLTreeDlg::OnAbsolute() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	m_EBMLTree.SetMode(1);
 }
 
 void CEBMLTreeDlg::OnRelative() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	m_EBMLTree.SetMode(0);
 
 }
@@ -589,7 +588,7 @@ DWORD WINAPI FullExpand_Thread(void* pData)
 
 void CEBMLTreeDlg::OnFullexpand() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 //	HTREEITEM* hItem = m_EBMLTree.GetRootItem();
 	
 	FULLEXPAND_THREAD_DATA* ftd = new FULLEXPAND_THREAD_DATA;
@@ -607,7 +606,7 @@ void CEBMLTreeDlg::OnFullexpand()
 
 void CEBMLTreeDlg::OnBnClickedFontLarger()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 
 	font_size++;
 	RecreateTreeFont();
@@ -615,7 +614,7 @@ void CEBMLTreeDlg::OnBnClickedFontLarger()
 
 void CEBMLTreeDlg::OnBnClickedFontSmaller()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 	if (font_size > 1) 
 		font_size--;
 	
@@ -644,7 +643,7 @@ void CEBMLTreeDlg::OnBnClickedOk()
 
 void CEBMLTreeDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
 	if (nID == SC_CLOSE) {
 		PostMessage(WM_COMMAND, IDOK, 0);
 		return;
@@ -705,7 +704,7 @@ void SaveTreeNode(CEBMLTree* tree, STREAM* f, HTREEITEM hItem, int depth, int to
 	(*total_item_counter)++;
 
 	char item_counter_string[32];
-	sprintf(item_counter_string, "%dk/%dk", *total_item_counter / 1000, total/1000);
+	sprintf_s(item_counter_string, "%dk/%dk", *total_item_counter / 1000, total/1000);
 	if ((*total_item_counter % 1000) == 0)
 		SendMessage(hButton, WM_SETTEXT, 0, (LPARAM)item_counter_string);
 
@@ -747,7 +746,7 @@ DWORD WINAPI SaveTree_Thread(void* pData)
 
 void CEBMLTreeDlg::OnBnClickedSaveTree()
 {
-	// TODO: Fügen Sie hier Ihren Kontrollbehandlungscode für die Benachrichtigung ein.
+	// TODO: FÃ¼gen Sie hier Ihren Kontrollbehandlungscode fÃ¼r die Benachrichtigung ein.
 	OPENFILENAME ofn;
 
 	PrepareSimpleDialog(&ofn, *this, "*.txt");

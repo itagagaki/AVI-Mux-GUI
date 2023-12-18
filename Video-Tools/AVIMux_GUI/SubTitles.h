@@ -73,7 +73,7 @@ typedef struct
 {
 	// global
 	DWORD			dwX1,dwY1,dwX2,dwY2;
-	int				iCharCoding;
+	CharacterEncoding::CharacterEncodings iCharCoding;
 
 	// SRT stuff
 	char*			lpcText;

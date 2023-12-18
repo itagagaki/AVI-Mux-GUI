@@ -1,4 +1,4 @@
-// EnhancedListBox.cpp: Implementierungsdatei
+ï»¿// EnhancedListBox.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -32,8 +32,8 @@ CEnhancedListBox::~CEnhancedListBox()
 void CEnhancedListBox::OnFinalRelease()
 {
 	// Nachdem die letzte Referenz auf ein Automatisierungsobjekt freigegeben wurde,
-	// wird OnFinalRelease aufgerufen. Die Basisklasse löscht das Objekt
-	// automatisch. Fügen Sie zusätzlichen Bereinigungscode für Ihr Objekt
+	// wird OnFinalRelease aufgerufen. Die Basisklasse lÃ¶scht das Objekt
+	// automatisch. FÃ¼gen Sie zusÃ¤tzlichen Bereinigungscode fÃ¼r Ihr Objekt
 	// hinzu, bevor Sie die Basisklasse aufrufen.
 
 	CListBox::OnFinalRelease();
@@ -56,12 +56,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CEnhancedListBox, CListBox)
 	//{{AFX_DISPATCH_MAP(CEnhancedListBox)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_IEnhancedListBox zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_IEnhancedListBox zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {7566FCBE-39C6-441A-9D51-E627E440BBA2}
@@ -73,11 +73,11 @@ BEGIN_INTERFACE_MAP(CEnhancedListBox, CListBox)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CEnhancedListBox 
+// Behandlungsroutinen fÃ¼r Nachrichten CEnhancedListBox 
 
 void CEnhancedListBox::OnLButtonDown(UINT nFlags, CPoint point) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	if (nFlags & MK_SHIFT) {
 		bMButtonDown=true;
 	} else {
@@ -102,7 +102,7 @@ void CEnhancedListBox::ItemDown(void)
 		for (i=dwSelCount-1;i>=0;i--) {
 			if (lpdwSel[i]!=dwICount-1 && CanMoveTo(lpdwSel[i], 1))	{
 				if (bHasStrings) {
-					lpcText=(char*)calloc(1, 1+GetTextLen(lpdwSel[i]));
+					lpcText=(char*)calloc(1, 1+GetTextLen(lpdwSel[i]));  // TODO: null check
 					GetText(lpdwSel[i],lpcText);
 				}
 				dwItemData=GetItemData(lpdwSel[i]);
@@ -140,7 +140,7 @@ void CEnhancedListBox::ItemUp(void)
 		for (i=0;i<dwSelCount;i++) {
 			if (lpdwSel[i] && CanMoveTo(lpdwSel[i], -1)) {
 				if (bHasStrings) {
-					lpcText=(char*)calloc(1, 1 + GetTextLen(lpdwSel[i]));
+					lpcText=(char*)calloc(1, 1 + GetTextLen(lpdwSel[i]));  // TODO: null check
 					GetText(lpdwSel[i], lpcText);
 				}
 				dwItemData=GetItemData(lpdwSel[i]);
@@ -159,7 +159,7 @@ void CEnhancedListBox::ItemUp(void)
 
 void CEnhancedListBox::OnLButtonUp(UINT nFlags, CPoint point) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	bMButtonDown=false;
 	CListBox::OnLButtonUp(nFlags, point);
 }
@@ -175,7 +175,7 @@ void CEnhancedListBox::RedoNumbering()
 
 void CEnhancedListBox::OnMouseMove(UINT nFlags, CPoint point) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	int	iOutside;
 
 	if (bMButtonDown)
@@ -201,7 +201,7 @@ void CEnhancedListBox::OnMouseMove(UINT nFlags, CPoint point)
 
 void CEnhancedListBox::OnMButtonDown(UINT nFlags, CPoint point) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	int 	iOutside;
 
 	iItemMButtonDown=ItemFromPoint(point,iOutside);
@@ -211,27 +211,27 @@ void CEnhancedListBox::OnMButtonDown(UINT nFlags, CPoint point)
 
 void CEnhancedListBox::OnMButtonUp(UINT nFlags, CPoint point) 
 {
-	// TODO: Code für die Behandlungsroutine für Nachrichten hier einfügen und/oder Standard aufrufen
+	// TODO: Code fÃ¼r die Behandlungsroutine fÃ¼r Nachrichten hier einfÃ¼gen und/oder Standard aufrufen
 	bMButtonDown=false;
 		
 }
 
 void CEnhancedListBox::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
 	__super::OnChar(nChar, nRepCnt, nFlags);
 }
 
 UINT CEnhancedListBox::OnGetDlgCode()
 {
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
 
 	return __super::OnGetDlgCode() | DLGC_WANTALLKEYS;
 }
 
 void CEnhancedListBox::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
 /*	if (nChar == VK_PRIOR) {
 		ItemUp();
 		RedoNumbering();
@@ -246,7 +246,7 @@ void CEnhancedListBox::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CEnhancedListBox::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: Fügen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
+	// TODO: FÃ¼gen Sie hier Ihren Meldungsbehandlungscode ein, und/oder benutzen Sie den Standard.
 	if (nChar == VK_PRIOR) {
 		ItemUp();
 		RedoNumbering();

@@ -14,14 +14,14 @@ typedef struct {
 //extern const int VSizeInt_Len[256];
 extern const __int64 undefined_lengths[];
 
-const char EID_EBML[] = { 0x1A, 0x45, 0xDF, 0xA3 };
-const char EID_EBMLVersion[] = { 0x42, 0x86 };
-const char EID_EBMLReadVersion[] = { 0x42, 0xF7 };
-const char EID_EBMLMaxIDLength[] = { 0x42, 0xF2 };
-const char EID_EBMLMaxSizeLength[] = { 0x42, 0xF3 };
-const char EID_DocType[] = { 0x42, 0x82 };
-const char EID_DocTypeVersion[] = { 0x42, 0x87 };
-const char EID_DocTypeReadVersion[] = { 0x42, 0x85 };
+const unsigned char EID_EBML[] = { 0x1A, 0x45, 0xDF, 0xA3 };
+const unsigned char EID_EBMLVersion[] = { 0x42, 0x86 };
+const unsigned char EID_EBMLReadVersion[] = { 0x42, 0xF7 };
+const unsigned char EID_EBMLMaxIDLength[] = { 0x42, 0xF2 };
+const unsigned char EID_EBMLMaxSizeLength[] = { 0x42, 0xF3 };
+const unsigned char EID_DocType[] = { 0x42, 0x82 };
+const unsigned char EID_DocTypeVersion[] = { 0x42, 0x87 };
+const unsigned char EID_DocTypeReadVersion[] = { 0x42, 0x85 };
 
 const int EBMLTYPE_UNKNOWN				= -0x01;
 const int EBMLTYPE_EBML					= 0x01;

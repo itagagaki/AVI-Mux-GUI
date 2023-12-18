@@ -1,4 +1,4 @@
-#if !defined(AFX_RESIZEABLEDIALOG_H__45CCA68C_8282_4EB6_B029_0737FF1A9789__INCLUDED_)
+ï»¿#if !defined(AFX_RESIZEABLEDIALOG_H__45CCA68C_8282_4EB6_B029_0737FF1A9789__INCLUDED_)
 #define AFX_RESIZEABLEDIALOG_H__45CCA68C_8282_4EB6_B029_0737FF1A9789__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -71,17 +71,17 @@ public:
 // Dialogfelddaten
 	//{{AFX_DATA(CResizeableDialog)
 	enum { IDD = IDD_CHAPTERDIALOG };
-		// HINWEIS: Der Klassen-Assistent fügt hier Datenelemente ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier Datenelemente ein
 	//}}AFX_DATA
 
 
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
+// Ãœberschreibungen
+	// Vom Klassen-Assistenten generierte virtuelle FunktionsÃ¼berschreibungen
 	//{{AFX_VIRTUAL(CResizeableDialog)
 	public:
 	virtual void OnFinalRelease();
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV-Unterstützung
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV-UnterstÃ¼tzung
 	virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
 	//}}AFX_VIRTUAL
 
@@ -99,7 +99,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	// Generierte OLE-Dispatch-Zuordnungsfunktionen
 	//{{AFX_DISPATCH(CResizeableDialog)
-		// HINWEIS - Der Klassen-Assistent fügt hier Member-Funktionen ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Member-Funktionen ein und entfernt diese.
 	//}}AFX_DISPATCH
 	DECLARE_DISPATCH_MAP()
 	DECLARE_INTERFACE_MAP()
@@ -110,6 +110,6 @@ public:
 };
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ fügt unmittelbar vor der vorhergehenden Zeile zusätzliche Deklarationen ein.
+// Microsoft Visual C++ fÃ¼gt unmittelbar vor der vorhergehenden Zeile zusÃ¤tzliche Deklarationen ein.
 
 #endif // AFX_RESIZEABLEDIALOG_H__45CCA68C_8282_4EB6_B029_0737FF1A9789__INCLUDED_

@@ -104,7 +104,7 @@ class AACSOURCE: public CBinaryAudioSource
 public:
 	class MPEGID {
 	public:
-		enum MPEGIDs {
+		enum class MPEGIDs {
 			MPEG2 = 1,
 			MPEG4 = 0
 		};
@@ -112,7 +112,7 @@ public:
 
 	class PackType {
 	public:
-		enum PackTypes {
+		enum class PackTypes {
 			ADTS = 1,
 			ADIF = 2
 		};

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Windows.h"
 #include "UTF-8.h"
@@ -6,6 +6,7 @@
 #include <vector>
 #include <deque>
 #include <stdexcept>
+#include <iterator>
 
 #ifndef MAX_LONG_PATH
 #define MAX_LONG_PATH 32768
@@ -252,7 +253,7 @@ private:
 	}
 
 public:
-	/** \brief Ruft zu einem Pfad den verf�gbaren freien Speicher ab.
+	/** \brief Ruft zu einem Pfad den verfügbaren freien Speicher ab.
 	 */
 	static unsigned __int64 GetAvailableSpace(const CUTF8& path) {
 		std::wstring strPath = path;

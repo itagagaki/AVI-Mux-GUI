@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "..\..\Common\TraceFiles\TraceFile.h"
 #include "AVIMux_GUIDlg.h"
 #include "..\Basestreams.h"
@@ -69,13 +69,13 @@ void  CAVIMux_GUIDlg::doAddFile(char* _lpcName, int iFormat, int delete_file,
 
 	char lpcName[65536];
 	if (!strncmp(_lpcName, "\\\\?\\UNC\\", 8)) {
-		strcpy(lpcName, "\\\\");
-		strcat(lpcName, _lpcName + 8);
+		strcpy_s(lpcName, "\\\\");
+		strcat_s(lpcName, _lpcName + 8);
 	} else {
 		if (!strncmp(_lpcName, "\\\\?\\", 4))
-			strcpy(lpcName, _lpcName + 4);
+			strcpy_s(lpcName, _lpcName + 4);
 		else
-			strcpy(lpcName, _lpcName);
+			strcpy_s(lpcName, _lpcName);
 	}
 
 	if (!strcmp(_lpcName, "*stdin*")) {
@@ -105,11 +105,12 @@ void  CAVIMux_GUIDlg::doAddFile(char* _lpcName, int iFormat, int delete_file,
 	for (i=dwLength;(i>=0)&&(lpcName[i]!='.');i--);
 
 	//lpcExt=new char[dwLength-i+2];
-	lpcExt = new char[dwLength-i+2];
+	size_t lpcExtSize = dwLength - i + 2;
+	lpcExt = new char[lpcExtSize];
 	Finalizer<char, void, delete_array> lpExtFinalizer(lpcExt);
 
-	ZeroMemory(lpcExt,dwLength-i+2);
-	strcpy(lpcExt,&(lpcName[i+1]));
+	ZeroMemory(lpcExt, lpcExtSize);
+	strcpy_s(lpcExt, lpcExtSize, &(lpcName[i + 1]));
 	for (i=strlen(lpcExt)-1;i>=0;lpcExt[i--]|=((lpcExt[i]>=64)&&(lpcExt[i]<=90))?0x20:0);
 
 //		ZeroMemory(Buffer,sizeof(Buffer));
@@ -223,23 +224,23 @@ void  CAVIMux_GUIDlg::doAddFile(char* _lpcName, int iFormat, int delete_file,
 				dwFmtUpStr3=AVIFile->GetFormatTag(0) & (0xffdfdfdf);
 				if (dwFmtUpStr3==MakeFourCC("DIV3"))
 				{
-					sprintf(VideoFormat,"%s","divX 3.11 low motion");
+					sprintf_s(VideoFormat, "%s", "divX 3.11 low motion");
 				}
 				else
 				if (dwFmtUpStr3==MakeFourCC("DIV4"))
 				{
-					sprintf(VideoFormat,"%s","divX 3.11 fast motion");
+					sprintf_s(VideoFormat, "%s", "divX 3.11 fast motion");
 				}
 				else
 				if (dwFmtUpStr==MakeFourCC("DIVX"))
 				{
 					if ( ((BITMAPINFOHEADER*)(AVIFile->GetStreamFormat(0)))->biCompression==MakeFourCC("DX50"))
 					{
-						sprintf(VideoFormat,"%s","divX 5");
+						sprintf_s(VideoFormat, "%s", "divX 5");
 					}
 					else
 					{
-						sprintf(VideoFormat,"%s","divX 4");
+						sprintf_s(VideoFormat, "%s", "divX 4");
 					}
 				}
 				else
@@ -247,19 +248,19 @@ void  CAVIMux_GUIDlg::doAddFile(char* _lpcName, int iFormat, int delete_file,
 					(dwFmtUpStr==MakeFourCC("MJPG"))||
 					(dwFmtUpStr==MakeFourCC("MJPX")))
 				{
-					sprintf(VideoFormat,"%s","M-JPEG");
+					sprintf_s(VideoFormat, "%s", "M-JPEG");
 				}
 				else
 				if (dwFmtUpStr==MakeFourCC("HFYU")) {
-					sprintf(VideoFormat,"%s","huff-YUV");
+					sprintf_s(VideoFormat, "%s", "huff-YUV");
 				} else
 				if (dwFmtUpStr==MakeFourCC("XVID")) {
-					sprintf(VideoFormat,"%s","XVID");
+					sprintf_s(VideoFormat, "%s", "XVID");
 				} else
 				if (AVIFile->GetFormatTag(0)==MakeFourCC("MJ2C")) {
-					sprintf(VideoFormat,"%s","MorganMotion JPEG 2000");
+					sprintf_s(VideoFormat, "%s", "MorganMotion JPEG 2000");
 				} else
-					sprintf(VideoFormat,"%s","???");
+					sprintf_s(VideoFormat, "%s", "???");
 
 				fi->AVIFile=AVIFile;
 				AVIFile->SetProcessMode(SPM_SETALL,PM_DIRECTSTREAMCOPY);
@@ -437,7 +438,7 @@ void  CAVIMux_GUIDlg::doAddFile(char* _lpcName, int iFormat, int delete_file,
 			FormatSize(cSize,dwSize);
 		
 //			::SendMessage(m_SourceFiles, LB_ADDSTRING, NULL, (L
-			CUTF8 utf8Name(lpcName, CharacterEncoding::UTF8);
+			CUTF8 utf8Name(lpcName, CharacterEncoding::CharacterEncodings::UTF8);
 			// TODO: Do not pass utf8 here
 			// iIndex1=m_SourceFiles.AddString(utf8Name.TStr());
 			iIndex1=m_SourceFiles.AddString((LPCTSTR)lpcName);
@@ -448,7 +449,7 @@ void  CAVIMux_GUIDlg::doAddFile(char* _lpcName, int iFormat, int delete_file,
 //			::SendMessage(m_SourceFiles, LB_GETTEXT, iIndex1,
 //				(LPARAM)test);
 
-			fi->Name = CUTF8(lpcName, CharacterEncoding::UTF8);
+			fi->Name = CUTF8(lpcName, CharacterEncoding::CharacterEncodings::UTF8);
 //			fi->lpcName=new char[lstrlen(lpcName)+16];
 			//lstrcpy(fi->lpcName,lpcName);
 			fi->source=cachesource;
@@ -685,8 +686,7 @@ void  CAVIMux_GUIDlg::doAddFile(char* _lpcName, int iFormat, int delete_file,
 						if (bAddAS_immed) {
 							FillAAC_ASI(&asi, aacsource);
 							TCHAR Buffer[65536]; Buffer[0]=0;
-							_stprintf_s(Buffer, _T("%s %d, AAC: Fr: %d, MPEG: %d"),cStr.GetBuffer(255),iIndex1+1,
-								(DWORD)(asi->audiosource->GetSize()>>10),cStr2.GetBuffer(255),
+							_stprintf_s(Buffer, sizeof Buffer, _T("%s %d, AAC: Fr: %d, MPEG: %lld"), cStr.GetBuffer(255), iIndex1 + 1,
 								aacsource->GetFrequency(), aacsource->FormatSpecific(MMSGFS_AAC_MPEGVERSION));
 							messageBuffer = Buffer;
 							m_Enh_Filelist.SetItemText(iIndex_Enh,2, _T("AAC"));
@@ -773,7 +773,7 @@ void  CAVIMux_GUIDlg::doAddFile(char* _lpcName, int iFormat, int delete_file,
 					{
 						subs=new SUBTITLES;
 						subs->Open(new CTextFile(StreamMode::Read, fi->source, 
-							CharacterEncoding::UTF8));
+							CharacterEncoding::CharacterEncodings::UTF8));
 
 						lpssi=new SUBTITLE_STREAM_INFO;
 						lpssi->lpfi=fi;
@@ -831,7 +831,7 @@ void  CAVIMux_GUIDlg::doAddFile(char* _lpcName, int iFormat, int delete_file,
 					break;
 			}
 
-			strcpy(fi->cFileformatString, CUTF8(formatName.c_str()).Str());
+			strcpy_s(fi->cFileformatString, CUTF8(formatName.c_str()).Str());
 			RECT r;
 			m_SourceFiles.GetItemRect(iIndex1, &r);
 			m_SourceFiles.InvalidateRect(&r);

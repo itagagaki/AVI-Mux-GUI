@@ -1,4 +1,4 @@
-#if !defined(AFX_UNICODELISTCONTROL_H__55B72F65_DCC2_44B5_B02B_617974B4C4FA__INCLUDED_)
+ï»¿#if !defined(AFX_UNICODELISTCONTROL_H__55B72F65_DCC2_44B5_B02B_617974B4C4FA__INCLUDED_)
 #define AFX_UNICODELISTCONTROL_H__55B72F65_DCC2_44B5_B02B_617974B4C4FA__INCLUDED_
 
 #if _MSC_VER > 1000
@@ -42,8 +42,8 @@ public:
 // Operationen
 public:
 
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
+// Ãœberschreibungen
+	// Vom Klassen-Assistenten generierte virtuelle FunktionsÃ¼berschreibungen
 	//{{AFX_VIRTUAL(CUnicodeListControl)
 	public:
 	virtual void OnFinalRelease();
@@ -64,7 +64,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	// Generierte OLE-Dispatch-Zuordnungsfunktionen
 	//{{AFX_DISPATCH(CUnicodeListControl)
-		// HINWEIS - Der Klassen-Assistent fügt hier Member-Funktionen ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Member-Funktionen ein und entfernt diese.
 	//}}AFX_DISPATCH
 	DECLARE_DISPATCH_MAP()
 	DECLARE_INTERFACE_MAP()
@@ -73,6 +73,6 @@ protected:
 /////////////////////////////////////////////////////////////////////////////
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ fügt unmittelbar vor der vorhergehenden Zeile zusätzliche Deklarationen ein.
+// Microsoft Visual C++ fÃ¼gt unmittelbar vor der vorhergehenden Zeile zusÃ¤tzliche Deklarationen ein.
 
 #endif // AFX_UNICODELISTCONTROL_H__55B72F65_DCC2_44B5_B02B_617974B4C4FA__INCLUDED_

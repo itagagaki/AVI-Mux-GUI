@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "strings.h"
 
 // upper case
@@ -7,10 +7,10 @@ char* ucase(char* s,char* d)
 	char* t = d;
 	while (*s) {
 		if (*s >= 'a' && *s <= 'z') *d++ = *s -32; 
-		  else if (*s == (int)'ü') *d++ = 'Ü';
-		  else if (*s == (int)'ö') *d++ = 'Ö';
-		  else if (*s == (int)'a') *d++ = 'Ä';
-		  else if (*s == (int)'ß') { *d++ = 'S'; *d++ = 'S'; } else *d++ = *s;
+		  else if (*s == (int)'Ã¼') *d++ = 'Ãœ';
+		  else if (*s == (int)'Ã¶') *d++ = 'Ã–';
+		  else if (*s == (int)'a') *d++ = 'Ã„';
+		  else if (*s == (int)'ÃŸ') { *d++ = 'S'; *d++ = 'S'; } else *d++ = *s;
 		s++;
 	}
 	*d = 0;
@@ -112,11 +112,12 @@ void splitpathname<wchar_t>(const std::wstring& fullPath,
  */
 int split_string(char* in, char* separator, std::vector<char*>& dest)
 {
-	char* c = (char*)calloc(sizeof(char), 1+strlen(in));
+	size_t cSize = 1 + strlen(in);
+	char* c = (char*)calloc(sizeof(char), cSize);  // TODO: null check
 	char* d = c;
 	char* e;
 	int sep_len = (int)strlen(separator);
-	strcpy(c, in);
+	strcpy_s(c, cSize, in);
 
 	int i = 0;
 

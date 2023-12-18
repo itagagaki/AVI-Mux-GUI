@@ -32,7 +32,7 @@ void CTraceFile::CTraceFileEntry::Render(CUTF8& result) const
 	char pnewLine[] = { 13, 10, 0 };
 	size_t msgLen = strlen(GetMessage());
 
-	char* msg = (char*)malloc(msgLen + 3);
+	char* msg = (char*)malloc(msgLen + 3);  // TODO: null check
 	strcpy_s(msg, msgLen + 3, GetMessage());
 
 	if (msgLen > 0) {

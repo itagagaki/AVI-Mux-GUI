@@ -1,4 +1,4 @@
-// SetFramerateDlg.cpp: Implementierungsdatei
+ï»¿// SetFramerateDlg.cpp: Implementierungsdatei
 //
 
 #include "stdafx.h"
@@ -24,7 +24,7 @@ CSetFramerateDlg::CSetFramerateDlg(CWnd* pParent /*=NULL*/)
 	bAllowEditUpdate=false;
 	
 	//{{AFX_DATA_INIT(CSetFramerateDlg)
-		// HINWEIS: Der Klassen-Assistent fügt hier Elementinitialisierung ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier Elementinitialisierung ein
 	//}}AFX_DATA_INIT
 }
 
@@ -39,7 +39,7 @@ void CSetFramerateDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CSetFramerateDlg)
-		// HINWEIS: Der Klassen-Assistent fügt hier DDX- und DDV-Aufrufe ein
+		// HINWEIS: Der Klassen-Assistent fÃ¼gt hier DDX- und DDV-Aufrufe ein
 	//}}AFX_DATA_MAP
 }
 
@@ -71,7 +71,7 @@ void CSetFramerateDlg::SetData(FRAME_RATE* f)
 				_gcvt(fr.frate,6,Buffer);
 				dwUnit=UNIT_FPS;
 			} else {
-				sprintf(Buffer, "%d/%d", fr.nom, fr.den);
+				sprintf_s(Buffer, "%d/%d", fr.nom, fr.den);
 			}
 		}
 		SendDlgItemMessage(IDC_NEWFRAMERATE,WM_SETTEXT,0,(LPARAM)Buffer);
@@ -154,12 +154,12 @@ END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CSetFramerateDlg, CDialog)
 	//{{AFX_DISPATCH_MAP(CSetFramerateDlg)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
+		// HINWEIS - Der Klassen-Assistent fÃ¼gt hier Zuordnungsmakros ein und entfernt diese.
 	//}}AFX_DISPATCH_MAP
 END_DISPATCH_MAP()
 
-// Hinweis: Wir stellen Unterstützung für IID_ISetFramerateDlg zur Verfügung, um typsicheres Binden
-//  von VBA zu ermöglichen. Diese IID muss mit der GUID übereinstimmen, die in der
+// Hinweis: Wir stellen UnterstÃ¼tzung fÃ¼r IID_ISetFramerateDlg zur VerfÃ¼gung, um typsicheres Binden
+//  von VBA zu ermÃ¶glichen. Diese IID muss mit der GUID Ã¼bereinstimmen, die in der
 //  Disp-Schnittstelle in der .ODL-Datei angegeben ist.
 
 // {658025D0-E43A-49BB-B278-38BE52807A49}
@@ -171,25 +171,25 @@ BEGIN_INTERFACE_MAP(CSetFramerateDlg, CDialog)
 END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CSetFramerateDlg 
+// Behandlungsroutinen fÃ¼r Nachrichten CSetFramerateDlg 
 
 void CSetFramerateDlg::OnFrFps() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	Refresh();
 	
 }
 
 void CSetFramerateDlg::OnFrMspf() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	Refresh();
 	
 }
 
 void CSetFramerateDlg::OnFrNspf() 
 {
-	// TODO: Code für die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfügen
+	// TODO: Code fÃ¼r die Behandlungsroutine der Steuerelement-Benachrichtigung hier einfÃ¼gen
 	Refresh();
 	
 }
@@ -199,7 +199,7 @@ BOOL CSetFramerateDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 	char	Buffer[50];
 	
-	// TODO: Zusätzliche Initialisierung hier einfügen
+	// TODO: ZusÃ¤tzliche Initialisierung hier einfÃ¼gen
 	dwUnit=UNIT_FPS;
 	CheckDlgButton(IDR_FR_FPS,BST_CHECKED);
 	bAllowEditUpdate=true;	
@@ -216,12 +216,12 @@ BOOL CSetFramerateDlg::OnInitDialog()
 	SendDlgItemMessage(IDR_FR_NSPF,WM_SETTEXT,NULL,(LPARAM)LoadString(STR_SFR_NSPF));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurückgeben
+	              // EXCEPTION: OCX-Eigenschaftenseiten sollten FALSE zurÃ¼ckgeben
 }
 
 void CSetFramerateDlg::OnOK() 
 {
-	// TODO: Zusätzliche Prüfung hier einfügen
+	// TODO: ZusÃ¤tzliche PrÃ¼fung hier einfÃ¼gen
 	Refresh();
 	
 	CDialog::OnOK();
