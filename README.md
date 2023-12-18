@@ -13,4 +13,4 @@ You can build `AVIMux_GUI.exe` from the code in this repository using Visual Stu
 
 ### Run
 
-Copy the contents of the Runtime folder to the folder of the `AVIMux_GUI.exe` you want to run.
+Copy the contents of the `Runtime` folder to the folder of the `AVIMux_GUI.exe` you want to run.
