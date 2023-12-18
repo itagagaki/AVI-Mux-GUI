@@ -4,5 +4,6 @@
 /Video-Tools/AVIMux_GUI.Test/.vs
 /Video-Tools/AVIMux_GUI.Test/Debug
 /Video-Tools/AVIMux_GUI.Test/Release
+*.aps
 *.obj
 *~
