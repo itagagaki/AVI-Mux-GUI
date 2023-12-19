@@ -204,7 +204,7 @@
     <ClCompile Include="..\..\Common\TextFiles.cpp" />
     <ClCompile Include="..\..\common\TraceFiles\Tracefile.cpp" />
     <ClCompile Include="..\..\Common\utf-8.cpp" />
-    <ClCompile Include="..\basestreams.cpp">
+    <ClCompile Include="..\BaseStreams.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -243,14 +243,14 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
     <ClCompile Include="..\DynArray.cpp" />
-    <ClCompile Include="..\EBML.CPP">
+    <ClCompile Include="..\EBML.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release - dynamic MFC|Win32'">MaxSpeed</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
-    <ClCompile Include="..\EBML_matroska.cpp">
+    <ClCompile Include="..\EBML_Matroska.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EnableFastChecks</BasicRuntimeChecks>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
@@ -920,9 +920,9 @@
     <ClInclude Include="..\Chapters.h" />
     <ClInclude Include="..\Compression.h" />
     <ClInclude Include="..\CRC.h" />
-    <ClInclude Include="..\EBML.H" />
+    <ClInclude Include="..\EBML.h" />
     <ClInclude Include="..\EBML_IDs.h" />
-    <ClInclude Include="..\EBML_matroska.h" />
+    <ClInclude Include="..\EBML_Matroska.h" />
     <ClInclude Include="..\Filenames.h" />
     <ClInclude Include="..\Filestream.h" />
     <ClInclude Include="..\Finalizer.h" />
@@ -936,13 +936,13 @@
     <ClInclude Include="..\Matroska_Clusters.h" />
     <ClInclude Include="..\Matroska_IDs.h" />
     <ClInclude Include="..\Matroska_Segment.h" />
-    <ClInclude Include="..\Matroska_writing.h" />
+    <ClInclude Include="..\Matroska_Writing.h" />
     <ClInclude Include="..\multimedia_source.h" />
     <ClInclude Include="..\Queue.h" />
     <ClInclude Include="..\Strings.h" />
     <ClInclude Include="..\Tags.h" />
     <ClInclude Include="..\TitleSet.h" />
-    <ClInclude Include="..\Types.h" />
+    <ClInclude Include="..\types.h" />
     <ClInclude Include="..\UID.h" />
     <ClInclude Include="..\UnicodeCalls.h" />
     <ClInclude Include="..\utf-8.h" />

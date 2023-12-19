@@ -80,7 +80,7 @@
     <ClCompile Include="AVIMux_GUIDlg_UsedFilesDisplayFlags.cpp">
       <Filter>Quellcodedateien</Filter>
     </ClCompile>
-    <ClCompile Include="..\basestreams.cpp">
+    <ClCompile Include="..\BaseStreams.cpp">
       <Filter>Quellcodedateien</Filter>
     </ClCompile>
     <ClCompile Include="..\Bitstream.cpp">
@@ -389,10 +389,10 @@
     <ClCompile Include="AVIStream.cpp">
       <Filter>Quellcodedateien\AVI - Stuff</Filter>
     </ClCompile>
-    <ClCompile Include="..\EBML.CPP">
+    <ClCompile Include="..\EBML.cpp">
       <Filter>Quellcodedateien\Matroska - Code</Filter>
     </ClCompile>
-    <ClCompile Include="..\EBML_matroska.cpp">
+    <ClCompile Include="..\EBML_Matroska.cpp">
       <Filter>Quellcodedateien\Matroska - Code</Filter>
     </ClCompile>
     <ClCompile Include="..\Integers.cpp">
@@ -648,7 +648,7 @@
     <ClInclude Include="Trees.h">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="..\Types.h">
+    <ClInclude Include="..\types.h">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
     <ClInclude Include="UnicodeBase.h">
@@ -780,13 +780,13 @@
     <ClInclude Include="AVIStructs.h">
       <Filter>Header-Dateien\AVI - Stuff - Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\EBML.H">
+    <ClInclude Include="..\EBML.h">
       <Filter>Header-Dateien\Matroska - Header</Filter>
     </ClInclude>
     <ClInclude Include="..\EBML_IDs.h">
       <Filter>Header-Dateien\Matroska - Header</Filter>
     </ClInclude>
-    <ClInclude Include="..\EBML_matroska.h">
+    <ClInclude Include="..\EBML_Matroska.h">
       <Filter>Header-Dateien\Matroska - Header</Filter>
     </ClInclude>
     <ClInclude Include="..\Integers.h">
@@ -807,7 +807,7 @@
     <ClInclude Include="..\Matroska_Segment.h">
       <Filter>Header-Dateien\Matroska - Header</Filter>
     </ClInclude>
-    <ClInclude Include="..\Matroska_writing.h">
+    <ClInclude Include="..\Matroska_Writing.h">
       <Filter>Header-Dateien\Matroska - Header</Filter>
     </ClInclude>
     <ClInclude Include="..\Queue.h">
