@@ -7,7 +7,8 @@
 // MKVAC3FrameCountEdit.h : Header-Datei
 //
 
-#include "userdrawedit.h"
+#include <afxwin.h>
+#include "UserDrawEdit.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Fenster CMKVAC3FrameCountEdit 

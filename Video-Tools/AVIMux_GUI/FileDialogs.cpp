@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "FileDialogs.h"
 
-#include "windows.h"
-#include "..\utf-8.h"
+//#include "windows.h"
+#include "../utf-8.h"
+#include "../UnicodeCalls.h"
 
 char* reserve(char* s)
 {

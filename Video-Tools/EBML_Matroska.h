@@ -1,7 +1,7 @@
 #ifndef I_EBML_MATROSKA
 #define I_EBML_MATROSKA
 
-#include "ebml.h"
+#include "EBML.h"
 
 
 #define CHECKIDs	bool virtual CheckIDs(char* iID,EBMLElement** p);

@@ -9,7 +9,8 @@ BITSTREAM   access to a stream bit by bit
 #ifndef I_BASESTREAMS2
 #define I_BASESTREAMS2
 
-#include "../Common/stream.h"
+#include <Windows.h>
+#include "../Common/Stream.h"
 
 #ifdef NOT_DEFINED
 #define STREAM_OK		0x01
@@ -22,8 +23,6 @@ BITSTREAM   access to a stream bit by bit
 #define STREAM_WRITE_OPEN_EXISTING  0x08
 #define STREAM_OVERLAPPED			0x10
 #define STREAM_THREADED				0x20
-
-#include "windows.h"
 
 const int READF_ASYNC = 0x01;
 
@@ -75,8 +74,8 @@ class STREAM
 		int			virtual	SetOffset(int iNewOffset);
 		int			virtual TruncateAt(__int64 iPosition);
 };
-*/
 #endif
+
 class STREAM_FILTER: public STREAM
 {
 	private:

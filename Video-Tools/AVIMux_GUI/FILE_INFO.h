@@ -1,16 +1,19 @@
 #ifndef I_FILE_INFO
 #define I_FILE_INFO
 
-#include "avifile.h"
-#include "..\basestreams.h"
-#include "mode2form2reader.h"
-#include "wavfile.h"
-#include "..\matroska.h"
-#include "audiosource_mp3.h"
-#include "audiosource_aac.h"
-#include "audiosource_ac3.h"
-#include "audiosource_dts.h"
-#include "audiosource_vorbis.h"
+#include <Windows.h>
+#include "AVIFile.h"
+//#include "..\basestreams.h"
+#include "Mode2Form2Reader.h"
+#include "WAVFile.h"
+#include "OGGFile.h"
+#include "../Matroska.h"
+#include "AudioSource_MP3.h"
+#include "AudioSource_AAC.h"
+#include "AudioSource_AC3.h"
+#include "AudioSource_DTS.h"
+#include "AudioSource_Vorbis.h"
+#include "../../Common/utf-8.h"
 
 const int FILEINFO_FLAG0_BOLD         = 0x00000001;
 const int FILEINFO_FLAG0_EMPH         = 0x00000002;

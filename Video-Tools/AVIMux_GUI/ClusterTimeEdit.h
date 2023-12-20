@@ -10,6 +10,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Fenster CClusterTimeEdit 
 
+#include <afxwin.h>
 #include "UserDrawEdit.h"
 
 class CClusterTimeEdit : public CUserDrawEdit

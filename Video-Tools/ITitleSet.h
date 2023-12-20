@@ -27,46 +27,46 @@ public:
 	}
 
 	/* add a title for a given language that does not yet exist */
-	virtual bool AddTitle(const char* string, const char* language) = NULL;
+	virtual bool AddTitle(const char* string, const char* language) = 0;
 
 	/* remove the i-th title */
-	virtual bool DeleteTitle(size_t index) = NULL;
+	virtual bool DeleteTitle(size_t index) = 0;
 
 	/* remove the title in a given language */
-	virtual bool DeleteTitle(const char* language) = NULL;
+	virtual bool DeleteTitle(const char* language) = 0;
 
 	/* remove all titles */
-	virtual void DeleteAllTitles() = NULL;
+	virtual void DeleteAllTitles() = 0;
 
 	/* determine number of given titles */
-	virtual size_t GetTitleCount(void) = NULL;
+	virtual size_t GetTitleCount(void) = 0;
 
 	/* determine index unter which the title in a given languge is stored */
-	virtual bool GetLanguageIndex(const char* language, size_t* index) = NULL;
+	virtual bool GetLanguageIndex(const char* language, size_t* index) = 0;
 
 	/* get language of a title at a certain index */
-	virtual bool GetTitleLanguage(size_t index, char** pLanguage) = NULL;
+	virtual bool GetTitleLanguage(size_t index, char** pLanguage) = 0;
 
 	/* get title at a certain index */
-	virtual bool GetTitleString(size_t index, char** pTitle) = NULL;
+	virtual bool GetTitleString(size_t index, char** pTitle) = 0;
 
 	/* get title in a certain language */
-	virtual bool GetTitleStringFromLanguage(const char* language, char** pTitle) = NULL;
+	virtual bool GetTitleStringFromLanguage(const char* language, char** pTitle) = 0;
 
 	/* set the title for a certain language */
-	virtual bool SetTitleForLanguage(const char* language, const char* title) = NULL;
+	virtual bool SetTitleForLanguage(const char* language, const char* title) = 0;
 
 	/* set a default title */
-	virtual bool SetTitle(const char* title) = NULL;
+	virtual bool SetTitle(const char* title) = 0;
 
 	/* get a default title */
-	virtual bool GetTitle(char** pTitle) = NULL;
+	virtual bool GetTitle(char** pTitle) = 0;
 
 	/* duplicate a titleset, like a copy constructor */
-	virtual ITitleSet* Duplicate() = NULL;
+	virtual ITitleSet* Duplicate() = 0;
 
 	/* import titles from another titleset into this one */
-	virtual void Import(ITitleSet* importFrom) = NULL;
+	virtual void Import(ITitleSet* importFrom) = 0;
 };
 
 class IHasTitles
@@ -74,7 +74,7 @@ class IHasTitles
 public:
 	IHasTitles() { };
 	virtual ~IHasTitles() { };
-	virtual ITitleSet* GetTitleSet() = NULL;
+	virtual ITitleSet* GetTitleSet() = 0;
 };
 
 #endif

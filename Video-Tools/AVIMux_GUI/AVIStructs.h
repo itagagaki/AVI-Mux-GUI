@@ -1,6 +1,8 @@
 #ifndef I_AVISTRUCTS
 #define I_AVISTRUCTS
 
+#include <Windows.h>
+
 // stuff from vfw/mmreg
 
 #ifndef MKFOURCC

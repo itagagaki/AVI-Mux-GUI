@@ -3,6 +3,7 @@
 #include "debug.h"
 #include "..\FormatTime.h"
 #include "..\FormatInt64.h"
+#include "../../Common/TraceFiles/TraceFile.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

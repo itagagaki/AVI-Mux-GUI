@@ -1,6 +1,7 @@
 #ifndef I_COMPRESSION
 #define I_COMPRESSION
 
+#include <memory.h>
 #include <vector>
 
 const int COMPRESSION_NONE         = 0x00000000;

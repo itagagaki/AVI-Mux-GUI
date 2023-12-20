@@ -1,8 +1,10 @@
 #ifndef I_VIDEOSOOURCE_MATROSKA
 #define I_VIDEOSOOURCE_MATROSKA
 
-#include "..\matroska.h"
-#include "videosource_generic.h"
+#include <Windows.h>
+#include "VideoSource_generic.h"
+#include "../Matroska.h"
+#include <string>
 
 typedef struct
 {
@@ -32,8 +34,8 @@ class VIDEOSOURCEFROMMATROSKA: public VIDEOSOURCE
 		VIDEOSOURCEFROMMATROSKA(MATROSKA* matroska, int iStream = -1);
 		void		virtual *GetFormat(void);
 		AVIStreamHeader virtual *GetAVIStreamHeader(void);
-		int			virtual GetFrame(void* lpDest,DWORD* lpdwSize,__int64* lpiTimecode = NULL,
-										ADVANCEDREAD_INFO* lpAARI = NULL);
+		int			virtual GetFrame(void* lpDest,DWORD* lpdwSize,__int64* lpiTimecode = nullptr,
+										ADVANCEDREAD_INFO* lpAARI = nullptr);
 		__int64	virtual	GetNanoSecPerFrame(void);
 		int		virtual GetNbrOfFrames(DWORD dwKind=FT_ALL);
 		int		virtual GetResolution(int* lpdwWidth,int* lpdwHeight);

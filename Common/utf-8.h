@@ -2,6 +2,7 @@
 #define I_UTF8
 
 
+#include <tchar.h>
 #include <string>
 
 int  _stdcall UTF82WStr(const char* source, char* dest, int max_len = 16384);

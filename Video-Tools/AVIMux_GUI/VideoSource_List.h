@@ -1,7 +1,8 @@
 #ifndef I_VIDEOSOURCE_LIST
 #define I_VIDEOSOURCE_LIST
 
-#include "videosource_generic.h"
+#include <Windows.h>
+#include "VideoSource_generic.h"
 
 typedef struct
 {
@@ -23,8 +24,8 @@ class VIDEOSOURCELIST: public VIDEOSOURCE
 		int					Append(VIDEOSOURCE* pNext);
 		DWORD		virtual Close(bool bCloseSource);
 		int			virtual Enable(int bEnabled);
-		int			virtual GetFrame(void* lpDest,DWORD* lpdwSize,__int64* lpiTimecode = NULL, ADVANCEDREAD_INFO* lpAARI = NULL);
-		int			virtual GetLatestReference(int* lpiCount = NULL, __int64* lpiRef1 = NULL, __int64* lpiRef2 = NULL);
+		int			virtual GetFrame(void* lpDest,DWORD* lpdwSize,__int64* lpiTimecode = nullptr, ADVANCEDREAD_INFO* lpAARI = nullptr);
+		int			virtual GetLatestReference(int* lpiCount = nullptr, __int64* lpiRef1 = nullptr, __int64* lpiRef2 = nullptr);
 		int			virtual GetNbrOfFrames(DWORD dwKind=FT_ALL);
 		void		virtual *GetFormat(void);
 		int			virtual GetResolution(int* lpdwWidth,int* lpdwHeight);

@@ -11,6 +11,7 @@
 #include "FormatText.h"
 #include "..\Filenames.h"
 #include ".\setstorefileoptionsdlg.h"
+#include "WindowHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

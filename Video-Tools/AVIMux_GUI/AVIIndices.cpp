@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "aviindices.h"
+#include "RIFFFile.h"
 
 
 				///////////////////////

@@ -1,7 +1,8 @@
 #ifndef I_CFileStream
 #define I_CFileStream
 
-#include "basestreams.h"
+#include <Windows.h>
+#include "BaseStreams.h"
 #include <deque>
 
 const int FILESTREAM_ASYNCH_IO_INITIATED = 0x13;

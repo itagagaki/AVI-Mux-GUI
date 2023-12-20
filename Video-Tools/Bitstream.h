@@ -1,10 +1,10 @@
 #ifndef I_BITSTREAM
 #define I_BITSTREAM
 
-#include "basestreams.h"
-#include <deque>
-#include "types.h"
+#include <Windows.h>
 #include "IBitStream.h"
+#include "types.h"
+#include <deque>
 
 class BITSTREAM : public virtual IBitStream
 {

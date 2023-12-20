@@ -5,6 +5,7 @@
 #pragma warning(disable:4309)
 
 #include "EBML_IDs.h"
+#include "Integers.h"
 
 #ifndef uint32
 #define uint32 unsigned __int32

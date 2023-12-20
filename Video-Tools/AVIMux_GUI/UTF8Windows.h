@@ -1,7 +1,8 @@
 #ifndef I_UTF8WINDOWS
 #define I_UTF8WINDOWS
 
-#include "..\types.h"
+#include <Windows.h>
+#include "../types.h"
 
 void mb(int i);
 

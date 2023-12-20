@@ -1,7 +1,7 @@
 #ifndef I_UNICODE_CALLS
 #define I_UNICODE_CALLS
 
-#include "windows.h"
+#include <Windows.h>
 #include "types.h"
 
 int fromUTF8(void* s, void* d);

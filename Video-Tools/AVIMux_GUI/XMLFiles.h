@@ -1,8 +1,7 @@
 #ifndef I_XMLFILES
 #define I_XMLFILES
 
-#include "../xml.h"
-#include "../../Common/textfiles.h"
+#include "../../Common/TextFiles.h"
 
 int FileIsXML(CTextFile* t);
 //int Textfile2String(CTextFile* t, char* c);

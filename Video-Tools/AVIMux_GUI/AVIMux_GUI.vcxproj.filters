@@ -260,7 +260,7 @@
     <ClCompile Include="..\TitleSet.cpp">
       <Filter>Quellcodedateien</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\common\TraceFiles\Tracefile.cpp">
+    <ClCompile Include="..\..\common\TraceFiles\TraceFile.cpp">
       <Filter>Quellcodedateien</Filter>
     </ClCompile>
     <ClCompile Include="TransformFilter.cpp">
@@ -687,7 +687,7 @@
     <ClInclude Include="WindowHelper.h">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="..\XML.H">
+    <ClInclude Include="..\XML.h">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
     <ClInclude Include="XMLFiles.h">

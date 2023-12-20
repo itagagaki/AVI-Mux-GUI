@@ -7,11 +7,11 @@
 // SplitPointList.h : Header-Datei
 //
 
+#include <afxwin.h>
+#include "VideoSource.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // Fenster CSplitPointList 
-
-#include "AVIFile.h"
-#include "videosource.h"
 
 typedef struct
 {

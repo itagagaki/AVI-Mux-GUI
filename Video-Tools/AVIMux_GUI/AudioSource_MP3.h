@@ -1,7 +1,10 @@
 #ifndef I_AUDIOSOURCE_MP3
 #define I_AUDIOSOURCE_MP3
 
+#include <Windows.h>
+#include "audiosource_generic.h"
 #include "audiosource_binary.h"
+#include "../IBitStream.h"
 
 DWORD BSWAP (DWORD x);
 
@@ -14,7 +17,7 @@ class MP3FRAMEHEADER
 		~MP3FRAMEHEADER(void) {};
 		void		SetFrameHeader(DWORD _dwFrameHeader) { dwFrameHeader=BSWAP(_dwFrameHeader); };
         int         GetChannelsNum(void);
-		int			GetFrameSize(int*,float* fSize = NULL);
+		int			GetFrameSize(int*,float* fSize = nullptr);
 		int			GetMPEGVersion(void);
 		int			GetMPEGVersionIndex(void);
 		int			GetMode(void);

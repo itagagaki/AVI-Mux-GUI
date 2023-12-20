@@ -7,14 +7,14 @@
 // SplitPointsDlg.h : Header-Datei
 //
 
+#include <afxwin.h>
+#include "resource.h"
+#include "SplitPointList.h"
+#include "../Chapters.h"
+#include "../DynArray.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // Dialogfeld CSplitPointsDlg 
-
-#include "SplitPointList.h"
-#include "AVIFile.h"
-#include "resource.h"
-#include "../dynarray.h"
-#include "../chapters.h"
 
 const int SPD_BEGIN	=	0x00000001;
 const int SPD_END   =   0x00000002;
@@ -59,7 +59,7 @@ private:
 	CSplitPoints* points;
 // Konstruktion
 public:
-	CSplitPointsDlg(CWnd* pParent = NULL);   // Standardkonstruktor
+	CSplitPointsDlg(CWnd* pParent = nullptr);   // Standardkonstruktor
 	DWORD	Load(CSplitPoints* points);
 	DWORD	GetData(CSplitPoints* points);
 	void	SetVideoSource(VIDEOSOURCE* lpSource);

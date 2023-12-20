@@ -7,8 +7,9 @@
 // UnicodeTreeCtrl.h : Header-Datei
 //
 
+#include <afxcmn.h>
 #include "UnicodeBase.h"
-#include "TreeItemDeleter.h"
+#include <string>
 
 /////////////////////////////////////////////////////////////////////////////
 // Fenster CUnicodeTreeCtrl 

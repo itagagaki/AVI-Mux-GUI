@@ -7,6 +7,9 @@
 // SetMainAVIHeaderFlagsDlg.h : Header-Datei
 //
 
+#include <afxwin.h>
+#include "resource.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // Dialogfeld CSetMainAVIHeaderFlagsDlg 
 
@@ -14,7 +17,7 @@ class CSetMainAVIHeaderFlagsDlg : public CDialog
 {
 // Konstruktion
 public:
-	CSetMainAVIHeaderFlagsDlg(CWnd* pParent = NULL); // Standardkonstruktor
+	CSetMainAVIHeaderFlagsDlg(CWnd* pParent = nullptr); // Standardkonstruktor
 	DWORD	dwData;
 	bool	bActive;
 	void	SetData(DWORD dwNewFlags);

@@ -1,7 +1,7 @@
 #ifndef I_BITSTREAM_FACTORY
 #define I_BITSTREAM_FACTORY
 
-#include "BitStream.h"
+#include "IBitStream.h"
 
 class CBitStreamFactory
 {

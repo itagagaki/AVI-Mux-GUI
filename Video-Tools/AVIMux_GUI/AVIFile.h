@@ -93,11 +93,11 @@ const int AFE_LEGACYINDEX = 0x00010001;
 
 
 
+#include <Windows.h>
 #include "RIFFFile.h"
-#include "..\BaseStreams.h"
-#include "math.h"
 #include "AVIIndices.h"
 #include <vector>
+#include <string>
 
 #define FRAMETYPE unsigned int
 const int FT_KEYFRAME     = 0x01;

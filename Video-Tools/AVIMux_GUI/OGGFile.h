@@ -9,7 +9,9 @@
 #ifndef I_OGGFILE
 #define I_OGGFILE
 
-#include "../basestreams.h"
+#include <Windows.h>
+#include "../BaseStreams.h"
+#include <string>
 
 typedef struct
 {
@@ -96,7 +98,7 @@ class PACKETIZER: public STREAM
 	public:
 		// *iTimestamp MUST remain unmodified if no timestamp is returned
 		PACKETIZER();
-		int			virtual ReadPacket(BYTE* bDest, __int64* iTimestamp = NULL);
+		int			virtual ReadPacket(BYTE* bDest, __int64* iTimestamp = nullptr);
 		__int64		virtual GetUnstretchedDuration(void);
 		void        virtual ReInit();
 		int		virtual	GetName(char* lpDest);

@@ -1,9 +1,9 @@
 #ifndef I_AUDIOSOURCE_BINARY
 #define I_AUDIOSOURCE_BINARY
 
+#include <Windows.h>
 #include "audiosource_generic.h"
-#include "../basestreams.h"
-#include "../dynarray.h"
+#include "../BaseStreams.h"
 
 class CBinaryAudioSource: public AUDIOSOURCE
 {

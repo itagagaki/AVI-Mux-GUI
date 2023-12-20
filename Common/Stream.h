@@ -9,6 +9,7 @@ BITSTREAM   access to a stream bit by bit
 #ifndef I_BASESTREAMS
 #define I_BASESTREAMS
 
+#include <Windows.h>
 #include <vector>
 
 /** \def STREAM_OK
@@ -116,8 +117,6 @@ StreamMode::StreamModes& operator&= (StreamMode::StreamModes& first, StreamMode:
  * \brief A seperate thread is used for I/O operations.
  */
 #define STREAM_MODE_THREADED				0x20
-
-#include "windows.h"
 
 const int READF_ASYNC = 0x01;
 

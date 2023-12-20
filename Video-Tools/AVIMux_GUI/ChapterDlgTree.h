@@ -7,13 +7,12 @@
 // ChapterDlgTree.h : Header-Datei
 //
 
+#include <afxwin.h>
+#include "UnicodeTreeCtrl.h"
+#include "../Chapters.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // Fenster CChapterDlgTree 
-
-
-#include "UnicodeTreeCtrl.h"
-#include "..\chapters.h"
-#include "ChapterDlg.h"
 
 int RemoveFromTree(CUnicodeTreeCtrl* tree, HTREEITEM hParent);
 int FormatChapterEntry(__int64 iBegin, __int64 iEnd, char* cText, char* cBuffer);

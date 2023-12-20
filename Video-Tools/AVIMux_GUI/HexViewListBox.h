@@ -1,6 +1,8 @@
 #pragma once
 
-#include "..\basestreams.h"
+#include <afxwin.h>
+#include "../BaseStreams.h"
+
 // CHexViewListBox
 
 #define HWLB_MODE_EBML 0x01

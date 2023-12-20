@@ -7,11 +7,13 @@
 // VideoInformationDlgListbox.h : Header-Datei
 //
 
+#include <afxwin.h>
+#include "AVIFile.h"
+#include "VideoInformationDlgTypes.h"
+#include "../../Common//utf-8.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // Fenster CVideoInformationDlgListbox 
-
-#include "avifile.h"
-#include "VideoInformationDlgTypes.h"
 
 #define REPAIRS_ODML				0x00000001
 #define REPAIRS_FRAMERATE			0x00000002

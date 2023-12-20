@@ -3,10 +3,9 @@
 
 #pragma warning(disable:4786)
 
-#include "buffers.h"
-#include "FormatInt64.h"
-#include "CRC.h"
 #include "EBML_IDs.h"
+#include "Buffers.h"
+#include "IBitStream.h"
 #include <vector>
 
 #pragma warning(disable:4305)
@@ -87,7 +86,7 @@ class EBMLElement
 		int				virtual ReadID(char** iID);
 		int				virtual ReadID(char* iID);
 		void			virtual DetermineLength();
-		int				virtual GetIDLength(char* _ID = NULL);
+		int				virtual GetIDLength(char* _ID = nullptr);
 		int				virtual InsertElement(void** e, EBMLElement* seg, char* ID, EBMLElement* pos);
 		int				virtual InsertElement(std::vector<EBMLElement*>& e, EBMLElement* seg, char* ID, EBMLElement* pos);
 
@@ -130,9 +129,9 @@ class EBMLElement
 		int				virtual GetType();
 
 		char			virtual* GetTypeString();
-		EBMLElement		virtual* Create(EBMLElement** p,char* ID = NULL);
+		EBMLElement		virtual* Create(EBMLElement** p,char* ID = nullptr);
 		EBMLElement		virtual* Create(EBMLElement** p,char** ID);
-		EBMLElement		virtual* Create1stSub(EBMLElement** p,char* ID = NULL);
+		EBMLElement		virtual* Create1stSub(EBMLElement** p,char* ID = nullptr);
 		bool			virtual HasSucc();
 		EBMLElement		virtual* GetSucc();
 		EBMLElement		virtual* FindNext(char* ID);
@@ -146,19 +145,19 @@ class EBMLElement
 		char			virtual* AsString();
 
 		/* search for multiple elements, create an array of EBMLELEMENTLIST* */
-		int				virtual SearchMulti(void*** dest, char** iID, int iIDCount, char* iID2StopAt = NULL);
+		int				virtual SearchMulti(void*** dest, char** iID, int iIDCount, char* iID2StopAt = nullptr);
 
 		/* search for multiple elements and create a vector of vectors of EBMLElements */
-		int				virtual SearchMulti(std::vector<std::vector<EBMLElement*> > &dest, char** iID, char* iID2StopAt = NULL);
+		int				virtual SearchMulti(std::vector<std::vector<EBMLElement*> > &dest, char** iID, char* iID2StopAt = nullptr);
 
 		/* search for multiple elements, check for occurence restrictions "mandatory" and "unique" 
 		   and save value of each first occurence to the specified variable. Return -1 if a mandatory
 		   element is not found */
-		int				virtual SearchMulti(std::vector<std::vector<EBMLElement*> > &dest, SEARCHMULTIEX& search, char* iID2StopAt = NULL);
+		int				virtual SearchMulti(std::vector<std::vector<EBMLElement*> > &dest, SEARCHMULTIEX& search, char* iID2StopAt = nullptr);
 
 		/* search for elements of one type */
-		int				virtual Search(void** dest,char* iID2Find,char* iID2StopAt = NULL);
-		int				virtual Search(std::vector<EBMLElement*> &dest,char* iID2Find,char* iID2StopAt = NULL);
+		int				virtual Search(void** dest,char* iID2Find,char* iID2StopAt = nullptr);
+		int				virtual Search(std::vector<EBMLElement*> &dest,char* iID2Find,char* iID2StopAt = nullptr);
 		int				virtual Search(std::vector<EBMLElement*> &dest,char* iID2Find,char* iID2StopAt, int occurence, __int64* pTarget);
 
 		bool	operator< (EBMLElement& first);
@@ -168,7 +167,7 @@ struct EBMLELEMENTLIST
 {
 	size_t			iCount;
 	EBMLElement**	pElement;
-	EBMLElement* operator() (size_t index = NULL);	// return i-th element of that list
+	EBMLElement* operator() (size_t index = 0);	// return i-th element of that list
 	__int64 operator[] (int index);				// return integer value of i-th element of that list
 	__int64 operator^ (__int64 _default);		// return value of 1st element in that list of default if there is none
 

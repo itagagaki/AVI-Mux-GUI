@@ -202,7 +202,7 @@
     <ClCompile Include="..\..\common\HighPrecisionTimer.cpp" />
     <ClCompile Include="..\..\Common\Stream.cpp" />
     <ClCompile Include="..\..\Common\TextFiles.cpp" />
-    <ClCompile Include="..\..\common\TraceFiles\Tracefile.cpp" />
+    <ClCompile Include="..\..\common\TraceFiles\TraceFile.cpp" />
     <ClCompile Include="..\..\Common\utf-8.cpp" />
     <ClCompile Include="..\BaseStreams.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
@@ -947,7 +947,7 @@
     <ClInclude Include="..\UnicodeCalls.h" />
     <ClInclude Include="..\utf-8.h" />
     <ClInclude Include="..\Warnings.h" />
-    <ClInclude Include="..\XML.H" />
+    <ClInclude Include="..\XML.h" />
     <ClInclude Include="AC3FrameCountEdit.h" />
     <ClInclude Include="AddSplitPointDlg.h" />
     <ClInclude Include="AttachedWindows.h" />

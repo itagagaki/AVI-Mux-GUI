@@ -1,6 +1,7 @@
 #pragma once
 
-#include "windows.h"
+#include <Windows.h>
+#include "../../Common/utf-8.h"
 
 class MessageBoxHelper
 {

@@ -1,9 +1,7 @@
 #ifndef I_IBITSTREAM
 #define I_IBITSTREAM
 
-#include "basestreams.h"
-#include <deque>
-#include "types.h"
+#include "BaseStreams.h"
 
 class IBitStream
 {
@@ -15,15 +13,15 @@ public:
 	IBitStream();
 	virtual ~IBitStream();
 
-	int		virtual	Open(STREAM* lpStream) = NULL;
-	int		virtual Close() = NULL;
-	int		virtual Seek(__int64 qwPos) = NULL;
-	int		virtual GetBitPos() = NULL;
-	__int64 virtual GetPos() = NULL;
-	void	virtual SetBitPos(int pos) = NULL;
-	void    virtual FlushInputBuffer() = NULL;
-	int		virtual ReadBits(int n, int iFlag = 0) = NULL;
-	__int64	virtual	ReadBits64(int n, int iFlag = 0) = NULL;
+	int		virtual	Open(STREAM* lpStream) = 0;
+	int		virtual Close() = 0;
+	int		virtual Seek(__int64 qwPos) = 0;
+	int		virtual GetBitPos() = 0;
+	__int64 virtual GetPos() = 0;
+	void	virtual SetBitPos(int pos) = 0;
+	void    virtual FlushInputBuffer() = 0;
+	int		virtual ReadBits(int n, int iFlag = 0) = 0;
+	__int64	virtual	ReadBits64(int n, int iFlag = 0) = 0;
 };
 
 #endif

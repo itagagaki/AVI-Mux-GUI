@@ -7,21 +7,18 @@
 // SetStoreFileOptionsDlg.h : Header-Datei
 //
 
-/////////////////////////////////////////////////////////////////////////////
-// Dialogfeld CSetStoreFileOptionsDlg 
-
+#include <afxcmn.h>
+#include "ResizeableDialog.h"
 #include "SplitPointsDlg.h"
 #include "ClusterTimeEdit.h"
 #include "AC3FrameCountEdit.h"
 #include "MKVAC3FrameCountEdit.h"
 #include "MKVHeaderSizeEdit.h"
-#include "ResizeableDialog.h"
-#include "..\Chapters.h"
-#include "..\Buffers.h"
-#include "WindowHelper.h"
-#include "afxwin.h"
-#include <deque>
+#include "../Chapters.h"
 #include <vector>
+
+/////////////////////////////////////////////////////////////////////////////
+// Dialogfeld CSetStoreFileOptionsDlg 
 
 const int AIU_KB		= 0x0001;
 const int AIU_FRAME		= 0x0002;
@@ -123,7 +120,7 @@ protected:
 	int			ShowPage(int a);
 	CAttribs*	GetCurrentLaceDefinition();
 public:
-	CSetStoreFileOptionsDlg(CWnd* pParent = NULL);   // Standardkonstruktor
+	CSetStoreFileOptionsDlg(CWnd* pParent = nullptr);   // Standardkonstruktor
 	virtual ~CSetStoreFileOptionsDlg();
 	void		SetData(STOREFILEOPTIONS* lpsfoData,OPENFILEOPTIONS* lpofoData, CAttribs* lpsettings);
 	void		GetData(STOREFILEOPTIONS* lpsfoData,OPENFILEOPTIONS* lpofoData, CAttribs** lpsettings);

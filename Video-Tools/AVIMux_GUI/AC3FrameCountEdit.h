@@ -10,6 +10,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Fenster CAC3FrameCountEdit 
 
+#include <afxwin.h>
 #include "UserDrawEdit.h"
 
 class CAC3FrameCountEdit : public CUserDrawEdit

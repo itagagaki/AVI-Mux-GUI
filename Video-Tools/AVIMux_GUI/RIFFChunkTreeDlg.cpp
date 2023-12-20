@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "AVIMux_GUI.h"
 #include "RIFFChunkTreeDlg.h"
-#include "windows.h"
+#include "Languages.h"
 #include "FormatText.h"
 #include "ResizeableDialog.h"
 #include ".\riffchunktreedlg.h"

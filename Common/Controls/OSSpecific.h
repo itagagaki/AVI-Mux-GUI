@@ -1,7 +1,6 @@
 #pragma once
 
-#include "windows.h"
-#include <string>
+#include <Windows.h>
 
 typedef HRESULT (WINAPI *pfnDrawThemeParentBackground)(HWND, HDC, RECT*);
 typedef BOOL (WINAPI *pfnGlobalMemoryStatusEx)(MEMORYSTATUSEX*);

@@ -1,7 +1,7 @@
 #ifndef I_INTEGERS
 #define I_INTEGERS
 
-#include "buffers.h"
+#include "Buffers.h"
 
 extern "C" {
     int _stdcall Int2VSUInt_asm(__int64 *x, char* y, int iLen = 0);

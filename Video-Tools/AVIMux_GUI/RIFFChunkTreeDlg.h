@@ -7,15 +7,14 @@
 // RIFFChunkTreeDlg.h : Header-Datei
 //
 
+#include <afxcmn.h>
+#include "resource.h"
+#include "ResizeableDialog.h"
+#include "HexViewListBox.h"
+#include "../BaseStreams.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // Dialogfeld CRIFFChunkTreeDlg 
-
-#include "Languages.h"
-#include "..\basestreams.h"
-#include "AVIFile.h"
-#include "ResizeableDialog.h"
-#include "afxwin.h"
-#include "HexViewListBox.h"
 
 class CRIFFChunkTreeDlg : public CResizeableDialog
 {
@@ -27,7 +26,7 @@ private:
 
 //	HTREEITEM InsertItem(HTREEITEM hParent, char* cText);
 public:
-	CRIFFChunkTreeDlg(CWnd* pParent = NULL);   // Standardkonstruktor
+	CRIFFChunkTreeDlg(CWnd* pParent = nullptr);   // Standardkonstruktor
 	void	SetSource(STREAM*	lpSource);
 	STREAM* GetSource(void);
 /*

@@ -1,7 +1,9 @@
 #ifndef I_MATROSKABLOCK
 #define I_MATROSKABLOCK
 
-#include "ebml_matroska.h"
+#include "EBML_Matroska.h"
+#include "Buffers.h"
+#include "IBitStream.h"
 #include <vector>
 
 class CLBLOCKHEADER

@@ -1,6 +1,9 @@
 #ifndef I_TREES
 #define I_TREES
 
+#include <afxwin.h>
+#include <tchar.h>
+#include "../../Common/utf-8.h"
 #include <vector>
 
 template <class T> 
@@ -99,7 +102,7 @@ BOOL Tree_GetCheckState(T* CTree, HTREEITEM hItem)
 
 
 template <class T> 
-std::vector<HTREEITEM> Tree_GetChecked(T* CTree, HTREEITEM hItem, std::vector<int>* indices = NULL)
+std::vector<HTREEITEM> Tree_GetChecked(T* CTree, HTREEITEM hItem, std::vector<int>* indices = nullptr)
 {
 	int	j;
 
@@ -154,7 +157,7 @@ std::vector<HTREEITEM> Tree_GetAllRootElements(T* CTree, HTREEITEM hItem)
  *        item in the tree
  */
 template <class T> 
-HTREEITEM Tree_Index2Item(T* tree, int index, int id = -1, int* pIndexInTree = NULL)
+HTREEITEM Tree_Index2Item(T* tree, int index, int id = -1, int* pIndexInTree = nullptr)
 {
 	int counter = 0;
 	int matchCounter = 0;

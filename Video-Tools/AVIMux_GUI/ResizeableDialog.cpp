@@ -5,7 +5,6 @@
 //#include "AVIMux_GUI.h"
 #include "ResizeableDialog.h"
 #include "../strings.h"
-#include ".\resizeabledialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

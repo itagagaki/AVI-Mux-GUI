@@ -8,12 +8,14 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include <afxwin.h>
+
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
 #endif
 
-#include "IncResource.h"		// Hauptsymbole
-#include "..\..\Common\TraceFiles\TraceFile.h"
+//#include "IncResource.h"		// Hauptsymbole
+//#include "..\..\Common\TraceFiles\TraceFile.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CAVIMux_GUIApp:

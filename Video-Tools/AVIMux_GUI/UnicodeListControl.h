@@ -10,6 +10,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Fenster CUnicodeListControl 
 
+#include <afxcmn.h>
 #include "UnicodeBase.h"
 
 
@@ -47,7 +48,7 @@ public:
 	//{{AFX_VIRTUAL(CUnicodeListControl)
 	public:
 	virtual void OnFinalRelease();
-	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
+	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = nullptr);
 	//}}AFX_VIRTUAL
 
 // Implementierung

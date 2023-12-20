@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Matroska_Clusters.h"
+#include "matroska_IDs.h"
 #include "warnings.h"
 #include "integers.h"
 #include "Matroska_Block.h"

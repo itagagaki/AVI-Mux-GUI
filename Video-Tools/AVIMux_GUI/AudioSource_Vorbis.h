@@ -5,13 +5,15 @@
     from OGG, MKV and AVI files
 */
 
-#include "audiosource_generic.h"
-#include "avifile.h"
-#include "oggfile.h"
-#include "..\buffers.h"
-#include "audiosource_matroska.h"
-#include "..\cache.h"
-#include "..\bitstream.h"
+#include <Windows.h>
+#include "AudioSource_generic.h"
+#include "AudioSource_Matroska.h"
+#include "AVIFile.h"
+#include "OGGFile.h"
+#include "../Buffers.h"
+#include "../Cache.h"
+#include "../BitStream.h"
+#include <string>
 
 const int VORBIS_OPEN_OK	= 0x01;
 const int VORBIS_OPEN_ERROR = -0x01;
@@ -177,8 +179,8 @@ class VORBISPACKETSFROMAVI: public PACKETIZER
 		VORBISPACKETSFROMAVI();
 		VORBISPACKETSFROMAVI(AVIFILEEX* lpSource, int stream_nbr);
 		int				Close(bool bCloseSource = false);
-		int				Open(AVIFILEEX* lpSource = NULL, int stream_nbr = NULL);
-		int		virtual	ReadPacket(BYTE* cDest, __int64* iTimecode = NULL);
+		int				Open(AVIFILEEX* lpSource = nullptr, int stream_nbr = 0);
+		int		virtual	ReadPacket(BYTE* cDest, __int64* iTimecode = nullptr);
 		bool	virtual IsEndOfStream();
 		__int64 virtual GetSize();
 		__int64 virtual GetUnstretchedDuration(void);

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <string>
-
 #define TRACE_LEVEL_NEVER 0
 
 #define TRACE_LEVEL_DEBUG 2

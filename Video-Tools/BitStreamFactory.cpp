@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "BitStreamFactory.h"
+#include "Bitstream.h"
 
 template<>
 IBitStream* CBitStreamFactory::CreateInstance<CBitStream2>()

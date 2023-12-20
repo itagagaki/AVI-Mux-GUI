@@ -25,6 +25,7 @@ such files
 #include "crc.h"
 #include "AVIMux_GUI/ecc.h"
 #include "UID.h"
+#include "FormatInt64.h"
 #include <algorithm>
 
 #ifdef DEBUG_NEW

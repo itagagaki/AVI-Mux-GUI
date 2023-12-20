@@ -1,8 +1,9 @@
 #ifndef I_SILENCE
 #define I_SILENCE
 
+#include <Windows.h>
 #include "AudioSource_generic.h"
-
+#include <string>
 
 typedef struct
 {

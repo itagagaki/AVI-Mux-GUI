@@ -1,10 +1,10 @@
 #ifndef I_WAVEFILE
 #define I_WAVEFILE
-#include "RIFFFile.h"
-#include "..\basestreams.h"
-#include "AVIStructs.h"
 
-//#include "mmreg.h"
+#include <Windows.h>
+#include "RIFFFile.h"
+#include "../BaseStreams.h"
+#include "AVIStructs.h"
 
 #define WAVE_OPEN_OK	+0x01
 #define WAVE_OPEN_ERROR	-0x00

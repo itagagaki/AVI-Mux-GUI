@@ -2,8 +2,8 @@
 #define I_FILEDIALOGS
 
 
-#include "windows.h"
-#include "..\UnicodeCalls.h"
+#include <afxwin.h>
+#include <tchar.h>
 
 void PrepareSimpleDialog(void* lpopn, HWND m_hWnd, const TCHAR* cFilter);
 int GetOpenSaveFileNameUTF8(void* lpofn, int open);

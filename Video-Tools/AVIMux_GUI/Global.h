@@ -1,6 +1,8 @@
 #ifndef I_GLOBAL
 #define I_GLOBAL
 
+#include <tchar.h>
+
 // shall somewhen be used for joblist stuff
 
 TCHAR* GlobalMuxSemaphoreName(int i = 0);

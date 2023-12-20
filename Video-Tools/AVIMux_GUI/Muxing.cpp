@@ -17,6 +17,7 @@
 #include "OSVersion.h"
 #include "..\FileStream.h"
 #include "fopenutf8.h"
+#include "../FormatInt64.h"
 
 #ifndef INT64_MAX
 #define INT64_MAX 0x7FFFFFFFFFFFFFFF

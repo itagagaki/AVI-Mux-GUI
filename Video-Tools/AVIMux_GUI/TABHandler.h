@@ -1,6 +1,8 @@
 #ifndef I_TABHANDLER
 #define I_TABHANDLER
 
+#include <Windows.h>
+
 /* defines an interface to set the window to get the focus
    when pressing TAB in another window */
 

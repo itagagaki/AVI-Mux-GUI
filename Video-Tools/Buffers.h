@@ -1,8 +1,7 @@
 #ifndef I_BUFFER
 #define I_BUFFER
 
-#include "basestreams.h"
-#include "xml.h"
+#include "XML.h"
 #include "utf-8.h"
 
 const int CBN_REF1	= 0x80;
@@ -28,7 +27,7 @@ class CBuffer
 		void*	lpData;
 	public:
 		CBuffer();
-		CBuffer(int iSize, void* lpData = NULL, int iFlags = 0);
+		CBuffer(int iSize, void* lpData = nullptr, int iFlags = 0);
 		virtual ~CBuffer();
 		int		virtual GetSize(void);
 		void	virtual Resize(int new_size);

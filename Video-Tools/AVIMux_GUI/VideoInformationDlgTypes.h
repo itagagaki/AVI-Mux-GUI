@@ -1,6 +1,9 @@
 #ifndef I_VIDEOINFORMATIONTYPES
 #define I_VIDEOINFORMATIONTYPES
 
+#include <Windows.h>
+#include "AVIFile.h"
+
 typedef struct
 {
 	__int64		qwFilePos;

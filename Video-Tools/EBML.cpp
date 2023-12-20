@@ -5,6 +5,7 @@
 #include "warnings.h"
 #include "stdio.h"
 #include "FormatInt64.h"
+#include "CRC.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

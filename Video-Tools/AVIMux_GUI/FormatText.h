@@ -1,10 +1,9 @@
 #ifndef I_FORMATTEXT
 #define I_FORMATTEXT
 
-#include "videosource.h"
-#include "splitpointsdlg.h"
-#include "..\FormatInt64.h"
-#include "..\FormatTime.h"
+#include "VideoSource_generic.h"
+#include "SplitPointsDlg.h"
+#include <vector>
 
 const int STRF_OK	 = 0x01;
 const int STRF_ERROR = -0x01;
@@ -15,5 +14,8 @@ int		Str2Resolution(const char* c, int in_x, int in_y, RESOLUTION* r, RESOLUTION
 __int64	SONChapStr2Millisec(char* c);
 int		separate(char* in, char* separator, std::vector<char*>& dest);
 void	DeleteStringVector(std::vector<char*>& dest);
+
+#include "../FormatInt64.h"
+#include "../FormatTime.h"
 
 #endif

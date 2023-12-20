@@ -1,18 +1,16 @@
 ﻿#ifndef I_TRACEFILE
 #define I_TRACEFILE
 
-#include "windows.h"
-#include "..\utf-8.h"
-#include "tchar.h"
+#include <Windows.h>
+#include <tchar.h>
+#include "../utf-8.h"
 #include <string>
 #include <deque>
 #include <vector>
 #include <map>
-#include <functional>
-#include <iomanip>
 #include <sstream>
 #include "TraceLevel.h"
-#include "..\HighPrecisionTimer.h"
+#include "../HighPrecisionTimer.h"
 
 
 

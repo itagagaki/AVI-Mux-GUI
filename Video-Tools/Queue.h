@@ -1,7 +1,7 @@
 #ifndef I_QUEUE
 #define I_QUEUE
 
-#include "buffers.h"
+#include "Buffers.h"
 
 typedef struct QUEUE
 {

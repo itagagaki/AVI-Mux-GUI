@@ -1,10 +1,9 @@
 #ifndef I_MATROSKACLUSTERS
 #define I_MATROSKACLUSTERS
 
-#include "ebml.h"
-#include "ebml_matroska.h"
-#include "matroska_IDs.h"
-#include "buffers.h"
+#include "EBML_Matroska.h"
+#include "Buffers.h"
+#include "IBitStream.h"
 #include <vector>
 
 const int PREVSIZE_UNINITIALIZED = -0x02;

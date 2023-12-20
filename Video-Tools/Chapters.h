@@ -2,9 +2,8 @@
 #define I_CHAPTERS
 
 #include "multimedia_source.h"
-#include "buffers.h"
-#include "dynarray.h"
-#include "XML.h"
+#include "Buffers.h"
+#include "DynArray.h"
 #include "Tags.h"
 #include "TitleSet.h"
 #include <vector>
@@ -141,7 +140,7 @@ class CChapters: public MULTIMEDIASOURCE
 		
 	public:
 		CChapters();
-		CChapters(CHAPTERS* chapters, int iBias = NULL);
+		CChapters(CHAPTERS* chapters, int iBias = 0);
 		virtual ~CChapters();
 		void		SetParent(CChapters* P);
 		CChapters*	GetParent(int top_level);

@@ -18,7 +18,7 @@
 #ifndef I_ATTACHED_WINDOWS
 #define I_ATTACHED_WINDOWS
 
-#include "windows.h"
+#include <Windows.h>
 #include <vector>
 
 const int ATTB_LEFT    = 0x01;

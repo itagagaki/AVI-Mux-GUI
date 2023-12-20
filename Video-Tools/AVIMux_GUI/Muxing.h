@@ -4,19 +4,23 @@
 #define DAI_IS_KB		AIU_KB
 #define DAI_IS_FRAME	AIU_FRAME
 
-#include "audiosource.h"
-#include "subtitles.h"
-#include "videosource.h"
-//#include "audiosourcelist.h"
-#include "avimux_guidlg.h"
-#include "windows.h"
+#include <afxwin.h>
+#include <tchar.h>
+#include "AVIMux_GUIDlg.h"
+#include "SplitPointsDlg.h"
+#include "AudioSource.h"
+#include "AudioSourceTree.h"
+#include "SubTitles.h"
+#include "VideoSource.h"
+#include <vector>
+#include <string>
 
 const int DAI_DF_FRAMES		= 0x01;
 const int DAI_DF_DURATION	= 0x02;
 
 int FormatOutputFileName(char* cDest, const char* cFormat, const char* cRawFileName,
 						 int iCurrentFile, SPLIT_POINT_DESCRIPTOR* pSPD,
-						 int* flags = NULL);
+						 int* flags = nullptr);
 
 class DEST_AVI_INFO 
 {
@@ -31,12 +35,12 @@ public:
 	};
 public:
 	DEST_AVI_INFO()
-		: videosource(NULL),
-		  vs_vfr(NULL),
-		  lpProtocol(NULL),
-		  asi(NULL),
-		  ssi(NULL),
-		  dlg(NULL),
+		: videosource(nullptr),
+		  vs_vfr(nullptr),
+		  lpProtocol(nullptr),
+		  asi(std::vector<AUDIO_STREAM_INFO*>()),
+		  ssi(std::vector<SUBTITLE_STREAM_INFO*>()),
+		  dlg(nullptr),
 		  dwNbrOfAudioStreams(0),
 		  dwNbrOfVideoStreams(0),
 		  dwNbrOfSubs(0),
@@ -44,9 +48,9 @@ public:
 		  iDurationFlags(0),
 		  dwMaxFrames(0),
 		  iMaxDuration(0),
-		  lpFileName(NULL),
+		  lpFileName(nullptr),
 		  dwPadding(0),
-		  lpAC3_logs(NULL),
+		  lpAC3_logs(nullptr),
 		  dwNbrOfAC3Streams(0),
 		  hDebugFile(NULL),
 		  bExitAfterwards(false),
@@ -54,13 +58,13 @@ public:
 		  iOverlapped(0),
 		  hMuxingSemaphore(NULL),
 		  hMuxingStartedSemaphore(NULL),
-		  split_points(NULL),
+		  split_points(nullptr),
 		  dwEstimatedNumberOfFiles(0),
 		  qwEstimatedSize(0),
 		  dVideoStretchFactor(0.0),
-		  settings(NULL),
-		  cTitle(NULL),
-		  chapters(NULL),
+		  settings(nullptr),
+		  cTitle(nullptr),
+		  chapters(nullptr),
 		  i1stTimecode(0)
 	{
 	}

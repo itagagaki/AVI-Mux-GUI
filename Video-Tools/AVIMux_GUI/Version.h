@@ -1,6 +1,9 @@
 #ifndef  I_VERSION
 #define  I_VERSION
 
+#include <tchar.h>
+#include <string>
+
 //void ComposeVersionString(char* buffer);
 //char* GetAMGVersionString(char* buffer, int buf_len);
 

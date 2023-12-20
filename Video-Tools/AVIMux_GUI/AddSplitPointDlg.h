@@ -7,10 +7,12 @@
 // AddSplitPointDlg.h : Header-Datei
 //
 
+#include <afxwin.h>
+#include "resource.h"
+#include <string>
+
 /////////////////////////////////////////////////////////////////////////////
 // Dialogfeld AddSplitPointDlg 
-
-#include <string>
 
 class AddSplitPointDlg : public CDialog
 {
@@ -18,7 +20,7 @@ private:
 	DWORD	dwSplitPos;
 	// Konstruktion
 public:
-	AddSplitPointDlg(CWnd* pParent = NULL);   // Standardkonstruktor
+	AddSplitPointDlg(CWnd* pParent = nullptr);   // Standardkonstruktor
 	void SetSplitPos(DWORD dwSplitPos);
 	std::basic_string<TCHAR> Buffer;
 	DWORD		GetSplitPos();

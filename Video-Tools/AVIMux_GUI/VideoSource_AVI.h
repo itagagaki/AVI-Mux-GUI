@@ -1,7 +1,8 @@
 #ifndef I_VIDEOSOURCE_AVI
 #define I_VIDEOSOURCE_AVI
 
-#include "videosource_generic.h"
+#include <Windows.h>
+#include "VideoSource_generic.h"
 
 typedef struct
 {
@@ -22,7 +23,7 @@ class VIDEOSOURCEFROMAVI: public VIDEOSOURCE
 		virtual ~VIDEOSOURCEFROMAVI();
 		void		virtual* GetFormat();
 		int			virtual	Open(AVIFILEEX* avifile);
-		int			virtual GetFrame(void* lpDest,DWORD* lpdwSize,__int64* lpiTimecode = NULL, ADVANCEDREAD_INFO* lpAARI = NULL);
+		int			virtual GetFrame(void* lpDest,DWORD* lpdwSize,__int64* lpiTimecode = nullptr, ADVANCEDREAD_INFO* lpAARI = nullptr);
 		int			virtual GetName(char *lpDest);
 		int			virtual GetResolution(int* lpiWidth,int* lpiHeight);
 		DWORD		virtual GetPos();

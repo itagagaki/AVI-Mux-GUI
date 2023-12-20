@@ -1,9 +1,11 @@
-#ifndef I_AVISTREAM
+﻿#ifndef I_AVISTREAM
 #define I_AVISTREAM
 
-#include "streams.h"
+#include <Windows.h>
+#include "AVIFile.h"
+
 // erlaubt lesen eines Audiostreams aus einer AVI-Datei, 
-// so als ob es eine Datei w�re
+// so als ob es eine Datei wäre
 class AVISTREAM : public STREAM
 {
 	private:

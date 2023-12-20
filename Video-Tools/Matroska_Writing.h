@@ -1,8 +1,13 @@
 #ifndef I_MATROSKAWRITING
 #define I_MATROSKAWRITING
 
-#include "ebml.h"
-#include "chapters.h"
+#include "EBML.h"
+#include "Matroska_Segment.h"
+#include "Chapters.h"
+#include "TitleSet.h"
+#include "Buffers.h"
+#include "IBitStream.h"
+#include "Compression.h"
 
 // set some global Settings
 void MATROSKA_WriteBlockSizes(bool bWrite = true);
@@ -47,12 +52,12 @@ class EBMLElement_Writer: public EBMLElement
 		STREAM*					GetDest();
 		void					SetCBuffer(CBuffer* cSource,CBuffer** cDest);
 		void					IncWriteOverhead(int iSize);
-		int						Put(void* pSource, int iSize, char* pDest = NULL, int* iDest = NULL);
+		int						Put(void* pSource, int iSize, char* pDest = nullptr, int* iDest = nullptr);
 		int						IsCRCEnabled();
 		EBMLElement_Writer*		pCRC32;
 	public:
 		EBMLElement_Writer();
-		EBMLElement_Writer(STREAM* stream, char* ID = NULL, CBuffer* cBuffer = NULL);
+		EBMLElement_Writer(STREAM* stream, char* ID = nullptr, CBuffer* cBuffer = nullptr);
 		virtual ~EBMLElement_Writer();
 		void					SetID(char* ID);
 		void					SetChild(EBMLElement_Writer* pChild);
@@ -72,8 +77,8 @@ class EBMLElement_Writer: public EBMLElement
 		__int64					GetListSize();
 
 		// writes (1) one single element including all child elements  (2) as well as all elements linked through pNext
-		__int64		virtual		Write(char* pDest = NULL, int* iDest = NULL);
-		__int64		virtual		WriteList(char* pDest = NULL, int* iDest = NULL);
+		__int64		virtual		Write(char* pDest = nullptr, int* iDest = nullptr);
+		__int64		virtual		WriteList(char* pDest = nullptr, int* iDest = nullptr);
 		__int64		virtual		GetWriteOverhead();
 		__int64		virtual		GetWriteOverhead_List();
 

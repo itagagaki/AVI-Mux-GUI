@@ -6,8 +6,6 @@ typedef struct {
 	char* cID;
 } EID_DESCRIPTOR;
 
-#include "Integers.h"
-
 #pragma warning(disable:4305)
 #pragma warning(disable:4309)
 

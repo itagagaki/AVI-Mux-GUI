@@ -1,7 +1,8 @@
 #ifndef I_LANGUAGES
 #define I_LANGUAGES
 
-#include "../../Common/UTF-8.h"
+#include <Windows.h>
+#include "../../Common/utf-8.h"
 #include <map>
 
 typedef struct

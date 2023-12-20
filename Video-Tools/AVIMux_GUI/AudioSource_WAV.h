@@ -1,6 +1,7 @@
 #ifndef I_AUDIOSOURCE_WAV
 #define I_AUDIOSOURCR_WAV
 
+#include <Windows.h>
 #include "AudioSource_generic.h"
 #include "WAVFile.h"
 
@@ -31,8 +32,8 @@ public:
 	int		virtual IsCompatible(AUDIOSOURCE* a);
 	bool	virtual IsEndOfStream();
 	int		virtual Read(void* lpDest,DWORD dwMicrosecDesired,DWORD* lpdwMicrosecRead,
-						__int64* lpqwNanosecRead,__int64* lpiTimeocde = NULL,
-						ADVANCEDREAD_INFO* lpAARI = NULL);
+						__int64* lpqwNanosecRead,__int64* lpiTimeocde = nullptr,
+						ADVANCEDREAD_INFO* lpAARI = nullptr);
 	int		virtual Seek(__int64 iPos);
 };
 

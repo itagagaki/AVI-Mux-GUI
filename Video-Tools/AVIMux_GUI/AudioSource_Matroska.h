@@ -1,8 +1,9 @@
 #ifndef I_AUDIOSOURCE_MATROSKA
 #define I_AUDIOSOURCE_MATROSKA
 
-#include "..\matroska.h"
-#include "audiosource_generic.h"
+#include <Windows.h>
+#include "../Matroska.h"
+#include "AudioSource_generic.h"
 #include "AudioSource_AAC.h"
 
 // audio source from an matroska file
@@ -82,7 +83,7 @@ class AUDIOSOURCEFROMMATROSKA: public AUDIOSOURCE
 		bool	virtual IsCBR();
 		bool	virtual IsEndOfStream();
 		int		virtual Read(void* lpDest,DWORD dwMicrosecDesired,DWORD* lpdwMicrosecRead,
-							__int64* lpqwNanosecRead,__int64* lpiTimeocde = NULL, ADVANCEDREAD_INFO* lpAARI = NULL);
+							__int64* lpqwNanosecRead,__int64* lpiTimeocde = nullptr, ADVANCEDREAD_INFO* lpAARI = nullptr);
 		void	virtual ReInit();
 		int		virtual Seek(__int64 iPos);
 		int		virtual GetStrippableHeaderBytes(void* pBuffer, int max);

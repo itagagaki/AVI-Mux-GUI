@@ -8,9 +8,9 @@ MODE2FORM2SOURCE  filter for reading of Mode 2 - Form 2 - RIFF-CDXA- files
 
 */
 
-//#include "windows.h"
+#include <Windows.h>
 #include "RIFFFile.h"
-#include "..\basestreams.h"
+#include "../BaseStreams.h"
 
 typedef struct {
   byte sync[12];
@@ -28,7 +28,7 @@ class MODE2FORM2SOURCE : public RIFFFILE, public STREAM
 		DWORD				dwPosition;
 		DWORD				dwSectors;
 		bool				bCheckCRC;
-		int					ReadRAWSector(RAWSECTOR* lpDest,DWORD* lpdwCRC_OK = NULL);
+		int					ReadRAWSector(RAWSECTOR* lpDest,DWORD* lpdwCRC_OK = nullptr);
 		int					ReadPartialSector(DWORD dwNbr,DWORD dwOffset,DWORD dwLength,void* lpDest);
 	public:
 		int			virtual CheckCRC(bool bCCRC = true);

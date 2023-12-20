@@ -7,9 +7,6 @@
 #ifndef I_MESSAGELISTS
 #define I_MESSAGELISTS
 
-//#include "FILE_INFO.h"
-#include "stdafx.h"
-//#include "audiosource.h"
 
 typedef struct
 {

@@ -1,9 +1,7 @@
 #ifndef I_STRINGS
 #define I_STRINGS
 
-#include "utf-8.h"
 #include <string>
-#include <algorithm>
 #include <vector>
 
 char* ucase(char* s,char* d) ;

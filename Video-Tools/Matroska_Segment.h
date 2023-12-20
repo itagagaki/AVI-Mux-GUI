@@ -5,11 +5,16 @@
 #define uint unsigned int
 #endif
 
-#include "ebml.h"
-#include "ebml_matroska.h"
-#include "matroska_clusters.h"
-#include "chapters.h"
+#include <Windows.h>
+#include "EBML.h"
+#include "EBML_Matroska.h"
+#include "Matroska_Clusters.h"
+#include "TitleSet.h"
 #include "Tags.h"
+#include "Chapters.h"
+#include "Compression.h"
+#include "Buffers.h"
+#include <vector>
 
 #define newz(a,b,c) c=new a[b]; ZeroMemory(c,b*sizeof(a))
 

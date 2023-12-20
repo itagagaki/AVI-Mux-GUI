@@ -6,7 +6,7 @@
 #ifndef I_HIGHPRECTIMER
 #define I_HIGHPRECTIMER
 
-#include "windows.h"
+#include <Windows.h>
 
 /** \brief This class provides a high precision timer.
  *

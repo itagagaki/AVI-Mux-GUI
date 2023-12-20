@@ -1,6 +1,9 @@
 #ifndef I_OSVERSION
 #define I_OSVERSION
 
+#include <tchar.h>
+#include <string>
+
 bool DoesOSSupportUnicode();
 
 bool GetOSVersionString(std::string& result);

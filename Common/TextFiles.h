@@ -12,7 +12,7 @@ the file encoding is not detected automatically.
 #ifndef I_TEXTFILE
 #define I_TEXTFILE
 
-#include "stream.h"
+#include "Stream.h"
 #include "utf-8.h"
 
 const int TFRC_ALL			= 0x01;

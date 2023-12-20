@@ -1,9 +1,11 @@
 #ifndef I_AUDIOSOURCE_AC3
 #define I_AUDIOSOURCE_AC3
 
+#include <Windows.h>
 #include "audiosource_generic.h"
-#include "audiosource_binary.h"
-//#include "messagelists.h"
+#include "AudioSource_binary.h"
+#include "../IBitstream.h"
+#include <string>
 
 /* structure containing some information about an AC3 frame */
 typedef struct

@@ -7,16 +7,17 @@
 // EBMLTreeDlg.h : Header-Datei
 //
 
+#include <afxwin.h>
+#include "resource.h"
+#include "ResizeableDialog.h"
+#include "HexViewListBox.h"
+#include "../BaseStreams.h"
+#include "../Matroska.h"
+#include "EBMLTree.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // Dialogfeld CEBMLTreeDlg 
 
-#include "..\basestreams.h"
-#include "..\ebml.h"
-#include "..\matroska.h"
-#include "EBMLTree.h"
-#include "ResizeableDialog.h"
-#include "afxwin.h"
-#include "HexViewListBox.h"
 void AddChildren(CTreeCtrl* tree, HTREEITEM hParent, EBMLElement* eParent); 
 
 class CEBMLTreeDlg : public CResizeableDialog
@@ -33,7 +34,7 @@ private:
 	int			fThreadsafe;
 // Konstruktion
 public:
-	CEBMLTreeDlg(CWnd* pParent = NULL);   // Standardkonstruktor
+	CEBMLTreeDlg(CWnd* pParent = nullptr);   // Standardkonstruktor
 	void	SetSource(STREAM*	lpSource);
 	STREAM* GetSource(void);
 

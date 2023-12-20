@@ -1,11 +1,9 @@
 #ifndef I_AUDIOSOURCE_GENERIC
 #define I_AUDIOSOURCE_GENERIC
 
-#include "windows.h"
-#include "..\..\Common\TraceFiles\TraceFile.h"
-
+#include <Windows.h>
+#include "../multimedia_source.h"
 #include <string>
-#include <sstream>
 
 const int MMSGFS_MPEG_LAYERVERSION	= 0x0000000000000001;
 const int MMSGFS_MPEG_VERSION		= 0x0000000000000020;
@@ -24,8 +22,6 @@ const int MMSGFS_IS_AC3				= 0x000000000000001A;
 const int MMSGFS_IS_DTS				= 0x000000000000001B;
 
 typedef int (_stdcall *RESYNCCALLBACK)(__int64, DWORD, DWORD);
-
-#include "../multimedia_source.h"
 
 const int AUDIOTYPE_CBR			= 0x01;
 const int AUDIOTYPE_VBR			= 0x00;

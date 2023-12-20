@@ -1,7 +1,8 @@
 #pragma once
 
-#include "windows.h"
+#include <afxwin.h>
 #include <vector>
+#include <string>
 
 class WindowHelper
 {

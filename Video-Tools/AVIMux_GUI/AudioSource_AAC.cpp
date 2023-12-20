@@ -2,6 +2,7 @@
 
 // #include "silence.h"
 #include "audiosource_aac.h"
+#include "../Bitstream.h"
 #include "../BitStreamFactory.h"
 #include <sstream>
 

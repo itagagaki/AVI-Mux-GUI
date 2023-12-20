@@ -2,6 +2,7 @@
 #define I_XML
 
 #include <vector>
+#include <string>
 
 const int XMLERR_BADTAGNAME = -1;
 const int XMLERR_TAGEXPECTED= -2;

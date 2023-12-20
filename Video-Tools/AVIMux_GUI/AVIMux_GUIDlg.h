@@ -8,31 +8,31 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include <afxdlgs.h>
+#include "resource.h"
+#include "../../Common/TraceFiles/TraceFile.h"
+#include "SourceFileListbox.h"
+#include "SetStoreFileOptionsDlg.h"
+#include "ProgressList.h"
+#include "Languages.h"
+#include "ProtocolListCtrl.h"
+#include "ResolutionEdit.h"
+#include "ResizeableDialog.h"
+#include "FILE_INFO.h"
+#include "AudioSourceTree.h"
+#include "VideoSource.h"
+#include "../IBitStream.h"
+#include "../Chapters.h"
+#include <vector>
+#include <string>
+
 /////////////////////////////////////////////////////////////////////////////
 // CAVIMux_GUIDlg Dialogfeld
 
 
-#include "..\..\Common\TraceFiles\TraceFile.h"
-#include "SplitPointsDlg.h"
-#include "SourceFileListbox.h"
-#include "SetStoreFileOptionsDlg.h"
-#include "VideoSourceListBox.h"
-#include "ProgressList.h"
-#include "FillASIs.h"
-#include "Languages.h"
-#include "ProtocolListCtrl.h"
-#include "..\Chapters.h"
-#include "ResolutionEdit.h"
-#include "audiosourcetree.h"
-#include "windows.h"
-#include "ResizeableDialog.h"
-#include "afxwin.h"
-#include <vector>
-#include <string>
-
 int Thread_OnStart(void* pData);
 
-DWORD DetectFileType(STREAM* lpSource, void** pReturn = NULL);
+DWORD DetectFileType(STREAM* lpSource, void** pReturn = nullptr);
 void SetDelay(AUDIO_STREAM_INFO* asi, int iDelay);
 __int64	GetLaceSetting(char* cName, CAttribs* settings, int iFlags = 0);
 void name_without_ext(const char* lpcName, char* cNoExt);
@@ -265,5 +265,8 @@ public:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ fügt unmittelbar vor der vorhergehenden Zeile zusätzliche Deklarationen ein.
+
+
+#include "FillASIs.h"
 
 #endif // !defined(AFX_AVIMUX_GUIDLG_H__E08D67DC_40F7_4A39_919C_A12D2C827F08__INCLUDED_)

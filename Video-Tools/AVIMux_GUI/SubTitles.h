@@ -12,10 +12,12 @@ SSA sources without wrapping a SUBTITLESOURCELIST around!
 #ifndef I_SUBTITLES
 #define I_SUBTITLES
 
-#include "../basestreams.h"
-#include "file_info.h"
-#include "../multimedia_source.h"
-#include "../../Common/textfiles.h"
+#include <Windows.h>
+#include "../../Common/utf-8.h"
+#include "../Queue.h"
+#include "FILE_INFO.h"
+#include "../../Common/TextFiles.h"
+#include "../Matroska.h"
 
 const int SUBS_ERR = -0x01;
 const int SUBS_OK  = 0x01;
@@ -185,8 +187,8 @@ class SUBTITLESOURCE: public MULTIMEDIASOURCE
 		int			virtual	Render2AVIChunk(void* lpDest);
 		int			virtual	Render2Text(void* lpDest);
 		int			virtual	SetRange(__int64 qwBegin, __int64 qwEnd);
-		int			virtual	Read(void* lpDest, int* iSize = NULL, __int64* lpiTimecode = NULL,
-									ADVANCEDREAD_INFO* lpAARI = NULL) { return 0; }
+		int			virtual	Read(void* lpDest, int* iSize = nullptr, __int64* lpiTimecode = nullptr,
+									ADVANCEDREAD_INFO* lpAARI = nullptr) { return 0; }
 		int			virtual	RenderCodecPrivate(void* lpDest); // return size as result
 };
 
@@ -212,8 +214,8 @@ class SUBTITLESOURCELIST: public SUBTITLESOURCE
 		char	virtual* GetCodecID();
 		__int64 virtual GetNextTimecode();
 		int		virtual IsCompatible(SUBTITLESOURCE* s);
-		int		virtual	Read(void* lpDest, int* iSize = NULL, __int64* lpiTimecode = NULL,
-							ADVANCEDREAD_INFO* lpAARI = NULL);
+		int		virtual	Read(void* lpDest, int* iSize = nullptr, __int64* lpiTimecode = nullptr,
+							ADVANCEDREAD_INFO* lpAARI = nullptr);
 		void	virtual ReInit();
 		int		virtual Seek(__int64 iTime);
 		int		virtual Enable(int bEnabled);
@@ -243,8 +245,8 @@ class SUBTITLESFROMMATROSKA: public SUBTITLESOURCE
 		SUBTITLESFROMMATROSKA();
 		SUBTITLESFROMMATROSKA(MATROSKA* m, int iStream);
 
-		int virtual		Read(void* lpDest, int* iSize = NULL, __int64* lpiTimecode = NULL,
-							ADVANCEDREAD_INFO* lpAARI = NULL);
+		int virtual		Read(void* lpDest, int* iSize = nullptr, __int64* lpiTimecode = nullptr,
+							ADVANCEDREAD_INFO* lpAARI = nullptr);
 		int virtual		GetFormat() { return info.iFormat; };
 		bool	virtual IsEndOfStream();
 		int		virtual GetName(char* lpDest);
@@ -279,8 +281,8 @@ class SUBTITLES: public SUBTITLESOURCE
 		~SUBTITLES(void);
 		SUBTITLE_DESCRIPTOR virtual* GetData(void);
 		__int64 virtual GetNextTimecode();
-		int virtual		Read(void* lpDest, int* iSize = NULL, __int64* lpiTimecode = NULL,
-							ADVANCEDREAD_INFO* lpAARI = NULL);
+		int virtual		Read(void* lpDest, int* iSize = nullptr, __int64* lpiTimecode = nullptr,
+							ADVANCEDREAD_INFO* lpAARI = nullptr);
 		int	virtual		Open(CTextFile* source);
 		int virtual		Merge(SUBTITLES* lpSubsToMerge,__int64 qwBias);
 		int virtual		Render2AVIChunk(void* lpDest);

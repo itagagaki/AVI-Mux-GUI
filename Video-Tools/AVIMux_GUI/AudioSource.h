@@ -15,19 +15,19 @@ DTSSOURCE: handles DTS-CBR
 
 //#include <windows.h>
 #include "MessageLists.h"
-#include "audiosource_generic.h"
-#include "audiosource_dts.h"
-#include "audiosource_ac3.h"
-#include "audiosource_mp3.h"
-#include "audiosource_matroska.h"
-#include "audiosource_avi.h"
-#include "audiosource_aac.h"
-#include "audiosource_list.h"
-#include "audiosource_vorbis.h"
-#include "audiosource_wav.h"
+#include "AudioSource_generic.h"
+#include "AudioSource_DTS.h"
+#include "AudioSource_AC3.h"
+#include "AudioSource_MP3.h"
+#include "AudioSource_Matroska.h"
+#include "AudioSource_AVI.h"
+#include "AudioSource_AAC.h"
+#include "AudioSource_List.h"
+#include "AudioSource_Vorbis.h"
+#include "AudioSource_WAV.h"
 
-#include "..\basestreams.h"
-#include "..\multimedia_source.h"
+#include "../BaseStreams.h"
+#include "../multimedia_source.h"
 
 
 /*

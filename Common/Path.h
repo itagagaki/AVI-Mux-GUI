@@ -1,12 +1,10 @@
 ﻿#pragma once
 
-#include "Windows.h"
-#include "UTF-8.h"
-
+#include <Windows.h>
+#include <tchar.h>
+#include "utf-8.h"
 #include <vector>
-#include <deque>
-#include <stdexcept>
-#include <iterator>
+#include <string>
 
 #ifndef MAX_LONG_PATH
 #define MAX_LONG_PATH 32768

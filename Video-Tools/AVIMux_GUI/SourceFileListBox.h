@@ -7,8 +7,9 @@
 // SourceFileListBox.h : Header-Datei
 //
 
-#include "EnhancedListbox.h"
-#include "File_Info.h"
+#include <afxwin.h>
+#include "EnhancedListBox.h"
+#include "FILE_INFO.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Fenster CSourceFileListBox 

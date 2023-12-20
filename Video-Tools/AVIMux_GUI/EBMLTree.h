@@ -10,7 +10,8 @@
 /////////////////////////////////////////////////////////////////////////////
 // Fenster CEBMLTree 
 
-#include "..\EBML.h"
+#include <afxwin.h>
+#include "../EBML.h"
 #include "UnicodeTreeCtrl.h"
 
 

@@ -1,15 +1,17 @@
 #ifndef I_MATROSKA
 #define I_MATROSKA
 
-#include "EBML.h"
-#include "EBML_matroska.h"
-#include "UTF-8.h"
+#include <Windows.h>
 #include "Matroska_IDs.h"
-#include "matroska_segment.h"
-#include "matroska_writing.h"
+#include "Matroska_Segment.h"
+#include "Matroska_Writing.h"
 #include "Queue.h"
+#include "Buffers.h"
+#include "Tags.h"
 #include "Chapters.h"
+#include "IBitStream.h"
 #include "ITitleSet.h"
+#include "Compression.h"
 #include <vector>
 
 const int		MMODE_READ	= 1;

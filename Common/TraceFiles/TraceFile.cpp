@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Tracefile.h"
+#include "TraceFile.h"
 #include "stdlib.h"
 #include "stdio.h"
 #include "windows.h"

@@ -6,7 +6,7 @@ char* getword(char** s);
 bool isint(char* s);
 bool isposint(char* s);
 
-void splitpathname(char* p, char** f, char** e, char** cPath = NULL);
+void splitpathname(char* p, char** f, char** e, char** cPath = nullptr);
 
 
 #endif

@@ -7,15 +7,14 @@
 // ResizeableDialog.h : Header-Datei
 //
 
+#include <afxwin.h>
 #include "resource.h"
-#include "../buffers.h"
-
+#include "../buffers.h"  // defines I_ATTRIBUTES
+#include "AttachedWindows.h"
 #include <vector>
 
 /////////////////////////////////////////////////////////////////////////////
 // Dialogfeld CResizeableDialog 
-
-#include "AttachedWindows.h"
 
 class CResizeableDialog : public CDialog
 {

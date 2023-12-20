@@ -7,14 +7,15 @@
 // SetFramerateDlg.h : Header-Datei
 //
 
+#include <afxwin.h>
+#include "resource.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // Dialogfeld CSetFramerateDlg 
 
 #define UNIT_FPS	0x01
 #define UNIT_MSPF	0x02
 #define UNIT_NSPF	0x03
-
-#include "SplitPointsDlg.h"
 
 typedef struct {
 	int		nom;
@@ -28,7 +29,7 @@ class CSetFramerateDlg : public CDialog
 public:
 	FRAME_RATE	fr;
 
-	CSetFramerateDlg(CWnd* pParent = NULL);   // Standardkonstruktor
+	CSetFramerateDlg(CWnd* pParent = nullptr);   // Standardkonstruktor
 	void		SetData(FRAME_RATE* f);
 	void		GetData(FRAME_RATE* result);
 	void		Refresh(void);

@@ -1,7 +1,9 @@
 #ifndef I_AUDIOSOURCE_LIST
 #define I_AUDIOSOURCE_LIST
 
-#include "audiosource_generic.h"
+#include <Windows.h>
+#include "AudioSource_generic.h"
+#include <string>
 
 typedef struct
 {
@@ -44,7 +46,7 @@ class AUDIOSOURCELIST: public AUDIOSOURCE
 		int		virtual IsCompatible(AUDIOSOURCE* a);
 		bool	virtual IsEndOfStream();
 		int		virtual Read(void* lpDest,DWORD dwMicrosecDesired,DWORD* lpdwMicrosecRead,
-							__int64* lpqwNanosecRead,__int64* lpiTimecode = NULL, ADVANCEDREAD_INFO* lpAARI = NULL);
+							__int64* lpqwNanosecRead,__int64* lpiTimecode = nullptr, ADVANCEDREAD_INFO* lpAARI = nullptr);
 		void	virtual ReInit();
 		int		virtual Seek(__int64 iPos);
 		void	virtual AssumeCBR(void);

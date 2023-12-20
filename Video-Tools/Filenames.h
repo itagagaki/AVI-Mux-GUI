@@ -1,11 +1,6 @@
 #ifndef I_FILENAMES
 #define I_FILENAMES
 
-#include "utf-8.h"
-#include "strings.h"
-#include <deque>
-#include <vector>
-
 /* expects utf-8 */
 
 #define FILENAME_FROM_SEGMENT_TITLE 0x01

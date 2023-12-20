@@ -70,12 +70,12 @@ Takashi Yano
 #ifndef I_AAC_AUDIOSOURCE
 #define I_AAC_AUDIOSOURCE
 
-#include "audiosource_generic.h"
-#include "audiosource_binary.h"
-#include "..\bitstream.h"
-#include "avifile.h"
-#include <string>
+#include <Windows.h>
+#include "AudioSource_binary.h"
+#include "AVIFile.h"
+#include "../IBitStream.h"
 #include <vector>
+#include <string>
 
 typedef struct
 {

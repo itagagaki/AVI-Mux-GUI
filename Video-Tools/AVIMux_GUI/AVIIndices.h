@@ -4,10 +4,8 @@
 #ifndef I_AVIINDICES
 #define I_AVIINDICES
 
-//#include "stdafx.h"
-#include "..\basestreams.h"
-#include "rifffile.h"
-#include "avistructs.h"
+#include <Windows.h>
+#include "AVIStructs.h"
 
 const int AFE_OK = 0x01;
 const int AFE_INVALIDPARAM = -0x01;

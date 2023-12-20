@@ -1,26 +1,25 @@
 ﻿#if !defined(AFX_CHAPTERDLG_H__6A384E54_BF30_4BEB_AE02_39E2CA7BDD22__INCLUDED_)
 #define AFX_CHAPTERDLG_H__6A384E54_BF30_4BEB_AE02_39E2CA7BDD22__INCLUDED_
 
-#include "..\chapters.h"
-#include "ResizeableDialog.h"
-#include "ChapterDlgTree.h"
-#include "UnicodeListControl.h"
-#include "ChapterDlgList.h"
-#include "UserDrawEdit.h"
-#include "resource.h"
-#include "..\FileStream.h"
-
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
 // ChapterDlg.h : Header-Datei
 //
 
+#include <afxwin.h>
+#include "resource.h"
+#include "../Chapters.h"
+#include "ResizeableDialog.h"
+#include "ChapterDlgTree.h"
+#include "ChapterDlgList.h"
+#include "ChapterSegmentUIDEdit.h"
+#include "UserDrawEdit.h"
+#include "../Filestream.h"
+#include "UnicodeTreeCtrl.h"
+
 /////////////////////////////////////////////////////////////////////////////
 // Dialogfeld CChapterDlg 
-
-#include "ChapterSegmentUIDEdit.h"
-#include "AttachedWindows.h"
 
 int RenderChapters2File(CFileStream* f, CChapters* c);
 

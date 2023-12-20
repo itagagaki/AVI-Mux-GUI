@@ -6,13 +6,17 @@
 #endif // _MSC_VER > 1000
 // VideoInformationDlg.h : Header-Datei
 //
-#include "avifile.h"
+
+#include <afxwin.h>
+#include "resource.h"
 #include "VideoInformationDlgListbox.h"
-#include "videosource.h"
+#include "VideoSource.h"
 #include "UnicodeTreeCtrl.h"
 #include "FILE_INFO.h"
-#include "AttachedWindows.h"
 #include "ResizeableDialog.h"
+#include "AVIFile.h"
+#include "../Chapters.h"
+#include "../../Common/utf-8.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Dialogfeld CVideoInformationDlg 
@@ -22,7 +26,7 @@ class CVideoInformationDlg : public CResizeableDialog
 
 // Konstruktion
 public:
-	CVideoInformationDlg(CWnd* pParent = NULL);   // Standardkonstruktor
+	CVideoInformationDlg(CWnd* pParent = nullptr);   // Standardkonstruktor
 	union {
 		AVIFILEEX*		avifile;
 		MATROSKA*		mkvfile;

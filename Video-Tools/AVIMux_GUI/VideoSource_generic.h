@@ -1,8 +1,9 @@
 #ifndef I_VIDEOSOURCE_GENERIC
 #define I_VIDEOSOURCE_GENERIC
 
+#include <Windows.h>
 #include "../multimedia_source.h"
-#include "avifile.h"
+#include "AVIFile.h"
 #include <vector>
 
 const int VS_OK			= 0x01;
@@ -45,9 +46,9 @@ class VIDEOSOURCE: public MULTIMEDIASOURCE
 		int			virtual GetFormatSize(void);
 		DWORD		virtual GetFourCC(void);
 		__int64		virtual GetFeature(__int64 iFeature);
-		int			virtual GetFrame(void* lpDest,DWORD* lpdwSize,__int64* lpiTimecode = NULL, ADVANCEDREAD_INFO* lpAARI = NULL);
-		int			virtual GetLatestReference(int* lpiCount = NULL, __int64* lpiRef1 = NULL, __int64* lpiRef2 = NULL);
-		int			virtual GetLatestReferenceAbsolute(int* lpiCount = NULL, __int64* iThis = 0, __int64* lpiRef1 = NULL, __int64* lpiRef2 = NULL);
+		int			virtual GetFrame(void* lpDest,DWORD* lpdwSize,__int64* lpiTimecode = nullptr, ADVANCEDREAD_INFO* lpAARI = nullptr);
+		int			virtual GetLatestReference(int* lpiCount = nullptr, __int64* lpiRef1 = nullptr, __int64* lpiRef2 = nullptr);
+		int			virtual GetLatestReferenceAbsolute(int* lpiCount = nullptr, __int64* iThis = 0, __int64* lpiRef1 = nullptr, __int64* lpiRef2 = nullptr);
 		DWORD		virtual	GetMicroSecPerFrame(void);
 		__int64		virtual	GetNanoSecPerFrame(void);
 		int			virtual GetNbrOfFrames(DWORD dwKind=FT_ALL);

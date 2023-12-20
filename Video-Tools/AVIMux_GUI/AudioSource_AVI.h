@@ -1,8 +1,9 @@
 #ifndef I_AUDIOSOURCE_AVI
 #define I_AUDIOSOURCE_AVI
 
-#include "audiosource_generic.h"
-#include "avifile.h"
+#include <Windows.h>
+#include "AVIFile.h"
+#include "AudioSource_generic.h"
 
 typedef struct
 {
@@ -36,7 +37,7 @@ class AUDIOSOURCEFROMAVI: public AUDIOSOURCE
 		bool	virtual IsEndOfStream();
 		int		virtual	Open(AVIFILEEX* avifile, int iStream);
 		int		virtual Read(void* lpDest,DWORD dwMicrosecDesired,DWORD* lpdwMicrosecRead,
-							__int64* lpqwNanosecRead,__int64* lpiTimeocde = NULL, ADVANCEDREAD_INFO* lpAARI = NULL);
+							__int64* lpqwNanosecRead,__int64* lpiTimeocde = nullptr, ADVANCEDREAD_INFO* lpAARI = nullptr);
 		int		virtual Seek(__int64 iPos);
 		void	virtual ReInit();
 };

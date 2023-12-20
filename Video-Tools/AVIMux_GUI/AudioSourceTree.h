@@ -7,13 +7,12 @@
 // AudioSourceTree.h : Header-Datei
 //
 
-//#include "audiosourcelist.h"
-#include "subtitles.h"
-#include "../dynarray.h"
-#include "trees.h"
-#include "audiosource.h"
-#include "unicodetreectrl.h"
-#include "videosource.h"
+#include <afxwin.h>
+#include "UnicodeTreeCtrl.h"
+#include "AudioSource.h"
+#include "VideoSource.h"
+#include "SubTitles.h"
+#include <vector>
 
 typedef struct 
 {
@@ -142,7 +141,7 @@ public:
 	void			DeleteAllTitlesFromStreamTree(HTREEITEM hParent);
 // Operationen
 public:
-	HTREEITEM	FindID(HTREEITEM hItem, int iID, TREE_ITEM_INFO** tii = NULL);
+	HTREEITEM	FindID(HTREEITEM hItem, int iID, TREE_ITEM_INFO** tii = nullptr);
 	
 	std::vector<HTREEITEM> GetItems(
 		HTREEITEM hItem, 

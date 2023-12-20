@@ -1,9 +1,8 @@
 #ifndef I_FILLASIS
 #define I_FILLASIS
 
-#include "stdafx.h"
-#include "audiosourcetree.h"
-#include "audiosource.h"
+#include "AudioSourceTree.h"
+#include "AudioSource.h"
 
 
 void FillAC3_ASI (AUDIO_STREAM_INFO** asi,AC3SOURCE* ac3source);

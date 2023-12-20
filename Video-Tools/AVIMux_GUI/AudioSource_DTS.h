@@ -3,9 +3,11 @@
 
 #define uint32 unsigned __int32
 
-#include "audiosource_generic.h"
-#include "audiosource_binary.h"
-#include "..\bitstream.h"
+#include <Windows.h>
+#include "AudioSource_generic.h"
+#include "AudioSource_binary.h"
+#include "../BitStream.h"
+#include <string>
 
 const int DTS_FRAMETYPE_NORMAL		= 1;
 const int DTS_FRAMETYPE_TERMINATION	= 0;
@@ -28,7 +30,7 @@ class DTSSOURCE: public CBinaryAudioSource//CBRAUDIOSOURCE
 		DTSINFO		dtsinfo;
 		BITSTREAM*	bitsource;
 		int			Resync();
-		int			ParseFrameHeader(DTSINFO* lpdtsinfo=NULL);
+		int			ParseFrameHeader(DTSINFO* lpdtsinfo = nullptr);
 		int			ReadFrame(void* lpDest, DWORD* lpdwMicroSecRead,
 								__int64 *lpqwNanoSecRead,bool bResync=false);
 		int			ReadFrame(MULTIMEDIA_DATA_PACKET** packet);
