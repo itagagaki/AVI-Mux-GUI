@@ -1,5 +1,6 @@
 #include "stdafx.h"
-#include "videosource_avi.h"
+#include "VideoSource_AVI.h"
+#include "AVIStructs.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

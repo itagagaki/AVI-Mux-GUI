@@ -1,10 +1,8 @@
 #include "stdafx.h"
-#include "EBML.h"
-#include "EBML_matroska.h"
+#include "EBML_Matroska.h"
 #include "Matroska_IDs.h"
 #include "Matroska_Segment.h"
 #include "Matroska_Block.h"
-
 #include "Warnings.h"
 
 #ifdef DEBUG_NEW

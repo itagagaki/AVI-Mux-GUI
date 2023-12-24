@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "tags.h"
+#include "Tags.h"
 
 void DeleteTagList(TAG_LIST** tag_list)
 {

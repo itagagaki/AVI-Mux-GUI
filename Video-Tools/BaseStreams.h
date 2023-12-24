@@ -9,7 +9,7 @@ BITSTREAM   access to a stream bit by bit
 #ifndef I_BASESTREAMS2
 #define I_BASESTREAMS2
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "../Common/Stream.h"
 
 #ifdef NOT_DEFINED

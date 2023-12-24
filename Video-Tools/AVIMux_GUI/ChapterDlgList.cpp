@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "ChapterDlgList.h"
 #include "UnicodeListControl.h"
 

@@ -6,7 +6,6 @@
 */
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "VerifyEdit.h"
 
 #ifdef _DEBUG

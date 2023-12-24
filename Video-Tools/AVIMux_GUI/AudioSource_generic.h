@@ -1,7 +1,7 @@
 #ifndef I_AUDIOSOURCE_GENERIC
 #define I_AUDIOSOURCE_GENERIC
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "../multimedia_source.h"
 #include <string>
 

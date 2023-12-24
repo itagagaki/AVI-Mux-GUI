@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "audiosource_binary.h"
-#include "debug.h"
-#include "..\FormatTime.h"
-#include "..\FormatInt64.h"
+#include "AudioSource_binary.h"
+#include "../FormatTime.h"
+#include "../FormatInt64.h"
 #include "../../Common/TraceFiles/TraceFile.h"
+//#include "Debug.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

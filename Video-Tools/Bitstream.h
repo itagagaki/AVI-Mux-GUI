@@ -1,7 +1,7 @@
 #ifndef I_BITSTREAM
 #define I_BITSTREAM
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "IBitStream.h"
 #include "types.h"
 #include <deque>

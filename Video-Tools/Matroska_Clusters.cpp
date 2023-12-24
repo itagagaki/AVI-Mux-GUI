@@ -1,10 +1,9 @@
 #include "stdafx.h"
 #include "Matroska_Clusters.h"
-#include "matroska_IDs.h"
-#include "warnings.h"
-#include "integers.h"
 #include "Matroska_Block.h"
-#include <vector>
+#include "Matroska_IDs.h"
+#include "Integers.h"
+#include "Warnings.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

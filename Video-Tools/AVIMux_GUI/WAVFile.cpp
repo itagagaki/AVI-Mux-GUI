@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "RIFFFile.h"
+#include <math.h>
 #include "WAVFile.h"
-#include "math.h"
+#include "RIFFFile.h"
 
 WAVEFILE::WAVEFILE()
 {

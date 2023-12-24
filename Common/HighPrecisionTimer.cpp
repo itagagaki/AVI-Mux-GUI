@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "HighPrecisionTimer.h"
-#include "stdio.h"
 
 CHighPrecisionTimer::CHighPrecisionTimer()
 {

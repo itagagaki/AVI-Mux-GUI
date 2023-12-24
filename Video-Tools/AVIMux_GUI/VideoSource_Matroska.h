@@ -1,7 +1,7 @@
 #ifndef I_VIDEOSOOURCE_MATROSKA
 #define I_VIDEOSOOURCE_MATROSKA
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "VideoSource_generic.h"
 #include "../Matroska.h"
 #include <string>

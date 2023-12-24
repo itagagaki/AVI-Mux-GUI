@@ -1,12 +1,9 @@
 #include "stdafx.h"
 #include "Buffers.h"
-#include "stdio.h"
-#include "memory.h"
-#include "stdlib.h"
-#include "strings.h"
-//#include "matroska.h"
-#include "assert.h"
+#include "Strings.h"
 #include "Finalizer.h"
+#include "Assert.h"
+
 #ifdef DEBUG_NEW
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -14,7 +11,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 #endif
-
 
 void reverse(char* source, char* dest, int iCount)
 {

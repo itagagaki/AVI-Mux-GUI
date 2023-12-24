@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "videosource_generic.h"
+#include "VideoSource_generic.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

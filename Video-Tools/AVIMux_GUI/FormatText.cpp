@@ -1,12 +1,11 @@
 #include "stdafx.h"
-#include "formattext.h"
-#include "math.h"
-#include "languages.h"
-#include "splitpointsdlg.h"
-#include "../dynarray.h"
-#include "../strings.h"
-#include <vector>
-#include "../finalizer.h"
+#include <math.h>
+#include "FormatText.h"
+#include "Languages.h"
+#include "SplitPointsDlg.h"
+#include "DynArray.h"
+#include "../Strings.h"
+#include "../Finalizer.h"
 
 void FormatSize(char* d,__int64 qwSize)
 {

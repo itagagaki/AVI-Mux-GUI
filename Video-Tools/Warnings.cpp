@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "Warnings.h"
-#include "stdio.h"
-#include "formatint64.h"
-#include <sstream>
-#include <string>
+#include "FormatInt64.h"
 
 FILE* warn_output = stderr;
 int bWarningsEnabled = 1;

@@ -1,15 +1,7 @@
 #include "stdafx.h"
 #include "TraceFile.h"
-#include "stdlib.h"
-#include "stdio.h"
-#include "windows.h"
-#include "winerror.h"
-#include "tchar.h"
-#include "../FormatTime.h"
 #include "../FormatInt64.h"
 #include "../Guard.h"
-
-#include <vector>
 
 #ifndef MAX_LONG_PATH
 #define MAX_LONG_PATH 32767

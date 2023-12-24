@@ -2,9 +2,8 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "SetMainAVIHeaderFlagsDlg.h"
-#include "avifile.h"
+#include "AVIFile.h"
 #include "Languages.h"
 
 #ifdef _DEBUG

@@ -1,11 +1,11 @@
-﻿#include "stdafx.h" 
-#include "avimux_guidlg.h"
-#include "formattext.h"
-#include "avistream.h"
-#include "..\UnicodeCalls.h"
-#include "videosource_avi.h"
-#include "videosource_matroska.h"
+﻿#include "stdafx.h"
+#include "AVIMux_GUIDlg.h"
 #include "UTF8Windows.h"
+#include "AVIStream.h"
+#include "VideoSource_AVI.h"
+#include "VideoSource_Matroska.h"
+#include "../FormatTime.h"
+#include "../UnicodeCalls.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

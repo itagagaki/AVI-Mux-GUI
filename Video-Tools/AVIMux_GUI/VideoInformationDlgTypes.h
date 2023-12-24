@@ -1,7 +1,7 @@
 #ifndef I_VIDEOINFORMATIONTYPES
 #define I_VIDEOINFORMATIONTYPES
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "AVIFile.h"
 
 typedef struct

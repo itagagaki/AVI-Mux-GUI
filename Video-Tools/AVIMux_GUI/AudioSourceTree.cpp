@@ -2,21 +2,16 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
+#include "resource.h"
 #include "AudioSourceTree.h"
-#include "formattext.h"
-#include "audiosource.h"
-#include "AVIMux_GUIDlg.h"
-#include "Muxing.h"
-#include "..\FileStream.h"
-#include "..\..\Common\utf-8.h"
-#include "UnicodeTreeCtrl.h"
-#include "FileDialogs.h"
-#include ".\audiosourcetree.h"
 #include "Trees.h"
-#include <sstream>
+#include "Muxing.h"
+#include "FileDialogs.h"
+#include "../Filestream.h"
+#include "../FormatTime.h"
+#include "../../Common/utf-8.h"
 #include <iomanip>
-#include <fstream>
+#include <ios>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

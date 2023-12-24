@@ -1,10 +1,9 @@
 #include "stdafx.h"
-#include "chapters.h"
-#include "matroska_segment.h"
-#include "buffers.h"
-#include "formattime.h"
-#include "stdio.h"
+#include "Chapters.h"
+#include "Buffers.h"
+#include "FormatTime.h"
 #include "UID.h"
+#include "EBML.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

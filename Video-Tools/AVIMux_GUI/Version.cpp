@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "version.h"
 #include "resource.h"
+#include "Version.h"
 
 /*char* GetAMGVersionString(char* buffer, int buf_len)
 {

@@ -1,10 +1,7 @@
 #include "stdafx.h"
-
-// #include "silence.h"
-#include "audiosource_aac.h"
+#include "AudioSource_AAC.h"
 #include "../Bitstream.h"
 #include "../BitStreamFactory.h"
-#include <sstream>
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

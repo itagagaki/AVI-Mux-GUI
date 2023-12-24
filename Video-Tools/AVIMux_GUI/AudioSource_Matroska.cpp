@@ -1,8 +1,7 @@
 #include "stdafx.h"
-#include "audiosource_matroska.h"
-#include "audiosource_aac.h"
-#include "audiosource_mp3.h"
-#include "../compression.h"
+#include "AudioSource_Matroska.h"
+#include "AudioSource_MP3.h"
+#include "../Compression.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -1,7 +1,7 @@
 #ifndef I_AUDIOSOURCE_AC3
 #define I_AUDIOSOURCE_AC3
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "audiosource_generic.h"
 #include "AudioSource_binary.h"
 #include "../IBitstream.h"

@@ -1,5 +1,6 @@
 #include "stdafx.h"
-#include "videosource_list.h"
+#include "VideoSource_List.h"
+#include "../multimedia_source.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

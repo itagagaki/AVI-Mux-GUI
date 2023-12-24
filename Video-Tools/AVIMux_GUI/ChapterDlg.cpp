@@ -2,24 +2,22 @@
 //
 
 #include "stdafx.h"
+#include "resource.h"
+#include "ChapterDlg.h"
 #include "AVIMux_GUI.h"
 #include "AVIMux_GUIDlg.h"
+#include "ResizeableDialog.h"
 #include "FileDialogs.h"
-#include "ChapterDlg.h"
-#include "formattext.h"
-#include "trees.h"
-#include "languages.h"
-#include "windows.h"
-#include "../strings.h"
-#include "UnicodeListControl.h"
-#include "version.h"
+#include "../Matroska.h"
+#include "Trees.h"
+#include "Languages.h"
+#include "../Strings.h"
+#include "Version.h"
 #include "UTF8Windows.h"
 #include "AttachedWindows.h"
-#include "ResizeableDialog.h"
-#include <vector>
-#include "chapterdlg.h"
 #include "TABHandler.h"
 #include "LanguageCodes.h"
+#include "../FormatTime.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

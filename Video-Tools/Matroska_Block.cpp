@@ -1,7 +1,8 @@
 #include "stdafx.h"
-#include "matroska_block.h"
-#include "matroska_IDs.h"
-#include "integers.h"
+#include "EBML.h"
+#include "Matroska_Block.h"
+#include "Matroska_IDs.h"
+#include "Integers.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

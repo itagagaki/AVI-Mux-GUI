@@ -5,7 +5,7 @@
 #define uint unsigned int
 #endif
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "EBML.h"
 #include "EBML_Matroska.h"
 #include "Matroska_Clusters.h"

@@ -1,7 +1,6 @@
 #include "stdafx.h"
-#include "audiosource_list.h"
-#include "..\matroska.h"
-#include "..\FormatTime.h"
+#include "AudioSource_List.h"
+#include "../FormatTime.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

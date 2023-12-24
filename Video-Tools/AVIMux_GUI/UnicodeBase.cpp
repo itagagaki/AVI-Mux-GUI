@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "UnicodeBase.h"
-#include "..\utf-8.h"
+#include "../utf-8.h"
 
 CUnicodeBase::CUnicodeBase()
 {

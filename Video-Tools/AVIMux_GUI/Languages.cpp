@@ -1,10 +1,8 @@
 #include "stdafx.h"
-#include "languages.h"
-#include "..\utf-8.h"
-#include "stdio.h"
-#include "../../Common/textfiles.h"
-#include "global.h"
-#include "../FileStream.h"
+#include "Languages.h"
+#include "../../Common/utf-8.h"
+#include "../../Common/TextFiles.h"
+#include "../Filestream.h"
 
 LANGUAGE_DESCRIPTOR*	lpCurrLang;
 

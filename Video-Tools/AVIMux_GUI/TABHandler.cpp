@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "TABHandler.h"
-#include "../UnicodeCalls.h"
-#include "windows.h"
 #include <map>
 
 typedef struct

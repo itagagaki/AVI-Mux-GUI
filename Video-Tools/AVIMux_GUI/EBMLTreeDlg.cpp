@@ -2,19 +2,19 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "EBMLTreeDlg.h"
 #include "EBMLTree.h"
-#include "..\matroska.h"
-#include "..\matroska_block.h"
-#include "FormatText.h"
-#include "UnicodeTreeCtrl.h"
-#include "..\cache.h"
-#include "..\UnicodeCalls.h"
+#include "../EBML.h"
+#include "../EBML_Matroska.h"
+#include "../Matroska.h"
+#include "../Matroska_Block.h"
+#include "../FormatInt64.h"
+#include "../Cache.h"
+#include "../UnicodeCalls.h"
+#include "Trees.h"
 #include "Languages.h"
-#include "OSVersion.h"
 #include "FileDialogs.h"
-#include "..\FileStream.h"
+#include "../Filestream.h"
 #include "MessageBoxHelper.h"
 
 #ifdef _DEBUG
@@ -99,11 +99,6 @@ END_INTERFACE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CEBMLTreeDlg 
-
-#include "trees.h"
-#include "..\ebml.h"
-#include "..\matroska.h"
-#include ".\ebmltreedlg.h"
 
 typedef struct
 {

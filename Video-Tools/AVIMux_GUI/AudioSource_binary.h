@@ -1,7 +1,7 @@
 #ifndef I_AUDIOSOURCE_BINARY
 #define I_AUDIOSOURCE_BINARY
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "audiosource_generic.h"
 #include "../BaseStreams.h"
 

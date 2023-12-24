@@ -1,7 +1,7 @@
 #ifndef I_AUDIOSOURCE_MATROSKA
 #define I_AUDIOSOURCE_MATROSKA
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "../Matroska.h"
 #include "AudioSource_generic.h"
 #include "AudioSource_AAC.h"

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MessageBoxHelper.h"
-#include "..\Strings.h"
+#include "../../Common/utf-8.h"
+#include "../Strings.h"
 #include "Languages.h"
 
 DWORD MessageBoxHelper::ShowByID(HWND parent, DWORD titleID, DWORD messageID, UINT uType)

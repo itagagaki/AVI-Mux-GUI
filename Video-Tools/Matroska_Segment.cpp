@@ -9,23 +9,15 @@ to make this code hang in an infinite loop. It is
 assumed that no one on earth is silly enough to write
 such files
 
-
-
 */
 
-
-
-
 #include "stdafx.h"
-#include "stdio.h"
-#include "Matroska_Clusters.h"
 #include "Matroska_Segment.h"
 #include "Matroska_IDs.h"
-#include "Warnings.h"
-#include "crc.h"
-#include "AVIMux_GUI/ecc.h"
+#include "CRC.h"
 #include "UID.h"
 #include "FormatInt64.h"
+#include "Warnings.h"
 #include <algorithm>
 
 #ifdef DEBUG_NEW

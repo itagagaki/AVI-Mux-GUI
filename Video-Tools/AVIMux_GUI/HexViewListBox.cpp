@@ -3,9 +3,8 @@
 
 #include "stdafx.h"
 #include "HexViewListBox.h"
-#include ".\hexviewlistbox.h"
-#include "..\integers.h"
-#include "avistructs.h"
+#include "../Integers.h"
+#include "AVIStructs.h"
 
 // CHexViewListBox
 

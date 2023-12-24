@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
+#include "resource.h"
 #include "SplitPointList.h"
 #include "AddSplitPointDlg.h"
 #include "Languages.h"

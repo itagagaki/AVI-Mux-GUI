@@ -12,13 +12,10 @@
 */
 
 #include "stdafx.h"
-#include "debug.h"
-#include "math.h"
-#include "..\utf-8.h"
+#include <math.h>
 #include "AVIFile.h"
-
-#include <string>
-#include <sstream>
+#include "../utf-8.h"
+#include "Debug.h"
 
 				///////////////////////////
 				//  AVIFILEEX - Methoden //

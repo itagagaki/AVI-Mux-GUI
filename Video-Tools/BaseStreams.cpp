@@ -1,13 +1,5 @@
 ﻿#include "stdafx.h"
-#include "basestreams.h"
-#include "memory.h"
-#include "math.h"
-#include "utf-8.h"
-#include "unicodecalls.h"
-#include "stdlib.h"
-#include "stdio.h"
-#include "crtdbg.h"
-#include "Filenames.h"
+#include "BaseStreams.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

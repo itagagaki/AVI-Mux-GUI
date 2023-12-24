@@ -1,7 +1,7 @@
 #ifndef I_MATROSKA
 #define I_MATROSKA
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "Matroska_IDs.h"
 #include "Matroska_Segment.h"
 #include "Matroska_Writing.h"

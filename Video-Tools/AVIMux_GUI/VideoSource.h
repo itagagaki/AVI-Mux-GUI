@@ -1,7 +1,7 @@
 #ifndef f_VIDEOSOURCE_I
 #define f_VIDEOSOURCE_I
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "VideoSource_List.h"
 
 typedef struct

@@ -4,7 +4,7 @@
 #ifndef I_AVIINDICES
 #define I_AVIINDICES
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "AVIStructs.h"
 
 const int AFE_OK = 0x01;

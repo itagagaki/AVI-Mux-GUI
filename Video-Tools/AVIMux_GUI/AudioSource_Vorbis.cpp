@@ -16,10 +16,10 @@ last codebook is ordered will not be read correctly!
 */
 
 #include "stdafx.h"
-#include "audiosource_vorbis.h"
-#include "..\cache.h"
-#include "math.h"
-#include "avifile.h"
+#include <math.h>
+#include "AudioSource_Vorbis.h"
+#include "AVIFile.h"
+#include "../Cache.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

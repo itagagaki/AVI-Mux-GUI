@@ -2,11 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "MKVHeaderSizeEdit.h"
-
-#include <vector>
-#include <sstream>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

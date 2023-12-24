@@ -70,7 +70,7 @@ Takashi Yano
 #ifndef I_AAC_AUDIOSOURCE
 #define I_AAC_AUDIOSOURCE
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "AudioSource_binary.h"
 #include "AVIFile.h"
 #include "../IBitStream.h"

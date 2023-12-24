@@ -12,7 +12,7 @@ SSA sources without wrapping a SUBTITLESOURCELIST around!
 #ifndef I_SUBTITLES
 #define I_SUBTITLES
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "../../Common/utf-8.h"
 #include "../Queue.h"
 #include "FILE_INFO.h"

@@ -1,11 +1,9 @@
 #include "stdafx.h"
-#include "ebml.h"
-#include "matroska_ids.h"
-#include "integers.h"
-#include "warnings.h"
-#include "stdio.h"
-#include "FormatInt64.h"
+#include "EBML.h"
+#include "Matroska_IDs.h"
+#include "Integers.h"
 #include "CRC.h"
+#include "Warnings.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

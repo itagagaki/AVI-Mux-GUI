@@ -1,7 +1,7 @@
 #ifndef I_AUDIOSOURCE_WAV
 #define I_AUDIOSOURCR_WAV
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "AudioSource_generic.h"
 #include "WAVFile.h"
 

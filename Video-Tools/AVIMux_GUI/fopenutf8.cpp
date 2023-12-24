@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "stdio.h"
 #include "fopenutf8.h"
+#include "../../Common/utf-8.h"
 
 FILE* fopenutf8(const char* filename, char* access, int unicode)
 {

@@ -2,13 +2,11 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "EBMLTree.h"
-#include "..\EBML.h"
-#include "formattext.h"
-#include "..\utf-8.h"
-#include "..\matroska.h"
-#include "..\integers.h"
+#include "../EBML.h"
+#include "../FormatInt64.h"
+#include "../Matroska_IDs.h"
+#include "../Integers.h"
 #include "UnicodeTreeCtrl.h"
 
 #ifdef _DEBUG

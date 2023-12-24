@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "OGGFile.h"
-#include "..\CRC.h"
+#include "../CRC.h"
 
 int PACKETIZER::ReadPacket(BYTE* cDest, __int64* iTimestamp)
 {

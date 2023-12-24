@@ -1,5 +1,6 @@
 #include "stdafx.h"
-#include "integers.h"
+#include "Integers.h"
+#include "Buffers.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

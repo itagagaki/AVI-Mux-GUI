@@ -1,16 +1,14 @@
 ﻿#include "stdafx.h"
-#include "..\..\Common\TraceFiles\TraceFile.h"
 #include "AVIMux_GUIDlg.h"
-#include "..\Basestreams.h"
-#include "..\FileStream.h"
-#include "..\Cache.h"
-#include "Formattext.h"
+#include "MessageBoxHelper.h"
 #include "UTF8Windows.h"
 #include "ConfigScripts.h"
-#include "../strings.h"
+#include "FormatText.h"
+#include "../Cache.h"
+#include "../Strings.h"
+#include "../Filestream.h"
 #include "../Finalizer.h"
-#include "MessageBoxHelper.h"
-#include <sstream>
+#include "../../Common/TraceFiles/TraceFile.h"
 
 /** \brief Adds a file to the list of available files
  *

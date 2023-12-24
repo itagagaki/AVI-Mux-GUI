@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "transformfilter.h"
+#include "TransformFilter.h"
 
 TRANSFORMFILTER::TRANSFORMFILTER()
 {

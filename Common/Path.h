@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <Windows.h>
+#include <wtypes.h>
 #include <tchar.h>
 #include "utf-8.h"
 #include <vector>

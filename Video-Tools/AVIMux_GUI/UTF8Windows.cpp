@@ -1,4 +1,3 @@
-
 /* Appearently, the Windows XP SP 2 installation of one specific user sucks
       WM_GETTEXT messages don't pass when the buffer size exceeds about 15k characters,
 	  and WideCharToMultiByte doesn't seem to care too much about cbMultiByte...
@@ -8,10 +7,10 @@
 
 #include "stdafx.h"
 #include "UTF8Windows.h"
-#include "..\UnicodeCalls.h"
-#include "..\UTF-8.h"
 #include "UnicodeBase.h"
-#include "TABHandler.h"
+#include "../UnicodeCalls.h"
+#include "../utf-8.h"
+//#include "TABHandler.h"
 
 
 LRESULT CALLBACK UTF8WindowProc(

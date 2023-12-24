@@ -1,6 +1,5 @@
 #include "stdafx.h"
-#include "xml.h"
-#include "windows.h"
+#include "XML.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

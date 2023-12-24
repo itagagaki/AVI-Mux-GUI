@@ -1,7 +1,7 @@
 #ifndef I_SILENCE
 #define I_SILENCE
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "AudioSource_generic.h"
 #include <string>
 

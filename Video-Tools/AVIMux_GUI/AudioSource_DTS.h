@@ -3,7 +3,7 @@
 
 #define uint32 unsigned __int32
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "AudioSource_generic.h"
 #include "AudioSource_binary.h"
 #include "../BitStream.h"

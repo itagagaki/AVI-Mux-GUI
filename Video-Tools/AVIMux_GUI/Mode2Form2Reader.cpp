@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Mode2Form2Reader.h"
+#include "RIFFFile.h"
 #include "ecc.h"
 
 int	MODE2FORM2SOURCE::Open(STREAM* lpSource)

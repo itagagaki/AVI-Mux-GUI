@@ -2,9 +2,8 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "UnicodeListControl.h"
-#include "..\utf-8.h"
+#include "../utf-8.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

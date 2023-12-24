@@ -1,8 +1,7 @@
 #include "stdafx.h"
-#include "audiosource_mp3.h"
-
-#include "..\FormatTime.h"
-#include "..\FormatInt64.h"
+#include "AudioSource_MP3.h"
+#include "../FormatTime.h"
+#include "../FormatInt64.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

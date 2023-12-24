@@ -1,5 +1,5 @@
 ﻿#include "stdafx.h"
-#include "aviindices.h"
+#include "AVIIndices.h"
 #include "RIFFFile.h"
 
 

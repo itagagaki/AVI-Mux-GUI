@@ -2,15 +2,13 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
+#include "resource.h"
 #include "VideoInformationDlgListbox.h"
-#include "..\Basestreams.h"
-#include "AVIFile.h"
-#include "Mode2Form2Reader.h"
 #include "VideoInformationDlg.h"
-#include "FILE_INFO.h"
 #include "SetFramerateDlg.h"
 #include "SetMainAVIHeaderFlagsDlg.h"
+#include "AVIFile.h"
+#include "FILE_INFO.h"
 #include "Languages.h"
 
 #ifdef _DEBUG

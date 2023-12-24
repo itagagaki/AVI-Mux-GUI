@@ -1,6 +1,5 @@
 #include "stdafx.h"
-#include "avifile.h"
-#include "avistream.h"
+#include "AVIStream.h"
 
 // AVISTREAM
 

@@ -1,7 +1,7 @@
 #ifndef F_CACHE_I
 #define F_CACHE_I
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "BaseStreams.h"
 
 // legacy stuff needed by vorbis audio source in AVI-Mux GUI

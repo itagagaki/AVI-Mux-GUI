@@ -1,7 +1,7 @@
 #ifndef I_AUDIOSOURCE_MP3
 #define I_AUDIOSOURCE_MP3
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "audiosource_generic.h"
 #include "audiosource_binary.h"
 #include "../IBitStream.h"

@@ -1,7 +1,7 @@
 #ifndef I_LANGUAGES
 #define I_LANGUAGES
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "../../Common/utf-8.h"
 #include <map>
 

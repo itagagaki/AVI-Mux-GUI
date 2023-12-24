@@ -429,9 +429,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TreeItemDeleter.h">
-      <Filter>Quellcodedateien</Filter>
-    </ClInclude>
     <ClInclude Include="AddSplitPointDlg.h">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
@@ -621,7 +618,7 @@
     <ClInclude Include="SplitPointsDlg.h">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
-    <ClInclude Include="StdAfx.h">
+    <ClInclude Include="stdafx.h">
       <Filter>Header-Dateien</Filter>
     </ClInclude>
     <ClInclude Include="..\Strings.h">
@@ -818,6 +815,9 @@
     </ClInclude>
     <ClInclude Include="..\Warnings.h">
       <Filter>Header-Dateien\Matroska - Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeItemDeleter.h">
+      <Filter>Header-Dateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

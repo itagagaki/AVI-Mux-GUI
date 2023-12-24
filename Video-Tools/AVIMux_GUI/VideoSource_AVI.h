@@ -1,7 +1,7 @@
 #ifndef I_VIDEOSOURCE_AVI
 #define I_VIDEOSOURCE_AVI
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "VideoSource_generic.h"
 
 typedef struct

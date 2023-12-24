@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "silence.h"
-#include "audiosource_ac3.h"
-#include "..\..\Common\UTF-8.h"
+#include "AudioSource_AC3.h"
+#include "Silence.h"
+#include "../../Common/utf-8.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

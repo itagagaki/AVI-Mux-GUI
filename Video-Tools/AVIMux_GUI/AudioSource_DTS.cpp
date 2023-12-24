@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "audiosource_dts.h"
+#include "AudioSource_DTS.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

@@ -1,9 +1,6 @@
 #include "stdafx.h"
+#include <math.h>
 #include "multimedia_source.h"
-#include "math.h"
-#include "memory.h"
-#include "stdlib.h"
-#include "string.h"
 
 
 #ifdef DEBUG_NEW

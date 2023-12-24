@@ -1,7 +1,7 @@
 #ifndef I_FILE_INFO
 #define I_FILE_INFO
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "AVIFile.h"
 //#include "..\basestreams.h"
 #include "Mode2Form2Reader.h"

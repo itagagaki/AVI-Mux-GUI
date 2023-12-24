@@ -1,7 +1,7 @@
 #ifndef I_VIDEOSOURCE_GENERIC
 #define I_VIDEOSOURCE_GENERIC
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "../multimedia_source.h"
 #include "AVIFile.h"
 #include <vector>

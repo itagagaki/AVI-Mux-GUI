@@ -3,13 +3,12 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "AVIMux_GUI.h"
 #include "ChapterSegmentUIDEdit.h"
-#include "..\Matroska.h"
-#include "..\UnicodeCalls.h"
-#include "languages.h"
-#include "..\FileStream.h"
 #include "MessageBoxHelper.h"
+#include "Languages.h"
+#include "../Matroska.h"
+#include "../Filestream.h"
+#include "../UnicodeCalls.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

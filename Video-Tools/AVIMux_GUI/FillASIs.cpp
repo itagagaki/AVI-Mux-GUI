@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "FillASIs.h"
 
 void FillAC3_ASI (AUDIO_STREAM_INFO** asi,AC3SOURCE* ac3source)

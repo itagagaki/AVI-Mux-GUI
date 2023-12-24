@@ -1,7 +1,7 @@
 #ifndef I_WAVEFILE
 #define I_WAVEFILE
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "RIFFFile.h"
 #include "../BaseStreams.h"
 #include "AVIStructs.h"

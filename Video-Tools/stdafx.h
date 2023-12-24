@@ -1,6 +1,6 @@
-// stdafx.h : Include-Datei f¸r Standard-System-Include-Dateien,
-//  oder projektspezifische Include-Dateien, die h‰ufig benutzt, aber
-//      in unregelm‰ﬂigen Abst‰nden ge‰ndert werden.
+Ôªø// stdafx.h : Include-Datei f√ºr Standard-System-Include-Dateien,
+//  oder projektspezifische Include-Dateien, die h√§ufig benutzt, aber
+//      in unregelm√§√üigen Abst√§nden ge√§ndert werden.
 //
 
 #if !defined(AFX_STDAFX_H__5FA500C5_B5B6_498C_AA1E_883DA3BC1FB9__INCLUDED_)
@@ -14,9 +14,9 @@
 
 #include <stdio.h>
 
-// ZU ERLEDIGEN: Verweisen Sie hier auf zus‰tzliche Header-Dateien, die Ihr Programm benˆtigt
+// ZU ERLEDIGEN: Verweisen Sie hier auf zus√§tzliche Header-Dateien, die Ihr Programm ben√∂tigt
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ f¸gt zus‰tzliche Deklarationen unmittelbar vor der vorherigen Zeile ein.
+// Microsoft Visual C++ f√ºgt zus√§tzliche Deklarationen unmittelbar vor der vorherigen Zeile ein.
 
 #endif // !defined(AFX_STDAFX_H__5FA500C5_B5B6_498C_AA1E_883DA3BC1FB9__INCLUDED_)

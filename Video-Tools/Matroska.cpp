@@ -1,12 +1,7 @@
 #include "stdafx.h"
-#include "matroska.h"
-#include "Matroska_Segment.h"
-#include "Matroska_Block.h"
-#include "warnings.h"
-#include "math.h"
-#include "integers.h"
-#include "ebml.h"
-#include "stdio.h"
+#include "Matroska.h"
+#include "Warnings.h"
+#include <stdexcept>
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

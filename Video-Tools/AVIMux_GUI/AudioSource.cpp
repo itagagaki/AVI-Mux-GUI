@@ -8,10 +8,6 @@ to do
   */
 
 #include "stdafx.h"
-#include "..\basestreams.h"
-#include "audiosource.h"
-#include "silence.h"
-#include "debug.h"
 
 
 

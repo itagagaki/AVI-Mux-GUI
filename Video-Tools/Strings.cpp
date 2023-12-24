@@ -1,5 +1,5 @@
 ﻿#include "stdafx.h"
-#include "strings.h"
+#include "Strings.h"
 
 // upper case
 char* ucase(char* s,char* d) 

@@ -1,5 +1,6 @@
 #include "stdafx.h"
-#include "xmlfiles.h"
+#include "XMLFiles.h"
+#include "../../Common/TextFiles.h"
 
 int FileIsXML(CTextFile* t)
 {

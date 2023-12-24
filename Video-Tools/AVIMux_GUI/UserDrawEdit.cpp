@@ -4,12 +4,8 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "UserDrawEdit.h"
-#include "..\utf-8.h"
-#include "..\UnicodeCalls.h"
-#include "osversion.h"
-#include <vector>
+#include "OSVersion.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

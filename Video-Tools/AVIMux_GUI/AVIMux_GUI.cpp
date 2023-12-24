@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "resource.h"
 #include "AVIMux_GUI.h"
 #include "AVIMux_GUIDlg.h"
 

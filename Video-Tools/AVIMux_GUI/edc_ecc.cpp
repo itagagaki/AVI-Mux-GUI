@@ -3,9 +3,6 @@
  * portions used& Chris Smith
  */
 #include "stdafx.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "ecc.h"
 
 /* these prototypes will become public when the function are implemented */

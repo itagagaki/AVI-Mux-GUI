@@ -2,12 +2,8 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "AddSplitPointDlg.h"
 #include "Languages.h"
-
-#include <string>
-#include <sstream>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

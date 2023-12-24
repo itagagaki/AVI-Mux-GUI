@@ -3,7 +3,6 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "AVIMux_GUI.h"
 #include "ProgressList.h"
 
 #ifdef _DEBUG

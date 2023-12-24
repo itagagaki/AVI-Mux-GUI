@@ -1,5 +1,6 @@
 #pragma once
 
+#include <wtypes.h>
 #include <vector>
 
 template<class T>

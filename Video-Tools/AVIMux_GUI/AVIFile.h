@@ -93,7 +93,7 @@ const int AFE_LEGACYINDEX = 0x00010001;
 
 
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "RIFFFile.h"
 #include "AVIIndices.h"
 #include <vector>

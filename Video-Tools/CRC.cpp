@@ -1,5 +1,4 @@
 #include "stdafx.h"
-
 #include "CRC.h"
 
 // table copied from CRC32 generation in libebml!!!

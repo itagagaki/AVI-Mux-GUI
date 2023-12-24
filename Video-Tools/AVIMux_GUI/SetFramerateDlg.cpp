@@ -2,9 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "SetFramerateDlg.h"
-#include "..\Basestreams.h"
 #include "Languages.h"
 
 #ifdef _DEBUG

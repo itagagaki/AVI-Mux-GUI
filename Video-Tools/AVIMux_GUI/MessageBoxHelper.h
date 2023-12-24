@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "../../Common/utf-8.h"
 
 class MessageBoxHelper

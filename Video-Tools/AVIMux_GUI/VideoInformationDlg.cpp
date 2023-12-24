@@ -2,28 +2,24 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
-#include "AVIMux_GUIDlg.h"
 #include "VideoInformationDlg.h"
 #include "VideoInformationDlgListbox.h"
-#include "SetMainAVIHeaderFlagsDlg.h"
-#include "windows.h"
-#include "..\basestreams.h"
+#include "RIFFChunkTreeDlg.h"
+#include "AVIMux_GUIDlg.h"
+#include "EBMLTreeDlg.h"
+#include "FileDialogs.h"
+#include "ResizeableDialog.h"
+#include "UnicodeTreeCtrl.h"
+#include "AVIStructs.h"
+#include "Trees.h"
 #include "Languages.h"
 #include "FormatText.h"
-#include "RIFFChunkTreeDlg.h"
-#include "EBMLTreeDlg.h"
-#include "Trees.h"
-#include "..\matroska.h"
-#include "..\utf-8.h"
-#include "UnicodeTreeCtrl.h"
-#include "ResizeableDialog.h"
-#include ".\videoinformationdlg.h"
 #include "Version.h"
-#include <sstream>
+#include "../Compression.h"
+#include "../Matroska.h"
+#include "../../Common/utf-8.h"
+#include "../Filestream.h"
 #include <iomanip>
-#include "FileDialogs.h"
-#include "..\FileStream.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

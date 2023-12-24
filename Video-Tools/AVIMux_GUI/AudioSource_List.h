@@ -1,7 +1,7 @@
 #ifndef I_AUDIOSOURCE_LIST
 #define I_AUDIOSOURCE_LIST
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "AudioSource_generic.h"
 #include <string>
 

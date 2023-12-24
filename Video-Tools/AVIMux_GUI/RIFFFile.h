@@ -7,7 +7,7 @@
 #ifndef F_IRIFFFILE
 #define F_IRIFFFILE
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "../BaseStreams.h"
 
 const int DT_CHUNK = 0x01;

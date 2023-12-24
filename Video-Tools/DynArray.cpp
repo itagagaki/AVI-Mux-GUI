@@ -1,9 +1,7 @@
 /* Very old code that needs to be replaced using STL */
 
-
 #include "stdafx.h"
-#include "dynarray.h"
-#include "stdlib.h"
+#include "DynArray.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

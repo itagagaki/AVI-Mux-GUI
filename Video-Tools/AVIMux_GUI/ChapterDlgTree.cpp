@@ -2,17 +2,16 @@
 //
 
 #include "stdafx.h"
-#include "chapterdlg.h"
-#include "AVIMux_GUI.h"
+#include "resource.h"
 #include "ChapterDlgTree.h"
-#include "languages.h"
-#include "../../Common/textfiles.h"
-#include "..\basestreams.h"
-#include "formattext.h"
-#include "version.h"
-#include "..\UnicodeCalls.h"
+#include "ChapterDlg.h"
+#include "../Filestream.h"
+#include "Languages.h"
+#include "../../Common/TextFiles.h"
+#include "FormatText.h"
+#include "../UnicodeCalls.h"
 #include "XMLFiles.h"
-#include "..\matroska.h"
+#include "../Matroska.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

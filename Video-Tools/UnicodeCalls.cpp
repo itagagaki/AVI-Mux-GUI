@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "UnicodeCalls.h"
 #include "utf-8.h"
-#include "stdlib.h"
 
 CREATEFILE			_CreateFile[2]	= { NULL, NULL };
 DRAGQUERYFILE		_DragQueryFile[2] = { NULL, NULL };

@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "audiosource_avi.h"
-#include "..\utf-8.h"
+#include "AudioSource_AVI.h"
+#include "../../Common/utf-8.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -9,7 +9,7 @@
 #ifndef I_OGGFILE
 #define I_OGGFILE
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "../BaseStreams.h"
 #include <string>
 

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "utf-8.h"
-#include "windows.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

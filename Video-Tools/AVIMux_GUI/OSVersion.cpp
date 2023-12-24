@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "OSVersion.h"
-#include <string>
 
 CUTF8 currentOsVersionString;
 

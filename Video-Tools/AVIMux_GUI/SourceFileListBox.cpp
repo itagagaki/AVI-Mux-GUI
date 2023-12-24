@@ -2,31 +2,26 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
-#include "AVIMux_GUIDlg.h"
-#include "AVIFile.h"
+#include "resource.h"
 #include "SourceFileListBox.h"
-#include "..\FileStream.h"
-#include <algorithm>
-
-#include "mode2form2reader.h"
-#include "VideoInformationDlg.h"
-#include "Languages.h"
-#include "..\Buffers.h"
-#include "..\UnicodeCalls.h"
-#include "UTF8Windows.h"
-#include "EBMLTreeDlg.h"
+#include "AVIMux_GUIDlg.h"
 #include "RIFFChunkTreeDlg.h"
+#include "EBMLTreeDlg.h"
+#include "VideoInformationDlg.h"
+#include "UTF8Windows.h"
+#include "Mode2Form2Reader.h"
+#include "FILE_INFO.h"
+#include "Languages.h"
+#include "../Buffers.h"
+#include "../Filestream.h"
+#include "../UnicodeCalls.h"
+#include <algorithm>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-
-#include "FILE_INFO.h"
-#include ".\sourcefilelistbox.h"
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CSourceFileListBox

@@ -5,7 +5,7 @@
     from OGG, MKV and AVI files
 */
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "AudioSource_generic.h"
 #include "AudioSource_Matroska.h"
 #include "AVIFile.h"

@@ -1,9 +1,9 @@
 ﻿#include "stdafx.h"
-#include "FileStream.h"
-#include "Filenames.h"
-#include "UTF-8.h"
+#include "Filestream.h"
+#include "utf-8.h"
 #include "../Common/Path.h"
-#include "UnicodeCalls.h"
+//#include "UnicodeCalls.h"
+#include "types.h"
 
 #ifndef _ASSERT
 #ifndef _DEBUG

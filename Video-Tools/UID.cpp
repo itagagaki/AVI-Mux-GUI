@@ -1,7 +1,6 @@
 #include "stdafx.h"
+#include <wincrypt.h>
 #include "UID.h"
-#include "windows.h"
-#include "wincrypt.h"
 
 #define UID_TYPE_UNDEFINED 0x00
 #define UID_TYPE_UNSIGNED_INT 0x01

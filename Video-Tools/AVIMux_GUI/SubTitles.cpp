@@ -1,10 +1,8 @@
 #include "stdafx.h"
 #include "SubTitles.h"
-#include "Rifffile.h"
+#include "RIFFFile.h"
 #include "../multimedia_source.h"
-#include "..\utf-8.h"
-#include "global.h"
-
+#include "../../Common/utf-8.h"
 
 SUBTITLESOURCE::SUBTITLESOURCE()
 {

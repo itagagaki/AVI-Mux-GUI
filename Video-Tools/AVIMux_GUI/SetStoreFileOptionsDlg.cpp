@@ -2,16 +2,12 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "SetStoreFileOptionsDlg.h"
-#include "Languages.h"
-#include "..\Chapters.h"
-#include "Trees.h"
 #include "ChapterDlg.h"
-#include "FormatText.h"
-#include "..\Filenames.h"
-#include ".\setstorefileoptionsdlg.h"
 #include "WindowHelper.h"
+#include "Languages.h"
+#include "FormatText.h"
+#include "../Filenames.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

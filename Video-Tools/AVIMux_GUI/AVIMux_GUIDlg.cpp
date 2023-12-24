@@ -243,48 +243,40 @@ Chinese:
 
 
 #include "stdafx.h"
-#include "AudioSource.h"
-#include "AVIMux_GUI.h"
+#include "resource.h"
 #include "AVIMux_GUIDlg.h"
-#include "..\BaseStreams.h"
-#include "..\Buffers.h"
-#include "ChapterDlg.h"
-#include "ConfigScripts.h"
-#include "debug.h"
-#include "EnhancedListBox.h"
-#include "FormatText.h"
-#include "IncResource.h"
-#include "MessageLists.h"
-#include "Muxing.h"
-#include "mode2form2reader.h"
-#include "ProtocolListCtrl.h"
-#include "ProgressList.h"
-#include "RIFFChunkTreeDlg.h"
-#include "SetStoreFileOptionsDlg.h"
-#include "Silence.h"
-#include "sourcefilelistbox.h"
-#include "streams.h"
-#include "../strings.h"
-#include "SubTitles.h"
-#include "videosource.h"
-#include "videosourcelistbox.h"
-#include "WAVFile.h"
-#include "..\matroska.h"
-#include "Languages.h"
-#include "../../Common/TextFiles.h"
-#include "Trees.h"
-#include "AudioSourceTree.h"
-#include "..\XML.h"
-#include "XMLFiles.h"
 #include "FileDialogs.h"
+#include "SetStoreFileOptionsDlg.h"
+#include "ChapterDlg.h"
+#include "AudioSource.h"
+#include "AudioSourceTree.h"
+#include "VideoSource.h"
 #include "AVIFile.h"
+#include "SubTitles.h"
+#include "../Matroska.h"
+#include "OGGFile.h"
+#include "WAVFile.h"
+#include "Muxing.h"
+#include "Trees.h"
+#include "XMLFiles.h"
+#include "FILE_INFO.h"
+#include "fopenutf8.h"
 #include "UTF8Windows.h"
 #include "Version.h"
 #include "OSVersion.h"
-#include "..\Filenames.h"
-#include "..\Finalizer.h"
-#include "..\..\Common\Path.h"
-#include "fopenutf8.h"
+#include "Languages.h"
+#include "../Strings.h"
+#include "../Filenames.h"
+#include "../Finalizer.h"
+#include "../XML.h"
+#include "FormatText.h"
+#include "../FormatTime.h"
+#include "../../Common/TextFiles.h"
+#include "../../Common/Path.h"
+#include "Debug.h"
+
+//#include "MessageLists.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -520,9 +512,6 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CAVIMux_GUIDlg Nachrichten-Handler
-
-#include "global.h"
-
 
 HWND GetFocushWnd(CWnd* cwnd)
 {
@@ -911,8 +900,6 @@ HCURSOR CAVIMux_GUIDlg::OnQueryDragIcon()
 	return (HCURSOR) m_hIcon;
 }
 
-#include "FILE_INFO.h"
-#include ".\avimux_guidlg.h"
 
 void CAVIMux_GUIDlg::AddFile(CFileDialog* cfd)
 {

@@ -1,10 +1,10 @@
 #include "stdafx.h"
-#include "debug.h"
+#include "Debug.h"
 
-#include "IncResource.h"
+#ifdef DEBUG_ON
+#include "resource.h"
 #include "math.h"
-
-
+#endif
 
 __int64 QW_div(__int64 x, __int64 y, char* lpName)
 {

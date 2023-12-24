@@ -2,17 +2,16 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "RIFFChunkTreeDlg.h"
-#include "Languages.h"
-#include "FormatText.h"
 #include "ResizeableDialog.h"
-#include ".\riffchunktreedlg.h"
-#include "..\Cache.h"
 #include "HexViewListBox.h"
-#include "FileDialogs.h"
-#include "..\FileStream.h"
 #include "MessageBoxHelper.h"
+#include "Languages.h"
+#include "AVIFile.h"
+#include "FileDialogs.h"
+#include "../Filestream.h"
+#include "../Cache.h"
+#include "../FormatInt64.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

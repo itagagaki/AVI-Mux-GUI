@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "MKVAC3FrameCountEdit.h"
 
 #ifdef _DEBUG

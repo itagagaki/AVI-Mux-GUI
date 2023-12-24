@@ -1,18 +1,17 @@
 ﻿#include "stdafx.h"
 #include "AVIMux_GUIDlg.h"
-#include "global.h"
 #include "AVIMux_GUI.h"
-#include "..\UnicodeCalls.h"
+#include "Global.h"
 #include "UTF8Windows.h"
 #include "TABHandler.h"
 #include "LanguageCodes.h"
 #include "OSVersion.h"
 #include "../Filenames.h"
 #include "Version.h"
-#include "..\FileStream.h"
+#include "../Filestream.h"
 #include "../../Common/Path.h"
-#include <sstream>
 #include "../../Common/Controls/OSSpecific.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE

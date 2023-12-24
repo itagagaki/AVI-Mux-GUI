@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "queue.h"
+#include "Queue.h"
 
 #ifdef DEBUG_NEW
 #ifdef _DEBUG

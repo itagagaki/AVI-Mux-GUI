@@ -1,7 +1,7 @@
 ﻿#ifndef I_AVISTREAM
 #define I_AVISTREAM
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "AVIFile.h"
 
 // erlaubt lesen eines Audiostreams aus einer AVI-Datei, 

@@ -1,8 +1,7 @@
 #include "stdafx.h"
-#include "Stream.h"
 #include "TextFiles.h"
-#include "utf-8.h"
-#include <vector>
+#include "Stream.h"
+#include "../Common/utf-8.h"
 
 CTextFile::CTextFile()
 {

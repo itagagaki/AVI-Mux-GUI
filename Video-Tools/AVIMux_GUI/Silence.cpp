@@ -1,8 +1,7 @@
 #include "stdafx.h"
-#include "silence.h"
-#include "..\..\Common\Path.h"
-#include "..\FileStream.h"
-//#include "stdio.h"
+#include "Silence.h"
+#include "../Filestream.h"
+#include "../../Common/Path.h"
 
 #define SCS_INVALID		-1
 

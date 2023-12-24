@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "RIFFFile.h"
-//#include "vfw.h"
 #include "AVIStructs.h"
 
 DWORD MakeFourCC (char* lpFourCC)

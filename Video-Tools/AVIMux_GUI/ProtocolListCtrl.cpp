@@ -3,10 +3,9 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "AVIMux_GUI.h"
+#include "ProgressList.h"
 #include "ProtocolListCtrl.h"
 #include "Languages.h"
-#include ".\protocollistctrl.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

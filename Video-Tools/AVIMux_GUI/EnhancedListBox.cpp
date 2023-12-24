@@ -2,9 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "AVIMux_GUI.h"
 #include "EnhancedListBox.h"
-#include ".\enhancedlistbox.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

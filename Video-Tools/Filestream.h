@@ -1,7 +1,7 @@
 #ifndef I_CFileStream
 #define I_CFileStream
 
-#include <Windows.h>
+#include <wtypes.h>
 #include "BaseStreams.h"
 #include <deque>
 

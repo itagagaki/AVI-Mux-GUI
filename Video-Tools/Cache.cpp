@@ -11,14 +11,9 @@
 
 */
 
-
 #include "stdafx.h"
+#include <limits.h>
 #include "Cache.h"
-#include "math.h"
-#include "stdlib.h"
-#include "windows.h"
-#include "crtdbg.h"
-#include "limits.h"
 #include "FileStream.h"
 
 #ifdef DEBUG_NEW

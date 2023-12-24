@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "bitstream.h"
+#include "Bitstream.h"
 #include <stdexcept>
 
 int BITSTREAM::Open(STREAM* lpStream)
